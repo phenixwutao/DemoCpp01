@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "chap19.h"
+#include "chap11\chap11Template.h"
 
 int main()
 {
@@ -12,6 +13,8 @@ int main()
   printf("------------------------------------\n");
   chap19StdFunction();
   chap19StdFunctionLambda();
+  chap11DemoGrid();
+
   return 0;
 }
 
