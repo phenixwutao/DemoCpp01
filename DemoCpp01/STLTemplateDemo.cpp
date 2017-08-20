@@ -51,7 +51,7 @@ namespace UDemyDemo
 
     cout << "Size: " << numbers.size() << endl;
 
-    int capacity = numbers.capacity();
+    auto capacity = numbers.capacity();
     cout << "Capacity: " << capacity << endl;
 
     for (int i = 0; i<10000; i++) {
@@ -87,11 +87,11 @@ namespace UDemyDemo
   {
     vector<vector<int>> timeTable;
     vector<vector<int>> timeTableValue;
-    for (size_t row = 1; row <= wLimit; ++row)
+    for (int row = 1; row <= wLimit; ++row)
     {
       vector<int> RowTable;
       vector<int> RowTableValue;
-      for (size_t col = 1; col <= row; ++col)
+      for (int col = 1; col <= row; ++col)
       {
         RowTable.push_back(col);
         RowTableValue.push_back(row*col);

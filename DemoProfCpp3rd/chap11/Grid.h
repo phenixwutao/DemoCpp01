@@ -14,8 +14,8 @@ public:
   const T& getElementAt(size_t x, size_t y) const;
   void printElements();
 
-  size_t getWidth() const {return mWidth};
-  size_t getHeight() const { return mHeight };
+  size_t getWidth() const { return mWidth; }
+  size_t getHeight() const { return mHeight; }
   static const size_t kDefaultWidth = 10;
   static const size_t kDefaultHeight = 10;
 

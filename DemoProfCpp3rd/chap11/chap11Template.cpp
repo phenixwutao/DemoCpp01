@@ -20,6 +20,14 @@ void chap11DemoGrid()
   grid2.printElements();
   anotherIntGrid.printElements();
 
+  Grid<const char*> stringGrid1(2, 2); // Uses const char* specialization
+  const char* dummy = "dummy";
+  stringGrid1.setElementAt(0, 0, "hello");
+  stringGrid1.setElementAt(0, 1, dummy);
+  stringGrid1.setElementAt(1, 0, dummy);
+  stringGrid1.setElementAt(1, 1, "there");
+  stringGrid1.printElements();
+
 }
 
 namespace
