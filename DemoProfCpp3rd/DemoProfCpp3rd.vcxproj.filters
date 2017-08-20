@@ -19,6 +19,9 @@
     <Filter Include="chap19">
       <UniqueIdentifier>{51376134-9d18-4c86-9129-ae34d0a5524d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chap12">
+      <UniqueIdentifier>{affbb6ae-da4d-4cba-9ecd-0b736dd1090c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -51,6 +54,9 @@
     <ClInclude Include="chap11\GridString.h">
       <Filter>chap11</Filter>
     </ClInclude>
+    <ClInclude Include="chap12\chap12OutputStreams.h">
+      <Filter>chap12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="chap11\FuncTemplateString.cpp">
       <Filter>chap11</Filter>
+    </ClCompile>
+    <ClCompile Include="chap12\chap12OutputStreams.cpp">
+      <Filter>chap12</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "chap19\chap19.h"
 #include "chap11\chap11Template.h"
+#include "chap12\chap12OutputStreams.h"
 
 int main()
 {
@@ -18,6 +19,7 @@ int main()
   chap11FunctionTemplatesSyntax();
   chap11FunctionTemplateSpecialization1();
   chap11FunctionTemplateSpecialization2();
+  chap12TestStreams();
 
   return 0;
 }
