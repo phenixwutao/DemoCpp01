@@ -20,6 +20,7 @@ int main()
   chap11FunctionTemplateSpecialization1();
   chap11FunctionTemplateSpecialization2();
   chap12TestStreams();
+  chap12TestManipulators();
 
   return 0;
 }
