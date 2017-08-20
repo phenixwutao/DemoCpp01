@@ -42,6 +42,15 @@
     <ClInclude Include="chap11\NonTypeGridParameters.h">
       <Filter>chap11</Filter>
     </ClInclude>
+    <ClInclude Include="chap11\FuncTemplate.h">
+      <Filter>chap11</Filter>
+    </ClInclude>
+    <ClInclude Include="chap11\FuncTemplateString.h">
+      <Filter>chap11</Filter>
+    </ClInclude>
+    <ClInclude Include="chap11\GridString.h">
+      <Filter>chap11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="chap19\chap19.cpp">
       <Filter>chap19</Filter>
+    </ClCompile>
+    <ClCompile Include="chap11\FuncTemplateString.cpp">
+      <Filter>chap11</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

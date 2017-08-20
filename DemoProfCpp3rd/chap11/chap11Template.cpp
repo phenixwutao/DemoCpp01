@@ -65,5 +65,58 @@ void chap11DemoGridNonTypeParam()
   printf("print grid7\n");
   grid7.printElements();
 
+  //template<typename T, size_t WIDTH, size_t HEIGHT>
+  using GridDouble = GridNonTypeParam<double, 3, 3>;
+  GridDouble grid8;
+  grid8.setElementAt(1, 1, 5.306);
+  grid8.printElements();
 }
 
+void chap11FunctionTemplatesSyntax()
+{
+  // explicitly specifying the type
+  auto wOut1 = MyFunc1<double, double>(1.1, 1.2);
+  auto wOut2 = MyFunc2<double, double>(1.1, 1.2);
+
+  // the compiler deduce it from the arguments
+  auto wOut3 = MyFunc1(1.1, 1.2);
+  auto wOut4 = MyFunc2(1.1, 1.2);
+
+  printf("wOut1=%f, wOut2=%f\n", wOut1, wOut2);
+  printf("wOut3=%f, wOut4=%f\n", wOut3, wOut4);
+
+  int x = 3, intArr[] = { 1, 2, 3, 4 };
+  size_t sizeIntArr = sizeof(intArr) / sizeof(int);
+  auto res1 = Find(x, intArr, sizeIntArr);      // calls Find<int> by deduction
+  auto res2 = Find<int>(x, intArr, sizeIntArr); // calls Find<int> explicitly
+  printf("res1 %zu, res2 %zu\n", res1, res2);
+
+  size_t res3 = Find(x, intArr);
+  printf("res3 %zu \n", res3);
+}
+
+void chap11FunctionTemplateSpecialization1()
+{
+  const char* word = "two";
+  const char* arr[] = { "one", "two", "three", "four" };
+  size_t sizeArr = sizeof(arr) / sizeof(arr[0]);
+  auto res1 = Find<const char*>(word, arr, sizeArr);// Calls const char* specialization
+  auto res2 = Find(word, arr, sizeArr);             // Calls const char* specialization if no template overloading
+  printf("res1 %zu, res2 %zu\n", res1, res2);
+}
+
+void chap11FunctionTemplateSpecialization2()
+{
+  const char* word = "two";
+  const char* arr[] = { "one", "two", "three", "four" };
+  size_t sizeArr = sizeof(arr) / sizeof(arr[0]);
+  size_t res;
+  res = Find<const char*>(word, arr, sizeArr);// Calls const char* specialization
+  res = Find(word, arr, sizeArr);             // Calls template overloading
+  res = Find(word, arr);						          // Calls template overloading
+  if (res != NOT_FOUND)
+    cout << res << endl;
+  else
+    cout << "Not found" << endl;
+
+}

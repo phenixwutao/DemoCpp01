@@ -146,7 +146,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chap11\chap11Template.h" />
+    <ClInclude Include="chap11\FuncTemplate.h" />
+    <ClInclude Include="chap11\FuncTemplateString.h" />
     <ClInclude Include="chap11\Grid.h" />
+    <ClInclude Include="chap11\GridString.h" />
     <ClInclude Include="chap11\NonTypeGridParameters.h" />
     <ClInclude Include="chap19\chap19.h" />
     <ClInclude Include="stdafx.h" />
@@ -154,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chap11\chap11Template.cpp" />
+    <ClCompile Include="chap11\FuncTemplateString.cpp" />
     <ClCompile Include="chap19\chap19.cpp" />
     <ClCompile Include="DemoProfCpp3rd.cpp" />
     <ClCompile Include="stdafx.cpp">

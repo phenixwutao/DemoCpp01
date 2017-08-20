@@ -15,6 +15,9 @@ int main()
   chap19StdFunctionLambda();
   chap11DemoGrid();
   chap11DemoGridNonTypeParam();
+  chap11FunctionTemplatesSyntax();
+  chap11FunctionTemplateSpecialization1();
+  chap11FunctionTemplateSpecialization2();
 
   return 0;
 }
