@@ -1,7 +1,8 @@
 #pragma once
 
 // class template with non-type parameters
-template <typename T, size_t WIDTH, size_t HEIGHT>
+// provide defaults for template parameters
+template <typename T, size_t WIDTH = 5, size_t HEIGHT = 5>
 class GridNonTypeParam
 {
 public:

@@ -22,6 +22,14 @@ void chap11DemoGrid()
 
 }
 
+namespace
+{
+  constexpr size_t GetCurrentWidth()
+  {
+    return 2;
+  }
+}
+
 void chap11DemoGridNonTypeParam()
 {
   GridNonTypeParam<int, 3, 4> grid1;
@@ -30,5 +38,15 @@ void chap11DemoGridNonTypeParam()
   GridNonTypeParam<int, 3, 4> grid2;
   grid2 = grid1;
   grid2.printElements();
+
+  // Non-type parameters should be const or constexpr
+  GridNonTypeParam<int, GetCurrentWidth(), 4> grid3;
+  const size_t kCurrentHeight = 4;
+  GridNonTypeParam<int, GetCurrentWidth(), kCurrentHeight> grid4;
+
+  // use defaults for template parameters
+  GridNonTypeParam<double> grid5;
+  grid5.setElementAt(3, 3, 0.99);
+  grid5.printElements();
 }
 
