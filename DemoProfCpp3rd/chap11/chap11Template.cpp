@@ -48,5 +48,14 @@ void chap11DemoGridNonTypeParam()
   GridNonTypeParam<double> grid5;
   grid5.setElementAt(3, 3, 0.99);
   grid5.printElements();
+
+  //copy from double to int instantiated class object
+  GridNonTypeParam<int, 3, 3> grid6;
+  grid6.setElementAt(2, 2, 9);
+  GridNonTypeParam<double, 3, 3> grid7;
+  grid7 = grid6;
+  printf("print grid7\n");
+  grid7.printElements();
+
 }
 
