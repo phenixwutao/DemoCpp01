@@ -22,3 +22,13 @@ void chap11DemoGrid()
 
 }
 
+void chap11DemoGridNonTypeParam()
+{
+  GridNonTypeParam<int, 3, 4> grid1;
+  grid1.setElementAt(1, 1, 15);
+  grid1.printElements();
+  GridNonTypeParam<int, 3, 4> grid2;
+  grid2 = grid1;
+  grid2.printElements();
+}
+

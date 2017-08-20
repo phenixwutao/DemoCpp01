@@ -16,6 +16,9 @@
     <Filter Include="chap11">
       <UniqueIdentifier>{41caad64-4d55-400c-8f43-174023a3e0dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chap19">
+      <UniqueIdentifier>{51376134-9d18-4c86-9129-ae34d0a5524d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,13 +30,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="chap19.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="chap11\Grid.h">
       <Filter>chap11</Filter>
     </ClInclude>
     <ClInclude Include="chap11\chap11Template.h">
+      <Filter>chap11</Filter>
+    </ClInclude>
+    <ClInclude Include="chap19\chap19.h">
+      <Filter>chap19</Filter>
+    </ClInclude>
+    <ClInclude Include="chap11\NonTypeGridParameters.h">
       <Filter>chap11</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,11 +50,11 @@
     <ClCompile Include="DemoProfCpp3rd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chap19.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="chap11\chap11Template.cpp">
       <Filter>chap11</Filter>
+    </ClCompile>
+    <ClCompile Include="chap19\chap19.cpp">
+      <Filter>chap19</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

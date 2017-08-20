@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "chap19.h"
+#include "chap19\chap19.h"
 #include "chap11\chap11Template.h"
 
 int main()
@@ -14,6 +14,7 @@ int main()
   chap19StdFunction();
   chap19StdFunctionLambda();
   chap11DemoGrid();
+  chap11DemoGridNonTypeParam();
 
   return 0;
 }
