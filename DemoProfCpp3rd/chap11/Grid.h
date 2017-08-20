@@ -1,6 +1,14 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <algorithm>
+
+// Forward declare Grid template.
+template <typename T> class Grid;
+
+// Prototype for templatized operator+.
+template<typename T>
+Grid<T> operator+(const Grid<T>& lhs, const Grid<T>& rhs);
 
 template<typename T>
 class Grid
@@ -18,6 +26,8 @@ public:
   size_t getHeight() const { return mHeight; }
   static const size_t kDefaultWidth = 10;
   static const size_t kDefaultHeight = 10;
+
+  friend Grid<T> operator+ <T>(const Grid<T>& lhs, const Grid<T>& rhs);
 
 private:
   void initializeCellsContainer();
@@ -74,4 +84,18 @@ void Grid<T>::printElements()
       std::cout << cell << ", ";
     printf("\n");
   }
+}
+
+template <typename T>
+Grid<T> operator+(const Grid<T>& lhs, const Grid<T>& rhs)
+{
+  size_t minWidth = std::min(lhs.getWidth(), rhs.getWidth());
+  size_t minHeight = std::min(lhs.getHeight(), rhs.getHeight());
+  Grid<T> result(minWidth, minHeight);
+  for (size_t y = 0; y < minHeight; ++y) {
+    for (size_t x = 0; x < minWidth; ++x) {
+      result.setElementAt(x, y, lhs.mCells[x][y] + rhs.mCells[x][y]);
+    }
+  }
+  return result;
 }

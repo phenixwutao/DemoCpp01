@@ -28,6 +28,23 @@ void chap11DemoGrid()
   stringGrid1.setElementAt(1, 1, "there");
   stringGrid1.printElements();
 
+  Grid<int> gr5(2,2);
+  gr5.setElementAt(0, 0, 2);
+  gr5.setElementAt(0, 1, 2);
+  gr5.setElementAt(1, 0, 2);
+  gr5.setElementAt(1, 1, 2);
+
+  Grid<int> gr6(2, 3);
+  gr6.setElementAt(0, 0, 3);
+  gr6.setElementAt(0, 1, 3);
+  gr6.setElementAt(0, 2, 3);
+  gr6.setElementAt(1, 0, 3);
+  gr6.setElementAt(1, 1, 3);
+  gr6.setElementAt(1, 2, 3);
+
+  auto gr7 = gr5 + gr6;
+  printf("print gr7 after + operation\n");
+  gr7.printElements();
 }
 
 namespace
