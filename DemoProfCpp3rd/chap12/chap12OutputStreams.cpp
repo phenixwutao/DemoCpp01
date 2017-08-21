@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <ios>
 #include <iomanip>
 
@@ -110,4 +111,137 @@ void chap12TestManipulators()
   // C++14: Quoted string
   cout << "This should be: \"Quoted string with \\\"embedded quotes\\\".\": "
     << quoted("Quoted string with \"embedded quotes\".") << endl;
+}
+
+string readName(istream& inStream)
+{
+  string name;
+  char next;
+  while (inStream.get(next)) {
+    if (next == std::char_traits<char>::eof())
+      break;
+    else
+      name += next;
+  }
+
+  return name;
+}
+
+void chap12TestInputGet()
+{
+  cout << "Reading a name from cin. You can usually close cin with Control-D (Control-Z in Windows): ";
+  string theName = readName(cin);
+
+  cout << "The name is \"" << theName.c_str() << "\"" << endl;
+}
+
+void chap12TestInputUnget()
+{
+  string guestName;
+  int partySize = 0;
+  // Read characters until we find a digit
+  char ch;
+  cin >> noskipws;
+  while (cin >> ch)
+  {
+    if (isdigit(ch))
+    {
+      // put back last read character
+      cin.unget();
+      if (cin.fail())
+        cout << "unget() failed" << endl;
+      break;
+    }
+    guestName += ch;
+  }
+  // Read partysize
+  cin >> partySize;
+
+  cout << "Thank you '" << guestName.c_str()
+       << "', party of " << partySize << endl;
+  if (partySize > 10)
+  {
+    cout << "An extra gratuity will apply." << endl;
+  }
+}
+
+
+void chap12TestInputPeek()
+{
+  string guestName;
+  int partySize = 0;
+  // Read characters until we find a digit
+  char ch;
+  cin >> noskipws;
+  while (true) {
+    // 'peek' at next character
+    auto wp = cin.peek();
+    ch = static_cast<char>(wp);
+    if (!cin.good())
+      break;
+    if (isdigit(ch)) {
+      // next character will be a digit, so stop the loop
+      break;
+    }
+    // next character will be a non-digit, so read it
+    cin >> ch;
+    guestName += ch;
+  }
+  // Read partysize
+  cin >> partySize;
+
+  cout << "Thank you '" << guestName
+    << "', party of " << partySize << endl;
+  if (partySize > 10) {
+    cout << "An extra gratuity will apply." << endl;
+  }
+}
+
+void chap12TestInputGetline()
+{
+  // cin getline method
+  constexpr const size_t kBufferSize = 256;
+  char buffer[kBufferSize];
+  cin.getline(buffer, kBufferSize);
+  cout << "read1:'" << buffer << "'" << endl;
+
+  // string std::getline method
+  string myString;
+  std::getline(cin, myString);
+  cout << "read2:'" << myString << "'" << endl;
+}
+
+void chap12TestInputErrorCheck()
+{
+  cout << "Enter numbers on separate lines to add.\n"
+       << "Use Control+D to finish (Control+Z in Windows, the Enter)." << endl;
+  int sum = 0;
+
+  if (!cin.good()) {
+    cerr << "Standard input is in a bad state!" << endl;
+  }
+
+  int number;
+  while (!cin.bad())
+  {
+    cin >> number;
+    if (cin.good())
+    {
+      sum += number;
+    }
+    else if (cin.eof())
+    {
+      break; // Reached end of file
+    }
+    else if (cin.fail())
+    {
+      // Failure!
+      cin.clear(); // Clear the failure state.
+      string badToken;
+      cin >> badToken; // Consume the bad input.
+      cerr << "WARNING: Bad input encountered: " << badToken << endl;
+    }
+  }
+
+  cout << "The sum is " << sum << endl;
 }

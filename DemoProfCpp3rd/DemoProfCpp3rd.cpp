@@ -21,6 +21,11 @@ int main()
   chap11FunctionTemplateSpecialization2();
   chap12TestStreams();
   chap12TestManipulators();
+  //chap12TestInputGet();
+  //chap12TestInputUnget();
+  //chap12TestInputPeek();
+  //chap12TestInputGetline();
+  chap12TestInputErrorCheck();
 
   return 0;
 }
