@@ -214,7 +214,7 @@ void chap12TestInputGetline()
 void chap12TestInputErrorCheck()
 {
   cout << "Enter numbers on separate lines to add.\n"
-       << "Use Control+D to finish (Control+Z in Windows, the Enter)." << endl;
+       << "Use Control+D to finish (Control+Z in Windows, then Enter)." << endl;
   int sum = 0;
 
   if (!cin.good()) {
