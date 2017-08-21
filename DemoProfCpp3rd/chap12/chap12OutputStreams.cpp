@@ -1,12 +1,14 @@
 #include "StdAfx.h"
 
 #include <iostream>
+#include <sstream>
 #include <cstring>
 #include <string>
 #include <ios>
 #include <iomanip>
 
 #include "chap12OutputStreams.h"
+#include "Muffin.h"
 
 using namespace std;
 
@@ -214,7 +216,7 @@ void chap12TestInputGetline()
 void chap12TestInputErrorCheck()
 {
   cout << "Enter numbers on separate lines to add.\n"
-       << "Use Control+D to finish (Control+Z in Windows, the Enter)." << endl;
+       << "Use Control+D to finish (Control+Z in Windows, then Enter)." << endl;
   int sum = 0;
 
   if (!cin.good()) {
@@ -244,4 +246,44 @@ void chap12TestInputErrorCheck()
   }
 
   cout << "The sum is " << sum << endl;
+}
+
+
+Muffin createMuffin(istringstream& inStream)
+{
+  Muffin muffin;
+  // Assume data is properly formatted:
+  // Description size chips
+
+  string description;
+  int size;
+  bool hasChips;
+
+  // Read all three values. Note that chips is represented
+  // by the strings "true" and "false"
+  inStream >> description >> size >> boolalpha >> hasChips;
+  muffin.setSize(size);
+  muffin.setDescription(description);
+  muffin.setHasChocolateChips(hasChips);
+
+  return muffin;
+}
+
+void chap12TestMuffin()
+{
+  cout << "First, let's create a muffin in code and output it." << endl;
+
+  Muffin m;
+  m.setDescription("Giant_Blueberry_Muffin");
+  m.setSize(42);
+  m.setHasChocolateChips(false);
+
+  m.output();
+
+  cout << "Now we'll create a muffin from a string stream" << endl;
+
+  istringstream instream("My_Muffin 2 true");
+  Muffin m2 = createMuffin(instream);
+
+  m2.output();
 }

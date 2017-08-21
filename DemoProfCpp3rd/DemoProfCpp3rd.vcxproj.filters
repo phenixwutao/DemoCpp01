@@ -57,6 +57,9 @@
     <ClInclude Include="chap12\chap12OutputStreams.h">
       <Filter>chap12</Filter>
     </ClInclude>
+    <ClInclude Include="chap12\Muffin.h">
+      <Filter>chap12</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -75,6 +78,9 @@
       <Filter>chap11</Filter>
     </ClCompile>
     <ClCompile Include="chap12\chap12OutputStreams.cpp">
+      <Filter>chap12</Filter>
+    </ClCompile>
+    <ClCompile Include="chap12\Muffin.cpp">
       <Filter>chap12</Filter>
     </ClCompile>
   </ItemGroup>

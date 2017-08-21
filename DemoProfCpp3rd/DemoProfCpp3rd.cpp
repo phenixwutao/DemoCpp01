@@ -25,7 +25,8 @@ int main()
   //chap12TestInputUnget();
   //chap12TestInputPeek();
   //chap12TestInputGetline();
-  chap12TestInputErrorCheck();
+  //chap12TestInputErrorCheck();
+  chap12TestMuffin();
 
   return 0;
 }
