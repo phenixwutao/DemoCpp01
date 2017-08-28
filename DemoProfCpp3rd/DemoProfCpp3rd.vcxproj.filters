@@ -66,6 +66,9 @@
     <ClInclude Include="chap13\chap13HandleException.h">
       <Filter>chap13</Filter>
     </ClInclude>
+    <ClInclude Include="chap13\FileError.h">
+      <Filter>chap13</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -90,6 +93,9 @@
       <Filter>chap12</Filter>
     </ClCompile>
     <ClCompile Include="chap13\chap13HandleException.cpp">
+      <Filter>chap13</Filter>
+    </ClCompile>
+    <ClCompile Include="chap13\FileError.cpp">
       <Filter>chap13</Filter>
     </ClCompile>
   </ItemGroup>

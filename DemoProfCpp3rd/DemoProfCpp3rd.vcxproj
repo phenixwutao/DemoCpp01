@@ -154,6 +154,7 @@
     <ClInclude Include="chap12\chap12OutputStreams.h" />
     <ClInclude Include="chap12\Muffin.h" />
     <ClInclude Include="chap13\chap13HandleException.h" />
+    <ClInclude Include="chap13\FileError.h" />
     <ClInclude Include="chap19\chap19.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="chap12\chap12OutputStreams.cpp" />
     <ClCompile Include="chap12\Muffin.cpp" />
     <ClCompile Include="chap13\chap13HandleException.cpp" />
+    <ClCompile Include="chap13\FileError.cpp" />
     <ClCompile Include="chap19\chap19.cpp" />
     <ClCompile Include="DemoProfCpp3rd.cpp" />
     <ClCompile Include="stdafx.cpp">

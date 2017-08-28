@@ -38,9 +38,10 @@ int main(int argc, char* argv[])
   //chap13TestMultipleExceptionsTwoTypes();
   //chap13TestUnspecifiedExceptions();
   //chap13TestUncaughtExceptions();
-  chap13TestThrowList();
-  chap13TestUnspecifiedExceptions();
+  //chap13TestThrowList();
+  //chap13TestUnspecifiedExceptions();
+  chap13TestExtendExceptionClass();
 
-  return 0;
+  return EXIT_SUCCESS;
 }
 

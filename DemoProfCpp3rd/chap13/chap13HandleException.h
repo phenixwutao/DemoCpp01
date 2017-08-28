@@ -5,3 +5,4 @@ void chap13TestMultipleExceptionsTwoTypes();
 void chap13TestUncaughtExceptions();
 void chap13TestThrowList();
 void chap13TestUnspecifiedExceptions();
+void chap13TestExtendExceptionClass();

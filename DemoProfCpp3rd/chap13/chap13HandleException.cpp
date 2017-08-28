@@ -5,7 +5,9 @@
 #include <vector>
 #include <string>
 #include <fstream>
+
 #include "chap13HandleException.h"
+#include "FileError.h"
 
 using namespace std;
 
@@ -249,3 +251,55 @@ void chap13TestUnspecifiedExceptions()
   set_unexpected(old_handler);
 }
 
+void readIntegerFileWithExceptionClass(const string& fileName, vector<int>& dest)
+{
+  ifstream istr;
+  int temp;
+  string line;
+  int lineNumber = 0;
+
+  istr.open(fileName.c_str());
+  if (istr.fail()) {
+    // We failed to open the file: throw an exception
+    throw FileOpenError(fileName);
+  }
+
+  while (!istr.eof()) {
+    // Read one line from the file
+    getline(istr, line);
+    lineNumber++;
+
+    // Create a string stream out of the line
+    istringstream lineStream(line);
+
+    // Read the integers one-by-one and add them to the vector
+    while (lineStream >> temp) {
+      dest.push_back(temp);
+    }
+
+    if (!lineStream.eof()) {
+      // We did not reach the end of the string stream.
+      // This means that some error occurred while reading this line.
+      // Throw an exception.
+      throw FileReadError(fileName, lineNumber);
+    }
+  }
+}
+
+void chap13TestExtendExceptionClass()
+{
+  vector<int> myInts;
+  const string fileName = "IntegerFile.txt";
+
+  try {
+    readIntegerFileWithExceptionClass(fileName, myInts);
+  }
+  catch (const FileError& e) {
+    cerr << e.what() << endl;
+  }
+
+  for (const auto element : myInts) {
+    cout << element << " ";
+  }
+  cout << endl;
+}
