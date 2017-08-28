@@ -5,6 +5,7 @@
 #include "chap19\chap19.h"
 #include "chap11\chap11Template.h"
 #include "chap12\chap12OutputStreams.h"
+#include "chap13\chap13HandleException.h"
 
 int main(int argc, char* argv[])
 {
@@ -19,8 +20,8 @@ int main(int argc, char* argv[])
   chap11FunctionTemplatesSyntax();
   chap11FunctionTemplateSpecialization1();
   chap11FunctionTemplateSpecialization2();
-  chap12TestStreams();
-  chap12TestManipulators();
+  //chap12TestStreams();
+  //chap12TestManipulators();
   //chap12TestInputGet();
   //chap12TestInputUnget();
   //chap12TestInputPeek();
@@ -28,10 +29,17 @@ int main(int argc, char* argv[])
   //chap12TestInputErrorCheck();
   //chap12TestMuffin();
   //chap12TestStringStream();
-  chap12TestOutputFileStream(argc, argv);
-  chap12TestJumpingWithSeekTell();
-  chap12TestLinkStream();
-  chap12TestBidirectionalIO();
+  //chap12TestOutputFileStream(argc, argv);
+  //chap12TestJumpingWithSeekTell();
+  //chap12TestLinkStream();
+  //chap12TestBidirectionalIO();
+  //chap13TestThrowException();
+  //chap13TestMultipleExceptions();
+  //chap13TestMultipleExceptionsTwoTypes();
+  //chap13TestUnspecifiedExceptions();
+  //chap13TestUncaughtExceptions();
+  chap13TestThrowList();
+  chap13TestUnspecifiedExceptions();
 
   return 0;
 }

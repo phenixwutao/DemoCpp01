@@ -22,6 +22,9 @@
     <Filter Include="chap12">
       <UniqueIdentifier>{affbb6ae-da4d-4cba-9ecd-0b736dd1090c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chap13">
+      <UniqueIdentifier>{78dc9e6d-6380-403e-9280-73137418d81b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,6 +63,9 @@
     <ClInclude Include="chap12\Muffin.h">
       <Filter>chap12</Filter>
     </ClInclude>
+    <ClInclude Include="chap13\chap13HandleException.h">
+      <Filter>chap13</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="chap12\Muffin.cpp">
       <Filter>chap12</Filter>
+    </ClCompile>
+    <ClCompile Include="chap13\chap13HandleException.cpp">
+      <Filter>chap13</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
