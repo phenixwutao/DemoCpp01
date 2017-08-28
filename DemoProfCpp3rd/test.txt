@@ -1,0 +1,3 @@
+There were 1 arguments to this program.
+They are: 
+0):  C:\Users\wutao\Source\GitHub\DemoCpp01\x64\Debug\DemoProfCpp3rd.exe

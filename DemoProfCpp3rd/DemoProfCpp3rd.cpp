@@ -6,7 +6,7 @@
 #include "chap11\chap11Template.h"
 #include "chap12\chap12OutputStreams.h"
 
-int main()
+int main(int argc, char* argv[])
 {
   printf("------------------------------------\n");
   printf("Professional C++ 3rd!\n");
@@ -26,7 +26,12 @@ int main()
   //chap12TestInputPeek();
   //chap12TestInputGetline();
   //chap12TestInputErrorCheck();
-  chap12TestMuffin();
+  //chap12TestMuffin();
+  //chap12TestStringStream();
+  chap12TestOutputFileStream(argc, argv);
+  chap12TestJumpingWithSeekTell();
+  chap12TestLinkStream();
+  chap12TestBidirectionalIO();
 
   return 0;
 }

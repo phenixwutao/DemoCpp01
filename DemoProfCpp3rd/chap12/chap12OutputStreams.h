@@ -11,3 +11,8 @@ void chap12TestInputPeek();
 void chap12TestInputGetline();
 void chap12TestInputErrorCheck();
 void chap12TestMuffin();
+void chap12TestStringStream();
+void chap12TestOutputFileStream(int argc, char** argv);
+void chap12TestJumpingWithSeekTell();
+void chap12TestLinkStream();
+void chap12TestBidirectionalIO();
