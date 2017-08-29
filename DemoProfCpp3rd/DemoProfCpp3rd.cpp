@@ -40,7 +40,13 @@ int main(int argc, char* argv[])
   //chap13TestUncaughtExceptions();
   //chap13TestThrowList();
   //chap13TestUnspecifiedExceptions();
-  chap13TestExtendExceptionClass();
+  //chap13TestExtendExceptionClass();
+  //chap13TestStackUnwindSmartPointers();
+  //chap13TestStackUnwindCatchThrow();
+  //chap13TestErrorHandleMemoryAlloc();
+  //chap13TestErrorHandleNoThrow();
+  //chap13TestErrorHandleNewHandler();
+  chap13TestErrorHandleConstructorTryBlocks();
 
   return EXIT_SUCCESS;
 }

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <memory>
 
 #include "chap13HandleException.h"
 #include "FileError.h"
@@ -302,4 +303,178 @@ void chap13TestExtendExceptionClass()
     cout << element << " ";
   }
   cout << endl;
+}
+
+void funcTwo()
+{
+  ifstream istr;
+  istr.open("filename");
+  throw exception();
+  istr.close();
+}
+
+void funcOne()
+{
+  string str1;
+  auto str2 = make_unique<string>("hello");
+  funcTwo();
+}
+
+
+void chap13TestStackUnwindSmartPointers()
+{
+  try {
+    funcOne();
+  }
+  catch (const exception& /* e */)
+  {
+    cerr << __func__ << ": Exception caught!" << endl;
+  }
+}
+
+// catch, cleanup and rethrow technique: depreciated!
+void funcOneCatchAndThrow()
+{
+  string str1;
+  string* str2 = new string("test");
+  try {
+    funcTwo();
+  }
+  catch (...)
+  {
+    delete str2;
+
+    // throw by itself rethrows whatever exception was caught most recently
+    throw; // rethrow the exception
+  }
+  delete str2;
+}
+
+void chap13TestStackUnwindCatchThrow()
+{
+  try {
+    funcOne();
+  }
+  catch (const exception& /* e */) {
+    cerr << __func__ << ": Exception caught!" << endl;
+  }
+}
+
+void chap13TestErrorHandleMemoryAlloc()
+{
+  int* ptr {nullptr};
+  size_t numInts = numeric_limits<int>::max();
+
+  try {
+    ptr = new int[numInts];
+  }
+  catch (const bad_alloc& e) {
+    cerr << __FILE__ << "(" << __LINE__ << "): Unable to allocate memory: " << e.what() << endl;
+    // Handle memory allocation failure
+  }
+  if (ptr != nullptr)
+    delete[] ptr;
+}
+
+void chap13TestErrorHandleNoThrow()
+{
+  int* ptr = nullptr;
+  size_t numInts = numeric_limits<int>::max();
+
+  ptr = new(nothrow) int[numInts];
+  if (ptr == nullptr) {
+    cerr << __FILE__ << "(" << __LINE__ << "): Unable to allocate memory!" << endl;
+    // Handle memory allocation failure
+  }
+
+  // Proceed with function that assumes memory has been allocated
+  if (ptr != nullptr)
+    delete[] ptr;
+}
+
+class PleaseTerminateMe : public bad_alloc { };
+
+void myNewHandler()
+{
+  cerr << "Unable to allocate memory." << endl;
+  throw PleaseTerminateMe();
+}
+
+// set new handler by customised function
+void chap13TestErrorHandleNewHandler()
+{
+  try {
+    // Set the new new_handler and save the old.
+    new_handler oldHandler = set_new_handler(myNewHandler);
+
+    // Generate allocation error
+    size_t numInts = numeric_limits<int>::max();
+    int* ptr = new int[numInts];
+
+    // reset the old new_handler
+    set_new_handler(oldHandler);
+    if (ptr != nullptr)
+      delete[] ptr;
+  }
+  catch (const PleaseTerminateMe& ) {
+    cerr << __FILE__ << "(" << __LINE__ << "): Terminating program." << endl;
+  }
+}
+
+class SubObject
+{
+public:
+  SubObject(int i);
+};
+
+SubObject::SubObject(int /*i*/)
+{
+  throw runtime_error("Exception by SubObject ctor");
+}
+
+class MyClass
+{
+public:
+  MyClass();
+private:
+  SubObject mSubObject;
+};
+
+
+/************************************************************************
+* constructor function-try-block
+*************************************************************************/
+MyClass::MyClass()
+try
+  : mSubObject(42)
+{
+  /* ... constructor body ... */
+}
+catch (const exception& e)
+{
+  /***************************************************************************************
+  * catch statements in a function-try-block for a constructor have to either rethrow
+  * the current exception or throw a new exception. The preceding catch statement does not
+  * throw anything, so the C++ runtime will automatically rethrow the current exception.
+  **/
+  cout << __func__ << ": function-try-block caught: '" << e.what() << "'" << endl;
+}
+
+void chap13TestErrorHandleConstructorTryBlocks()
+{
+  try {
+    MyClass m;
+  }
+  catch (const exception& e) {
+    cout << __func__ << ": main() caught: '" << e.what() << "'" << endl;
+  }
+
+  /************************************************************************************
+  * function-try-block can be used on a normal function or a constructor.
+  *
+  * >>>>>>>>> Errors in Destructors <<<<<<<<<<<<<
+  *
+  * You should handle all error conditions that arise in destructors in the destructors
+  * themselves. You should not let any exceptions be thrown from destructors.
+  **************************************************************************************/
 }
