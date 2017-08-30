@@ -6,6 +6,7 @@
 #include "chap11\chap11Template.h"
 #include "chap12\chap12OutputStreams.h"
 #include "chap13\chap13HandleException.h"
+#include "chap14\chap14OperatorOverloading.h"
 
 int main(int argc, char* argv[])
 {
@@ -46,7 +47,9 @@ int main(int argc, char* argv[])
   //chap13TestErrorHandleMemoryAlloc();
   //chap13TestErrorHandleNoThrow();
   //chap13TestErrorHandleNewHandler();
-  chap13TestErrorHandleConstructorTryBlocks();
+  //chap13TestErrorHandleConstructorTryBlocks();
+  chap14TestArithmeticOperators();
+
 
   return EXIT_SUCCESS;
 }
