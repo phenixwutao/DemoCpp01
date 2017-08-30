@@ -53,6 +53,7 @@ int main(int argc, char* argv[])
   //chap14TestFunctors();
   //chap14TestPointerOperators();
   chap14TestConversionOperators();
+  chap14TestNewDeleteOperators();
 
 
   return EXIT_SUCCESS;

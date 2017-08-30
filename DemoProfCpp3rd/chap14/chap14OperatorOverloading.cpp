@@ -7,6 +7,7 @@
 #include "Array.h"
 #include "AssociativeArray.h"
 #include "Pointer.h"
+#include "MemoryDemo.h"
 
 using namespace std;
 
@@ -109,4 +110,22 @@ void chap14TestConversionOperators()
   if (anotherSmartCell != NULL) { cout << "not NULL" << endl; }
   if (anotherSmartCell) { cout << "not nullptr" << endl; }
   if (!anotherSmartCell) { cout << "nullptr" << endl; }
+}
+
+void chap14TestNewDeleteOperators()
+{
+  MemoryDemo* mem = new MemoryDemo();
+  delete mem;
+
+  mem = new MemoryDemo[10];
+  delete[] mem;
+
+  mem = new (nothrow) MemoryDemo();
+  delete mem;
+
+  mem = new (nothrow) MemoryDemo[10];
+  delete[] mem;
+
+  MemoryDemo* memp = new(5) MemoryDemo();
+  delete memp;
 }

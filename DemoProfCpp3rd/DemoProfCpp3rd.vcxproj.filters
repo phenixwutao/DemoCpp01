@@ -87,6 +87,9 @@
     <ClInclude Include="chap14\Pointer.h">
       <Filter>chap14</Filter>
     </ClInclude>
+    <ClInclude Include="chap14\MemoryDemo.h">
+      <Filter>chap14</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -120,6 +123,9 @@
       <Filter>chap14</Filter>
     </ClCompile>
     <ClCompile Include="chap14\chap14OperatorOverloading.cpp">
+      <Filter>chap14</Filter>
+    </ClCompile>
+    <ClCompile Include="chap14\MemoryDemo.cpp">
       <Filter>chap14</Filter>
     </ClCompile>
   </ItemGroup>
