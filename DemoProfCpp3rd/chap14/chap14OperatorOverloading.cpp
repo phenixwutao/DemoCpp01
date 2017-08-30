@@ -6,6 +6,7 @@
 #include "chap14OperatorOverloading.h"
 #include "Array.h"
 #include "AssociativeArray.h"
+#include "Pointer.h"
 
 using namespace std;
 
@@ -78,4 +79,27 @@ void chap14TestFunctors()
 
   xSquared = square(x);				// Call the function call operator
   xSquaredAgain = square.doSquare(x);	// Call the normal method
+}
+
+void chap14TestPointerOperators()
+{
+  Pointer<int> ap(new int);
+  *ap = 5;
+  cout << *ap << endl;
+
+  Pointer<SpreadsheetCell> smartCell(new SpreadsheetCell);
+
+  smartCell->set(5); // Dereference and member select the set method.
+  cout << smartCell->getValue() << endl;
+}
+
+void chap14TestConversionOperators()
+{
+  SpreadsheetCell cell(1.23);
+  string str = cell; // Works as expected
+  cout << str << endl;
+  double d1 = static_cast<double>(cell);
+  cout << d1 << endl;
+
+  double d2 = static_cast<double>(cell) + 3.3; // DOES NOT COMPILE IF YOU DEFINE operator double()
 }

@@ -84,6 +84,9 @@
     <ClInclude Include="chap14\AssociativeArray.h">
       <Filter>chap14</Filter>
     </ClInclude>
+    <ClInclude Include="chap14\Pointer.h">
+      <Filter>chap14</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

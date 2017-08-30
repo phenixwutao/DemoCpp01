@@ -158,6 +158,7 @@
     <ClInclude Include="chap14\Array.h" />
     <ClInclude Include="chap14\AssociativeArray.h" />
     <ClInclude Include="chap14\chap14OperatorOverloading.h" />
+    <ClInclude Include="chap14\Pointer.h" />
     <ClInclude Include="chap14\SpreadsheetCell.h" />
     <ClInclude Include="chap19\chap19.h" />
     <ClInclude Include="stdafx.h" />

@@ -56,6 +56,10 @@ public:
   // extraction operator
   friend std::istream& operator>>(std::istream& ism, SpreadsheetCell& cell);
 
+  operator std::string() const;
+  explicit operator double() const;
+  //explicit operator double() const;	// C++11
+
 private:
   double mValue { 0 };
 	std::string mString;

@@ -193,6 +193,18 @@ SpreadsheetCell SpreadsheetCell::operator--(int)
 	return oldCell;  // return the old value
 }
 
+// conversion operator to string
+SpreadsheetCell::operator std::string() const
+{
+  return this->mString;
+}
+
+// conversion operator to double
+SpreadsheetCell::operator double() const
+{
+  return this->mValue;
+}
+
 std::ostream& operator<<(std::ostream& osm, const SpreadsheetCell& cell)
 {
   osm << cell.mString;

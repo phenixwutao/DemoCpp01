@@ -48,9 +48,12 @@ int main(int argc, char* argv[])
   //chap13TestErrorHandleNoThrow();
   //chap13TestErrorHandleNewHandler();
   //chap13TestErrorHandleConstructorTryBlocks();
-  chap14TestArithmeticOperators();
-  chap14TestSubscriptOperators();
-  chap14TestFunctors();
+  //chap14TestArithmeticOperators();
+  //chap14TestSubscriptOperators();
+  //chap14TestFunctors();
+  //chap14TestPointerOperators();
+  chap14TestConversionOperators();
+
 
   return EXIT_SUCCESS;
 }
