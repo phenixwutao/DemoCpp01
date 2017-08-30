@@ -17,6 +17,9 @@ public:
   T* operator->();
   const T* operator->() const;
 
+  // conversion operator of pointer type
+  operator void*() const { return mPtr; }
+
 private:
   T* mPtr;
 };

@@ -102,4 +102,11 @@ void chap14TestConversionOperators()
   cout << d1 << endl;
 
   double d2 = static_cast<double>(cell) + 3.3; // DOES NOT COMPILE IF YOU DEFINE operator double()
+  cout << d2 << endl;
+
+  Pointer<SpreadsheetCell> anotherSmartCell(new SpreadsheetCell(5.0));
+  if (anotherSmartCell != nullptr) { cout << "not nullptr" << endl; }
+  if (anotherSmartCell != NULL) { cout << "not NULL" << endl; }
+  if (anotherSmartCell) { cout << "not nullptr" << endl; }
+  if (!anotherSmartCell) { cout << "nullptr" << endl; }
 }
