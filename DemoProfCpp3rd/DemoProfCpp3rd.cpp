@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
   //chap13TestErrorHandleNewHandler();
   //chap13TestErrorHandleConstructorTryBlocks();
   chap14TestArithmeticOperators();
-
+  chap14TestSubscriptOperators();
 
   return EXIT_SUCCESS;
 }

@@ -155,6 +155,8 @@
     <ClInclude Include="chap12\Muffin.h" />
     <ClInclude Include="chap13\chap13HandleException.h" />
     <ClInclude Include="chap13\FileError.h" />
+    <ClInclude Include="chap14\Array.h" />
+    <ClInclude Include="chap14\AssociativeArray.h" />
     <ClInclude Include="chap14\chap14OperatorOverloading.h" />
     <ClInclude Include="chap14\SpreadsheetCell.h" />
     <ClInclude Include="chap19\chap19.h" />

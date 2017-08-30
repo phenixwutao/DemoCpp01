@@ -199,6 +199,7 @@ std::ostream& operator<<(std::ostream& osm, const SpreadsheetCell& cell)
   return osm;
 }
 
+// extract some value from istream to cell object
 std::istream& operator>> (std::istream& ism, SpreadsheetCell& cell)
 {
   string temp;
