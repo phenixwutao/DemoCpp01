@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <ostream>
+#include <istream>
 
 class SpreadsheetCell
 {
@@ -48,6 +50,11 @@ public:
 	SpreadsheetCell operator++(int); // postfix
 	SpreadsheetCell& operator--();   // prefix 
 	SpreadsheetCell operator--(int); // postfix
+
+  // insertion operator
+  friend std::ostream& operator<<(std::ostream& osm, const SpreadsheetCell& cell);
+  // extraction operator
+  friend std::istream& operator>>(std::istream& ism, SpreadsheetCell& cell);
 
 private:
   double mValue { 0 };

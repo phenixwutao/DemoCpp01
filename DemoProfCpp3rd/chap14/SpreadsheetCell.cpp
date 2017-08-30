@@ -192,3 +192,17 @@ SpreadsheetCell SpreadsheetCell::operator--(int)
 	set(mValue - 1); // decrement
 	return oldCell;  // return the old value
 }
+
+std::ostream& operator<<(std::ostream& osm, const SpreadsheetCell& cell)
+{
+  osm << cell.mString;
+  return osm;
+}
+
+std::istream& operator>> (std::istream& ism, SpreadsheetCell& cell)
+{
+  string temp;
+  ism >> temp;
+  cell.set(temp);
+  return ism;
+}
