@@ -49,5 +49,33 @@ void chap14TestSubscriptOperators()
   catch (const invalid_argument& ex) {
     cout << "Caught exception: " << ex.what() << endl;
   }
+}
 
+class FunctionObject
+{
+public:
+  int operator() (int inParam);	// Function call operator
+  void operator() (string& /*str*/) {}
+  int doSquare(int inParam);		// Normal method
+};
+
+// Implementation of overloaded function call operator
+int FunctionObject::operator() (int inParam)
+{
+  return doSquare(inParam);
+}
+
+// Implementation of normal method
+int FunctionObject::doSquare(int inParam)
+{
+  return inParam * inParam;
+}
+
+void chap14TestFunctors()
+{
+  int x = 3, xSquared, xSquaredAgain;
+  FunctionObject square;
+
+  xSquared = square(x);				// Call the function call operator
+  xSquaredAgain = square.doSquare(x);	// Call the normal method
 }

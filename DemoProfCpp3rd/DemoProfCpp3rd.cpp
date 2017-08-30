@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
   //chap13TestErrorHandleConstructorTryBlocks();
   chap14TestArithmeticOperators();
   chap14TestSubscriptOperators();
+  chap14TestFunctors();
 
   return EXIT_SUCCESS;
 }
