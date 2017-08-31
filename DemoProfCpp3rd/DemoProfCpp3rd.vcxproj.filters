@@ -28,6 +28,9 @@
     <Filter Include="chap14">
       <UniqueIdentifier>{2f969cb6-6d73-42f6-9147-6deb68d40eb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chap23">
+      <UniqueIdentifier>{ef98ea57-0807-4525-a494-f8a64947db73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -90,6 +93,9 @@
     <ClInclude Include="chap14\MemoryDemo.h">
       <Filter>chap14</Filter>
     </ClInclude>
+    <ClInclude Include="chap23\chap23MultiThreadProgramming.h">
+      <Filter>chap23</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -127,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="chap14\MemoryDemo.cpp">
       <Filter>chap14</Filter>
+    </ClCompile>
+    <ClCompile Include="chap23\chap23MultiThreadProgramming.cpp">
+      <Filter>chap23</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #include "chap12\chap12OutputStreams.h"
 #include "chap13\chap13HandleException.h"
 #include "chap14\chap14OperatorOverloading.h"
+#include "chap23\chap23MultiThreadProgramming.h"
 
 int main(int argc, char* argv[])
 {
@@ -14,13 +15,13 @@ int main(int argc, char* argv[])
   printf("Professional C++ 3rd!\n");
   printf("LZA 520 2017\n");
   printf("------------------------------------\n");
-  chap19StdFunction();
-  chap19StdFunctionLambda();
-  chap11DemoGrid();
-  chap11DemoGridNonTypeParam();
-  chap11FunctionTemplatesSyntax();
-  chap11FunctionTemplateSpecialization1();
-  chap11FunctionTemplateSpecialization2();
+  //chap19StdFunction();
+  //chap19StdFunctionLambda();
+  //chap11DemoGrid();
+  //chap11DemoGridNonTypeParam();
+  //chap11FunctionTemplatesSyntax();
+  //chap11FunctionTemplateSpecialization1();
+  //chap11FunctionTemplateSpecialization2();
   //chap12TestStreams();
   //chap12TestManipulators();
   //chap12TestInputGet();
@@ -52,8 +53,12 @@ int main(int argc, char* argv[])
   //chap14TestSubscriptOperators();
   //chap14TestFunctors();
   //chap14TestPointerOperators();
-  chap14TestConversionOperators();
-  chap14TestNewDeleteOperators();
+  //chap14TestConversionOperators();
+  //chap14TestNewDeleteOperators();
+  chap23TestThreadWithFunctionPointer();
+  chap23TestThreadWithFunctionObject();
+  chap23TestThreadWithLambda();
+  chap23TestThreadWithExceptions();
 
 
   return EXIT_SUCCESS;
