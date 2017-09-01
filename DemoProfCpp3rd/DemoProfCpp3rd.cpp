@@ -59,6 +59,7 @@ int main(int argc, char* argv[])
   chap23TestThreadWithFunctionObject();
   chap23TestThreadWithLambda();
   chap23TestThreadWithExceptions();
+  chap23TestThreadLocalStorage();
 
 
   return EXIT_SUCCESS;

@@ -5,6 +5,8 @@
 #include <thread>
 #include <exception>
 #include <stdexcept>
+#include <mutex>
+#include <string>
 
 #include "chap23MultiThreadProgramming.h"
 
@@ -149,3 +151,45 @@ void chap23TestThreadWithExceptions()
   }
 }
 
+/************************************************************************
+* Every thread shares one-and-only-one copy of global variable, 
+* While each thread has its own unique copy of thread_local variable.
+*************************************************************************/
+void chap23TestThreadLocalStorage()
+{
+  int wGlobal = 5;           // threads share only one copy
+  thread_local int range = 5; // Each thread has a copy
+  std::mutex cout_mutex;
+
+  thread t1([&]() {
+    std::lock_guard<std::mutex> lock(cout_mutex);
+    range++;
+    wGlobal = 1;
+    cout << "t1 wGlobal "<< wGlobal  << ", range " << range << endl;
+  });
+
+  thread t2([&]() {
+    std::lock_guard<std::mutex> lock(cout_mutex);
+    range++;
+    wGlobal = 2;
+    cout << "t2 wGlobal " << wGlobal << ", range " << range << endl;
+  });
+
+  auto IncreaseRange = [&](const std::string& name) {
+    std::lock_guard<std::mutex> lock(cout_mutex);
+    range +=2;
+    wGlobal += 2;
+    cout << name << " wGlobal=" << wGlobal << ", range=" << range << endl;
+  };
+
+  thread t3(IncreaseRange, "t3");
+
+  {
+    std::lock_guard<std::mutex> lock(cout_mutex);
+    cout << "main wGlobal " << wGlobal << ", range " << range << endl;
+  }
+  
+  t1.join();
+  t2.join();
+  t3.join();
+}

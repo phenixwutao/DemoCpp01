@@ -5,3 +5,5 @@ void chap23TestThreadWithFunctionObject();
 void chap23TestThreadWithLambda();
 void chap23TestThreadWithMemberFunction();
 void chap23TestThreadWithExceptions();
+void chap23TestThreadLocalStorage();
+
