@@ -7,6 +7,8 @@
 #include <stdexcept>
 #include <mutex>
 #include <string>
+#include <vector>
+#include <atomic>
 
 #include "chap23MultiThreadProgramming.h"
 
@@ -192,4 +194,99 @@ void chap23TestThreadLocalStorage()
   t1.join();
   t2.join();
   t3.join();
+}
+
+void non_atomic_func(int& counter)
+{
+  for (int i = 0; i < 100; ++i) {
+    ++counter;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+}
+
+void chap23TestNonAtomicOperation()
+{
+  std::cout << __func__ << std::endl;
+  int counter = 0;
+  std::vector<std::thread> threads;
+
+  for (int i = 0; i < 10; ++i) {
+    threads.push_back(std::thread{ non_atomic_func, std::ref(counter) });
+  }
+
+  for (auto& t : threads) {
+    t.join();
+  }
+
+  // the resulit is stochastic
+  std::cout << "Result = " << counter << std::endl;
+}
+
+void atomic_func(std::atomic<int>& counter)
+{
+  for (int i = 0; i < 100; ++i) {
+    ++counter;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+}
+
+// using atomic type variable
+void chap23TestAtomicOperation()
+{
+  std::cout << __func__ << std::endl;
+  std::atomic<int> counter (0);
+  std::vector<std::thread> threads;
+
+  for (int i = 0; i < 10; ++i) {
+    threads.push_back(std::thread{ atomic_func, std::ref(counter) });
+  }
+
+  for (auto& t : threads) {
+    t.join();
+  }
+
+  // the resulit is deterministic
+  std::cout << "Result = " << counter << std::endl;
+}
+
+/************************************************************************
+* Minimize the amount of synchronization, either atomics or explicit 
+* synchronization, because it lowers performance.
+*************************************************************************/
+void atomic_func_optimise(std::atomic<int>& counter)
+{
+  int wResult = 0;
+  for (int i = 0; i < 100; ++i) {
+    ++wResult;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+  counter += wResult;
+}
+
+void chap23TestAtomicOperationOptimised()
+{
+  std::cout << __func__ << std::endl;
+  std::atomic<int> counter(0);
+  std::vector<std::thread> threads;
+
+  for (int i = 0; i < 10; ++i) {
+    threads.push_back(std::thread{ atomic_func_optimise, std::ref(counter) });
+  }
+
+  for (auto& t : threads) {
+    t.join();
+  }
+
+  // the resulit is deterministic
+  std::cout << "Result = " << counter << std::endl;
+}
+
+void chap23TestAtomicFetchAdd()
+{
+  std::cout << __func__ << std::endl;
+  std::atomic<int> value(10);
+  cout << "Value = " << value << endl;
+  int fetched = value.fetch_add(4);
+  cout << "Fetched = " << fetched << endl;
+  cout << "Value = " << value << endl;
 }

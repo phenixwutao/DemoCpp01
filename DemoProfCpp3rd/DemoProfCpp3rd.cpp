@@ -60,6 +60,10 @@ int main(int argc, char* argv[])
   chap23TestThreadWithLambda();
   chap23TestThreadWithExceptions();
   chap23TestThreadLocalStorage();
+  chap23TestNonAtomicOperation();
+  chap23TestAtomicOperation();
+  chap23TestAtomicOperationOptimised();
+  chap23TestAtomicFetchAdd();
 
 
   return EXIT_SUCCESS;
