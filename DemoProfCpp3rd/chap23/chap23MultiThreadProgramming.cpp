@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <atomic>
+#include <chrono>
 
 #include "chap23MultiThreadProgramming.h"
 
@@ -289,4 +290,183 @@ void chap23TestAtomicFetchAdd()
   int fetched = value.fetch_add(4);
   cout << "Fetched = " << fetched << endl;
   cout << "Value = " << value << endl;
+}
+
+/****************************************************************************
+* The instance of std::defer_lock_t as a second argument to tell unique_lock
+* not to acquire the lock during construction. The call to lock() then 
+* acquires both locks without the risk of deadlocks
+*****************************************************************************/
+void chap23TestMultipleLocks()
+{
+  std::mutex mut1;
+  std::mutex mut2;
+  std::unique_lock<mutex> lock1(mut1, defer_lock_t());
+  std::unique_lock<mutex> lock2(mut2, defer_lock_t());
+  std::lock(lock1, lock2);
+}
+
+
+once_flag gOnceFlag;
+
+void initializeSharedResources()
+{
+  // ... Initialize shared resources that will be used by multiple threads.
+
+  cout << "Shared resources initialized." << endl;
+}
+
+/******************************************************************
+* Shared resources should be initialized only once by calling 
+* initializeSharedResources()  once.
+*******************************************************************/
+void processingFunction()
+{
+  // Make sure the shared resources are initialized.
+  std::call_once(gOnceFlag, initializeSharedResources);
+
+  // ... Do some work, including using the shared resources
+  cout << "Processing" << endl;
+}
+
+
+void chap23TestThreadCallOnce()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  // Launch 3 threads.
+  vector<thread> threads(3);
+  for (auto& t : threads) {
+    t = thread{ processingFunction };
+  }
+
+  // Join on all threads
+  for (auto& t : threads) {
+    t.join();
+  }
+}
+
+
+class CounterMutex
+{
+public:
+  CounterMutex(int id, int numIterations)
+    : mId(id), mNumIterations(numIterations)
+  {
+  }
+
+  void operator()() const
+  {
+    for (int i = 0; i < mNumIterations; ++i)
+    {
+      lock_guard<mutex> lock(mMutex);
+      cout << "Counter " << mId << " has value " << i << endl;
+    }
+  }
+
+private:
+  int mId;
+  int mNumIterations;
+  static mutex mMutex;
+};
+
+mutex CounterMutex::mMutex;
+
+void chap23TestThreadFunctionObjectWithMutex()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  // Using uniform initialization syntax
+  thread t1{ CounterMutex{ 1, 20 } };
+
+  // Using named variable
+  CounterMutex c(2, 12);
+  thread t2(c);
+
+  // Using temporary
+  thread t3(CounterMutex(3, 10));
+
+  // Wait for threads to finish
+  t1.join();
+  t2.join();
+  t3.join();
+}
+
+class CounterTimedMutex
+{
+public:
+  CounterTimedMutex(int id, int numIterations)
+    : mId(id), mNumIterations(numIterations)
+  {
+  }
+
+  void operator()() const
+  {
+    for (int i = 0; i < mNumIterations; ++i) {
+      unique_lock<timed_mutex> lock(mTimedMutex, 200ms);						// C++14
+      //unique_lock<timed_mutex> lock(mTimedMutex, chrono::milliseconds(200));	// C++11
+
+      if (lock) {
+        cout << "Counter " << mId << " has value ";
+        cout << i << endl;
+      }
+      else {
+        // Lock not acquired in 200 ms
+      }
+    }
+  }
+
+private:
+  int mId;
+  int mNumIterations;
+  static timed_mutex mTimedMutex;
+};
+
+timed_mutex CounterTimedMutex::mTimedMutex;
+
+void chap23TestThreadTimedLock()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  // Using uniform initialization syntax
+  thread t1{ Counter{ 1, 20 } };
+
+  // Using named variable
+  Counter c(2, 12);
+  thread t2(c);
+
+  // Using temporary
+  thread t3(Counter(3, 10));
+
+  // Wait for threads to finish
+  t1.join();
+  t2.join();
+  t3.join();
+}
+
+
+atomic<bool> initialized(false);
+mutex mut_double_check;
+
+void func_double_check()
+{
+  if (!initialized) {
+    unique_lock<mutex> lock(mut_double_check);
+    if (!initialized) {
+      initializeSharedResources();
+      initialized = true;
+    }
+  }
+  cout << "OK" << endl;
+}
+
+void chap23TestThreadDoubleCheckedLocking()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  vector<thread> threads;
+
+  for (int i = 0; i < 5; ++i) {
+    threads.push_back(thread{ func_double_check });
+  }
+
+  for (auto& t : threads) {
+    t.join();
+  }
 }

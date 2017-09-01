@@ -64,6 +64,10 @@ int main(int argc, char* argv[])
   chap23TestAtomicOperation();
   chap23TestAtomicOperationOptimised();
   chap23TestAtomicFetchAdd();
+  chap23TestThreadCallOnce();
+  chap23TestThreadFunctionObjectWithMutex();
+  chap23TestThreadTimedLock();
+  chap23TestThreadDoubleCheckedLocking();
 
 
   return EXIT_SUCCESS;

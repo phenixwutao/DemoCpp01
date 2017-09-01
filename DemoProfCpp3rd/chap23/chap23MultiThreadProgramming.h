@@ -11,3 +11,9 @@ void chap23TestAtomicOperation();
 void chap23TestAtomicOperationOptimised();
 void chap23TestAtomicFetchAdd();
 
+void chap23TestMultipleLocks();
+void chap23TestThreadCallOnce();
+void chap23TestThreadFunctionObjectWithMutex();
+void chap23TestThreadTimedLock();
+void chap23TestThreadDoubleCheckedLocking();
+
