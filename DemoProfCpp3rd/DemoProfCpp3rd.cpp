@@ -68,6 +68,10 @@ int main(int argc, char* argv[])
   chap23TestThreadFunctionObjectWithMutex();
   chap23TestThreadTimedLock();
   chap23TestThreadDoubleCheckedLocking();
+  chap23TestFuturePackedTask();
+  chap23TestFutureAsynch();
+  chap23TestAsynchErrorHandling();
+  chap23TestLogger();
 
 
   return EXIT_SUCCESS;

@@ -96,6 +96,9 @@
     <ClInclude Include="chap23\chap23MultiThreadProgramming.h">
       <Filter>chap23</Filter>
     </ClInclude>
+    <ClInclude Include="chap23\Logger.h">
+      <Filter>chap23</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -135,6 +138,9 @@
       <Filter>chap14</Filter>
     </ClCompile>
     <ClCompile Include="chap23\chap23MultiThreadProgramming.cpp">
+      <Filter>chap23</Filter>
+    </ClCompile>
+    <ClCompile Include="chap23\Logger.cpp">
       <Filter>chap23</Filter>
     </ClCompile>
   </ItemGroup>

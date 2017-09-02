@@ -17,3 +17,7 @@ void chap23TestThreadFunctionObjectWithMutex();
 void chap23TestThreadTimedLock();
 void chap23TestThreadDoubleCheckedLocking();
 
+void chap23TestFuturePackedTask();
+void chap23TestFutureAsynch();
+void chap23TestAsynchErrorHandling();
+void chap23TestLogger();

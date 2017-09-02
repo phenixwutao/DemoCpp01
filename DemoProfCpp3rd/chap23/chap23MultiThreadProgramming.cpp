@@ -10,8 +10,11 @@
 #include <vector>
 #include <atomic>
 #include <chrono>
+#include <future>
+#include <sstream>
 
 #include "chap23MultiThreadProgramming.h"
+#include "Logger.h"
 
 using namespace std;
 
@@ -470,3 +473,98 @@ void chap23TestThreadDoubleCheckedLocking()
     t.join();
   }
 }
+
+void chap23TestFuturePackedTask()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  packaged_task<int(int, int)> task([](int i1, int i2) { return i1 + i2; });
+  auto fut = task.get_future();
+  task(2, 3);
+  int res = fut.get();
+  cout << res << endl;
+}
+
+
+int calculate()
+{
+  return 123;
+}
+
+void chap23TestFutureAsynch()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  auto fut = async(calculate);
+  auto fut2 = async(launch::async, calculate); // create a new thread
+  auto fut3 = async(launch::deferred, calculate); // use current thread
+
+  // Do some more work...
+
+  // Get result
+  int res = fut.get();
+  cout << res << endl;
+
+  res = fut2.get();
+  cout << res << endl;
+
+  res = fut3.get();
+  cout << res << endl;
+}
+
+int calculate_with_error()
+{
+  throw runtime_error("Exception thrown from a thread.");
+}
+
+/*******************************************************************************
+* The advantage of using futures is that they automatically transport exceptions
+* between threads. At the time you call get() on a future, you receive the 
+* requested result, or , any exception that occurred in the thread is rethrown 
+* in the thread calling get() and you can catch them using a normal try /
+* catch block.
+*/
+void chap23TestAsynchErrorHandling()
+{
+  std::cout << "-----------------------" << __func__ << std::endl;
+  // Use launch::async policy to force a new thread.
+  auto fut = async(launch::async, calculate_with_error);
+
+  // Get result
+  try {
+    int res = fut.get();
+    cout << res << endl;
+  }
+  catch (const exception& ex) {
+    cout << "Caught exception: " << ex.what() << endl;
+  }
+}
+
+void logSomeMessages(int id, Logger& logger)
+{
+  for (int i = 0; i < 10; ++i) {
+    stringstream ss;
+    ss << "Log entry " << i << " from thread " << id;
+    logger.log(ss.str());
+  }
+}
+
+void chap23TestLogger()
+{
+  Logger logger;
+
+  vector<thread> threads;
+
+  // Create a few threads all working with the same Logger instance.
+  for (int i = 0; i < 10; ++i)
+  {
+    threads.emplace_back(logSomeMessages, i, ref(logger));
+
+    // The above is equivalent to:
+    // threads.push_back(thread{ logSomeMessages, i, ref(logger) });
+  }
+
+  // Wait for all threads to finish.
+  for (auto& t : threads) {
+    t.join();
+  }
+}
+
