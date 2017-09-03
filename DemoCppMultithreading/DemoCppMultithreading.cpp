@@ -23,6 +23,8 @@ int main()
   //chap02TestThreadTransferFunctionOwnership();
   chap02TestThreadTransferThreadOwnership();
   chap02TestThreadTransferThreadOwnershipInFunction();
+  chap02TestThreadInVector();
+  chap02TestThreadConcurrentAccumulate();
 
   return EXIT_SUCCESS;
 }

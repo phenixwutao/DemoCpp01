@@ -38,4 +38,6 @@ void chap02TestThreadScopedThread();
 void chap02TestThreadTransferFunctionOwnership();
 void chap02TestThreadTransferThreadOwnership();
 void chap02TestThreadTransferThreadOwnershipInFunction();
+void chap02TestThreadInVector();
+void chap02TestThreadConcurrentAccumulate();
 
