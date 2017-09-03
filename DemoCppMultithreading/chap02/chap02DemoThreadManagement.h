@@ -35,5 +35,7 @@ void chap02TestThreadBindFunc();
 void chap02TestThreadBindFuncParameters();
 void chap02TestThreadMoveParameter();
 void chap02TestThreadScopedThread();
-void chap02TestThreadTransferOwnership();
+void chap02TestThreadTransferFunctionOwnership();
+void chap02TestThreadTransferThreadOwnership();
+void chap02TestThreadTransferThreadOwnershipInFunction();
 

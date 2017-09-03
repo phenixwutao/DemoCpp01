@@ -263,7 +263,7 @@ void other_thread_function()
   cout << "---------------------------" << __func__ << endl;
 }
 
-void chap02TestThreadTransferOwnership()
+void chap02TestThreadTransferFunctionOwnership()
 {
   std::thread t1(thread_function); // 1: thread t1 -> thread_function
   std::thread t2 = std::move(t1);  // 2: thread t1 moved into t2, t2 -> thread_function
@@ -280,3 +280,49 @@ void chap02TestThreadTransferOwnership()
   }
 }
 
+/*-------------------------- move thread itself ------------------------------*/
+void NormalFunc()
+{
+  cout << "---------------------------" << __func__ << endl;
+}
+
+// thread ownership can be transferred
+std::thread FetchThread()
+{
+  return std::thread(NormalFunc);
+}
+
+void NormalFuncParameter(int num)
+{
+  cout << "---------------------------" << __func__ << " "<<num <<endl;
+}
+
+// thread ownership can be transferred
+std::thread FetchThreadParameter()
+{
+  std::thread t(NormalFuncParameter, 42);
+  return t;
+}
+
+void chap02TestThreadTransferThreadOwnership()
+{
+  auto t1 = FetchThread();
+  t1.join();
+
+  auto t2 = FetchThreadParameter();
+  t2.join();
+}
+
+void PassThreadParameter(std::thread t)
+{
+  if (t.joinable() == true)
+    t.join();
+}
+
+void chap02TestThreadTransferThreadOwnershipInFunction()
+{
+  cout << "---------------------------" << __func__ << endl;
+  PassThreadParameter(std::thread(NormalFunc));
+  thread t(NormalFunc);
+  PassThreadParameter(std::move(t));
+}
