@@ -6,10 +6,12 @@
 #include <iostream>
 
 #include "chap01\chap01DemoHello.h"
+#include "chap02\chap02DemoThreadManagement.h"
 
 int main()
 {
   chap01DemoHello();
+  chap02ThreadStart();
 
   return EXIT_SUCCESS;
 }
