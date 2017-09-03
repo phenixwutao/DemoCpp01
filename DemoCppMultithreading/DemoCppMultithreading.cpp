@@ -12,6 +12,9 @@ int main()
 {
   chap01DemoHello();
   chap02ThreadStart();
+  chap02ThreadInvalidReferenceFix();
+  chap02TestThreadGuard();
+  chap02TestDaemonThreads();
 
   return EXIT_SUCCESS;
 }
