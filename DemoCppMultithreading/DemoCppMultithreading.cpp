@@ -25,6 +25,7 @@ int main()
   chap02TestThreadTransferThreadOwnershipInFunction();
   chap02TestThreadInVector();
   chap02TestThreadConcurrentAccumulate();
+  chap02TestThreadIdentify();
 
   return EXIT_SUCCESS;
 }
