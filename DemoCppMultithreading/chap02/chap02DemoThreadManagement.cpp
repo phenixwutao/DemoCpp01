@@ -190,3 +190,93 @@ void chap02TestThreadBindFuncParameters()
   t.join();
 }
 
+void process_big_object(std::unique_ptr<string> p)
+{
+  cout << __func__ << " : " << p.get()->c_str() << endl;
+}
+
+void chap02TestThreadMoveParameter()
+{
+  std::unique_ptr<string> p(new string("Big data"));
+  std::thread t(process_big_object, std::move(p));
+  t.join();
+}
+
+class scoped_thread
+{
+private:
+  std::thread t;
+
+public:
+  explicit scoped_thread(std::thread t_) :
+    t(std::move(t_))
+  {
+    if (!t.joinable())
+      throw std::logic_error("No thread");
+  }
+  ~scoped_thread()
+  {
+    t.join();
+  }
+  scoped_thread(scoped_thread const&) = delete;
+  scoped_thread& operator=(scoped_thread const&) = delete;
+};
+
+
+void MoveCalcOperation(int& i)
+{
+  ++i;
+}
+
+struct FuncMove
+{
+  int& i;
+
+  FuncMove(int& i_) :i(i_) {}
+
+  void operator()()
+  {
+    for (unsigned j = 0; j<1000000; ++j)
+    {
+      MoveCalcOperation(i);
+    }
+    cout << __func__ << ": value=" << i << endl;
+  }
+};
+
+void chap02TestThreadScopedThread()
+{
+  int some_local_state = 0;
+  // move thread object
+  scoped_thread t(std::thread { FuncMove(some_local_state) } );
+
+  do_something_in_current_thread();
+}
+
+void thread_function()
+{
+  cout << "---------------------------" << __func__ << endl;
+}
+
+void other_thread_function()
+{
+  cout << "---------------------------" << __func__ << endl;
+}
+
+void chap02TestThreadTransferOwnership()
+{
+  std::thread t1(thread_function); // 1: thread t1 -> thread_function
+  std::thread t2 = std::move(t1);  // 2: thread t1 moved into t2, t2 -> thread_function
+  t1 = std::thread(other_thread_function); // 3 implcitly call std::move for temp object
+  std::thread t3; // 4: thread t3 without any function
+  t3 = std::move(t2); // 5: move thread t2 into t3, t3 -> thread_function
+
+  try {
+    t1 = std::move(t3); // 6: trigger terminate to crash by this assignment operation
+  }
+  catch (...)
+  {
+    cout << "catch exception when moving..." << endl;
+  }
+}
+

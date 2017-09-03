@@ -33,3 +33,7 @@ void chap02TestThreadPassParameter();
 void chap02TestThreadPassReference(unsigned int);
 void chap02TestThreadBindFunc();
 void chap02TestThreadBindFuncParameters();
+void chap02TestThreadMoveParameter();
+void chap02TestThreadScopedThread();
+void chap02TestThreadTransferOwnership();
+

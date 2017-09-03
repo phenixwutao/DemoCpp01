@@ -18,6 +18,9 @@ int main()
   chap02TestThreadPassParameter();
   chap02TestThreadPassReference(1);
   chap02TestThreadBindFuncParameters();
+  chap02TestThreadMoveParameter();
+  chap02TestThreadScopedThread();
+  //chap02TestThreadTransferOwnership();
 
   return EXIT_SUCCESS;
 }
