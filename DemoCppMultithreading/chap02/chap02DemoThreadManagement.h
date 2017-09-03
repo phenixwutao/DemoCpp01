@@ -41,3 +41,5 @@ void chap02TestThreadTransferThreadOwnershipInFunction();
 void chap02TestThreadInVector();
 void chap02TestThreadConcurrentAccumulate();
 
+void chap02TestThreadIdentify();
+

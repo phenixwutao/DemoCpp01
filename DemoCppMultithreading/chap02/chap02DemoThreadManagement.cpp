@@ -363,7 +363,7 @@ struct accumulate_block
 template<typename Iterator, typename T>
 T parallel_accumulate(Iterator first, Iterator last, T init)
 {
-  unsigned long const length = std::distance(first, last);
+  unsigned long const length = static_cast<unsigned long const>(std::distance(first, last));
 
   if (!length)
     return init;
@@ -411,4 +411,34 @@ void chap02TestThreadConcurrentAccumulate()
 
   int sum = parallel_accumulate(vi.begin(), vi.end(), 5);
   std::cout << "sum=" << sum << std::endl;
+}
+
+
+void do_master_thread_work() {}
+void do_common_work() {}
+
+std::thread::id master_thread;
+
+void some_core_part_of_algorithm()
+{
+  if (std::this_thread::get_id() == master_thread)
+  {
+    do_master_thread_work();
+  }
+  do_common_work();
+}
+
+// Get thread ID: std::this_thread::get_id()
+// thread object id:  class method get_id()
+void chap02TestThreadIdentify()
+{
+  auto wid = std::this_thread::get_id();
+  cout << "currency thread id: " << wid << endl;
+  cout << "master_thread id: " << master_thread << endl;
+
+  some_core_part_of_algorithm();
+  thread t(do_common_work);
+  cout << "thread t id: " << t.get_id() << endl;
+  t.join();
+
 }
