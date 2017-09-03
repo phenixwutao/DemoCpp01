@@ -7,6 +7,8 @@
 
 #include "chap01\chap01DemoHello.h"
 #include "chap02\chap02DemoThreadManagement.h"
+#include "chap03\chap03ThreadSharingData.h"
+
 
 int main()
 {
@@ -21,11 +23,13 @@ int main()
   chap02TestThreadMoveParameter();
   chap02TestThreadScopedThread();
   //chap02TestThreadTransferFunctionOwnership();
-  chap02TestThreadTransferThreadOwnership();
-  chap02TestThreadTransferThreadOwnershipInFunction();
-  chap02TestThreadInVector();
-  chap02TestThreadConcurrentAccumulate();
-  chap02TestThreadIdentify();
+  //chap02TestThreadTransferThreadOwnership();
+  //chap02TestThreadTransferThreadOwnershipInFunction();
+  //chap02TestThreadInVector();
+  //chap02TestThreadConcurrentAccumulate();
+  //chap02TestThreadIdentify();
+
+  chap03TestMutexLock();
 
   return EXIT_SUCCESS;
 }
