@@ -3,9 +3,14 @@
 
 #include "stdafx.h"
 
+#include <iostream>
+
+#include "chap01\chap01DemoHello.h"
 
 int main()
 {
-    return 0;
+  chap01DemoHello();
+
+  return EXIT_SUCCESS;
 }
 

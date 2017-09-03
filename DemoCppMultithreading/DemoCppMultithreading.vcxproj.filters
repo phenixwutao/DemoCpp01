@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="chap01">
+      <UniqueIdentifier>{560b131c-811d-4a87-a037-acd6b62a3dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,6 +27,9 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="chap01\chap01DemoHello.h">
+      <Filter>chap01</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -31,6 +37,9 @@
     </ClCompile>
     <ClCompile Include="DemoCppMultithreading.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chap01\chap01DemoHello.cpp">
+      <Filter>chap01</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
