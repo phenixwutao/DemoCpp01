@@ -15,6 +15,9 @@ int main()
   chap02ThreadInvalidReferenceFix();
   chap02TestThreadGuard();
   chap02TestDaemonThreads();
+  chap02TestThreadPassParameter();
+  chap02TestThreadPassReference(1);
+  chap02TestThreadBindFuncParameters();
 
   return EXIT_SUCCESS;
 }

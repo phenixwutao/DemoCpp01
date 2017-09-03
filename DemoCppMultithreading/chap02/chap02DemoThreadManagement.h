@@ -29,3 +29,7 @@ void chap02ThreadInvalidReference();
 void chap02ThreadInvalidReferenceFix();
 void chap02TestThreadGuard();
 void chap02TestDaemonThreads();
+void chap02TestThreadPassParameter();
+void chap02TestThreadPassReference(unsigned int);
+void chap02TestThreadBindFunc();
+void chap02TestThreadBindFuncParameters();

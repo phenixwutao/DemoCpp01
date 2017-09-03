@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include <iostream>
+#include <string>
 #include <thread>
 #include <exception>
 
@@ -127,5 +128,65 @@ void chap02TestDaemonThreads()
   t.detach();
   auto fCanJoin = t.joinable();
   cout << (fCanJoin ? "Can join" : "Cannot join") << endl;
+}
+
+void PassParameter(int i, std::string const& s) {
+  cout << __func__ << " " << i << " " << s << endl;
+}
+
+void chap02TestThreadPassParameter()
+{
+  char buffer[1024]; // 1
+  sprintf_s(buffer, "%s", "test hello");
+  std::thread t(PassParameter, 3, std::string(buffer)); // 2
+  t.detach();
+}
+
+
+void update_data_for_widget(unsigned int w, string& data) // 1
+{
+  cout << __func__ << " " << w << " " << data << endl;
+}
+
+void chap02TestThreadPassReference(unsigned int w)
+{
+  string data;
+  // use std::ref to pass a reference, not a copy
+  std::thread t(update_data_for_widget, w, std::ref(data)); // 2
+
+  t.join();
+
+  // process un-updated data if not pass in by std::ref
+  //process_widget_data(data); // 3
+}
+
+class FuncParam
+{
+public:
+  void do_lengthy_work1() {}
+
+  void do_lengthy_work2(int num) {
+    cout << "do_lengthy_work2 " << num << endl;
+  }
+};
+
+void chap02TestThreadBindFunc()
+{
+  FuncParam my_x;
+  // thread function is FuncParam::do_lengthy_work1
+  // address is: &my_x
+  std::thread t(&FuncParam::do_lengthy_work1, &my_x); // 1
+  t.join();
+}
+
+void chap02TestThreadBindFuncParameters()
+{
+  FuncParam my_x;
+  // thread function is FuncParam::do_lengthy_work2
+  // address is: &my_x
+  // thread function parameter: int num
+  int num = 9;
+  std::thread t(&FuncParam::do_lengthy_work2, &my_x, num); // 1
+  t.join();
 }
 
