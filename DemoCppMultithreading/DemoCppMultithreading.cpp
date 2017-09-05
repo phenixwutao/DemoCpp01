@@ -31,6 +31,7 @@ int main()
 
   chap03TestMutexLock();
   chap03TestThreadsafeStack();
+  chap03TestLockMultipleMutex();
 
   return EXIT_SUCCESS;
 }
