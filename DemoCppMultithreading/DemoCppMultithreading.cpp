@@ -33,6 +33,7 @@ int main()
   chap03TestThreadsafeStack();
   chap03TestLockMultipleMutex();
   chap03TestHierarchicalMutex();
+  chap03TestHierarchicalMutex2();
 
   return EXIT_SUCCESS;
 }

@@ -5,4 +5,5 @@ void chap03TestUnsafeSharedData();
 void chap03TestThreadsafeStack();
 void chap03TestLockMultipleMutex();
 void chap03TestHierarchicalMutex();
+void chap03TestHierarchicalMutex2();
 

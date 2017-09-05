@@ -274,3 +274,72 @@ void chap03TestHierarchicalMutex()
   hierarchical_mutex m1(42);
   hierarchical_mutex m2(2000);
 }
+
+
+class hierarchical_mutex_simple
+{
+public:
+  explicit hierarchical_mutex_simple(unsigned level)
+  {}
+
+  void lock()
+  {}
+  void unlock()
+  {}
+};
+
+
+hierarchical_mutex_simple high_level_mutex(10000);
+hierarchical_mutex_simple low_level_mutex(5000);
+
+int do_low_level_stuff()
+{
+  return 42;
+}
+
+
+int low_level_func()
+{
+  std::lock_guard<hierarchical_mutex_simple> lk(low_level_mutex);
+  return do_low_level_stuff();
+}
+
+void high_level_stuff(int some_param)
+{}
+
+
+void high_level_func()
+{
+  std::lock_guard<hierarchical_mutex_simple> lk(high_level_mutex);
+  high_level_stuff(low_level_func());
+}
+
+void thread_a()
+{
+  high_level_func();
+}
+
+hierarchical_mutex_simple other_mutex(100);
+void do_other_stuff()
+{}
+
+
+void other_stuff()
+{
+  high_level_func();
+  do_other_stuff();
+}
+
+void thread_b()
+{
+  std::lock_guard<hierarchical_mutex_simple> lk(other_mutex);
+  other_stuff(); // break the rule
+}
+
+void chap03TestHierarchicalMutex2()
+{
+  thread t1(thread_a);
+  thread t2(thread_b);
+  t1.join();
+  t2.join();
+}
