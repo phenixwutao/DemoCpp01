@@ -187,6 +187,7 @@ struct bank_account
 void transfer(bank_account &from, bank_account &to, int amount)
 {
   // lock both mutexes without deadlock
+  // Either lock both, or lock none of them
   std::lock(from.m, to.m);
 
   // make sure both already-locked mutexes are unlocked at the end of scope
@@ -217,4 +218,59 @@ void chap03TestLockMultipleMutex()
 
   t1.join();
   t2.join();
+}
+
+
+class hierarchical_mutex
+{
+  std::mutex internal_mutex;
+  unsigned long const hierarchy_value;
+  unsigned long previous_hierarchy_value;
+  static thread_local unsigned long this_thread_hierarchy_value;
+
+  void check_for_hierarchy_violation()
+  {
+    if (this_thread_hierarchy_value <= hierarchy_value)
+    {
+      throw std::logic_error("mutex hierarchy violated");
+    }
+  }
+  void update_hierarchy_value()
+  {
+    previous_hierarchy_value = this_thread_hierarchy_value;
+    this_thread_hierarchy_value = hierarchy_value;
+  }
+public:
+  explicit hierarchical_mutex(unsigned long value) :
+    hierarchy_value(value),
+    previous_hierarchy_value(0)
+  {}
+  void lock()
+  {
+    check_for_hierarchy_violation();
+    internal_mutex.lock();
+    update_hierarchy_value();
+  }
+  void unlock()
+  {
+    this_thread_hierarchy_value = previous_hierarchy_value;
+    internal_mutex.unlock();
+  }
+  bool try_lock()
+  {
+    check_for_hierarchy_violation();
+    if (!internal_mutex.try_lock())
+      return false;
+    update_hierarchy_value();
+    return true;
+  }
+};
+
+thread_local unsigned long
+hierarchical_mutex::this_thread_hierarchy_value(ULONG_MAX);
+
+void chap03TestHierarchicalMutex()
+{
+  hierarchical_mutex m1(42);
+  hierarchical_mutex m2(2000);
 }
