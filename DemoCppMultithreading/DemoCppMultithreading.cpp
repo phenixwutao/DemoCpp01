@@ -30,6 +30,7 @@ int main()
   //chap02TestThreadIdentify();
 
   chap03TestMutexLock();
+  chap03TestThreadsafeStack();
 
   return EXIT_SUCCESS;
 }
