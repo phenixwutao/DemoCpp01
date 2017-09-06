@@ -35,6 +35,7 @@ int main()
   //chap03TestHierarchicalMutex();
   //chap03TestHierarchicalMutex2();
   chap03TestMutexOwnershipTransfer();
+  chap03TestLockGranularitySingle();
 
   return EXIT_SUCCESS;
 }
