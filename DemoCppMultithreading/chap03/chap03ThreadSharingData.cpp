@@ -343,3 +343,23 @@ void chap03TestHierarchicalMutex2()
   t1.join();
   t2.join();
 }
+
+
+mutex owner_mutex;
+void prepare_data() {}
+void process_something() {}
+
+std::unique_lock<std::mutex> get_lock()
+{
+  std::unique_lock<std::mutex> lk(owner_mutex);
+  prepare_data();
+  return lk; // 1 compiler call move constructor
+}
+
+
+void chap03TestMutexOwnershipTransfer()
+{
+  std::unique_lock<mutex> lk(get_lock()); // 2
+  process_something();
+}
+

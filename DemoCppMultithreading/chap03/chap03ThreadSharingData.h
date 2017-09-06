@@ -6,4 +6,4 @@ void chap03TestThreadsafeStack();
 void chap03TestLockMultipleMutex();
 void chap03TestHierarchicalMutex();
 void chap03TestHierarchicalMutex2();
-
+void chap03TestMutexOwnershipTransfer();

@@ -29,11 +29,12 @@ int main()
   //chap02TestThreadConcurrentAccumulate();
   //chap02TestThreadIdentify();
 
-  chap03TestMutexLock();
-  chap03TestThreadsafeStack();
-  chap03TestLockMultipleMutex();
-  chap03TestHierarchicalMutex();
-  chap03TestHierarchicalMutex2();
+  //chap03TestMutexLock();
+  //chap03TestThreadsafeStack();
+  //chap03TestLockMultipleMutex();
+  //chap03TestHierarchicalMutex();
+  //chap03TestHierarchicalMutex2();
+  chap03TestMutexOwnershipTransfer();
 
   return EXIT_SUCCESS;
 }
