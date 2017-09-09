@@ -8,4 +8,5 @@ void chap03TestHierarchicalMutex();
 void chap03TestHierarchicalMutex2();
 void chap03TestMutexOwnershipTransfer();
 void chap03TestLockGranularitySingle();
+void chap03TestCallOnce();
 
