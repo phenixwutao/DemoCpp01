@@ -469,7 +469,7 @@ public:
 };
 
 /******************************************************************
-* This class demo protect rarely-update data structure
+* This class demo protect rarely-updated data structure
 *******************************************************************/
 class dns_entry
 {};

@@ -8,6 +8,7 @@
 #include "chap01\chap01DemoHello.h"
 #include "chap02\chap02DemoThreadManagement.h"
 #include "chap03\chap03ThreadSharingData.h"
+#include "chap04\Chap04SynchronizingConcurrentOperations.h"
 
 
 int main()
@@ -34,8 +35,12 @@ int main()
   //chap03TestLockMultipleMutex();
   //chap03TestHierarchicalMutex();
   //chap03TestHierarchicalMutex2();
-  chap03TestMutexOwnershipTransfer();
-  chap03TestLockGranularitySingle();
+  //chap03TestMutexOwnershipTransfer();
+  //chap03TestLockGranularitySingle();
+
+  //chap04TestWaitForEvent();
+  //chap04TestConditionVariables();
+  chap04TestThredasafeQueue();
 
   return EXIT_SUCCESS;
 }

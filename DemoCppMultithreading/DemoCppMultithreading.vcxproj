@@ -148,6 +148,7 @@
     <ClInclude Include="chap01\chap01DemoHello.h" />
     <ClInclude Include="chap02\chap02DemoThreadManagement.h" />
     <ClInclude Include="chap03\chap03ThreadSharingData.h" />
+    <ClInclude Include="chap04\Chap04SynchronizingConcurrentOperations.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -155,6 +156,7 @@
     <ClCompile Include="chap01\chap01DemoHello.cpp" />
     <ClCompile Include="chap02\chap02DemoThreadManagement.cpp" />
     <ClCompile Include="chap03\chap03ThreadSharingData.cpp" />
+    <ClCompile Include="chap04\Chap04SynchronizingConcurrentOperations.cpp" />
     <ClCompile Include="DemoCppMultithreading.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
