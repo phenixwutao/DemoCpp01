@@ -13,16 +13,16 @@
 
 int main()
 {
-  chap01DemoHello();
-  chap02ThreadStart();
-  chap02ThreadInvalidReferenceFix();
-  chap02TestThreadGuard();
-  chap02TestDaemonThreads();
-  chap02TestThreadPassParameter();
-  chap02TestThreadPassReference(1);
-  chap02TestThreadBindFuncParameters();
-  chap02TestThreadMoveParameter();
-  chap02TestThreadScopedThread();
+  //chap01DemoHello();
+  //chap02ThreadStart();
+  //chap02ThreadInvalidReferenceFix();
+  //chap02TestThreadGuard();
+  //chap02TestDaemonThreads();
+  //chap02TestThreadPassParameter();
+  //chap02TestThreadPassReference(1);
+  //chap02TestThreadBindFuncParameters();
+  //chap02TestThreadMoveParameter();
+  //chap02TestThreadScopedThread();
   //chap02TestThreadTransferFunctionOwnership();
   //chap02TestThreadTransferThreadOwnership();
   //chap02TestThreadTransferThreadOwnershipInFunction();
@@ -41,13 +41,14 @@ int main()
   //chap04TestWaitForEvent();
   //chap04TestConditionVariables();
   //chap04TestThredasafeQueue();
-  chap04TestFutureGetReturnValueFromAsynchTask();
+  //chap04TestFutureGetReturnValueFromAsynchTask();
   chap04TestAsynchTaskPassingArguments();
   chap04TestAsyncOptions();
-  //chao04AssociatingTaskWithFuturePackagedTask();
-  //chap04TestMakingPromise();
-  //chap04TestSequentialQuickSort();
+  chao04AssociatingTaskWithFuturePackagedTask();
+  chap04TestMakingPromise();
+  chap04TestSequentialQuickSort();
   chap04TestParallelQuickSort();
+  chap04TestTimePoint();
 
   return EXIT_SUCCESS;
 }

@@ -9,5 +9,5 @@ void chao04AssociatingTaskWithFuturePackagedTask();
 void chap04TestMakingPromise();
 void chap04TestSequentialQuickSort();
 void chap04TestParallelQuickSort();
-
+void chap04TestTimePoint();
 

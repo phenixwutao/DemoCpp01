@@ -337,8 +337,6 @@ void gui_thread()
   }
 }
 
-std::thread gui_bg_thread(gui_thread);
-
 template<typename Func>
 std::future<void> post_task_for_gui_thread(Func f)
 {
@@ -382,6 +380,7 @@ void print_int(std::future<int>& fut)
 
 void chap04TestMakingPromise()
 {
+  cout << "---------------------------" << __func__ << endl;
   std::promise<int> prom;                      // create promise
 
   std::future<int> fut = prom.get_future();    // engagement with future
@@ -400,6 +399,8 @@ std::list<T> sequential_quick_sort(std::list<T> input)
   {
     return input;
   }
+
+  // std::list::splice  Transfers elements from one list to another.
   std::list<T> result;
   result.splice(result.begin(), input, input.begin());
 
@@ -488,4 +489,19 @@ void chap04TestParallelQuickSort()
   }
 }
 
+void chap04TestTimePoint()
+{
+  cout << "---------------------------" << __func__ << endl;
+  auto start = std::chrono::high_resolution_clock::now();
+  cout << "start" << endl;
+  {
+    double p = 0.0;
+    for (int i = 0; i < 10000000; i++)
+      p *= static_cast<double>(i);
+  };
+  cout << "stop" << endl;
+  auto stop = std::chrono::high_resolution_clock::now();
+  auto dur = (stop - start);
+  std::cout << dur.count() << '\n';
+}
 
