@@ -45,7 +45,9 @@ int main()
   chap04TestAsynchTaskPassingArguments();
   chap04TestAsyncOptions();
   //chao04AssociatingTaskWithFuturePackagedTask();
-  chap04TestMakingPromise();
+  //chap04TestMakingPromise();
+  //chap04TestSequentialQuickSort();
+  chap04TestParallelQuickSort();
 
   return EXIT_SUCCESS;
 }

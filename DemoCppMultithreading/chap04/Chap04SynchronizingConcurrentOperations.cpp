@@ -5,11 +5,13 @@
 #include <condition_variable>
 #include <thread>
 #include <queue>
+#include <list>
 #include <memory>
 #include <future>
 #include <string>
 #include <utility>
 #include <chrono>
+#include <algorithm>
 
 #include "Chap04SynchronizingConcurrentOperations.h"
 using namespace std;
@@ -390,4 +392,100 @@ void chap04TestMakingPromise()
                                               // (synchronizes with getting the future)
   th1.join();
 }
+
+template<typename T>
+std::list<T> sequential_quick_sort(std::list<T> input)
+{
+  if (input.empty())
+  {
+    return input;
+  }
+  std::list<T> result;
+  result.splice(result.begin(), input, input.begin());
+
+  T const& pivot = *result.begin();
+  auto divide_point = std::partition(input.begin(), input.end(),
+    [&](T const& t) {return t < pivot; });
+
+  std::list<T> lower_part;
+  lower_part.splice(lower_part.end(), input, input.begin(), divide_point);
+
+  auto new_lower(  sequential_quick_sort(std::move(lower_part)) );
+  auto new_higher( sequential_quick_sort(std::move(input)));
+  result.splice(result.end(), new_higher);
+
+  //Using synchronization of operations to simplify code
+  result.splice(result.begin(), new_lower);
+  return result;
+}
+
+void chap04TestSequentialQuickSort()
+{
+  list<int> mylist;
+  mylist.push_back(10);
+  mylist.push_back(5);
+  mylist.push_back(7);
+  mylist.push_back(3);
+  mylist.push_back(6);
+  mylist.push_front(20);
+  mylist.push_front(15);
+  mylist.push_front(17);
+  mylist.push_front(8);
+  mylist.push_front(13);
+  auto srtList = sequential_quick_sort<int>(mylist);
+  cout << __func__ << " ------- after sort:" << endl;
+  for(const auto &item: srtList)
+  {
+    cout << item << endl;
+  }
+}
+
+template<typename T>
+std::list<T> parallel_quick_sort(std::list<T> input)
+{
+  if (input.empty())
+  {
+    return input;
+  }
+  std::list<T> result;
+  result.splice(result.begin(), input, input.begin());
+
+  T const& pivot = *result.begin();
+  auto divide_point = std::partition(input.begin(), input.end(),
+    [&](T const& t) {return t < pivot; });
+
+  std::list<T> lower_part;
+  lower_part.splice(lower_part.end(), input, input.begin(), divide_point);
+
+  std::future<std::list<T> > new_lower(
+    std::async(&parallel_quick_sort<T>, std::move(lower_part)));
+
+  auto new_higher( parallel_quick_sort(std::move(input)) );
+  result.splice(result.end(), new_higher);
+  result.splice(result.begin(), new_lower.get());
+
+  return result;
+}
+
+void chap04TestParallelQuickSort()
+{
+  list<int> mylist;
+  mylist.push_back(10);
+  mylist.push_back(5);
+  mylist.push_back(7);
+  mylist.push_back(3);
+  mylist.push_back(6);
+  mylist.push_front(20);
+  mylist.push_front(15);
+  mylist.push_front(17);
+  mylist.push_front(8);
+  mylist.push_front(13);
+  auto srtList = parallel_quick_sort<int>(mylist);
+  cout << __func__ << " ------- after sort:" << endl;
+  for (const auto &item : srtList)
+  {
+    cout << item << endl;
+  }
+}
+
 
