@@ -6,6 +6,8 @@
 #include <thread>
 #include <queue>
 #include <memory>
+#include <future>
+#include <string>
 
 #include "Chap04SynchronizingConcurrentOperations.h"
 using namespace std;
@@ -222,3 +224,73 @@ void chap04TestThredasafeQueue()
   t2.join();
 }
 
+int find_the_answer_to_ltuae()
+{
+  return 42;
+}
+
+void chap04TestFutureGetReturnValueFromAsynchTask()
+{
+  std::future<int> wAnswer = std::async(find_the_answer_to_ltuae);
+  // do other work
+  cout << "async answer is " << wAnswer.get() << endl;
+}
+
+
+struct X
+{
+  void foo(int id, const std::string&  name)
+  {
+    cout << __func__ << " ---- " << id << " " << name << endl;
+  }
+
+  std::string bar(const std::string & name)
+  {
+    cout << __func__ << " ---- " << name << endl;
+    return name;
+  }
+};
+
+
+
+struct Y
+{
+  double operator()(double val)
+  {
+    cout << __func__ << " ---- " << val << endl;
+    return val;
+  }
+};
+
+X baz(X& rhs)
+{
+  cout << __func__ << endl;
+  return rhs;
+}
+
+class move_only
+{
+public:
+  move_only() {}
+  move_only(move_only&&) {}
+  move_only(move_only const&) = delete;
+  move_only& operator=(move_only&&) {}
+  move_only& operator=(move_only const&) = delete;
+  void operator()() {}
+};
+
+void chap04TestAsynchTaskPassingArguments()
+{
+  X x;
+  auto f1 = std::async(&X::foo, &x, 42, string("hello")); // call function foo
+  auto f2 = std::async(&X::bar, x, "goodbye"); // call function bar
+
+  Y y;
+  auto f3 = std::async(Y(), 3.141); // call move-constructed tmp Y()
+  auto f4 = std::async(std::ref(y), 2.718); // call y(2.718)
+
+  auto f5 = std::async(move_only()); // call std::move(move_only())
+
+  auto f6 = std::async(baz, std::ref(x)); // call X baz(X& rhs)
+
+}

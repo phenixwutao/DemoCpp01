@@ -40,7 +40,9 @@ int main()
 
   //chap04TestWaitForEvent();
   //chap04TestConditionVariables();
-  chap04TestThredasafeQueue();
+  //chap04TestThredasafeQueue();
+  chap04TestFutureGetReturnValueFromAsynchTask();
+  chap04TestAsynchTaskPassingArguments();
 
   return EXIT_SUCCESS;
 }
