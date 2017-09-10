@@ -9,6 +9,7 @@
 #include "chap02\chap02DemoThreadManagement.h"
 #include "chap03\chap03ThreadSharingData.h"
 #include "chap04\Chap04SynchronizingConcurrentOperations.h"
+#include "chap05\chap05MemoryModelAtomicOperation.h"
 
 
 int main()
@@ -42,13 +43,15 @@ int main()
   //chap04TestConditionVariables();
   //chap04TestThredasafeQueue();
   //chap04TestFutureGetReturnValueFromAsynchTask();
-  chap04TestAsynchTaskPassingArguments();
-  chap04TestAsyncOptions();
-  chao04AssociatingTaskWithFuturePackagedTask();
-  chap04TestMakingPromise();
-  chap04TestSequentialQuickSort();
-  chap04TestParallelQuickSort();
-  chap04TestTimePoint();
+  //chap04TestAsynchTaskPassingArguments();
+  //chap04TestAsyncOptions();
+  //chao04AssociatingTaskWithFuturePackagedTask();
+  //chap04TestMakingPromise();
+  //chap04TestSequentialQuickSort();
+  //chap04TestParallelQuickSort();
+  //chap04TestTimePoint();
+
+  chap05TestAtomicOperation();
 
   return EXIT_SUCCESS;
 }

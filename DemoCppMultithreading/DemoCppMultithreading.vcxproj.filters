@@ -25,6 +25,9 @@
     <Filter Include="chap04">
       <UniqueIdentifier>{8ae0be11-7538-48cb-a9dc-7ab1bff42123}</UniqueIdentifier>
     </Filter>
+    <Filter Include="chap05">
+      <UniqueIdentifier>{073dc1c5-e20e-444c-9f2b-3e8b446b887c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -48,6 +51,9 @@
     <ClInclude Include="chap04\Chap04SynchronizingConcurrentOperations.h">
       <Filter>chap04</Filter>
     </ClInclude>
+    <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h">
+      <Filter>chap05</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="chap04\Chap04SynchronizingConcurrentOperations.cpp">
       <Filter>chap04</Filter>
+    </ClCompile>
+    <ClCompile Include="chap05\chap05MemoryModelAtomicOperation.cpp">
+      <Filter>chap05</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
