@@ -43,6 +43,7 @@ int main()
   //chap04TestThredasafeQueue();
   chap04TestFutureGetReturnValueFromAsynchTask();
   chap04TestAsynchTaskPassingArguments();
+  chap04TestAsyncOptions();
 
   return EXIT_SUCCESS;
 }

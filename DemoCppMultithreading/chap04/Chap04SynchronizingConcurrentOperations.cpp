@@ -264,7 +264,7 @@ struct Y
 
 X baz(X& rhs)
 {
-  cout << __func__ << endl;
+  cout << __func__ << " rhs copy" << endl;
   return rhs;
 }
 
@@ -281,6 +281,7 @@ public:
 
 void chap04TestAsynchTaskPassingArguments()
 {
+  cout << "---------------------------" << __func__ << endl;
   X x;
   auto f1 = std::async(&X::foo, &x, 42, string("hello")); // call function foo
   auto f2 = std::async(&X::bar, x, "goodbye"); // call function bar
@@ -294,3 +295,19 @@ void chap04TestAsynchTaskPassingArguments()
   auto f6 = std::async(baz, std::ref(x)); // call X baz(X& rhs)
 
 }
+
+void chap04TestAsyncOptions()
+{
+  cout << "---------------------------" << __func__ << endl;
+  X x;
+  auto f6 = std::async(std::launch::async, Y(), 1.2); // run in new thread
+
+  auto f7 = std::async(std::launch::deferred, baz, std::ref(x)); // run in wait() or get()
+
+  auto f8 = std::async(std::launch::deferred | std::launch::async,
+                       baz, std::ref(x)); // implementation's choice
+
+  auto f9 = std::async(baz, std::ref(x)); // implementation's choice
+  f7.wait();
+}
+
