@@ -9,6 +9,7 @@
 #include <future>
 #include <string>
 #include <utility>
+#include <chrono>
 
 #include "Chap04SynchronizingConcurrentOperations.h"
 using namespace std;
@@ -346,6 +347,47 @@ std::future<void> post_task_for_gui_thread(Func f)
   return res;
 }
 
+// count down taking a second for each value:
+int countdown(int from, int to) {
+  for (int i = from; i != to; --i) {
+    std::cout << i << '\n';
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
+  std::cout << "Lift off!\n" << endl;
+  return from - to;
+}
+
 void chao04AssociatingTaskWithFuturePackagedTask()
 {
+  cout << "---------------------------" << __func__ << endl;
+  std::packaged_task<int(int, int)> tsk(countdown);   // set up packaged_task
+  std::future<int> ret = tsk.get_future();            // get future
+
+  std::thread th(std::move(tsk), 3, 0);   // spawn thread to count down from 10 to 0
+
+  int value = ret.get();                  // wait for the task to finish and get result
+
+  std::cout << "The countdown lasted for " << value << " seconds.\n";
+
+  th.join();
 }
+
+void print_int(std::future<int>& fut)
+{
+  int x = fut.get();
+  std::cout << "value: " << x << '\n';
+}
+
+void chap04TestMakingPromise()
+{
+  std::promise<int> prom;                      // create promise
+
+  std::future<int> fut = prom.get_future();    // engagement with future
+
+  std::thread th1(print_int, std::ref(fut));  // send future to new thread
+
+  prom.set_value(10);                         // fulfill promise
+                                              // (synchronizes with getting the future)
+  th1.join();
+}
+

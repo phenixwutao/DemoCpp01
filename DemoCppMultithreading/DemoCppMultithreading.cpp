@@ -44,6 +44,8 @@ int main()
   chap04TestFutureGetReturnValueFromAsynchTask();
   chap04TestAsynchTaskPassingArguments();
   chap04TestAsyncOptions();
+  //chao04AssociatingTaskWithFuturePackagedTask();
+  chap04TestMakingPromise();
 
   return EXIT_SUCCESS;
 }
