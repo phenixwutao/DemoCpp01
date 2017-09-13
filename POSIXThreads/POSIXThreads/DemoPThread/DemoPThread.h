@@ -4,3 +4,4 @@ void TestHelloProgram();
 void TestThreadCreation();
 void TestSimpleThread();
 void TestSimpleMutex();
+void TestThreadOnceOnly();

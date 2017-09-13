@@ -15,6 +15,8 @@ int main()
 
   TestSimpleMutex();
 
+  TestThreadOnceOnly();
+
   return 0;
 }
 

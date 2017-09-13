@@ -223,3 +223,52 @@ void TestSimpleMutex()
   do_wrap_up(r1, r2);
   printf("r3 = %d\n", r3);
 }
+
+static pthread_once_t welcome_once_block = PTHREAD_ONCE_INIT;
+
+void welcome(void)
+{
+  printf("welcome: Welcome\n");
+}
+
+void *identify_yourself(void *arg)
+{
+  int *pid = (int *)arg;
+  int rtn = pthread_once(&welcome_once_block, welcome); // thread initialise once only
+  if (rtn!= 0)
+  {
+    fprintf(stderr, "pthread_once failed with %d", rtn);
+    pthread_exit((void *)NULL);
+  }
+  printf("identify_yourself: Hi, I'm thread # %d\n", *pid);
+  return(NULL);
+}
+
+void TestThreadOnceOnly()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  int rtn = 0;
+  pthread_t threads[NUM_THREADS];
+
+  int* id_arg = (int *)malloc(NUM_THREADS * sizeof(int));
+
+  for (int thread_num = 0; thread_num < NUM_THREADS; (thread_num)++)
+  {
+    id_arg[thread_num] = thread_num;
+
+    if ((rtn = pthread_create(&threads[thread_num], NULL,
+                              identify_yourself,
+                             (void *) &(id_arg[thread_num]))) != 0)
+    {
+      fprintf(stderr, "pthread_create failed with %d", rtn);
+      exit(1);
+    }
+  }
+
+  for (int thread_num = 0; thread_num < NUM_THREADS; thread_num++)
+  {
+    pthread_join(threads[thread_num], NULL);
+    printf("joined to thread %d\n", thread_num);
+  }
+  printf("Goodbye %s\n", __func__);
+}
