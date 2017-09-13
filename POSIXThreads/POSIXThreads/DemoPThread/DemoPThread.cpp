@@ -147,5 +147,79 @@ void TestSimpleThread()
 
   do_wrap_up(r1, r2);
 
-  perror("TestSimpleThread test perror"), exit(1);
+  perror("TestSimpleThread test perror");
+}
+
+
+int r1 = 0;
+int r2 = 0;
+int r3 = 0;
+pthread_mutex_t r3_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+void *do_one_thing_mutex(void *pnum_times)
+{
+  int i, j, x(0);
+
+  pthread_mutex_lock(&r3_mutex);
+  if (r3 > 0) {
+    x = r3;
+    r3--;
+  }
+  else {
+    x = 1;
+  }
+  pthread_mutex_unlock(&r3_mutex);
+
+  for (i = 0; i < 4; i++) {
+    printf("doing one thing\n");
+    for (j = 0; j < 10000; j++) x = x + i;
+    (*(int *)pnum_times)++;
+  }
+
+  return(NULL);
+}
+
+void *do_another_thing_mutex(void *pnum_times)
+{
+  int i, j, x(0);
+
+  pthread_mutex_lock(&r3_mutex);
+  if (r3 > 0) {
+    x = r3;
+    r3--;
+  }
+  else {
+    x = 1;
+  }
+  pthread_mutex_unlock(&r3_mutex);
+
+  for (i = 0; i < 4; i++) {
+    printf("doing another \n");
+    for (j = 0; j < 10000; j++) x = x + i;
+    (*(int *)pnum_times)++;
+  }
+
+  return(NULL);
+}
+
+void TestSimpleMutex()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  pthread_t  thread1, thread2;
+  r3 = 10;
+
+  if (pthread_create(&thread1, NULL, do_one_thing_mutex, (void *)&r1) != 0)
+    perror("pthread_create"), exit(1);
+
+  if (pthread_create(&thread2, NULL, do_another_thing_mutex, (void *)&r2) != 0)
+    perror("pthread_create"), exit(1);
+
+  if (pthread_join(thread1, NULL) != 0)
+    perror("pthread_join"), exit(1);
+
+  if (pthread_join(thread2, NULL) != 0)
+    perror("pthread_join"), exit(1);
+
+  do_wrap_up(r1, r2);
+  printf("r3 = %d\n", r3);
 }

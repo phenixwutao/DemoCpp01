@@ -13,6 +13,8 @@ int main()
 
   TestSimpleThread();
 
+  TestSimpleMutex();
+
   return 0;
 }
 
