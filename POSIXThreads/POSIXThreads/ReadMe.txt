@@ -33,8 +33,10 @@ StdAfx.h, StdAfx.cpp
 
 /////////////////////////////////////////////////////////////////////////////
 Other notes:
+pthread examples from web sites:
+http://www.yolinux.com/TUTORIALS/LinuxTutorialPosixThreads.html
 
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+Pthreads Programming A POSIX Standard for Better Multiprocessing 
+By Bradford Nichols, Dick Buttlar, Jacqueline Proulx Farrell
 
 /////////////////////////////////////////////////////////////////////////////

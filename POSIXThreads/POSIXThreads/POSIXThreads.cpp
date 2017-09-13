@@ -2,11 +2,17 @@
 //
 
 #include "stdafx.h"
+
 #include "DemoPThread\DemoPThread.h"
 
 int main()
 {
   TestHelloProgram();
+
+  TestThreadCreation();
+
+  TestSimpleThread();
+
   return 0;
 }
 

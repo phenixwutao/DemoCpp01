@@ -1,3 +1,5 @@
 #pragma once
 
-void TestHelloProgram();
+extern void TestHelloProgram();
+extern void TestThreadCreation();
+extern void TestSimpleThread();
