@@ -322,3 +322,43 @@ void TestThreadIDs()
   printf("Same thread ID %s\n", wSameID != 0 ? "Same" : "Not same");
   return;
 }
+
+void * thr_fn1(void *arg)
+{
+  printf("thread 1 returning\n");
+  return((void *)1);
+}
+
+void * thr_fn2(void *arg)
+{
+  printf("thread 2 exiting\n");
+  pthread_exit((void *)2);
+  return nullptr;
+}
+
+void TestThreadExitStatus()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  pthread_t	tid1 {}, tid2 {};
+  void* threadExitStatus = nullptr;
+
+  int err = pthread_create(&tid1, NULL, thr_fn1, NULL);
+  if (err != 0)
+    perror("can't create thread 1");
+
+  err = pthread_create(&tid2, NULL, thr_fn2, NULL);
+  if (err != 0)
+    perror("can't create thread 2");
+
+  err = pthread_join(tid1, &threadExitStatus); // get return value
+  if (err != 0)
+    perror("can't join with thread 1");
+  
+  printf("thread 1 exit code %ld\n", (long)threadExitStatus);
+
+  err = pthread_join(tid2, &threadExitStatus); // get pthread_exit value
+  if (err != 0)
+    perror("can't join with thread 2");
+
+  printf("thread 2 exit code %ld\n", (long)threadExitStatus);
+}

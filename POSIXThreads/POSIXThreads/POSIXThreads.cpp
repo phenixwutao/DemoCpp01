@@ -19,6 +19,8 @@ int main()
 
   TestThreadIDs();
 
+  TestThreadExitStatus();
+
   return 0;
 }
 

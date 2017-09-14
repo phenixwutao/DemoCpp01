@@ -6,3 +6,4 @@ void TestSimpleThread();
 void TestSimpleMutex();
 void TestThreadOnceOnly();
 void TestThreadIDs();
+void TestThreadExitStatus();
