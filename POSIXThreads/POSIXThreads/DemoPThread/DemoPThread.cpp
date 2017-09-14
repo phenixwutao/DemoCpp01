@@ -4,12 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <process.h>
+#include <windows.h>
+#include <time.h>
+#include <iostream>
 
 #include "DemoPThread.h"
 
 #define NUM_THREADS     5
 
 using namespace std;
+
 static unsigned long iPass = 0;
 
 void *PrintHello(void *threadid)
@@ -271,4 +276,49 @@ void TestThreadOnceOnly()
     printf("joined to thread %d\n", thread_num);
   }
   printf("Goodbye %s\n", __func__);
+}
+
+
+pthread_t ntid;
+
+void PrintThreadIDs(const char *s)
+{
+  pid_t pid = _getpid();
+  pthread_t tid = pthread_self();
+  printf("%s process id %u thread id %lu (0x%lx)\n", s, (int)pid,
+    (unsigned long)&tid, (unsigned long)&tid);
+}
+
+void* thr_fn(void *arg)
+{
+  PrintThreadIDs("new thread: ");
+  return nullptr;
+}
+
+
+void TestThreadIDs()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  int err = pthread_create(&ntid, NULL, thr_fn, NULL);
+  if (err != 0)
+    perror("can't create thread");
+
+  PrintThreadIDs("main thread:");
+  pthread_join(ntid, NULL);
+
+  pthread_t t1;
+  pthread_t t2;
+  pthread_create(&t1, NULL, thr_fn, NULL);
+  pthread_create(&t2, NULL, thr_fn, NULL);
+  int wSameID = pthread_equal(t1, t2); // threads t1 and t2 are not same
+  printf("Same thread ID %s\n", wSameID !=0 ? "Same":"Not same");
+
+  pthread_t idCurrent = pthread_self();
+  wSameID = pthread_equal(t1, idCurrent); // threads t1 and main are not same
+  printf("Same thread ID %s\n", wSameID != 0 ? "Same" : "Not same");
+
+  pthread_t idCurrent2 = pthread_self();
+  wSameID = pthread_equal(idCurrent2, idCurrent); // threads main and main are same
+  printf("Same thread ID %s\n", wSameID != 0 ? "Same" : "Not same");
+  return;
 }

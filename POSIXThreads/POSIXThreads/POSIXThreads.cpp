@@ -17,6 +17,8 @@ int main()
 
   TestThreadOnceOnly();
 
+  TestThreadIDs();
+
   return 0;
 }
 
