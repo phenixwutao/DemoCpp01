@@ -23,6 +23,8 @@ int main()
 
   TestTimedMutexLock();
 
+  TestTimeMakeOuttime();
+
   return 0;
 }
 

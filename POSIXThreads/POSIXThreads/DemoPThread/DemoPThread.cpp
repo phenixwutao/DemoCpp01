@@ -406,8 +406,38 @@ void TestTimedMutexLock()
   strftime(buf, sizeof(buf), "%r", tmp);
   printf("the time is now %s\n", buf);
 
+  if (tmp) delete tmp;
+
   if (err == 0)
     printf("mutex locked again!\n");
   else
     printf("can't lock mutex again: %d\n", (err));
+}
+
+void maketimeout(struct timespec *tsp, long minutes)
+{
+
+  /* get the current time */
+  timespec_get(tsp, TIME_UTC);
+
+  struct tm tmp;
+  time_t rawtime;
+  time(&rawtime);
+  auto errNum = localtime_s(&tmp, &rawtime);
+  char buf[64] {};
+  strftime(buf, sizeof(buf), "%r", &tmp);
+  printf("current time is %s\n", buf);
+
+  tsp->tv_sec += minutes * 60;
+
+  rawtime = tsp->tv_sec;
+  errNum = localtime_s(&tmp, &rawtime);
+  strftime(buf, sizeof(buf), "%r", &tmp);
+  printf("makeout time is %s\n", buf);
+}
+
+void TestTimeMakeOuttime()
+{
+  timespec tspec;
+  maketimeout(&tspec, 10); // make a time 10 minutes ahead
 }
