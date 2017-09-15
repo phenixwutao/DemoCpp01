@@ -21,6 +21,14 @@ int main()
 
   TestThreadExitStatus();
 
+  TestTimedMutexLock();
+
+  TestTimeMakeOuttime();
+
+  TestMutexLockUnlock();
+
+  TestMutexLockUnlockLinkedStruct();
+
   return 0;
 }
 

@@ -12,6 +12,8 @@
 #include "DemoPThread.h"
 
 #define NUM_THREADS     5
+#define NHASH 29
+#define HASH(id) (((unsigned long)id)%NHASH)
 
 using namespace std;
 
@@ -361,4 +363,269 @@ void TestThreadExitStatus()
     perror("can't join with thread 2");
 
   printf("thread 2 exit code %ld\n", (long)threadExitStatus);
+}
+
+void TestTimedMutexLock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  struct timespec tout {};
+  struct tm *tmp = new tm;
+  char buf[64] {};
+  pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
+  pthread_mutex_lock(&lock);
+  printf("mutex is locked\n");
+
+  time_t rawtime;
+  time(&rawtime);
+
+  // tmp = localtime(&rawtime);  // depreciated old function
+  //                        output  input
+  auto errNum = localtime_s(tmp, &rawtime);
+
+  strftime(buf, sizeof(buf), "%r", tmp);
+  printf("current time is %s\n", buf);
+
+  /* 5 seconds from now */
+  /* caution: this could lead to deadlock */
+  tout.tv_sec = rawtime + 5;
+
+  /********************************************************************************************
+  * The pthread_mutex_timedlock() function shall lock the mutex object referenced by mutex. 
+  * If the mutex is already locked, the calling thread shall block until the mutex becomes 
+  * available as in the pthread_mutex_lock() function. If the mutex cannot be locked without 
+  * waiting for another thread to unlock the mutex, this wait shall be terminated when the 
+  * specified timeout expires.
+  */
+  int err = pthread_mutex_timedlock(&lock, &tout);
+  
+  if (err = ETIMEDOUT)
+    printf("Timed out: The mutex could not be locked before the specified timeout expired.\n");
+
+  time(&tout.tv_sec);
+  errNum = localtime_s(tmp, &tout.tv_sec);
+
+  strftime(buf, sizeof(buf), "%r", tmp);
+  printf("the time is now %s\n", buf);
+
+  if (tmp) delete tmp;
+
+  if (err == 0)
+    printf("mutex locked again!\n");
+  else
+    printf("can't lock mutex again: %d\n", (err));
+}
+
+void maketimeout(struct timespec *tsp, long minutes)
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  /* get the current time */
+  timespec_get(tsp, TIME_UTC);
+
+  struct tm tmp;
+  time_t rawtime;
+  time(&rawtime);
+  auto errNum = localtime_s(&tmp, &rawtime);
+  char buf[64] {};
+  strftime(buf, sizeof(buf), "%r", &tmp);
+  printf("current time is %s\n", buf);
+
+  tsp->tv_sec += minutes * 60;
+
+  rawtime = tsp->tv_sec;
+  errNum = localtime_s(&tmp, &rawtime);
+  strftime(buf, sizeof(buf), "%r", &tmp);
+  printf("makeout time is %s\n", buf);
+}
+
+void TestTimeMakeOuttime()
+{
+  timespec tspec;
+  maketimeout(&tspec, 10); // make a time 10 minutes ahead
+}
+
+//----------------------- demo mutex lock ----------------------
+struct foo1
+{
+  int             f_count;
+  pthread_mutex_t f_lock;
+  int             f_id;
+};
+
+foo1* foo1_alloc(int id) /* allocate the object */
+{
+  foo1 *fp = new foo1;;
+
+  if (fp != nullptr) {
+    fp->f_count = 1;
+    fp->f_id = id;
+
+    // initialise mutex with default attributes
+    if (pthread_mutex_init(&fp->f_lock, NULL) != 0)
+    {
+      delete (fp);
+      return(NULL);
+    }
+    /* ... continue initialization ... */
+  }
+  return(fp);
+}
+
+void foo1_hold(foo1 **fptr) /* add a reference to the object */
+{
+  foo1* fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  fp->f_count++;
+  pthread_mutex_unlock(&fp->f_lock);
+}
+
+void foo1_release(foo1 **fptr) /* release a reference to the object */
+{
+  foo1* fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  if (--fp->f_count == 0)  /* last reference */
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_destroy(&fp->f_lock);
+    delete fp;
+    *fptr = NULL;
+  }
+  else
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+}
+
+void TestMutexLockUnlock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  foo1* foo_ibj = foo1_alloc(10);
+  printf("foo1_alloc count %d\n", foo_ibj->f_count);
+
+  while (foo_ibj != nullptr && foo_ibj->f_count < 10)
+  {
+    foo1_hold(&foo_ibj);
+    printf("foo1_alloc count %d\n", foo_ibj->f_count);
+  }
+
+  while (foo_ibj != nullptr)
+  {
+    if (foo_ibj != nullptr)
+      printf("foo1_release count %d\n", foo_ibj->f_count);
+
+    foo1_release(&foo_ibj);
+  }
+}
+
+
+struct foo2 *fh[NHASH];
+
+pthread_mutex_t hashlock = PTHREAD_MUTEX_INITIALIZER;
+
+struct foo2 {
+  int             f_count;
+  pthread_mutex_t f_lock;
+  int             f_id;
+  struct foo2     *f_next; /* protected by hashlock */
+                          /* ... more stuff here ... */
+};
+
+foo2* foo_alloc2(int id) /* allocate the object */
+{
+  foo2	*fp = new foo2;
+
+  if (fp != nullptr)
+  {
+    fp->f_count = 1;
+    fp->f_id = id;
+    if (pthread_mutex_init(&fp->f_lock, NULL) != 0)
+    {
+      delete fp;
+      return nullptr;
+    }
+    int idx = HASH(id);
+    pthread_mutex_lock(&hashlock);
+    fp->f_next = fh[idx];
+    fh[idx] = fp;
+    pthread_mutex_lock(&fp->f_lock);
+
+    pthread_mutex_unlock(&hashlock);
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+  return (fp);
+}
+
+void foo_hold2(foo2 **fptr) /* add a reference to the object */
+{
+  foo2 *fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  fp->f_count++;
+  pthread_mutex_unlock(&fp->f_lock);
+}
+
+foo2 *foo_find2(int id) /* find an existing object */
+{
+  foo2 *fp;
+
+  pthread_mutex_lock(&hashlock);
+  for (fp = fh[HASH(id)]; fp != NULL; fp = fp->f_next)
+  {
+    if (fp->f_id == id) {
+      foo_hold2(&fp);
+      break;
+    }
+  }
+  pthread_mutex_unlock(&hashlock);
+  return fp;
+}
+
+void foo_release2(foo2 **fptr) /* release a reference to the object */
+{
+  foo2* fp = *fptr;
+  foo2* tfp = nullptr;
+
+  pthread_mutex_lock(&fp->f_lock);
+  if (fp->f_count == 1)  /* last reference */
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_lock(&hashlock);
+    pthread_mutex_lock(&fp->f_lock);
+    /* need to recheck the condition */
+    if (fp->f_count != 1) {
+      fp->f_count--;
+      pthread_mutex_unlock(&fp->f_lock);
+      pthread_mutex_unlock(&hashlock);
+      return;
+    }
+    /* remove from list */
+    int idx = HASH(fp->f_id);
+    tfp = fh[idx];
+    if (tfp == fp)
+    {
+      fh[idx] = fp->f_next;
+    }
+    else
+    {
+      while (tfp->f_next != fp)
+        tfp = tfp->f_next;
+      tfp->f_next = fp->f_next;
+    }
+    pthread_mutex_unlock(&hashlock);
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_destroy(&fp->f_lock);
+    delete fp;
+  }
+  else
+  {
+    fp->f_count--;
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+}
+
+void TestMutexLockUnlockLinkedStruct()
+{
+  foo2* fp_obj = foo_alloc2(3);
+  foo_hold2(&fp_obj);
+  foo_release2(&fp_obj);
 }
