@@ -25,6 +25,8 @@ int main()
 
   TestTimeMakeOuttime();
 
+  TestMutexLockUnlock();
+
   return 0;
 }
 

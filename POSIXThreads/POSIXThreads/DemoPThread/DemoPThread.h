@@ -9,4 +9,6 @@ void TestThreadIDs();
 void TestThreadExitStatus();
 void TestTimedMutexLock();
 void TestTimeMakeOuttime();
+void TestMutexLockUnlock();
+
 

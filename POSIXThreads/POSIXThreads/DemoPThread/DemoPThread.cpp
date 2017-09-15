@@ -416,6 +416,7 @@ void TestTimedMutexLock()
 
 void maketimeout(struct timespec *tsp, long minutes)
 {
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
 
   /* get the current time */
   timespec_get(tsp, TIME_UTC);
@@ -440,4 +441,77 @@ void TestTimeMakeOuttime()
 {
   timespec tspec;
   maketimeout(&tspec, 10); // make a time 10 minutes ahead
+}
+
+//----------------------- demo mutex lock ----------------------
+struct foo1
+{
+  int             f_count;
+  pthread_mutex_t f_lock;
+  int             f_id;
+};
+
+foo1* foo1_alloc(int id) /* allocate the object */
+{
+  foo1 *fp = new foo1;;
+
+  if (fp != nullptr) {
+    fp->f_count = 1;
+    fp->f_id = id;
+
+    // initialise mutex with default attributes
+    if (pthread_mutex_init(&fp->f_lock, NULL) != 0)
+    {
+      delete (fp);
+      return(NULL);
+    }
+    /* ... continue initialization ... */
+  }
+  return(fp);
+}
+
+void foo1_hold(foo1 **fptr) /* add a reference to the object */
+{
+  foo1* fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  fp->f_count++;
+  pthread_mutex_unlock(&fp->f_lock);
+}
+
+void foo1_release(foo1 **fptr) /* release a reference to the object */
+{
+  foo1* fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  if (--fp->f_count == 0)  /* last reference */
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_destroy(&fp->f_lock);
+    delete fp;
+    *fptr = NULL;
+  }
+  else
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+}
+
+void TestMutexLockUnlock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  foo1* foo_ibj = foo1_alloc(10);
+  printf("foo1_alloc count %d\n", foo_ibj->f_count);
+
+  while (foo_ibj != nullptr && foo_ibj->f_count < 10)
+  {
+    foo1_hold(&foo_ibj);
+    printf("foo1_alloc count %d\n", foo_ibj->f_count);
+  }
+
+  while (foo_ibj != nullptr)
+  {
+    if (foo_ibj != nullptr)
+      printf("foo1_release count %d\n", foo_ibj->f_count);
+
+    foo1_release(&foo_ibj);
+  }
 }
