@@ -625,7 +625,75 @@ void foo_release2(foo2 **fptr) /* release a reference to the object */
 
 void TestMutexLockUnlockLinkedStruct()
 {
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
   foo2* fp_obj = foo_alloc2(3);
   foo_hold2(&fp_obj);
   foo_release2(&fp_obj);
+}
+
+void cleanup(void *arg)
+{
+  printf("cleanup: %s\n", (char *)arg);
+}
+
+void* thr_cleanup_fn1(void *arg)
+{
+  printf("thread 1 start\n");
+  pthread_cleanup_push(cleanup, "thread 1 first handler");
+  pthread_cleanup_push(cleanup, "thread 1 second handler");
+  printf("thread 1 push complete\n");
+  if (arg)
+    return((void *)1); // will not call cleanup function
+
+  pthread_cleanup_pop(0);
+  pthread_cleanup_pop(0);
+  return((void *)1);
+}
+
+void * thr_cleanup_fn2(void *arg)
+{
+  printf("thread 2 start\n");
+  /******************************************************************************************
+  * pthread_cleanup_push schedules the cleanup functions. The functions are known as thread 
+  * cleanup handlers. More than one cleanup handler can be established for a thread. 
+  * The handlers are recorded in a stack, which means that they are executed in the reverse
+  * order from that with which they were registered.
+  *******************************************************************************************/
+  pthread_cleanup_push(cleanup, "thread 2 first handler");
+  pthread_cleanup_push(cleanup, "thread 2 second handler");
+  printf("thread 2 push complete\n");
+  if (arg)
+    pthread_exit((void *)2); // trigger the cleanup functions to be called
+
+
+  // argument is set to 0, the cleanup function is not called.
+  pthread_cleanup_pop(0);
+  pthread_cleanup_pop(0);
+  pthread_exit((void *)2);
+  return nullptr;
+}
+
+void TestPthreadCleanupHandlers()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  pthread_t	tid1, tid2;
+  void *retval = nullptr;
+
+  int err = pthread_create(&tid1, NULL, thr_cleanup_fn1, (void *)1);
+  if (err != 0)
+    printf("can't create thread 1: err %d\n", err);
+
+  err = pthread_create(&tid2, NULL, thr_cleanup_fn2, (void *)1);
+  if (err != 0)
+    printf("can't create thread 2: err %d\n", err);
+
+  err = pthread_join(tid1, &retval);
+  if (err != 0)
+    printf("can't join with thread 1: err %d\n", err);
+  printf("thread 1 exit code %ld\n", (long)retval);
+
+  err = pthread_join(tid2, &retval);
+  if (err != 0)
+    printf("can't join with thread 2: err %d\n", err);
+  printf("thread 2 exit code %ld\n", (long)retval);
 }

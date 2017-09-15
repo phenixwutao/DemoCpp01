@@ -29,6 +29,8 @@ int main()
 
   TestMutexLockUnlockLinkedStruct();
 
+  TestPthreadCleanupHandlers();
+
   return 0;
 }
 

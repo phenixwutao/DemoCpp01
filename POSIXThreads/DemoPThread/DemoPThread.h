@@ -11,4 +11,5 @@ void TestTimedMutexLock();
 void TestTimeMakeOuttime();
 void TestMutexLockUnlock();
 void TestMutexLockUnlockLinkedStruct();
+void TestPthreadCleanupHandlers();
 
