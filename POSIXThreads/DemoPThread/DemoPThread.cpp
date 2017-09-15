@@ -697,3 +697,174 @@ void TestPthreadCleanupHandlers()
     printf("can't join with thread 2: err %d\n", err);
   printf("thread 2 exit code %ld\n", (long)retval);
 }
+
+/*------------------------- TestReaderWriterLock ---------------------------*/
+struct job {
+  struct job *j_next;
+  struct job *j_prev;
+  pthread_t   j_id;   /* tells which thread handles this job */
+                      /* ... more stuff here ... */
+};
+
+struct queue {
+  struct job      *q_head;
+  struct job      *q_tail;
+  pthread_rwlock_t q_lock;
+};
+
+/*
+* Initialize a queue.
+*/
+int queue_init(queue *qp)
+{
+  qp->q_head = NULL;
+  qp->q_tail = NULL;
+  int err = pthread_rwlock_init(&qp->q_lock, NULL);
+  if (err != 0)
+    return(err);
+  /* ... continue initialization ... */
+  return (0);
+}
+
+/*
+* Insert a job at the head of the queue.
+*/
+void job_insert(queue *qp, job *jp)
+{
+  pthread_rwlock_wrlock(&qp->q_lock);
+  jp->j_next = qp->q_head;
+  jp->j_prev = NULL;
+  if (qp->q_head != NULL)
+    qp->q_head->j_prev = jp;
+  else
+    qp->q_tail = jp;	/* list was empty */
+  qp->q_head = jp;
+  pthread_rwlock_unlock(&qp->q_lock);
+}
+
+/*
+* Append a job on the tail of the queue.
+*/
+void job_append(queue *qp, job *jp)
+{
+  pthread_rwlock_wrlock(&qp->q_lock);
+  jp->j_next = NULL;
+  jp->j_prev = qp->q_tail;
+  if (qp->q_tail != NULL)
+    qp->q_tail->j_next = jp;
+  else
+    qp->q_head = jp;	/* list was empty */
+  qp->q_tail = jp;
+  pthread_rwlock_unlock(&qp->q_lock);
+}
+
+/*
+* Remove the given job from a queue.
+*/
+void job_remove(queue *qp, job *jp)
+{
+  pthread_rwlock_wrlock(&qp->q_lock);
+  if (jp == qp->q_head)
+  {
+    qp->q_head = jp->j_next;
+    if (qp->q_tail == jp)
+      qp->q_tail = NULL;
+    else
+      jp->j_next->j_prev = jp->j_prev;
+  }
+  else if (jp == qp->q_tail)
+  {
+    qp->q_tail = jp->j_prev;
+    jp->j_prev->j_next = jp->j_next;
+  }
+  else
+  {
+    jp->j_prev->j_next = jp->j_next;
+    jp->j_next->j_prev = jp->j_prev;
+  }
+  pthread_rwlock_unlock(&qp->q_lock);
+}
+
+/*
+* Find a job for the given thread ID.
+*/
+job* job_find(queue *qp, pthread_t id)
+{
+  job *jp;
+
+  if (pthread_rwlock_rdlock(&qp->q_lock) != 0)
+    return(NULL);
+
+  for (jp = qp->q_head; jp != NULL; jp = jp->j_next)
+    if (pthread_equal(jp->j_id, id))
+    {
+      printf("find a match: %llu %llu\n", jp->j_id, id);
+      break;
+    }
+
+  pthread_rwlock_unlock(&qp->q_lock);
+  return(jp);
+}
+
+void* job_func(void* arg)
+{
+  printf("                               exec job %u\n", (int)arg);
+  return nullptr;
+}
+void TestReaderWriterLock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  job job1;
+  job job2;
+  job job3;
+  job job4;
+  job job5;
+  job job6;
+
+  int argval = 1;
+  auto err = pthread_create(&(job1.j_id), NULL, job_func,(void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  err = pthread_create(&(job2.j_id), NULL, job_func, (void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  err = pthread_create(&(job3.j_id), NULL, job_func, (void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  err = pthread_create(&(job4.j_id), NULL, job_func, (void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  err = pthread_create(&(job5.j_id), NULL, job_func, (void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  err = pthread_create(&(job6.j_id), NULL, job_func, (void*)argval++);
+  if (err != 0)
+    printf("job%d thread failed\n", argval);
+
+  queue job_queue;
+  queue_init(&job_queue);
+
+  job_insert(&job_queue, &job1);
+  job_insert(&job_queue, &job2);
+  job_insert(&job_queue, &job3);
+  job_append(&job_queue, &job4);
+  job_append(&job_queue, &job5);
+  job_append(&job_queue, &job6);
+
+  auto findjob = job_find(&job_queue, job4.j_id);
+  if (findjob != nullptr)
+    printf("find job thread id: %u  %llu\n", findjob->j_id.x, findjob->j_id);
+
+  pthread_join(job1.j_id, NULL);
+  pthread_join(job2.j_id, NULL);
+  pthread_join(job3.j_id, NULL);
+  pthread_join(job4.j_id, NULL);
+  pthread_join(job5.j_id, NULL);
+  pthread_join(job6.j_id, NULL);
+
+}

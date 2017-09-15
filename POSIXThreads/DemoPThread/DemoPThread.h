@@ -12,4 +12,5 @@ void TestTimeMakeOuttime();
 void TestMutexLockUnlock();
 void TestMutexLockUnlockLinkedStruct();
 void TestPthreadCleanupHandlers();
+void TestReaderWriterLock();
 

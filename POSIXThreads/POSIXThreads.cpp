@@ -31,6 +31,8 @@ int main()
 
   TestPthreadCleanupHandlers();
 
+  TestReaderWriterLock();
+
   return 0;
 }
 

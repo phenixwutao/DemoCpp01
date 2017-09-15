@@ -32,9 +32,48 @@ StdAfx.h, StdAfx.cpp
     named POSIXThreads.pch and a precompiled types file named StdAfx.obj.
 
 /////////////////////////////////////////////////////////////////////////////
-Other notes:
+Other notes: pthread functions
 
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
+int pthread_equal(pthread_t tid1, pthread_t tid2);  Returns: nonzero if equal, 0 otherwise
+pthread_t pthread_self(void);                       Returns: the thread ID of the calling thread
+int pthread_create(pthread_t *restrict tidp,
+                   const pthread_attr_t *restrict attr,
+                   void *(*start_rtn)(void *), void *restrict arg);
+                                                    Returns: 0 if OK, error number on failure
+void pthread_exit(void *rval_ptr);
+int pthread_join(pthread_t thread, void **rval_ptr); Returns: 0 if OK, error number on failure
+int pthread_cancel(pthread_t tid);                   Returns: 0 if OK, error number on failure
+void pthread_cleanup_push(void (*rtn)(void *), void *arg);
+void pthread_cleanup_pop(int execute);
+int pthread_detach(pthread_t tid);                   Returns: 0 if OK, error number on failure
 
+
+int pthread_mutex_init(pthread_mutex_t *restrict mutex,
+                       const pthread_mutexattr_t *restrict attr);
+int pthread_mutex_destroy(pthread_mutex_t *mutex);    Both return: 0 if OK, error number on failure
+
+int pthread_mutex_lock(pthread_mutex_t *mutex);
+int pthread_mutex_trylock(pthread_mutex_t *mutex);
+int pthread_mutex_unlock(pthread_mutex_t *mutex);     All return: 0 if OK, error number on failure
+
+int pthread_mutex_timedlock(pthread_mutex_t *restrict mutex,
+                            const struct timespec *restrict tsptr);
+                                                      Returns: 0 if OK, error number on failure
+
+int pthread_rwlock_init(pthread_rwlock_t *restrict rwlock,
+                       const pthread_rwlockattr_t *restrict attr);
+int pthread_rwlock_destroy(pthread_rwlock_t *rwlock); Both return: 0 if OK, error number on failure
+
+int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock);
+int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock);
+int pthread_rwlock_unlock(pthread_rwlock_t *rwlock);  All return: 0 if OK, error number on failure
+
+int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock);
+int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock); Both return: 0 if OK, error number on failure
+
+int pthread_rwlock_timedrdlock(pthread_rwlock_t *restrict rwlock,
+                               const struct timespec *restrict tsptr);
+int pthread_rwlock_timedwrlock(pthread_rwlock_t *restrict rwlock,
+                               const struct timespec *restrict tsptr);
+                                                      Both return: 0 if OK, error number on failure
 /////////////////////////////////////////////////////////////////////////////
