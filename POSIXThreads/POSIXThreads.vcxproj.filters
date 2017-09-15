@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="DemoPThread">
-      <UniqueIdentifier>{c08ca7bb-6396-4aaa-b65b-7f50cbe5e7cd}</UniqueIdentifier>
+      <UniqueIdentifier>{47c69658-c62b-48f5-a0eb-982819b25cf7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
