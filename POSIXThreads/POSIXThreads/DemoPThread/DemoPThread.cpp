@@ -12,6 +12,8 @@
 #include "DemoPThread.h"
 
 #define NUM_THREADS     5
+#define NHASH 29
+#define HASH(id) (((unsigned long)id)%NHASH)
 
 using namespace std;
 
@@ -514,4 +516,116 @@ void TestMutexLockUnlock()
 
     foo1_release(&foo_ibj);
   }
+}
+
+
+struct foo2 *fh[NHASH];
+
+pthread_mutex_t hashlock = PTHREAD_MUTEX_INITIALIZER;
+
+struct foo2 {
+  int             f_count;
+  pthread_mutex_t f_lock;
+  int             f_id;
+  struct foo2     *f_next; /* protected by hashlock */
+                          /* ... more stuff here ... */
+};
+
+foo2* foo_alloc2(int id) /* allocate the object */
+{
+  foo2	*fp = new foo2;
+
+  if (fp != nullptr)
+  {
+    fp->f_count = 1;
+    fp->f_id = id;
+    if (pthread_mutex_init(&fp->f_lock, NULL) != 0)
+    {
+      delete fp;
+      return nullptr;
+    }
+    int idx = HASH(id);
+    pthread_mutex_lock(&hashlock);
+    fp->f_next = fh[idx];
+    fh[idx] = fp;
+    pthread_mutex_lock(&fp->f_lock);
+
+    pthread_mutex_unlock(&hashlock);
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+  return (fp);
+}
+
+void foo_hold2(foo2 **fptr) /* add a reference to the object */
+{
+  foo2 *fp = *fptr;
+  pthread_mutex_lock(&fp->f_lock);
+  fp->f_count++;
+  pthread_mutex_unlock(&fp->f_lock);
+}
+
+foo2 *foo_find2(int id) /* find an existing object */
+{
+  foo2 *fp;
+
+  pthread_mutex_lock(&hashlock);
+  for (fp = fh[HASH(id)]; fp != NULL; fp = fp->f_next)
+  {
+    if (fp->f_id == id) {
+      foo_hold2(&fp);
+      break;
+    }
+  }
+  pthread_mutex_unlock(&hashlock);
+  return fp;
+}
+
+void foo_release2(foo2 **fptr) /* release a reference to the object */
+{
+  foo2* fp = *fptr;
+  foo2* tfp = nullptr;
+
+  pthread_mutex_lock(&fp->f_lock);
+  if (fp->f_count == 1)  /* last reference */
+  {
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_lock(&hashlock);
+    pthread_mutex_lock(&fp->f_lock);
+    /* need to recheck the condition */
+    if (fp->f_count != 1) {
+      fp->f_count--;
+      pthread_mutex_unlock(&fp->f_lock);
+      pthread_mutex_unlock(&hashlock);
+      return;
+    }
+    /* remove from list */
+    int idx = HASH(fp->f_id);
+    tfp = fh[idx];
+    if (tfp == fp)
+    {
+      fh[idx] = fp->f_next;
+    }
+    else
+    {
+      while (tfp->f_next != fp)
+        tfp = tfp->f_next;
+      tfp->f_next = fp->f_next;
+    }
+    pthread_mutex_unlock(&hashlock);
+    pthread_mutex_unlock(&fp->f_lock);
+    pthread_mutex_destroy(&fp->f_lock);
+    delete fp;
+  }
+  else
+  {
+    fp->f_count--;
+    pthread_mutex_unlock(&fp->f_lock);
+  }
+}
+
+void TestMutexLockUnlockLinkedStruct()
+{
+  foo2* fp_obj = foo_alloc2(3);
+  foo_hold2(&fp_obj);
+  foo_release2(&fp_obj);
 }

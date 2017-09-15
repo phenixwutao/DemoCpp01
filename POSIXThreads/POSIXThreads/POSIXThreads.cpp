@@ -27,6 +27,8 @@ int main()
 
   TestMutexLockUnlock();
 
+  TestMutexLockUnlockLinkedStruct();
+
   return 0;
 }
 
