@@ -362,3 +362,52 @@ void TestThreadExitStatus()
 
   printf("thread 2 exit code %ld\n", (long)threadExitStatus);
 }
+
+void TestTimedMutexLock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  struct timespec tout {};
+  struct tm *tmp = new tm;
+  char buf[64] {};
+  pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
+  pthread_mutex_lock(&lock);
+  printf("mutex is locked\n");
+
+  time_t rawtime;
+  time(&rawtime);
+
+  // tmp = localtime(&rawtime);  // depreciated old function
+  //                        output  input
+  auto errNum = localtime_s(tmp, &rawtime);
+
+  strftime(buf, sizeof(buf), "%r", tmp);
+  printf("current time is %s\n", buf);
+
+  /* 5 seconds from now */
+  /* caution: this could lead to deadlock */
+  tout.tv_sec = rawtime + 5;
+
+  /********************************************************************************************
+  * The pthread_mutex_timedlock() function shall lock the mutex object referenced by mutex. 
+  * If the mutex is already locked, the calling thread shall block until the mutex becomes 
+  * available as in the pthread_mutex_lock() function. If the mutex cannot be locked without 
+  * waiting for another thread to unlock the mutex, this wait shall be terminated when the 
+  * specified timeout expires.
+  */
+  int err = pthread_mutex_timedlock(&lock, &tout);
+  
+  if (err = ETIMEDOUT)
+    printf("Timed out: The mutex could not be locked before the specified timeout expired.\n");
+
+  time(&tout.tv_sec);
+  errNum = localtime_s(tmp, &tout.tv_sec);
+
+  strftime(buf, sizeof(buf), "%r", tmp);
+  printf("the time is now %s\n", buf);
+
+  if (err == 0)
+    printf("mutex locked again!\n");
+  else
+    printf("can't lock mutex again: %d\n", (err));
+}

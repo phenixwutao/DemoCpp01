@@ -7,3 +7,5 @@ void TestSimpleMutex();
 void TestThreadOnceOnly();
 void TestThreadIDs();
 void TestThreadExitStatus();
+void TestTimedMutexLock();
+
