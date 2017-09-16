@@ -918,6 +918,82 @@ void enqueue_msg(msg *mp)
   pthread_mutex_unlock(&qlock);
 }
 
+pthread_cond_t cond;
+pthread_mutex_t mutex;
+
+int footprint = 0;
+
+void *thread_footprint(void *arg)
+{
+  time_t T;
+
+  if (pthread_mutex_lock(&mutex) != 0) {
+    perror("pthread_mutex_lock() error");
+    exit(6);
+  }
+  auto currtime = time(&T);
+  char buf[64];
+  ctime_s(buf, 26, &currtime);
+  printf("starting wait at %s", buf);
+
+  footprint++;
+  printf("thread_footprint footprint = %d\n", footprint);
+
+  if (pthread_cond_wait(&cond, &mutex) != 0) {
+    perror("pthread_cond_timedwait() error");
+    exit(7);
+  }
+
+  currtime = time(&T);
+  ctime_s(buf, 26, &currtime);
+  printf("wait over at %s", buf);
+
+  auto err = pthread_mutex_unlock(&mutex);
+  if(err != 0)
+  {
+    perror("pthread_mutex_unlock() error");
+    exit(6);
+  }
+}
+
 void TestConditionVariables()
 {
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  pthread_t thid;
+  time_t T;
+  struct timespec t;
+
+  if (pthread_mutex_init(&mutex, NULL) != 0) {
+    perror("pthread_mutex_init() error");
+    exit(1);
+  }
+
+  if (pthread_cond_init(&cond, NULL) != 0) {
+    perror("pthread_cond_init() error");
+    exit(2);
+  }
+
+  if (pthread_create(&thid, NULL, thread_footprint, NULL) != 0) {
+    perror("pthread_create() error");
+    exit(3);
+  }
+
+  while (footprint == 0)
+    Sleep(1000); // windows function 3000 mini-sec = 3 sec
+
+  puts("IPT is about ready to release the thread");
+  Sleep(2000);
+
+  footprint = 9;
+  printf("footprint = %d\n", footprint);
+
+  if (pthread_cond_signal(&cond) != 0) {
+    perror("pthread_cond_signal() error");
+    exit(4);
+  }
+
+  if (pthread_join(thid, NULL) != 0) {
+    perror("pthread_join() error");
+    exit(5);
+  }
 }
