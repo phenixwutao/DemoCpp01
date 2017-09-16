@@ -13,4 +13,6 @@ void TestMutexLockUnlock();
 void TestMutexLockUnlockLinkedStruct();
 void TestPthreadCleanupHandlers();
 void TestReaderWriterLock();
+void TestConditionVariables();
+
 

@@ -21,7 +21,7 @@ int main()
 
   TestThreadExitStatus();
 
-  TestTimedMutexLock();
+  //TestTimedMutexLock();
 
   TestTimeMakeOuttime();
 
@@ -32,6 +32,8 @@ int main()
   TestPthreadCleanupHandlers();
 
   TestReaderWriterLock();
+
+  TestConditionVariables();
 
   return 0;
 }

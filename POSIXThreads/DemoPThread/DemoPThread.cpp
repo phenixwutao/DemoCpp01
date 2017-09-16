@@ -7,7 +7,9 @@
 #include <process.h>
 #include <windows.h>
 #include <time.h>
+
 #include <iostream>
+#include <string>
 
 #include "DemoPThread.h"
 
@@ -867,4 +869,55 @@ void TestReaderWriterLock()
   pthread_join(job5.j_id, NULL);
   pthread_join(job6.j_id, NULL);
 
+}
+
+
+struct msg {
+  msg(std::string ms) : strMessage(ms) {}
+  struct msg *m_next;
+  std::string strMessage;
+};
+
+struct msg *workq;
+
+pthread_cond_t qready = PTHREAD_COND_INITIALIZER;
+
+pthread_mutex_t qlock = PTHREAD_MUTEX_INITIALIZER;
+
+void process_msg()
+{
+  msg *mp;
+
+  for (;;) {
+    pthread_mutex_lock(&qlock);
+    while (workq == NULL)
+      pthread_cond_wait(&qready, &qlock);
+
+    mp = workq;
+    mp->strMessage = workq->strMessage;
+    printf("process message: %s\n", mp->strMessage.c_str());
+
+    workq = mp->m_next;
+    workq->strMessage = mp->m_next->strMessage;
+
+    pthread_mutex_unlock(&qlock);
+    /* now process the message mp */
+  }
+}
+
+void enqueue_msg(msg *mp)
+{
+  pthread_mutex_lock(&qlock);
+  mp->m_next = workq;
+  mp->m_next->strMessage = workq->strMessage;
+
+  workq = mp;
+  workq->strMessage = mp->strMessage;
+
+  pthread_cond_signal(&qready);
+  pthread_mutex_unlock(&qlock);
+}
+
+void TestConditionVariables()
+{
 }
