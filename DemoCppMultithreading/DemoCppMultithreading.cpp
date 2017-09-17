@@ -66,9 +66,10 @@ int main()
   //C11ThreadUsingPackagedTaskWithFunction();
   //C11ThreadUsingPackagedTaskWithFunctionObject();
   //C11ThreadUsingPackagedTaskWithLambda();
-  C11ThreadPutThreadSleep();
-  C11ThreadPutSleepUntilFutureTimePoint();
+  //C11ThreadPutThreadSleep();
+  //C11ThreadPutSleepUntilFutureTimePoint();
   C11ThreadStartByClassMemberFunction();
+  C11ThreadTransferOwnershipByMove();
 
   return EXIT_SUCCESS;
 }

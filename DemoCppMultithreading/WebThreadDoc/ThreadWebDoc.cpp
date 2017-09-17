@@ -651,6 +651,7 @@ void C11ThreadPutSleepUntilFutureTimePoint()
 
 void C11ThreadStartByClassMemberFunction()
 {
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
   // Starting thread by class non-static member function
   Task taskExec;
   thread thr(&Task::execute, taskExec, "Sample Task");
@@ -659,4 +660,60 @@ void C11ThreadStartByClassMemberFunction()
   // Starting thread by class static member function
   thread thr_static(&Task::test, "Static");
   thr_static.join();
+}
+
+void C11ThreadTransferOwnershipByMove()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  thread thr_static1(&Task::test, "Static");
+  thread thr_static2 = std::move(thr_static1); // transfer thread ownership
+
+  // print thread ID before join
+  cout << "main thread  ID: " << std::this_thread::get_id() << endl;
+  cout << "child1 thread ID: " << thr_static1.get_id() << endl; // invalid ID 0
+  cout << "child2 thread ID: " << thr_static2.get_id() << endl;
+
+  if (thr_static1.joinable() == true)
+  {
+    printf("Join thr_static1\n");
+    thr_static1.join();
+  }
+  else
+    printf("Cannot join thr_static1\n");
+
+  if (thr_static2.joinable() == true)
+  {
+    printf("Join thr_static2\n");
+    thr_static2.join();
+  }
+  else
+    printf("Cannot join thr_static2\n");
+
+
+  if (thr_static1.joinable() == true)
+  {
+    printf("Join thr_static1\n");
+    thr_static1.join();
+  }
+  else
+    printf("Cannot join thr_static1\n");
+
+  if (thr_static2.joinable() == true)
+  {
+    printf("Join thr_static2\n");
+    thr_static2.join();
+  }
+  else
+    printf("Cannot join thr_static2\n");
+
+  // print thread ID after join
+  cout << "main thread  ID: " <<std::this_thread::get_id() << endl;
+  cout << "child1 thread ID: " << thr_static1.get_id() << endl; // invalid ID 0
+  cout << "child2 thread ID: " << thr_static2.get_id() << endl; // invalid ID 0
+
+  /**************************************************************************** 
+  * How many threads ?
+  * The thread library provides the suggestion for the number of threads :
+  *****************************************************************************/
+  std::cout << "Number of threads: " << std::thread::hardware_concurrency() << std::endl;
 }
