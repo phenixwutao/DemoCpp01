@@ -51,14 +51,15 @@ int main()
   //chap04TestParallelQuickSort();
   //chap04TestTimePoint();
 
-  chap05TestAtomicOperation();
+  //chap05TestAtomicOperation();
 
   //C11ThreadThreeWaysCreateThreads();
   //C11ThreadJoinDetach();
-  C11ThreadJoinDetachException();
-  C11ThreadPassingArguments();
-  C11ThreadShareDataMutexLock();
-  C11ThreadConditionVariable();
+  //C11ThreadJoinDetachException();
+  //C11ThreadPassingArguments();
+  //C11ThreadShareDataMutexLock();
+  //C11ThreadConditionVariable();
+  C11ThreadPromiseAndFuture();
 
   return EXIT_SUCCESS;
 }

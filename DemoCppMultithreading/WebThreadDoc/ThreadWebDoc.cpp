@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <mutex>
+#include <future>
 
 // system headers
 #include <windows.h>
@@ -338,5 +339,28 @@ void C11ThreadConditionVariable()
   std::thread thread_2(&Application::loadData, &app);
   thread_2.join();
   thread_1.join();
+}
+
+void initiazer(std::promise<int> * promObj)
+{
+  std::cout << "Inside initiazer Thread" << std::endl;
+  Sleep(2000);
+  promObj->set_value(35);
+}
+
+/************************************************************************************
+* std::promise is a class template and its object promises to set the value in future.
+* Each std::promise object has an associated std::future object that will give the 
+* value once set by the std::promise object.
+* A std::promise object shares data with its associated std::future object.
+*************************************************************************************/
+void C11ThreadPromiseAndFuture()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  std::promise<int> promiseObj;
+  std::future<int> futureObj = promiseObj.get_future();
+  std::thread thr(initiazer, &promiseObj);
+  std::cout << "Main thread: get "<< futureObj.get() << std::endl;
+  thr.join();
 }
 
