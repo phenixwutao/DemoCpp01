@@ -20,7 +20,7 @@ void normal_function()
 {
   for (int i = 0; i < 3; i++)
   {
-    Sleep(800); // sleep for some mini-sec
+    Sleep(500); // sleep for some mini-sec
     std::cout << "thread function Executing: " << i << std::endl;
   }
 }
@@ -32,8 +32,8 @@ public:
   {
     for (int i = 0; i < 3; i++)
     {
-      Sleep(800);
-      std::cout << "Display Thread operator Executing" << i << std::endl;
+      Sleep(500);
+      std::cout << "Display Thread operator Executing " << i << std::endl;
     }
   }
 };
@@ -52,11 +52,23 @@ void ThreadThreeWaysCreateThreads()
   thread thr_lambda([] {
     for (int i = 0; i < 3; i++)
     {
-      Sleep(800);
-      std::cout << "Lambda Executing" << i << std::endl;
+      Sleep(500);
+      std::cout << "Lambda Executing " << i << std::endl;
     }
   });
 
   printf("3 In %s\n", __func__);
   thr_lambda.join();
+
+  // test get thread id
+  thread throbj1(normal_function);
+  thread throbj2(normal_function);
+  auto id1 = throbj1.get_id();
+  auto id2 = throbj2.get_id();
+  auto mainid = this_thread::get_id();
+  printf("threads id1 vs id2 are %s\n", id1 == id2 ? "same" : "different");
+  printf("threads id1 vs mainid are %s\n", id1 == mainid ? "same" : "different");
+  Sleep(1600);
+  throbj1.join();
+  throbj2.join();
 }
