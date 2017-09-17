@@ -1,2 +1,3 @@
 #pragma once
-void ThreadThreeWaysCreateThreads();
+void C11ThreadThreeWaysCreateThreads();
+void C11ThreadJoinDetach();

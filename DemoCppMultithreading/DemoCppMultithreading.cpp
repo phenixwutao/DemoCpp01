@@ -53,7 +53,8 @@ int main()
 
   chap05TestAtomicOperation();
 
-  ThreadThreeWaysCreateThreads();
+  //C11ThreadThreeWaysCreateThreads();
+  C11ThreadJoinDetach();
 
   return EXIT_SUCCESS;
 }
