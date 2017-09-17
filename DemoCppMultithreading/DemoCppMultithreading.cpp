@@ -60,6 +60,9 @@ int main()
   //C11ThreadShareDataMutexLock();
   //C11ThreadConditionVariable();
   C11ThreadPromiseAndFuture();
+  C11ThreadUsingAsynchWithFunctionPointer();
+  C11ThreadUsingAsynchWithFunctionObject();
+  C11ThreadUsingAsynchWithLambda();
 
   return EXIT_SUCCESS;
 }

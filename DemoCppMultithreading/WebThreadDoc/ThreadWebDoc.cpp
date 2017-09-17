@@ -8,6 +8,7 @@
 #include <vector>
 #include <mutex>
 #include <future>
+#include <chrono>
 
 // system headers
 #include <windows.h>
@@ -362,5 +363,103 @@ void C11ThreadPromiseAndFuture()
   std::thread thr(initiazer, &promiseObj);
   std::cout << "Main thread: get "<< futureObj.get() << std::endl;
   thr.join();
+}
+
+using namespace std::chrono;
+std::string fetchDataFromDB(std::string recvdData)
+{
+  // Make sure that function takes 2 seconds to complete
+  std::this_thread::sleep_for(seconds(2));
+
+  //Do stuff like creating DB Connection and fetching Data
+  return "DB_" + recvdData;
+}
+
+std::string fetchDataFromFile(std::string recvdData)
+{
+  // Make sure that function takes 2 seconds to complete
+  std::this_thread::sleep_for(seconds(2));
+
+  //Do stuff like fetching Data File
+  return "File_" + recvdData;
+}
+
+void C11ThreadUsingAsynchWithFunctionPointer()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  // Get Start Time
+  system_clock::time_point start = system_clock::now();
+
+  /***************************************************************************************************
+  * std::async() does following things:
+  * - It automatically creates a thread (Or picks from internal thread pool) and a promise object for us.
+  * - Then passes the std::promise object to thread function and returns the associated std::future object.
+  * - When our passed argument function exits then its value will be set in this promise object, 
+  *   so eventually return value will be available in std::future object.
+  ***************************************************************************************************/
+  std::future<std::string> resultFromDB = std::async(std::launch::async, // policy
+                                                     fetchDataFromDB,    // thread function
+                                                     "Data");            // arguments
+
+  //Fetch Data from File
+  std::string fileData = fetchDataFromFile("Data");
+
+  //Fetch Data from DB
+  // Will block till data is available in future<std::string> object.
+  std::string dbData = resultFromDB.get();
+
+  // Get End Time
+  auto end = system_clock::now();
+
+  auto diff = duration_cast < std::chrono::seconds > (end - start).count();
+  std::cout << "Total Time Taken = " << diff << " Seconds" << std::endl;
+
+  //Combine The Data
+  std::string data = dbData + " :: " + fileData;
+
+  //Printing the combined Data
+  std::cout << "Data = " << data << std::endl;
+}
+
+struct DataFetcher
+{
+  std::string operator()(std::string recvdData)
+  {
+    // Make sure that function takes 2 seconds to complete
+    std::this_thread::sleep_for(seconds(2));
+    //Do stuff like fetching Data File
+    return "File_" + recvdData;
+  }
+};
+
+void C11ThreadUsingAsynchWithFunctionObject()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  //Calling std::async with function object
+  std::future<string> dataResult = std::async(std::launch::async, // policy
+                                              DataFetcher(),      // functor (call function operator)
+                                              "Data");            // arguments
+  string strOut = dataResult.get();
+  cout << "Output is: " << strOut << endl;
+}
+
+void C11ThreadUsingAsynchWithLambda()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  //Calling std::async with lambda
+  std::future<string> dataResult = std::async(
+    [](std::string recvdData)
+    {
+      std::this_thread::sleep_for(seconds(2));
+
+      //Do stuff like creating DB Connection and fetching Data
+      return "DB_" + recvdData;
+    }, "Data"
+  );
+
+  string strOut = dataResult.get();
+  cout << "Output is: " << strOut << endl;
 }
 
