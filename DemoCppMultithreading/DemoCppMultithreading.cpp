@@ -57,6 +57,7 @@ int main()
   //C11ThreadJoinDetach();
   C11ThreadJoinDetachException();
   C11ThreadPassingArguments();
+  C11ThreadShareDataMutexLock();
 
   return EXIT_SUCCESS;
 }

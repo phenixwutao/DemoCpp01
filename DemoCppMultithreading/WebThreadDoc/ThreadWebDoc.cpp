@@ -6,6 +6,7 @@
 #include <thread>
 #include <string>
 #include <vector>
+#include <mutex>
 
 // system headers
 #include <windows.h>
@@ -228,5 +229,47 @@ void C11ThreadPassingArguments()
   // class method; object; list of argument values
   thread thr_dummy(&DummyClass::sampleMemberFunction, &dummyObj, val);
   thr_dummy.join();
+}
+
+class Wallet
+{
+  int mMoney;
+  std::mutex mutex;
+public:
+  Wallet() :mMoney(0) {}
+  int getMoney() { return mMoney; }
+
+  void addMoney(int money)
+  {
+    mutex.lock();
+    mMoney += money;
+    mutex.unlock();
+    printf("After ad money: %d\n", mMoney);
+  }
+};
+
+int testMultithreadedWallet()
+{
+  Wallet walletObject;
+  std::vector<std::thread> threads;
+  for (int i = 0; i < 5; ++i) {
+    threads.push_back(std::thread(&Wallet::addMoney, &walletObject, 1000));
+  }
+
+  for (int i = 0; i < threads.size(); i++)
+  {
+    threads.at(i).join();
+  }
+  return walletObject.getMoney();
+}
+
+void C11ThreadShareDataMutexLock()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  int val = testMultithreadedWallet();
+  if (val != 5000)
+  {
+    std::cout << "Error: Money in Wallet = " << val << std::endl;
+  }
 }
 
