@@ -56,6 +56,7 @@ int main()
   //C11ThreadThreeWaysCreateThreads();
   //C11ThreadJoinDetach();
   C11ThreadJoinDetachException();
+  C11ThreadPassingArguments();
 
   return EXIT_SUCCESS;
 }

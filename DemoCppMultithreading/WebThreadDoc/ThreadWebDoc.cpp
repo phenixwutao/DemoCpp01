@@ -175,3 +175,58 @@ void C11ThreadJoinDetachException()
   Sleep(1000); // wait for thread to finish, only for demo
 }
 
+void threadCallback(int x, std::string str)
+{
+  std::cout << "Passed Number = " << x << std::endl;
+  std::cout << "Passed String = " << str << std::endl;
+}
+
+void threadCallback2(int const & x)
+{
+  int & y = const_cast<int &>(x);
+  y++;
+  std::cout << "Inside Thread x = " << x << std::endl;
+}
+
+class DummyClass {
+public:
+  DummyClass() {}
+  DummyClass(const DummyClass & obj) {}
+
+  void sampleMemberFunction(int x)
+  {
+    std::cout << "DummyClass sampleMemberFunction: " << x << std::endl;
+  }
+};
+
+void C11ThreadPassingArguments()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  int x = 10;
+  std::string str = "Sample String";
+  // By default all arguments are copied into the internal storage of new thread.
+  std::thread threadObj(threadCallback, x, str);
+  threadObj.join();
+
+  // How to pass references to thread: normal way
+  int x2 = 9;
+  std::cout << "In Main Thread : Before Thread Start x = " << x2 << std::endl;
+  std::thread threadObj2(threadCallback2, x2);
+  threadObj2.join();
+  std::cout << "In Main Thread : After Thread Joins x = " << x2 << std::endl;
+
+  // using std::ref
+  int x3 = 5;
+  std::cout << "In Main Thread : Before Thread Start x = " << x3 << std::endl;
+  std::thread threadObj3(threadCallback2, std::ref(x3));
+  threadObj3.join();
+  std::cout << "In Main Thread : After Thread Joins x = " << x3 << std::endl;
+
+  // passing arguments for class object
+  DummyClass dummyObj;
+  int val = 10;
+  // class method; object; list of argument values
+  thread thr_dummy(&DummyClass::sampleMemberFunction, &dummyObj, val);
+  thr_dummy.join();
+}
+
