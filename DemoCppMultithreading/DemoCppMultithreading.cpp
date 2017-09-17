@@ -70,6 +70,7 @@ int main()
   //C11ThreadPutSleepUntilFutureTimePoint();
   C11ThreadStartByClassMemberFunction();
   C11ThreadTransferOwnershipByMove();
+  C11ThreadWithMoveSemantics();
 
   return EXIT_SUCCESS;
 }

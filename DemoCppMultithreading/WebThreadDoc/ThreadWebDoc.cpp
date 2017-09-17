@@ -9,7 +9,7 @@
 #include <mutex>
 #include <future>
 #include <chrono>
-#include <time.h>
+#include <cassert>
 
 // system headers
 #include <windows.h>
@@ -716,4 +716,46 @@ void C11ThreadTransferOwnershipByMove()
   * The thread library provides the suggestion for the number of threads :
   *****************************************************************************/
   std::cout << "Number of threads: " << std::thread::hardware_concurrency() << std::endl;
+}
+
+void taskRef(int i, string info)
+{
+  std::cout << "taskRef worker : " << i << info << endl;
+}
+
+void taskMove(int i, string& info)
+{
+  std::cout << "taskMove worker : " << i << info << endl;
+}
+
+void C11ThreadWithMoveSemantics()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  // vector container stores threads
+  std::vector<std::thread> workers;
+  string info(" ref info");
+  for (int i = 0; i < 5; i++)
+  {
+    auto t = std::thread(taskRef, i, std::ref(info));
+    workers.push_back(std::move(t));
+  }
+
+  for (int i = 0; i < 5; i++)
+  {
+    auto t = std::thread(taskMove, i, std::move(info));
+    workers.push_back(std::move(t));
+  }
+
+  std::cout << "main thread" << endl;
+
+  // Looping every thread via for_each
+  // The 3rd argument assigns a task
+  // It tells the compiler we're using lambda ([])
+  // The lambda function takes its argument as a reference to a thread, t
+  // Then, joins one by one, and this works like barrier
+  std::for_each(workers.begin(), workers.end(), [](std::thread &t)
+                {
+                  assert(t.joinable());
+                  t.join();
+                });
 }

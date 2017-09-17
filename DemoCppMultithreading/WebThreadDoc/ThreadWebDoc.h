@@ -16,4 +16,5 @@ void C11ThreadPutThreadSleep();
 void C11ThreadPutSleepUntilFutureTimePoint();
 void C11ThreadStartByClassMemberFunction();
 void C11ThreadTransferOwnershipByMove();
+void C11ThreadWithMoveSemantics();
 
