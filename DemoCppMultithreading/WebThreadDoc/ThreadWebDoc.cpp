@@ -6,6 +6,7 @@
 #include <thread>
 #include <string>
 #include <vector>
+#include <list>
 #include <mutex>
 #include <future>
 #include <chrono>
@@ -758,4 +759,48 @@ void C11ThreadWithMoveSemantics()
                   assert(t.joinable());
                   t.join();
                 });
+}
+
+// a global variable
+std::list<int>myList;
+
+// a global instance of std::mutex to protect global variable
+std::mutex myMutex;
+
+void addToList(int max, int interval)
+{
+  // the access to this function is mutually exclusive
+  std::lock_guard<std::mutex> guard(myMutex);
+  for (int i = 0; i < max; i++)
+  {
+    if ((i % interval) == 0)
+      myList.push_back(i);
+  }
+}
+
+void printList()
+{
+  // the access to this function is mutually exclusive
+  std::lock_guard<std::mutex> guard(myMutex);
+  std::this_thread::sleep_for(chrono::milliseconds(1000));
+  cout << "print List: ";
+  for (const auto& item : myList)
+    cout << item << ",";
+  cout << endl;
+  //for (auto itr = myList.begin(), end_itr = myList.end(); itr != end_itr; ++itr) {
+  //  cout << *itr << ",";
+  //}
+}
+
+void C11ThreadShareMemoryLockguard()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  int max = 10;
+  std::thread t1(addToList, max, 1);
+  std::thread t2(addToList, max, 3);
+  std::thread t3(printList);
+
+  t1.join();
+  t2.join();
+  t3.join();
 }

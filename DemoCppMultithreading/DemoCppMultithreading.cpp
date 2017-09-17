@@ -71,6 +71,7 @@ int main()
   C11ThreadStartByClassMemberFunction();
   C11ThreadTransferOwnershipByMove();
   C11ThreadWithMoveSemantics();
+  C11ThreadShareMemoryLockguard();
 
   return EXIT_SUCCESS;
 }
