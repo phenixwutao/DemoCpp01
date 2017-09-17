@@ -13,4 +13,5 @@ void C11ThreadUsingPackagedTaskWithFunction();
 void C11ThreadUsingPackagedTaskWithFunctionObject();
 void C11ThreadUsingPackagedTaskWithLambda();
 void C11ThreadPutThreadSleep();
+void C11ThreadPutSleepUntilFutureTimePoint();
 

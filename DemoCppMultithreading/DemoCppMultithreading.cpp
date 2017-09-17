@@ -59,14 +59,15 @@ int main()
   //C11ThreadPassingArguments();
   //C11ThreadShareDataMutexLock();
   //C11ThreadConditionVariable();
-  C11ThreadPromiseAndFuture();
-  C11ThreadUsingAsynchWithFunctionPointer();
-  C11ThreadUsingAsynchWithFunctionObject();
-  C11ThreadUsingAsynchWithLambda();
-  C11ThreadUsingPackagedTaskWithFunction();
-  C11ThreadUsingPackagedTaskWithFunctionObject();
-  C11ThreadUsingPackagedTaskWithLambda();
+  //C11ThreadPromiseAndFuture();
+  //C11ThreadUsingAsynchWithFunctionPointer();
+  //C11ThreadUsingAsynchWithFunctionObject();
+  //C11ThreadUsingAsynchWithLambda();
+  //C11ThreadUsingPackagedTaskWithFunction();
+  //C11ThreadUsingPackagedTaskWithFunctionObject();
+  //C11ThreadUsingPackagedTaskWithLambda();
   C11ThreadPutThreadSleep();
+  C11ThreadPutSleepUntilFutureTimePoint();
 
   return EXIT_SUCCESS;
 }

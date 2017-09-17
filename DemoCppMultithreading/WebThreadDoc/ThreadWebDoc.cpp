@@ -9,6 +9,7 @@
 #include <mutex>
 #include <future>
 #include <chrono>
+#include <time.h>
 
 // system headers
 #include <windows.h>
@@ -584,5 +585,45 @@ void C11ThreadPutThreadSleep()
 {
   printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
   thread th(threadSleep);
+  th.join();
+}
+
+// Print Current Time
+void print_time_point(std::chrono::system_clock::time_point timePoint)
+{
+  auto timeStamp = std::chrono::system_clock::to_time_t(timePoint);
+  //std::cout << ctime(&timeStamp) << std::endl; // depreciated function ctime
+  char buf[64];
+  ctime_s(buf, 64, &timeStamp);
+  printf("%s\n", buf);
+}
+
+void threadSleepUntil()
+{
+  std::cout << "Current Time :: ";
+  // Print Current Time
+  print_time_point(std::chrono::system_clock::now());
+
+  // create a time point pointing to 4 second in future
+  std::chrono::system_clock::time_point timePoint =
+    std::chrono::system_clock::now() + std::chrono::seconds(4);
+
+  std::cout << "Sleep Until  :: ";
+  print_time_point(timePoint);
+
+
+  // Sleep Till specified time point
+  // Accepts std::chrono::system_clock::time_point as argument
+  std::this_thread::sleep_until(timePoint);
+
+  std::cout << "Current Time :: ";
+  // Print Current Time
+  print_time_point(std::chrono::system_clock::now());
+}
+
+void C11ThreadPutSleepUntilFutureTimePoint()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  thread th(threadSleepUntil);
   th.join();
 }
