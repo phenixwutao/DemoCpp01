@@ -12,4 +12,5 @@ void C11ThreadUsingAsynchWithLambda();
 void C11ThreadUsingPackagedTaskWithFunction();
 void C11ThreadUsingPackagedTaskWithFunctionObject();
 void C11ThreadUsingPackagedTaskWithLambda();
+void C11ThreadPutThreadSleep();
 

@@ -66,6 +66,7 @@ int main()
   C11ThreadUsingPackagedTaskWithFunction();
   C11ThreadUsingPackagedTaskWithFunctionObject();
   C11ThreadUsingPackagedTaskWithLambda();
+  C11ThreadPutThreadSleep();
 
   return EXIT_SUCCESS;
 }

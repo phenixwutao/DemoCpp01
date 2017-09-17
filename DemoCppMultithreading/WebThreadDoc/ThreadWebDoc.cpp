@@ -558,3 +558,31 @@ void C11ThreadUsingPackagedTaskWithLambda()
 
   std::cout << data << std::endl;
 }
+
+void threadSleep()
+{
+  int i = 0;
+  while (i < 10)
+  {
+    // Print Thread ID and Counter i
+    std::cout << std::this_thread::get_id() << " :: sleeping " << i++ << std::endl;
+
+    /**********************************************
+    * This duration can be from these units:
+    * std::chrono::nanoseconds
+    * std::chrono::microseconds
+    * std::chrono::milliseconds
+    * std::chrono::seconds
+    * std::chrono::minutes
+    * std::chrono::hours
+    ***********************************************/
+    // Sleep this thread for 200 MilliSeconds
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+}
+void C11ThreadPutThreadSleep()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  thread th(threadSleep);
+  th.join();
+}
