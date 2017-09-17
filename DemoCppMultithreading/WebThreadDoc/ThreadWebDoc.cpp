@@ -621,9 +621,42 @@ void threadSleepUntil()
   print_time_point(std::chrono::system_clock::now());
 }
 
+class Task
+{
+public:
+  void execute(std::string command)
+  {
+    for (int i = 0; i < 5; i++)
+    {
+      std::cout << __func__ << " " << command << " :: " << i << std::endl;
+      std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
+  }
+
+  static void test(std::string command)
+  {
+    for (int i = 0; i < 5; i++)
+    {
+      std::cout << __func__ << " " << command << " :: " << i << std::endl;
+      std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    }
+  }
+};
 void C11ThreadPutSleepUntilFutureTimePoint()
 {
   printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
   thread th(threadSleepUntil);
   th.join();
+}
+
+void C11ThreadStartByClassMemberFunction()
+{
+  // Starting thread by class non-static member function
+  Task taskExec;
+  thread thr(&Task::execute, taskExec, "Sample Task");
+  thr.join();
+
+  // Starting thread by class static member function
+  thread thr_static(&Task::test, "Static");
+  thr_static.join();
 }

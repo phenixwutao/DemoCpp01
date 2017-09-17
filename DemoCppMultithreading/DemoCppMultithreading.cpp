@@ -68,6 +68,7 @@ int main()
   //C11ThreadUsingPackagedTaskWithLambda();
   C11ThreadPutThreadSleep();
   C11ThreadPutSleepUntilFutureTimePoint();
+  C11ThreadStartByClassMemberFunction();
 
   return EXIT_SUCCESS;
 }
