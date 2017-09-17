@@ -63,6 +63,9 @@ int main()
   C11ThreadUsingAsynchWithFunctionPointer();
   C11ThreadUsingAsynchWithFunctionObject();
   C11ThreadUsingAsynchWithLambda();
+  C11ThreadUsingPackagedTaskWithFunction();
+  C11ThreadUsingPackagedTaskWithFunctionObject();
+  C11ThreadUsingPackagedTaskWithLambda();
 
   return EXIT_SUCCESS;
 }

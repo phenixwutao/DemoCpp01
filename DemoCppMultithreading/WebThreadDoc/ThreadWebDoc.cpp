@@ -463,3 +463,98 @@ void C11ThreadUsingAsynchWithLambda()
   cout << "Output is: " << strOut << endl;
 }
 
+// Fetch some data from DB
+std::string getDataFromDatabase(std::string token)
+{
+  // Do some stuff to fetch the data
+  std::string data = "Data fetched from DB by Filter :: " + token;
+  return data;
+}
+
+void C11ThreadUsingPackagedTaskWithFunction()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  // Create a packaged_task<> that encapsulated the callback i.e. a function,
+  // where the function signature should match the template type, e.g. std::string(std::string
+  std::packaged_task<std::string(std::string)> task(getDataFromDatabase);
+
+  // Fetch the associated future<> from packaged_task<>
+  std::future<std::string> result = task.get_future();
+
+  // Pass the packaged_task to thread to run asynchronously
+  // packaged_task<> is movable but not copy-able, so need to move it to thread i.e.
+  std::thread th(std::move(task), "Arg");
+
+  // Join the thread. Its blocking and returns when thread is finished.
+  th.join();
+
+  // Fetch the result of packaged_task<> i.e. value returned by getDataFromDB()
+  // get() function will block the calling thread until the callable entity returns 
+  // and std::packaged_task<> set the data in its shareable state.
+  std::string data = result.get();
+
+  std::cout << data << std::endl;
+}
+
+/*
+* Function Object to Fetch Data from DB
+*/
+struct DBDataFetcher
+{
+  std::string operator()(std::string token)
+  {
+    // Do some stuff to fetch the data
+    std::string data = "Data From " + token;
+    return data;
+  }
+};
+
+void C11ThreadUsingPackagedTaskWithFunctionObject()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  // Create a packaged_task<> that encapsulated a function object
+  std::packaged_task<std::string(std::string)> task(std::move(DBDataFetcher()));
+
+  // Fetch the associated future<> from packaged_task<>
+  std::future<std::string> result = task.get_future();
+
+  // Pass the packaged_task to thread to run asynchronously
+  std::thread th(std::move(task), "functor Arg");
+
+  // Join the thread. Its blocking and returns when thread is finished.
+  th.join();
+
+  // Fetch the result of packaged_task<> i.e. value returned by getDataFromDB()
+  std::string data = result.get();
+
+  std::cout << data << std::endl;
+}
+
+void C11ThreadUsingPackagedTaskWithLambda()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+
+  // Create a packaged_task<> that encapsulated a lambda function
+  std::packaged_task<std::string(std::string)> task([](std::string token)
+      {
+        // Do some stuff to fetch the data
+        std::string data = "Data From " + token;
+        return data;
+      });
+
+  // Fetch the associated future<> from packaged_task<>
+  std::future<std::string> result = task.get_future();
+
+  // Pass the packaged_task to thread to run asynchronously
+  std::thread th(std::move(task), "lambda Arg");
+
+  // Join the thread. Its blocking and returns when thread is finished.
+  th.join();
+
+  // Fetch the result of packaged_task<> i.e. value returned by getDataFromDB()
+  std::string data = result.get();
+
+  std::cout << data << std::endl;
+}
