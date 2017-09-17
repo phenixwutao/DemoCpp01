@@ -241,10 +241,17 @@ public:
 
   void addMoney(int money)
   {
-    mutex.lock();
+    // use std::lock_guard, which is equivelant to 
+    // mutex.lock();
+    // mutex.unlock();
+
+    // In constructor it locks the mutex
+    std::lock_guard<std::mutex> lockGuard(mutex);
     mMoney += money;
-    mutex.unlock();
     printf("After ad money: %d\n", mMoney);
+
+    // Once function exits, then destructor of lock_guard Object will be called.
+    // In destructor it unlocks the mutex.
   }
 };
 
