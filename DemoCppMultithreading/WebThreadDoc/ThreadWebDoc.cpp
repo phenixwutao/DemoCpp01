@@ -138,3 +138,40 @@ void C11ThreadJoinDetach()
   }
 }
 
+class ThreadRAII
+{
+public:
+  ThreadRAII(std::thread  & threadObj) : m_thread(threadObj)
+  {
+
+  }
+  ~ThreadRAII()
+  {
+    // Check if thread is joinable then detach the thread
+    if (m_thread.joinable())
+    {
+      m_thread.detach();
+    }
+  }
+private:
+  std::thread & m_thread;
+};
+void normal_function2()
+{
+  for (int i = 0; i < 3; i++)
+  {
+    Sleep(300);
+    std::cout << "thread_function Executing: " << i << std::endl;
+  }
+}
+void C11ThreadJoinDetachException()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  // if don't call join or detach, program will crash
+  std::thread threadObj(normal_function2);
+
+  // If we comment this Line, then program will crash
+  ThreadRAII wrapperObj(threadObj);
+  Sleep(1000); // wait for thread to finish, only for demo
+}
+
