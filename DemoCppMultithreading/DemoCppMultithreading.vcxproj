@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="WebThreadDoc\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chap01\chap01DemoHello.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="WebThreadDoc\ThreadWebDoc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chap01\chap01DemoHello.cpp" />
@@ -166,6 +168,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="WebThreadDoc\ThreadWebDoc.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

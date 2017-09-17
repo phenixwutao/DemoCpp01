@@ -10,7 +10,7 @@
 #include "chap03\chap03ThreadSharingData.h"
 #include "chap04\Chap04SynchronizingConcurrentOperations.h"
 #include "chap05\chap05MemoryModelAtomicOperation.h"
-
+#include "WebThreadDoc\ThreadWebDoc.h"
 
 int main()
 {
@@ -52,6 +52,8 @@ int main()
   //chap04TestTimePoint();
 
   chap05TestAtomicOperation();
+
+  ThreadThreeWaysCreateThreads();
 
   return EXIT_SUCCESS;
 }

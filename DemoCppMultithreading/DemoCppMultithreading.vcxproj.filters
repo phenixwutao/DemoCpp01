@@ -28,9 +28,15 @@
     <Filter Include="chap05">
       <UniqueIdentifier>{073dc1c5-e20e-444c-9f2b-3e8b446b887c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WebThreadDoc">
+      <UniqueIdentifier>{786266f8-7ee1-448c-ad88-54a968362ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="WebThreadDoc\ReadMe.txt">
+      <Filter>WebThreadDoc</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -54,6 +60,9 @@
     <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h">
       <Filter>chap05</Filter>
     </ClInclude>
+    <ClInclude Include="WebThreadDoc\ThreadWebDoc.h">
+      <Filter>WebThreadDoc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -76,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="chap05\chap05MemoryModelAtomicOperation.cpp">
       <Filter>chap05</Filter>
+    </ClCompile>
+    <ClCompile Include="WebThreadDoc\ThreadWebDoc.cpp">
+      <Filter>WebThreadDoc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
