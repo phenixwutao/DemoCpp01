@@ -804,3 +804,28 @@ void C11ThreadShareMemoryLockguard()
   t2.join();
   t3.join();
 }
+
+/*------------------------------------- test local storage --------------------------------------
+* A thread_local object comes into existence when a thread starts and is destroyed when the thread ends. 
+* Each thread has its own instance of a thread-Local object.
+*------------------------------------------------------------------------------------------------*/
+thread_local int globalVar = 0;
+mutex mu_localStore;
+
+void thread_Local_Test_Func(int newVal)
+{
+  globalVar = newVal;
+  lock_guard<mutex> lock(mu_localStore);
+  cout << "Value of globalVar in thread " << this_thread::get_id() << " is " << globalVar << endl;
+}
+
+void C11ThreadLocalStorage()
+{
+  printf("-------------------------- Pass %d -> '%s'\n", iPass++, __func__);
+  globalVar = 1;
+  thread t1(thread_Local_Test_Func, 5);
+  thread t2(thread_Local_Test_Func, 20);
+  t1.join();
+  t2.join();
+  cout << "Value of globalVar in MAIN thread " << this_thread::get_id() << " is " << globalVar << endl;
+}
