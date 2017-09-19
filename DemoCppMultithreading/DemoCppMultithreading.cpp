@@ -12,6 +12,8 @@
 #include "chap05\chap05MemoryModelAtomicOperation.h"
 #include "WebThreadDoc\ThreadWebDoc.h"
 
+#include "OptionsDerivativesProgramming\OptionsDerivatives.h"
+
 int main()
 {
   //chap01DemoHello();
@@ -68,11 +70,14 @@ int main()
   //C11ThreadUsingPackagedTaskWithLambda();
   //C11ThreadPutThreadSleep();
   //C11ThreadPutSleepUntilFutureTimePoint();
-  C11ThreadStartByClassMemberFunction();
-  C11ThreadTransferOwnershipByMove();
-  C11ThreadWithMoveSemantics();
-  C11ThreadShareMemoryLockguard();
-  C11ThreadLocalStorage();
+  //C11ThreadStartByClassMemberFunction();
+  //C11ThreadTransferOwnershipByMove();
+  //C11ThreadWithMoveSemantics();
+  //C11ThreadShareMemoryLockguard();
+  //C11ThreadLocalStorage();
+
+  // Options Derivatives Programming
+  OptionsDerivTestRandomWalks();
 
   return EXIT_SUCCESS;
 }

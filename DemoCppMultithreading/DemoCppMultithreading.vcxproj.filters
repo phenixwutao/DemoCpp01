@@ -31,6 +31,9 @@
     <Filter Include="WebThreadDoc">
       <UniqueIdentifier>{786266f8-7ee1-448c-ad88-54a968362ff7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OptionsDerivativesProgramming">
+      <UniqueIdentifier>{bdcbf2a5-c948-4a8e-aa7f-57e3bc83b0f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -63,6 +66,12 @@
     <ClInclude Include="WebThreadDoc\ThreadWebDoc.h">
       <Filter>WebThreadDoc</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\RandomWalkGenerator.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -88,6 +97,12 @@
     </ClCompile>
     <ClCompile Include="WebThreadDoc\ThreadWebDoc.cpp">
       <Filter>WebThreadDoc</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\RandomWalkGenerator.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
