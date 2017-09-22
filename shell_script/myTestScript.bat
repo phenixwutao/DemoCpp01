@@ -125,7 +125,7 @@ if defined Arr[%x%] (
 )
 echo "The length of the array is" %x%
 
-::------------------- case 5 if else -------------------
+::------------------- case 4 if else -------------------
 :: check numeric variable
 SET /A num1=5
 SET /A num2=10
@@ -205,3 +205,48 @@ goto :END
 echo "The value of ref2 variable is correct"
 goto :END
 :END
+
+::------------------- case 5 Batch Script – Operators -------------------
+:: Arithmetic operators
+SET /A a=5
+SET /A b=10
+SET /A c=%a%+%b%
+echo %c%
+SET /A c=%a%-%b%
+echo %c%
+SET /A c=%b%*%a%
+echo %c%
+SET /A c=%b%/%a%
+echo %c%
+SET /A c=%b% %% %a%
+echo %c%
+
+:: Relational operators
+SET /A a=5
+SET /A b=10
+if %a% EQU %b% echo A is equal to than B
+if %a% NEQ %b% echo A is not equal to than B
+if %a% LSS %b% echo A is less than B
+if %a% LEQ %b% echo A is less than or equal B
+if %a% GTR %b% echo A is greater than B
+if %a% GEQ %b% echo A is greater than or equal to B
+
+:: Logical operators: AND  OR  NOT
+SET /A a=5
+SET /A b=10
+IF NOT %a%==6 echo "A is not equal to 6"
+
+:: Assignment operators
+SET /A a *=5
+echo %a%
+SET /A a -=5
+echo %a%
+
+:: Bitwise operators: & (and)   | (or)   ^ (xor)
+SET /A "Result = 1 & 0"
+echo Result is %Result%
+SET /A "Result = 1 | 0"
+echo Result is %Result%
+SET /A "Result = 31 ^ 15"
+echo Result is %Result%
+
