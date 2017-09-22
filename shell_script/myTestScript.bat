@@ -59,3 +59,22 @@ set str7=Batch scripts is easy. It is really easy
 echo %str7%
 set str7=%str7:~1,-1%
 echo %str7%
+
+:: remove all spaces
+set str8=This string has a lot of spaces
+echo %str8%
+set str8=%str8: =%
+echo %str8%
+
+:: Replace a String
+set str9=This message needs changed.
+echo %str9%
+set str9=%str9:needs=has%
+echo %str9%
+
+:: right string
+:: he right hand of the string is extracted by using the ~-'number of characters to extract' operator.
+set string1=This message needs changed.
+echo %string1%
+set string1=%string1:~-8%
+echo %string1%
