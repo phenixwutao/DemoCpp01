@@ -263,8 +263,6 @@ echo Result is %Result%
 ::------------------- case 6 date time -------------------
 echo %DATE% %TIME%
 
-echo/Today is: %year%-%month%-%day%
-
 ::------------------- case 7 Redirecting Output -------------------
 :: standard streams: Stdin is file 0, 
 ::                   stdout is file 1, and 
@@ -272,3 +270,66 @@ echo/Today is: %year%-%month%-%day%
 :: redirect stderr into stdout
 DIR C:\ > lists.txt 2>&1
 
+::------------------- case 8 return code -------------------
+:: Error Code 	Description
+:: 0 			Program successfully completed.
+
+:: 1			Incorrect function. Indicates that Action has attempted to
+::				execute non-recognized command in Windows command
+::				prompt cmd.exe.
+
+:: 2			The system cannot find the file specified. Indicates that the
+::				file cannot be found in specified location.
+
+:: 3			The system cannot find the path specified. Indicates that the
+::				specified path cannot be found.
+
+:: 5			Access is denied. Indicates that user has no access right to
+::				specified resource.
+
+:: Use EXIT /B < exitcodes > at the end of the batch file to return custom return codes.
+:: EXIT [/B] [exitCode]
+
+::  /B          specifies to exit the current batch script instead of
+::              CMD.EXE.  If executed from outside a batch script, it
+::              will quit CMD.EXE
+			  
+::			if not exist   c:\lists.txt exit /B 7
+::			if not defined userprofile  exit /B 9
+::			exit /B 0
+
+
+::------------------- case 9 loop -------------------
+:: Set counters :label  goto :label
+SET /A "index=1"
+SET /A "count=5"
+:while
+if %index% leq %count% (
+echo The value of index is %index%
+SET /A "index = index + 1"
+goto :while
+)
+
+:: For Statement - List Implementations
+:: FOR %%variable IN list DO do_something
+FOR %%F IN (1 2 3 4 5) DO echo number is %%F
+
+
+:: Looping through Ranges
+:: FOR /L %%variable IN (lowerlimit,Increment,Upperlimit) DO do_something
+FOR /L %%X IN (0,2,10) DO ECHO %%X
+
+
+:: Classic for Loop Implementation
+:: for(variable declaration;expression;Increment)
+:: {do something }
+
+SET /A i=1
+:myloop
+IF %i%==5 GOTO MYEND
+echo The www value of i is %i%
+SET /a i=%i%+1
+GOTO :MYLOOP
+:MYEND
+
+exit /B 0
