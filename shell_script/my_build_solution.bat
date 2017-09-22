@@ -5,14 +5,7 @@
 
 set VSFlag=%1
 IF "%VSFlag%"=="" (
-echo -----------------------------------------------------
-echo build script for DemoCpp01.sln
-echo Option is:  VS flag Y/N
-echo -----------------------------------------------------
-echo For example: my_build_solution Y  first time only 
-echo              my_build_solution N 
-echo -----------------------------------------------------
-GOTO :end
+  CALL :showinfo
 )
 
 echo -----------------------------------------------------
@@ -25,5 +18,15 @@ IF /I "%VSFlag%"=="Y" (
 echo MSBuild DemoCpp01.sln ......
 MSBuild.exe "%HOMEPATH%\Source\GitHub\DemoCpp01\DemoCpp01.sln" /p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration="Debug" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo
 echo -----------------------------------------------------
+EXIT /B 0
 
-:END
+:: function to show script option
+:showinfo
+echo -----------------------------------------------------
+echo build script for DemoCpp01.sln
+echo Option is:  VS flag Y/N
+echo -----------------------------------------------------
+echo For example: my_build_solution Y  first time only 
+echo              my_build_solution N 
+echo -----------------------------------------------------
+EXIT /B 0

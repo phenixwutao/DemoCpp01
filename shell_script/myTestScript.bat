@@ -332,4 +332,46 @@ SET /a i=%i%+1
 GOTO :MYLOOP
 :MYEND
 
+
+::
+SET /A "index=1"
+SET /A "count=5"
+:mywhile
+if %index% leq %count% (
+if %index% == 2 goto :myIncrement
+echo The idx value of index is %index%
+:myIncrement
+SET /A "index = index + 1"
+goto :mywhile
+)
+
+::------------------- case 10 Batch Script : Functions -------------------
+call:header
+echo do some work here
+goto :terminationheader
+
+:: Functions
+
+:header
+ECHO ================================================= 
+ECHO %*
+ECHO ================================================= 
+EXIT /B 0
+
+:terminationheader
+
+:: Functions with Parameters
+CALL :Display 6 , 7
+goto :terminationDisplay
+EXIT /B 0
+
+:Display
+echo The value of parameter 1 is %~1
+echo The value of parameter 2 is %~2
+EXIT /B 0
+
+
+:terminationDisplay
+
+
 exit /B 0
