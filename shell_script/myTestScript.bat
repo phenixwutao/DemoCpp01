@@ -260,3 +260,15 @@ echo Result is %Result%
 :: command 2>> file – Append standard error of command to file (OS/2 and NT).
 :: commandA | commandB – Redirect standard output of commandA to standard input of command.
 
+::------------------- case 6 date time -------------------
+echo %DATE% %TIME%
+
+echo/Today is: %year%-%month%-%day%
+
+::------------------- case 7 Redirecting Output -------------------
+:: standard streams: Stdin is file 0, 
+::                   stdout is file 1, and 
+::                   stderr is file 2.
+:: redirect stderr into stdout
+DIR C:\ > lists.txt 2>&1
+
