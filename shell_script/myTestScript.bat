@@ -124,3 +124,84 @@ if defined Arr[%x%] (
   GOTO :SymLoop
 )
 echo "The length of the array is" %x%
+
+::------------------- case 5 if else -------------------
+:: check numeric variable
+SET /A num1=5
+SET /A num2=10
+SET /A num3=%num1% + %num2%
+if %num3% == 15 (
+echo "The value of variable num3 is 15"
+)
+
+if %num3% == 10 echo "The value of variable num3 is 10"
+
+:: check string variables
+SET name1=String1
+SET name2=String2
+if %name1% == String1 (
+echo The value of variable is String1
+)
+if %name2% == String3 echo The value of variable is String3
+
+:: check command line arguments
+echo %1
+echo %2
+echo %3
+set /A env1=%1
+set /A env2=%2
+set /A env3=%3
+if %env1% == 1 echo "The value is 1"
+if %env2% == 2 echo "The value is 2"
+if %env3% == 3 echo "The value is 3"
+
+:: if else checking If (condition) (do_something) ELSE (do_something_else)
+:: check numberic value
+set /A myval=1
+IF %myval% == 1 (echo Yes) ELSE (echo NO)
+
+:: check string value
+SET sstr1=String1
+SET sstr2=String2
+if %sstr1% == String1 (echo "The value of variable is String1") else (echo "Unknown value")
+if %sstr2% == String3 (echo "The value of variable is String3") else (echo "Unknown value")
+
+:: if defined check
+SET sstr3=String1
+SET sstr4=String2
+if defined sstr3 echo "Variable sstr3 is defined"
+if defined sstr5 (echo "Variable sstr5 is defined") else (echo "Variable sstr5 is not defined")
+
+:: if exist check
+if exist C:\set2.txt echo "File exists"
+if exist my_build_solution.bat (echo "bat File exists") else (echo "bat File does not exist")
+
+:: Nested If Statements i.e. multiple if statements
+:: if(condition1) if (condition2) do_something
+SET /A ref1=5
+SET /A ref2=10
+if %ref1% == 5 if %ref2% == 10 echo "The value of the variables are correct"
+
+:: If errorlevel syntax is: if errorlevel n somecommand
+if errorlevel 0 echo fine
+if errorlevel 1 echo error level 1
+if errorlevel 2 echo error level 2
+
+
+:: goto statement
+echo go to mylabel
+goto :mylabel
+echo this is skipped
+:mylabel
+
+if %ref1% == 5  goto :ref1point
+if %ref2% == 10 goto :ref2point
+
+:ref1point
+echo "The value of ref1 variable is correct"
+goto :END
+
+:ref2point
+echo "The value of ref2 variable is correct"
+goto :END
+:END
