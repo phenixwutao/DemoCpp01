@@ -11,6 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCppMultithreading", "De
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "POSIXThreads", "POSIXThreads\POSIXThreads.vcxproj", "{AD3DC3FC-04D2-4D7F-8300-757BAA2EC5C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shell_script", "shell_script", "{1BB2CD41-147C-4D94-8956-627B941E8406}"
+	ProjectSection(SolutionItems) = preProject
+		shell_script\my_build_solution.bat = shell_script\my_build_solution.bat
+		shell_script\myTestScript.bat = shell_script\myTestScript.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
