@@ -250,3 +250,13 @@ echo Result is %Result%
 SET /A "Result = 31 ^ 15"
 echo Result is %Result%
 
+::------------------- case 5 Redirection -------------------
+:: taking the output of a command and re-directing that output to a 
+:: different output media. The following commands are available for re-direction.
+:: command > filename – Redirect command output to a file.
+:: command >> filename – APPEND into a file.
+:: command < filename – Type a text file and pass the text to command.
+:: command 2> file – Write standard error of command to file (OS/2 and NT).
+:: command 2>> file – Append standard error of command to file (OS/2 and NT).
+:: commandA | commandB – Redirect standard output of commandA to standard input of command.
+
