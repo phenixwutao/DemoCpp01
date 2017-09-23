@@ -366,6 +366,84 @@ EXIT /B 0
 
 :terminationDisplay
 
+::------------------- case 11 Batch Script : File IO -------------------
+:: create a file
+echo hello > lists.txt
 
+:: write to a file
+dir . > list2.txt
+
+:: append to a file
+echo hello >> lists.txt
+
+:: read from file
+FOR /F "tokens=* delims=" %%x in (lists.txt) DO echo current line: %%x
+
+:: delete files
+:: DEL [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+:: /P Prompts for confirmation before deleting each file.
+:: /F Force deletes of read-only files.
+:: /S Deletes specified files from all subdirectories.
+:: /Q Quiet mode, do not ask if ok to delete on global wildcard.
+:: /A Selects files to delete based on attributes.
+:: attributes	R Read-only files, S System files, H Hidden files, A Files ready for archiving
+:: 				- Prefix meaning not
+dir list?.txt
+
+:: rename files
+rename *.txt *.sql
+rename "TESTA.txt" "TESTB.txt"
+
+:: move files
+:: MOVE [/Y | /-Y] [drive:][path]filename1[,...] destination
+
+::/Y	Suppresses prompting to confirm you want to overwrite an
+::		existing destination file.
+
+::/-Y	Causes prompting to confirm you want to overwrite an
+::		existing destination file.
+
+move new.txt, test.txt c:\example
+:: above command will move the files new.txt and test.txt into the c:\example folder.
+
+
+:: Batch Files -- Pipes
+echo ------------------ sort
+dir . | sort
+
+echo world >> list3.txt
+echo array >> list3.txt
+echo tell >> list3.txt
+echo busy >> list3.txt
+TYPE list3.txt | sort
+
+
+:: Combining Commands with Redirection Operators
+dir . | find "txt" > AllText.txt
+TYPE AllText.txt
+
+echo ------------------- more
+dir . | find "txt" | more
+
+:: Combining Commands example
+tasklist | find "notepad"
+tasklist | find "notepad" > tasklist.txt
+
+:: Batch Files – Inputs
+:: the option to pass in command line parameters
+:: 		%0 	is the program name as it was called.
+:: 		%1 	is the first command line parameter.
+:: 		%2 	is the second command line parameter.
+:: 		So on till %9
+echo pass in command line parameter 0 is %0
+echo pass in command line parameter 1 is %1
+echo pass in command line parameter 2 is %2
+echo pass in command line parameter 3 is %3
+echo pass in command line parameter 4 is %4
+echo pass in command line parameter 5 is %5
+echo pass in command line parameter 6 is %6
+echo pass in command line parameter 7 is %7
+echo pass in command line parameter 8 is %8
+echo pass in command line parameter 9 is %9
 
 exit /B 0
