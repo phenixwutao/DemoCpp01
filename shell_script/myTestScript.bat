@@ -502,7 +502,29 @@ REN folder1  folder2
 
 :: Moving Folders
 MD folder3
-MOVE folder3 folder2
-MOVE file2.txt folder2
+MOVE /Y folder3 folder2
+MOVE /Y file2.txt folder2
+RD /S /Q folder2
+
+::------------------- case 13 Batch Script : Processes -------------------
+:: ============ Viewing the List of Running Processes ============
+:: TASKLIST [/S system [/U username [/P [password]]]] [/M [module] | /SVC | /V]
+::          [/FI filter] [/FO format] [/NH]
+tasklist /fi "memusage gt 40000"
+
+
+:: ============ Killing a Particular Process ============ 
+:: TASKKILL [/S system [/U username [/P [password]]]] { [/FI filter] [/PID
+::           processid | /IM imagename] } [/T] [/F]
+
+:: kill a task by process name
+:: taskkill /f /im notepad.exe
+
+:: kill a task by process ID
+:: taskill /pid 9214
+
+:: ============ Starting a New Process ============ 
+:: Syntax
+:: START "title" [/D path] [options] "command" [parameters]
 
 exit /B 0
