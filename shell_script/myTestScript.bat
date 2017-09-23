@@ -527,4 +527,18 @@ tasklist /fi "memusage gt 40000"
 :: Syntax
 :: START "title" [/D path] [options] "command" [parameters]
 
+::------------------- case 14 Batch Script : Alias -------------------
+:: DOSKEY [options] [macroname=[text]]
+doskey cs=cd ..
+doskey d=dir
+
+:: Replacing and Deleting an Alias
+:: alias or macro can be deleted by setting the value of the macro to NULL.
+doskey d=dir /w
+doskey d=
+
+:: check history
+doskey /history
+doskey /macros
+
 exit /B 0
