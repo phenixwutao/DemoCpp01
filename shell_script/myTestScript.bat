@@ -446,4 +446,63 @@ echo pass in command line parameter 7 is %7
 echo pass in command line parameter 8 is %8
 echo pass in command line parameter 9 is %9
 
+::------------------- case 12 Batch Script : Folders -------------------
+:: create folders
+MKDIR delete_me
+MD "delete me"
+
+:: create folders/sub-folders
+MD delete_me\bin\bin1
+
+:: Listing Folder Contents
+dir delete_me
+dir *.txt *.doc
+
+:: Lists only the directories in the current directory
+dir /ad
+
+:: Lists the files in the directory and sub directories
+dir /S
+dir /s /w /p
+
+:: delete files in folders
+:: DEL [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+:: /P 	Prompts for confirmation before deleting each file.
+:: /F 	Force deletes read-only files.
+:: /S 	Deletes specified files from all subdirectories.
+:: /Q 	Quiet mode, do not ask if ok to delete on global wildcard.
+:: /A 	Selects files to delete based on attributes.
+::      available attributes:
+:: 		R - Read-only files, S - System files, H - Hidden files,
+::      A - Files ready for archiving - Prefix meaning not
+del /P "delete me"
+del /P /s delete_me
+del *.sql *.txt
+
+:: delete multiple folders
+Del Example1, Example2
+
+::============== deletes folders by RMDIR or RD ===============
+:: RMDIR [/S] [/Q] [drive:]path
+:: RD [/S] [/Q] [drive:]path
+
+::   /S      Removes all directories and files in the specified directory
+::           in addition to the directory itself.  Used to remove a directory
+::           tree.
+
+::   /Q      Quiet mode, do not ask if ok to remove a directory tree with /S
+rmdir /S /Q delete_me
+rmdir /S /Q "delete me"
+
+:: Renaming files or folders
+echo file 1 > file1.txt
+REN file1.txt file2.txt
+MD folder1
+REN folder1  folder2
+
+:: Moving Folders
+MD folder3
+MOVE folder3 folder2
+MOVE file2.txt folder2
+
 exit /B 0
