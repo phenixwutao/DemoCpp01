@@ -541,4 +541,53 @@ doskey d=
 doskey /history
 doskey /macros
 
+::------------------- case 15 Batch Script : Network -------------------
+:: Displays your current server or workgroup settings
+NET CONFIG
+
+:: Adds or removes a computer attached to the windows domain controller
+:: NET COMPUTER \\computername {/ADD | /DEL}
+NET COMPUTER \\dxbtest /ADD
+
+
+:: NET USER
+::  This command can be used for the following:
+::  View the details of a particular user account.
+::  Add a user account.
+::  Delete a user's account.
+::  Modify a user's account
+NET USER
+net user guest
+
+:: stop and start a particular service
+:: Net stop/start [servicename]
+:: The Print Spooler service start/stop
+NET STOP Spooler
+NET START Spooler
+
+:: Display network statistics of the workstation or server
+:: Net statistics [SERVER/WORKSTATION]
+Net statistics SERVER
+Net statistics WORKSTATION
+
+:: Connects or disconnects your computer from a shared resource or 
+:: displays information about your connections
+:: NET USE
+:: [devicename | *] [\\computername\sharename[\volume] [password | *]]
+::         [/USER:[domainname\]username]
+::         [/USER:[dotted domain name\]username]
+::         [/USER:[username@dotted domain name]
+::         [/SMARTCARD]
+::         [/SAVECRED]
+::         [[/DELETE] | [/PERSISTENT:{YES | NO}]]
+
+:: NET USE {devicename | *} [password | *] /HOME
+
+:: NET USE [/PERSISTENT:{YES | NO}]
+
+:: The command to connect to the share name \\computer\test and assign the Z: drive
+net use z: \\computer\test
+
+
+
 exit /B 0
