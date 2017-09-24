@@ -69,13 +69,13 @@
     <ClInclude Include="WebThreadDoc\ThreadWebDoc.h">
       <Filter>WebThreadDoc</Filter>
     </ClInclude>
-    <ClInclude Include="OptionsDerivativesProgramming\RandomWalkGenerator.h">
-      <Filter>OptionsDerivativesProgramming</Filter>
-    </ClInclude>
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
     <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
   </ItemGroup>
@@ -104,13 +104,13 @@
     <ClCompile Include="WebThreadDoc\ThreadWebDoc.cpp">
       <Filter>WebThreadDoc</Filter>
     </ClCompile>
-    <ClCompile Include="OptionsDerivativesProgramming\RandomWalkGenerator.cpp">
-      <Filter>OptionsDerivativesProgramming</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>

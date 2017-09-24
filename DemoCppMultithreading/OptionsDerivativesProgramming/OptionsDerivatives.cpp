@@ -5,7 +5,7 @@
 #include <iomanip>
 
 #include "Ch01GenericOption.h"
-#include "RandomWalkGenerator.h"
+#include "Ch02RandomWalkGenerator.h"
 #include "OptionsDerivatives.h"
 
 using namespace std;

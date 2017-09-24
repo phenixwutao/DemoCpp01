@@ -9,7 +9,7 @@
 #include <iostream>
 #include <time.h>
 
-#include "RandomWalkGenerator.h"
+#include "Ch02RandomWalkGenerator.h"
 
 using namespace std;
 
