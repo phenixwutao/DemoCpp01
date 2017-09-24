@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="OptionsDerivativesProgramming\Readme.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="WebThreadDoc\ReadMe.txt" />
   </ItemGroup>
@@ -151,6 +152,7 @@
     <ClInclude Include="chap03\chap03ThreadSharingData.h" />
     <ClInclude Include="chap04\Chap04SynchronizingConcurrentOperations.h" />
     <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h" />
+    <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h" />
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h" />
     <ClInclude Include="OptionsDerivativesProgramming\RandomWalkGenerator.h" />
     <ClInclude Include="stdafx.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="chap04\Chap04SynchronizingConcurrentOperations.cpp" />
     <ClCompile Include="chap05\chap05MemoryModelAtomicOperation.cpp" />
     <ClCompile Include="DemoCppMultithreading.cpp" />
+    <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\RandomWalkGenerator.cpp" />
     <ClCompile Include="stdafx.cpp">

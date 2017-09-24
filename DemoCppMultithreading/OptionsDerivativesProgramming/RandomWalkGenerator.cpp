@@ -68,7 +68,7 @@ double RandomWalkGenerator::computeRandomStep(double currentPrice)
   {
     val -= (m_stepSize * val);
   }
-  printf("random r=%d, price %12.6f\n", r, val);
+  //printf("random r=%d, price %12.6f\n", r, val);
   return val;
 }
 

@@ -40,6 +40,9 @@
     <Text Include="WebThreadDoc\ReadMe.txt">
       <Filter>WebThreadDoc</Filter>
     </Text>
+    <Text Include="OptionsDerivativesProgramming\Readme.txt">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,6 +75,9 @@
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -102,6 +108,9 @@
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>

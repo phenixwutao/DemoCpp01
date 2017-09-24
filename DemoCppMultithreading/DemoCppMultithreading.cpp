@@ -77,6 +77,7 @@ int main()
   //C11ThreadLocalStorage();
 
   // Options Derivatives Programming
+  OptionsDerivTestValueOptions();
   OptionsDerivTestRandomWalks();
 
   return EXIT_SUCCESS;
