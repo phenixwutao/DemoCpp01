@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shell_script", "shell_scrip
 		shell_script\myTestScript.bat = shell_script\myTestScript.bat
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCLINETCpp", "DemoCLINETCpp\DemoCLINETCpp.vcxproj", "{89546FFB-6842-4B6B-9576-469662C9BFB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -57,6 +59,14 @@ Global
 		{AD3DC3FC-04D2-4D7F-8300-757BAA2EC5C9}.Release|x64.Build.0 = Release|x64
 		{AD3DC3FC-04D2-4D7F-8300-757BAA2EC5C9}.Release|x86.ActiveCfg = Release|Win32
 		{AD3DC3FC-04D2-4D7F-8300-757BAA2EC5C9}.Release|x86.Build.0 = Release|Win32
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Debug|x64.ActiveCfg = Debug|x64
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Debug|x64.Build.0 = Debug|x64
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Debug|x86.ActiveCfg = Debug|Win32
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Debug|x86.Build.0 = Debug|Win32
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Release|x64.ActiveCfg = Release|x64
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Release|x64.Build.0 = Release|x64
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Release|x86.ActiveCfg = Release|Win32
+		{89546FFB-6842-4B6B-9576-469662C9BFB5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
