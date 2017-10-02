@@ -8,6 +8,7 @@
 #include "chap13\chap13HandleException.h"
 #include "chap14\chap14OperatorOverloading.h"
 #include "chap23\chap23MultiThreadProgramming.h"
+#include "ModernCpp\ModernCpp.h"
 
 int main(int argc, char* argv[])
 {
@@ -73,6 +74,8 @@ int main(int argc, char* argv[])
   chap23TestAsynchErrorHandling();
   chap23TestLogger();
 
+  // modern cpp
+  ModernCppDemoAuto();
 
   return EXIT_SUCCESS;
 }

@@ -10,8 +10,29 @@
 
 using namespace std;
 
+class foo
+{
+  int x_;
+
+public:
+  foo(int const x = 0) :x_{ x } {}
+  int& get() { return x_; }
+};
+
+auto proxy_get(foo& f) { return f.get(); }
+
+decltype(auto) proxy_get2(foo& f) { return f.get(); }
+
+struct
+{
+  template<typename T, typename U>
+  auto operator () (T const a, U const b) const { return a + b; }
+} L;
+
+
 void ModernCppDemoAuto()
 {
+  printf("-------------------- Function %s --------------------\n", __func__);
   {
     auto i = 42;				              // int
     auto d = 42.5;				            // double
@@ -51,4 +72,48 @@ void ModernCppDemoAuto()
     }
   }
 
+  {
+    foo f(42);
+    auto x = f.get();
+    std::cout << x << std::endl; // prints 42
+    x = 100;
+    std::cout << f.get() << std::endl; // prints 42
+  }
+
+  {
+    auto l1 = long long{ 42 }; // error
+
+    using llong = long long;
+    auto l2 = llong{ 42 };     // OK
+    auto l3 = 42LL;            // OK
+  }
+
+  {
+    auto f = foo{ 42 }; 
+    //auto& x = proxy_get(f); // cannot convert from 'int' to 'int &'
+  }
+
+  {
+    auto f = foo{ 42 };
+    decltype(auto) x = proxy_get2(f);
+  }
+
+  {
+    auto ladd = [](auto const a, auto const b) { return a + b; };
+
+    auto i = ladd(40, 2);            // 42
+    auto s = ladd("forty"s, "two"s); // "fortytwo"s
+  }
 }
+
+// auto func1 return int type
+auto func1(int const i) -> int
+{
+  return 2 * i;
+}
+
+auto func2(int const i)
+{
+  return 2 * i;
+}
+
