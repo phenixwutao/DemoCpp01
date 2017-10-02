@@ -31,6 +31,9 @@
     <Filter Include="chap23">
       <UniqueIdentifier>{ef98ea57-0807-4525-a494-f8a64947db73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ModernCpp">
+      <UniqueIdentifier>{98699f93-9a7c-46d7-949e-79d3b21a1f38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,6 +102,9 @@
     <ClInclude Include="chap23\Logger.h">
       <Filter>chap23</Filter>
     </ClInclude>
+    <ClInclude Include="ModernCpp\ModernCpp.h">
+      <Filter>ModernCpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -142,6 +148,9 @@
     </ClCompile>
     <ClCompile Include="chap23\Logger.cpp">
       <Filter>chap23</Filter>
+    </ClCompile>
+    <ClCompile Include="ModernCpp\ModernCpp.cpp">
+      <Filter>ModernCpp</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
