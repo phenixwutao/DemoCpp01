@@ -56,26 +56,28 @@ int main(int argc, char* argv[])
   //chap14TestPointerOperators();
   //chap14TestConversionOperators();
   //chap14TestNewDeleteOperators();
-  chap23TestThreadWithFunctionPointer();
-  chap23TestThreadWithFunctionObject();
-  chap23TestThreadWithLambda();
-  chap23TestThreadWithExceptions();
-  chap23TestThreadLocalStorage();
-  chap23TestNonAtomicOperation();
-  chap23TestAtomicOperation();
-  chap23TestAtomicOperationOptimised();
-  chap23TestAtomicFetchAdd();
-  chap23TestThreadCallOnce();
-  chap23TestThreadFunctionObjectWithMutex();
-  chap23TestThreadTimedLock();
-  chap23TestThreadDoubleCheckedLocking();
-  chap23TestFuturePackedTask();
-  chap23TestFutureAsynch();
-  chap23TestAsynchErrorHandling();
-  chap23TestLogger();
 
-  // modern cpp
+  //chap23TestThreadWithFunctionPointer();
+  //chap23TestThreadWithFunctionObject();
+  //chap23TestThreadWithLambda();
+  //chap23TestThreadWithExceptions();
+  //chap23TestThreadLocalStorage();
+  //chap23TestNonAtomicOperation();
+  //chap23TestAtomicOperation();
+  //chap23TestAtomicOperationOptimised();
+  //chap23TestAtomicFetchAdd();
+  //chap23TestThreadCallOnce();
+  //chap23TestThreadFunctionObjectWithMutex();
+  //chap23TestThreadTimedLock();
+  //chap23TestThreadDoubleCheckedLocking();
+  //chap23TestFuturePackedTask();
+  //chap23TestFutureAsynch();
+  //chap23TestAsynchErrorHandling();
+  //chap23TestLogger();
+
+  // modern cpp demo functions
   ModernCppDemoAuto();
+  ModernCppDemoAlias();
 
   return EXIT_SUCCESS;
 }

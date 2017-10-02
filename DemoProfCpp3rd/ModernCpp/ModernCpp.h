@@ -4,5 +4,6 @@
 #define __MODERN_CPP_H
 
 void ModernCppDemoAuto();
+void ModernCppDemoAlias();
 
 #endif
