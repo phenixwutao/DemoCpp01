@@ -5,5 +5,6 @@
 
 void ModernCppDemoAuto();
 void ModernCppDemoAlias();
+void ModernCppDemoInitializerList();
 
 #endif

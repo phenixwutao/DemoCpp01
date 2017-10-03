@@ -78,6 +78,7 @@ int main(int argc, char* argv[])
   // modern cpp demo functions
   ModernCppDemoAuto();
   ModernCppDemoAlias();
+  ModernCppDemoInitializerList();
 
   return EXIT_SUCCESS;
 }
