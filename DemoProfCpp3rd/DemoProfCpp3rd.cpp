@@ -79,6 +79,7 @@ int main(int argc, char* argv[])
   ModernCppDemoAuto();
   ModernCppDemoAlias();
   ModernCppDemoInitializerList();
+  ModernCppDemoNonStaticMemberInitialization();
 
   return EXIT_SUCCESS;
 }
