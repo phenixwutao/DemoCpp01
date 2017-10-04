@@ -15,6 +15,8 @@ void ModernCppDemoScopedEnumerations();
 void ModernCppDemoOverride_Final_For_Virtual_Methods();
 void ModernCppDemoRangeBasedForLoop();
 void ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
+void ModernCppDemoCheckModules();
+void ModernCppDemoExplicitConstructorAndConversionOperator();
 
 
 #endif

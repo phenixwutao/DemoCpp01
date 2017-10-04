@@ -85,6 +85,8 @@ int main(int argc, char* argv[])
   ModernCppDemoOverride_Final_For_Virtual_Methods();
   ModernCppDemoRangeBasedForLoop();
   ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
+  ModernCppDemoCheckModules();
+  ModernCppDemoExplicitConstructorAndConversionOperator();
 
   return EXIT_SUCCESS;
 }

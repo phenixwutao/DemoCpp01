@@ -888,3 +888,163 @@ void ModernCppDemoEnableRangeBasedForLoop4CustomTypes()
 
   print_dummy_array(arr);
 }
+
+
+void ModernCppDemoCheckModules()
+{
+  FUNC_INFO;
+#define MODULE_ID_DEAL    1
+#define MODULE_ID_INSTR   2
+#define MODULE_ID_NL      3
+#define MODULE_ID_ACCOUNT 4
+
+#define MODULE_VALUE_DEAL    0x00000001
+#define MODULE_VALUE_INSTR   0x00000002
+#define MODULE_VALUE_NL      0x00000004
+#define MODULE_VALUE_ACCOUNT 0x00000008
+
+  const string kModuleDeal = "deals";
+  const string kModuleInstruction = "instructions";
+  const string kModuleNominalLedger = "nominalledger";
+  const string kModuleAccount = "accounts";
+
+  struct ModuleInfo
+  {
+    string name;
+    unsigned long long value;
+  };
+
+  map<int, ModuleInfo> my_modules;
+  my_modules[MODULE_ID_DEAL] = { kModuleDeal, MODULE_VALUE_DEAL };
+  my_modules[MODULE_ID_INSTR] = { kModuleInstruction, MODULE_VALUE_INSTR };
+  my_modules[MODULE_ID_NL] = { kModuleNominalLedger, MODULE_VALUE_NL };
+  my_modules[MODULE_ID_ACCOUNT] = { kModuleAccount, MODULE_VALUE_ACCOUNT };
+
+  for (auto& item : my_modules)
+  {
+    cout << "ID " << item.first << ", name '" << item.second.name << "', value " << item.second.value << endl;
+  }
+  string sModule = "instructions";
+  for(auto& item : my_modules)
+  {
+    if (item.second.name == sModule)
+    {
+      cout << "found ID " << item.first << ", name '" << item.second.name << "', value " << item.second.value << endl;
+      break;
+    }
+  }
+
+  unsigned int kID = 3;
+  auto it = my_modules.find(kID);
+  if (it != my_modules.end())
+  {
+    cout << "found ID " << it->first << ", name '" << it->second.name << "', value " << it->second.value << endl;
+  }
+}
+
+void ModernCppDemoExplicitConstructorAndConversionOperator()
+{
+  FUNC_INFO;
+
+  struct foo
+  {
+    foo() { std::cout << "foo" << std::endl; }
+    foo(int const a) { std::cout << "foo(a)" << std::endl; }
+    foo(int const a, double const b) { std::cout << "foo(a, b)" << std::endl; }
+
+    operator bool() const { return true; }
+  };
+
+  struct foo2
+  {
+    foo2() { std::cout << "foo2" << std::endl; }
+    foo2(std::initializer_list<int> l) { std::cout << "foo2(list)" << std::endl; }
+    foo2(int const a) { std::cout << "foo2(a)" << std::endl; }
+    foo2(int const a, double const b) { std::cout << "foo2(a, b)" << std::endl; }
+
+    operator bool() const { return true; }
+  };
+
+  //void bar(foo const f)
+  //{
+  //}
+
+  enum ItemSizes { DefaultHeight, Large, MaxSize };
+
+  class string_buffer
+  {
+  public:
+    explicit string_buffer()
+    {}
+
+    explicit string_buffer(size_t const size)
+    {}
+
+    explicit string_buffer(char const * const ptr)
+    {}
+
+    explicit operator bool() const { return true; }
+    explicit operator char * const () const { return nullptr; }
+  };
+
+  struct handle_t
+  {
+    explicit handle_t(int const h) : handle(h) {}
+
+    explicit operator bool() const { return handle != 0; };
+  private:
+    int handle;
+  };
+
+  // test code
+  {
+    PASS_INFO(1); foo f1;              // foo
+    PASS_INFO(2); foo f2{};            // foo
+
+    PASS_INFO(3); foo f3(1);           // foo(a)
+    PASS_INFO(4); foo f4 = 1;          // foo(a)
+    PASS_INFO(5); foo f5{ 1 };         // foo(a)
+    PASS_INFO(6); foo f6 = { 1 };      // foo(a)
+
+    PASS_INFO(7); foo f7(1, 2.0);      // foo(a, b)
+    PASS_INFO(8); foo f8{ 1, 2.0 };    // foo(a, b)
+    PASS_INFO(9); foo f9 = { 1, 2.0 }; // foo(a, b)
+
+    bool flag = f1;
+    if (f2) {}
+    PASS_INFO(10);
+    std::cout << f3 + f4 << std::endl;
+    if (f5 == f6) {}
+  }
+
+  {
+    auto bar = [](foo const f) {};
+    PASS_INFO(11); bar({});             // foo()
+    PASS_INFO(12); bar(1);              // foo(a)
+    PASS_INFO(13); bar({ 1, 2.0 });     // foo(a, b)
+  }
+
+  {
+    string_buffer b4 = string_buffer('a');
+    string_buffer b5 = static_cast<string_buffer>(ItemSizes::MaxSize);
+    string_buffer b6 = string_buffer{ "a" };
+
+    string_buffer b7{ 'a' };
+    string_buffer b8('a');
+
+    // error
+    //std::cout << b4 + b5 << std::endl;
+    //if (b4 == b5) {}
+
+    std::cout << static_cast<bool>(b4) + static_cast<bool>(b5) << std::endl;
+    if (static_cast<bool>(b4) == static_cast<bool>(b5)) {}
+  }
+
+  {
+    auto h = handle_t{ 42 };
+    bool ok = static_cast<bool>(h);
+    if (h) {
+    }
+  }
+}
+
