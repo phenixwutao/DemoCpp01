@@ -8,5 +8,6 @@ void ModernCppDemoAlias();
 void ModernCppDemoInitializerList();
 void ModernCppDemoNonStaticMemberInitialization();
 void ModernCppDemoAlignment();
+void ModernCppDemoScopedEnumerations();
 
 #endif

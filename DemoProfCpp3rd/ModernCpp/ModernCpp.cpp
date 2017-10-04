@@ -539,3 +539,32 @@ void ModernCppDemoAlignment()
     }
   }
 }
+
+
+void ModernCppDemoScopedEnumerations()
+{
+  printf("-------------------- Function %s --------------------\n", __func__);
+  enum class Status { Unknown, Created, Connected };
+
+  enum class Codes { OK, Failure, Unknown };
+
+  enum class Codes2 : unsigned int
+  {
+    OK = 0,
+    Failure = 1,
+    Unknown = 0xFFFF0000U
+  };
+
+  auto print_code = [](Codes2 const code) {};
+
+  // test code
+  {
+    Codes code = Codes::Unknown;
+
+    Codes c1 = Codes::OK;					      // OK
+    //int c2 = Codes::Failure;   				// error
+    int c3 = static_cast<int>(Codes::Failure);// OK
+    printf("c3 is %d\n", c3);
+  }
+}
+

@@ -81,6 +81,7 @@ int main(int argc, char* argv[])
   ModernCppDemoInitializerList();
   ModernCppDemoNonStaticMemberInitialization();
   ModernCppDemoAlignment();
+  ModernCppDemoScopedEnumerations();
 
   return EXIT_SUCCESS;
 }
