@@ -34,7 +34,7 @@ struct
 
 void ModernCppDemoAuto()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   {
     auto i = 42;				              // int
     auto d = 42.5;				            // double
@@ -158,7 +158,7 @@ void func(byte b, double d) {}
 // demo new style alias
 void ModernCppDemoAlias()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   {
     using byte = unsigned char;
     using pbyte = unsigned char *;
@@ -199,7 +199,7 @@ void func(std::initializer_list<int> const l)
 
 void ModernCppDemoInitializerList()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   {
     int a = 42;
     double b = 1.2;
@@ -325,7 +325,7 @@ void ModernCppDemoInitializerList()
 // Demo Non Static Member Initialization
 void ModernCppDemoNonStaticMemberInitialization()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   struct Point
   {
     double X;
@@ -433,7 +433,7 @@ void ModernCppDemoNonStaticMemberInitialization()
 // demo alignment
 void ModernCppDemoAlignment()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   unsigned int kPass = 0;
 
   // size = 1, alignment = 1
@@ -544,7 +544,7 @@ void ModernCppDemoAlignment()
 
 void ModernCppDemoScopedEnumerations()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   enum class Status { Unknown, Created, Connected };
 
   enum class Codes { OK, Failure, Unknown };
@@ -571,7 +571,7 @@ void ModernCppDemoScopedEnumerations()
 
 void ModernCppDemoOverride_Final_For_Virtual_Methods()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   {
 #if defined(_WIN64)
     typedef __int64 int_ptr;
@@ -687,18 +687,18 @@ std::multimap<int, bool> getRates2()
 
 void ModernCppDemoRangeBasedForLoop()
 {
-  printf("-------------------- Function %s --------------------\n", __func__);
+  FUNC_INFO;
   {
     auto rates = getRates();
 
-    printf("pass 1 ---------------------\n");
+    PASS_INFO(1);
     // using iterators
     for (auto it = rates.begin(); it != rates.end(); ++it)
     {
       std::cout << *it << std::endl;
     }
 
-    printf("pass 2 ---------------------\n");
+    PASS_INFO(2);
     // using an index
     for (size_t i = 0; i < rates.size(); ++i)
     {
@@ -709,10 +709,10 @@ void ModernCppDemoRangeBasedForLoop()
   {
     auto rates = getRates();
 
-    printf("pass 3 ---------------------\n");
+    PASS_INFO(3);
     std::for_each(rates.begin(), rates.end(), print_rate);
 
-    printf("pass 4 ---------------------\n");
+    PASS_INFO(4);
     // using lambda expression
     std::for_each(rates.begin(), rates.end(), 
       [](auto const rate) { std::cout << rate << std::endl; }
@@ -720,7 +720,7 @@ void ModernCppDemoRangeBasedForLoop()
   }
 
   {
-    printf("pass 5 ---------------------\n");
+    PASS_INFO(5);
     auto rates = getRates();
     for (int rate : rates)
     {
@@ -732,7 +732,7 @@ void ModernCppDemoRangeBasedForLoop()
       rate *= 2;
     }
 
-    printf("pass 6 ---------------------\n");
+    PASS_INFO(6);
     for (auto&& rate : getRates())
     {
       std::cout << rate << std::endl;
@@ -743,7 +743,7 @@ void ModernCppDemoRangeBasedForLoop()
       rate *= 2;
     }
 
-    printf("pass 7 ---------------------\n");
+    PASS_INFO(7);
     for (auto const & rate : rates)
     {
       std::cout << rate << std::endl;
@@ -751,13 +751,13 @@ void ModernCppDemoRangeBasedForLoop()
   }
 
   {
-    printf("pass 8 ---------------------\n");
+    PASS_INFO(8);
     for (auto&& kvp : getRates2())
     {
       std::cout << kvp.first << std::endl;
     }
 
-    printf("pass 9 ---------------------\n");
+    PASS_INFO(9);
     for (auto&& kvp : getRates2())
     {
       bool flag;
@@ -775,4 +775,116 @@ void ModernCppDemoRangeBasedForLoop()
     }
 #endif
   }
+}
+
+
+namespace
+{
+  template <typename T, size_t const Size>
+  class dummy_array
+  {
+    T data[Size] = {};
+
+  public:
+    T const & GetAt(size_t const index) const
+    {
+      if (index < Size) return data[index];
+      throw std::out_of_range("index out of range");
+    }
+
+    void SetAt(size_t const index, T const & value)
+    {
+      if (index < Size) data[index] = value;
+      else throw std::out_of_range("index out of range");
+    }
+
+    size_t GetSize() const { return Size; }
+  };
+
+  template <typename T, typename C, size_t const Size>
+  class dummy_array_iterator_type
+  {
+  public:
+    dummy_array_iterator_type(C& collection, size_t const index) :
+      index(index),
+      collection(collection)
+    {
+    }
+
+    bool operator!= (dummy_array_iterator_type const & other) const
+    {
+      return index != other.index;
+    }
+
+    T const & operator* () const
+    {
+      return collection.GetAt(index);
+    }
+
+    dummy_array_iterator_type const & operator++ ()
+    {
+      ++index;
+      return *this;
+    }
+
+  private:
+    size_t   index;
+    C&       collection;
+  };
+
+  template <typename T, size_t const Size>
+  using dummy_array_iterator = dummy_array_iterator_type<T, dummy_array<T, Size>, Size>;
+
+  template <typename T, size_t const Size>
+  using dummy_array_const_iterator = dummy_array_iterator_type<T, dummy_array<T, Size> const, Size>;
+
+  template <typename T, size_t const Size>
+  inline dummy_array_iterator<T, Size> begin(dummy_array<T, Size>& collection)
+  {
+    return dummy_array_iterator<T, Size>(collection, 0);
+  }
+
+  template <typename T, size_t const Size>
+  inline dummy_array_iterator<T, Size> end(dummy_array<T, Size>& collection)
+  {
+    return dummy_array_iterator<T, Size>(collection, collection.GetSize());
+  }
+
+  template <typename T, size_t const Size>
+  inline dummy_array_const_iterator<T, Size> begin(dummy_array<T, Size> const & collection)
+  {
+    return dummy_array_const_iterator<T, Size>(collection, 0);
+  }
+
+  template <typename T, size_t const Size>
+  inline dummy_array_const_iterator<T, Size> end(dummy_array<T, Size> const & collection)
+  {
+    return dummy_array_const_iterator<T, Size>(collection, collection.GetSize());
+  }
+
+  template <typename T, const size_t Size>
+  void print_dummy_array(dummy_array<T, Size> const & arr)
+  {
+    for (auto && e : arr)
+    {
+      std::cout << e << std::endl;
+    }
+  }
+}
+
+// demo Enabling Range-Based For Loop for Custom Types
+void ModernCppDemoEnableRangeBasedForLoop4CustomTypes()
+{
+  FUNC_INFO;
+  dummy_array<int, 3> arr;
+  arr.SetAt(0, 1);
+  arr.SetAt(1, 2);
+  arr.SetAt(2, 3);
+
+  for (auto&& e : arr)
+  {
+    std::cout << e << std::endl;
+  }
+
+  print_dummy_array(arr);
 }
