@@ -7,5 +7,6 @@ void ModernCppDemoAuto();
 void ModernCppDemoAlias();
 void ModernCppDemoInitializerList();
 void ModernCppDemoNonStaticMemberInitialization();
+void ModernCppDemoAlignment();
 
 #endif

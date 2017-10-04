@@ -80,6 +80,7 @@ int main(int argc, char* argv[])
   ModernCppDemoAlias();
   ModernCppDemoInitializerList();
   ModernCppDemoNonStaticMemberInitialization();
+  ModernCppDemoAlignment();
 
   return EXIT_SUCCESS;
 }

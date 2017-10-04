@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <cstdlib>
 
 #include "ModernCpp.h"
 
@@ -426,4 +427,115 @@ void ModernCppDemoNonStaticMemberInitialization()
     bar b;
   }
 
+}
+
+// demo alignment
+void ModernCppDemoAlignment()
+{
+  printf("-------------------- Function %s --------------------\n", __func__);
+  unsigned int kPass = 0;
+
+  // size = 1, alignment = 1
+  struct foo1
+  {
+    char a;
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo1));
+
+  // size = 2, alignment = 1
+  struct foo2
+  {
+    char a;
+    char b;
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo2));
+
+  // size = 8, alignment = 4
+  struct foo3
+  {
+    char a;
+    int  b;
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo3));
+
+  struct foo3_
+  {
+    char a;        // 1 byte
+    char _pad0[3]; // 3 bytes padding to put b on a 4-byte boundary
+    int  b;        // 4 bytes
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo3_));
+
+  struct foo4
+  {
+    int a;
+    char b;
+    float c;
+    double d;
+    bool e;
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo4));
+
+  struct foo4_
+  {
+    int a;         // 4 bytes
+    char b;        // 1 byte
+    char _pad0[3]; // 3 bytes padding to put c on a 8-byte boundary 
+    float c;       // 4 bytes
+    char _pad1[4]; // 4 bytes padding to put d on a 8-byte boundary
+    double d;      // 8 bytes
+    bool e;        // 1 byte
+    char _pad2[7]; // 7 bytes padding to make sizeof struct multiple of 8
+  };
+  printf("%u) align is %llu \n", ++kPass, alignof(foo4_));
+
+
+  // test code
+  {
+    // the alignas specifier is applied on a class declaration
+    struct alignas(4) foo
+    {
+      char a;
+      char b;
+    };
+    printf("%u) customised align is %llu \n", ++kPass, alignof(foo));
+
+    // the compiler transforms the preceding class into the following:
+    struct foo_
+    {
+      char a;
+      char b;
+      char _pad0[2];
+    };
+    printf("%u) transformed align is %llu \n", ++kPass, alignof(foo_));
+  }
+
+  {
+    struct alignas(8) foo
+    {
+      alignas(2) char a;
+      alignas(8) int  b;
+    };
+    printf("%u) specify member align is %llu \n", ++kPass, alignof(foo));
+
+    struct foo_
+    {
+      char a;
+      char _pad0[7];
+      int b;
+      char _pad1[4];
+    };
+    printf("%u) transform member align is %llu \n", ++kPass, alignof(foo_));
+
+
+    {
+      // a is required to be placed in memory at a multiple of 8
+      alignas(8)   int a;
+      // b is required to be placed in memory at a multiple of 256
+      alignas(256) long b[4];
+
+      printf("%p\n", &a); // eg. 0000006C0D9EF908
+      printf("%p\n", &b); // eg. 0000006C0D9EFA00
+    }
+  }
 }
