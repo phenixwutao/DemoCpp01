@@ -82,6 +82,7 @@ int main(int argc, char* argv[])
   ModernCppDemoNonStaticMemberInitialization();
   ModernCppDemoAlignment();
   ModernCppDemoScopedEnumerations();
+  ModernCppDemoOverride_Final_For_Virtual_Methods();
 
   return EXIT_SUCCESS;
 }

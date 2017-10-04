@@ -9,5 +9,7 @@ void ModernCppDemoInitializerList();
 void ModernCppDemoNonStaticMemberInitialization();
 void ModernCppDemoAlignment();
 void ModernCppDemoScopedEnumerations();
+void ModernCppDemoOverride_Final_For_Virtual_Methods();
+
 
 #endif
