@@ -83,6 +83,7 @@ int main(int argc, char* argv[])
   ModernCppDemoAlignment();
   ModernCppDemoScopedEnumerations();
   ModernCppDemoOverride_Final_For_Virtual_Methods();
+  ModernCppDemoRangeBasedForLoop();
 
   return EXIT_SUCCESS;
 }

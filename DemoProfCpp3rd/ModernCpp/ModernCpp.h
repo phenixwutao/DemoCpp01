@@ -10,6 +10,7 @@ void ModernCppDemoNonStaticMemberInitialization();
 void ModernCppDemoAlignment();
 void ModernCppDemoScopedEnumerations();
 void ModernCppDemoOverride_Final_For_Virtual_Methods();
+void ModernCppDemoRangeBasedForLoop();
 
 
 #endif
