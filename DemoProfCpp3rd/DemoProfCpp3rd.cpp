@@ -76,20 +76,22 @@ int main(int argc, char* argv[])
   //chap23TestLogger();
 
   // modern cpp demo functions
-  ModernCppDemoAuto();
-  ModernCppDemoAlias();
-  ModernCppDemoInitializerList();
-  ModernCppDemoNonStaticMemberInitialization();
-  ModernCppDemoAlignment();
-  ModernCppDemoScopedEnumerations();
-  ModernCppDemoOverride_Final_For_Virtual_Methods();
-  ModernCppDemoRangeBasedForLoop();
-  ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
-  ModernCppDemoCheckModules();
-  ModernCppDemoExplicitConstructorAndConversionOperator();
-  ModernCppDemoNamespace();
-  ModernCppDemoNamespacesForSymbolVersioning();
-  ModernCppDemoStructuredBindings();
+  Ch01_DemoAuto();
+  Ch01_DemoAlias();
+  Ch01_DemoInitializerList();
+  Ch01_DemoNonStaticMemberInitialization();
+  Ch01_DemoAlignment();
+  Ch01_DemoScopedEnumerations();
+  Ch01_DemoOverride_Final_For_Virtual_Methods();
+  Ch01_DemoRangeBasedForLoop();
+  Ch01_DemoEnableRangeBasedForLoop4CustomTypes();
+  Ch01_DemoCheckModules();
+  Ch01_DemoExplicitConstructorAndConversionOperator();
+  Ch01_DemoNamespace();
+  Ch01_DemoNamespacesForSymbolVersioning();
+  Ch01_DemoStructuredBindings();
+
+  Ch02_DemoConvertingNumericStringTypes();
 
   return EXIT_SUCCESS;
 }

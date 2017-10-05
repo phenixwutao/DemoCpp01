@@ -6,20 +6,21 @@
 #define FUNC_INFO (printf("-------------------- Function %s --------------------\n", __func__));
 #define PASS_INFO(k) (printf("---------- Pass %u ----------\n", k));
 
-void ModernCppDemoAuto();
-void ModernCppDemoAlias();
-void ModernCppDemoInitializerList();
-void ModernCppDemoNonStaticMemberInitialization();
-void ModernCppDemoAlignment();
-void ModernCppDemoScopedEnumerations();
-void ModernCppDemoOverride_Final_For_Virtual_Methods();
-void ModernCppDemoRangeBasedForLoop();
-void ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
-void ModernCppDemoCheckModules();
-void ModernCppDemoExplicitConstructorAndConversionOperator();
-void ModernCppDemoNamespace();
-void ModernCppDemoNamespacesForSymbolVersioning();
-void ModernCppDemoStructuredBindings();
+void Ch01_DemoAuto();
+void Ch01_DemoAlias();
+void Ch01_DemoInitializerList();
+void Ch01_DemoNonStaticMemberInitialization();
+void Ch01_DemoAlignment();
+void Ch01_DemoScopedEnumerations();
+void Ch01_DemoOverride_Final_For_Virtual_Methods();
+void Ch01_DemoRangeBasedForLoop();
+void Ch01_DemoEnableRangeBasedForLoop4CustomTypes();
+void Ch01_DemoCheckModules();
+void Ch01_DemoExplicitConstructorAndConversionOperator();
+void Ch01_DemoNamespace();
+void Ch01_DemoNamespacesForSymbolVersioning();
+void Ch01_DemoStructuredBindings();
 
+void Ch02_DemoConvertingNumericStringTypes();
 
 #endif

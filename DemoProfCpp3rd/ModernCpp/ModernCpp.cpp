@@ -7,6 +7,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
+#include <sstream>
 
 #include "ModernCpp.h"
 
@@ -32,7 +33,7 @@ struct
 } L;
 
 
-void ModernCppDemoAuto()
+void Ch01_DemoAuto()
 {
   FUNC_INFO;
   {
@@ -156,7 +157,7 @@ using vec_t_ca = std::vector<T, custom_allocator<T>>;
 void func(byte b, double d) {}
 
 // demo new style alias
-void ModernCppDemoAlias()
+void Ch01_DemoAlias()
 {
   FUNC_INFO;
   {
@@ -197,7 +198,7 @@ void func(std::initializer_list<int> const l)
     std::cout << e << std::endl;
 }
 
-void ModernCppDemoInitializerList()
+void Ch01_DemoInitializerList()
 {
   FUNC_INFO;
   {
@@ -323,7 +324,7 @@ void ModernCppDemoInitializerList()
 }
 
 // Demo Non Static Member Initialization
-void ModernCppDemoNonStaticMemberInitialization()
+void Ch01_DemoNonStaticMemberInitialization()
 {
   FUNC_INFO;
   struct Point
@@ -431,7 +432,7 @@ void ModernCppDemoNonStaticMemberInitialization()
 }
 
 // demo alignment
-void ModernCppDemoAlignment()
+void Ch01_DemoAlignment()
 {
   FUNC_INFO;
   unsigned int kPass = 0;
@@ -542,7 +543,7 @@ void ModernCppDemoAlignment()
 }
 
 
-void ModernCppDemoScopedEnumerations()
+void Ch01_DemoScopedEnumerations()
 {
   FUNC_INFO;
   enum class Status { Unknown, Created, Connected };
@@ -569,7 +570,7 @@ void ModernCppDemoScopedEnumerations()
   }
 }
 
-void ModernCppDemoOverride_Final_For_Virtual_Methods()
+void Ch01_DemoOverride_Final_For_Virtual_Methods()
 {
   FUNC_INFO;
   {
@@ -685,7 +686,7 @@ std::multimap<int, bool> getRates2()
   };
 }
 
-void ModernCppDemoRangeBasedForLoop()
+void Ch01_DemoRangeBasedForLoop()
 {
   FUNC_INFO;
   {
@@ -873,7 +874,7 @@ namespace
 }
 
 // demo Enabling Range-Based For Loop for Custom Types
-void ModernCppDemoEnableRangeBasedForLoop4CustomTypes()
+void Ch01_DemoEnableRangeBasedForLoop4CustomTypes()
 {
   FUNC_INFO;
   dummy_array<int, 3> arr;
@@ -890,7 +891,7 @@ void ModernCppDemoEnableRangeBasedForLoop4CustomTypes()
 }
 
 
-void ModernCppDemoCheckModules()
+void Ch01_DemoCheckModules()
 {
   FUNC_INFO;
 #define MODULE_ID_DEAL    1
@@ -942,7 +943,7 @@ void ModernCppDemoCheckModules()
   }
 }
 
-void ModernCppDemoExplicitConstructorAndConversionOperator()
+void Ch01_DemoExplicitConstructorAndConversionOperator()
 {
   FUNC_INFO;
 
@@ -1063,7 +1064,7 @@ namespace
   int Size2 = 10;
 }
 
-void ModernCppDemoNamespace()
+void Ch01_DemoNamespace()
 {
   using namespace std::string_literals;
   FUNC_INFO;
@@ -1119,7 +1120,7 @@ namespace client
   }
 }
 
-void ModernCppDemoNamespacesForSymbolVersioning()
+void Ch01_DemoNamespacesForSymbolVersioning()
 {
   FUNC_INFO;
   client::execute();
@@ -1130,7 +1131,7 @@ std::tuple<int, std::string, double> find()
   return std::make_tuple(1, "marius", 1234.5);
 }
 
-void ModernCppDemoStructuredBindings()
+void Ch01_DemoStructuredBindings()
 {
   FUNC_INFO;
   {
@@ -1197,5 +1198,69 @@ void ModernCppDemoStructuredBindings()
     }
   }
 #endif
+
+}
+
+void Ch02_DemoConvertingNumericStringTypes()
+{
+  FUNC_INFO;
+  auto si = std::to_string(42);       // si="42"
+  auto sl = std::to_string(42l);      // sl="42"
+  auto su = std::to_string(42u);      // su="42"
+  auto sd = std::to_string(42.0);     // sd="42.000000"
+  auto sld = std::to_string(42.0l);   // sld="42.000000"
+
+  auto i1 = std::stoi("42");
+  auto i2 = std::stoi("   42");
+  auto i3 = std::stoi("   42fortytwo");
+  auto i4 = std::stoi("+42");
+  auto i5 = std::stoi("-42");
+
+  auto i6 = std::stoi("052", nullptr, 8);
+  auto i7 = std::stoi("052", nullptr, 0);
+  auto i8 = std::stoi("0x2A", nullptr, 16);
+  auto i9 = std::stoi("0x2A", nullptr, 0);
+  auto i10 = std::stoi("101010", nullptr, 2);
+  auto i11 = std::stoi("22", nullptr, 20);
+  auto i12 = std::stoi("-22", nullptr, 20);
+
+  auto pos = size_t{ 0 };
+  auto i13 = std::stoi("42", &pos);      // pos = 2
+  auto i14 = std::stoi("-42", &pos);     // pos = 3
+  auto i15 = std::stoi("  +42dec", &pos);// pos = 5
+
+  try
+  {
+    auto i16 = std::stoi("");
+  }
+  catch (std::exception const & e)
+  {
+    // prints "invalid stoi argument"
+    std::cout << e.what() << std::endl;
+  }
+
+  try
+  {
+    auto i17 = std::stoll("12345678901234");  // OK
+    auto i18 = std::stoi("12345678901234");   // throws std::out_of_range
+  }
+  catch (std::exception const & e)
+  {
+    // prints stoi argument out of range
+    std::cout << e.what() << std::endl;
+  }
+
+  auto d1 = std::stod("123.45");         // d1 =  123.45000000000000
+  auto d2 = std::stod("+123.45");        // d2 =  123.45000000000000
+  auto d3 = std::stod("-123.45");        // d3 = -123.45000000000000
+  auto d4 = std::stod("  123.45");       // d4 =  123.45000000000000
+  auto d5 = std::stod("  -123.45abc");   // d5 = -123.45000000000000
+  auto d6 = std::stod("1.2345e+2");      // d6 =  123.45000000000000
+  auto d7 = std::stod("0xF.6E6666p3");   // d7 =  123.44999980926514
+
+  auto d8 = std::stod("INF");            // d8 = inf
+  auto d9 = std::stod("-infinity");      // d9 = -inf
+  auto d10 = std::stod("NAN");           // d10 = nan
+  auto d11 = std::stod("-nanabc");       // d11 = -nan
 
 }
