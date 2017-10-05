@@ -1048,3 +1048,33 @@ void ModernCppDemoExplicitConstructorAndConversionOperator()
   }
 }
 
+namespace
+{
+  void print(std::string message)
+  {
+    std::cout << "[file1] " << message << std::endl;
+  }
+}
+
+namespace
+{
+  template <int const& Size>
+  class test { };
+  int Size2 = 10;
+}
+
+void ModernCppDemoNamespace()
+{
+  using namespace std::string_literals;
+  FUNC_INFO;
+  print("run"s); // using string ""s operator
+
+
+  static int Size1 = 10;
+
+
+  //test<Size1> t1; // error, Size1 has internal linkage
+  test<Size2> t2;
+
+}
+

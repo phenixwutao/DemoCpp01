@@ -87,6 +87,7 @@ int main(int argc, char* argv[])
   ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
   ModernCppDemoCheckModules();
   ModernCppDemoExplicitConstructorAndConversionOperator();
+  ModernCppDemoNamespace();
 
   return EXIT_SUCCESS;
 }

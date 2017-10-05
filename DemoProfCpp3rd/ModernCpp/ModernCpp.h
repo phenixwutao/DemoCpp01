@@ -17,6 +17,7 @@ void ModernCppDemoRangeBasedForLoop();
 void ModernCppDemoEnableRangeBasedForLoop4CustomTypes();
 void ModernCppDemoCheckModules();
 void ModernCppDemoExplicitConstructorAndConversionOperator();
+void ModernCppDemoNamespace();
 
 
 #endif
