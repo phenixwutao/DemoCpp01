@@ -92,6 +92,7 @@ int main(int argc, char* argv[])
   Ch01_DemoStructuredBindings();
 
   Ch02_DemoConvertingNumericStringTypes();
+  Ch02_DemoNumberLimitsOtherProperties();
 
   return EXIT_SUCCESS;
 }

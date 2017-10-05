@@ -22,5 +22,6 @@ void Ch01_DemoNamespacesForSymbolVersioning();
 void Ch01_DemoStructuredBindings();
 
 void Ch02_DemoConvertingNumericStringTypes();
+void Ch02_DemoNumberLimitsOtherProperties();
 
 #endif
