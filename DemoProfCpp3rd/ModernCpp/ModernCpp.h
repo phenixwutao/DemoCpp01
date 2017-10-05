@@ -19,5 +19,7 @@ void ModernCppDemoCheckModules();
 void ModernCppDemoExplicitConstructorAndConversionOperator();
 void ModernCppDemoNamespace();
 void ModernCppDemoNamespacesForSymbolVersioning();
+void ModernCppDemoStructuredBindings();
+
 
 #endif

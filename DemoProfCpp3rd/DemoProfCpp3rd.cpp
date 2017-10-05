@@ -89,6 +89,7 @@ int main(int argc, char* argv[])
   ModernCppDemoExplicitConstructorAndConversionOperator();
   ModernCppDemoNamespace();
   ModernCppDemoNamespacesForSymbolVersioning();
+  ModernCppDemoStructuredBindings();
 
   return EXIT_SUCCESS;
 }
