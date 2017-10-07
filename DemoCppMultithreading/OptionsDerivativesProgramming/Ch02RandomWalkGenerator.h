@@ -32,6 +32,7 @@ public:
     double computeRandomStep(double currentPrice);
 
 private:
+    void SetSeedForRandomGenerator();
     int m_numSteps;     // the number of steps
     double m_stepSize;  // size of each step (in percentage points)
     double m_initialPrice;     // starting price

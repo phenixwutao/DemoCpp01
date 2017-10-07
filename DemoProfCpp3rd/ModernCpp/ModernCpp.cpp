@@ -1336,3 +1336,119 @@ void Ch02_DemoNumberLimitsOtherProperties()
   auto n = 42;
   std::bitset<std::numeric_limits<decltype(n)>::digits> bits{ static_cast<unsigned long long>(n) };
 }
+
+// headers for random numbers
+#include <functional>
+#include <iomanip>
+#include <random>
+#include <chrono>
+
+void generate_and_print(std::function<int(void)> gen, int const iterations = 10000)
+{
+  // map to store the numbers and  their repetition
+  auto data = std::map<int, int>{};
+
+  // generate random numbers
+  for (auto n = 0; n < iterations; ++n)
+    ++data[gen()];
+
+  // find the element with the most repetitions
+  auto max = std::max_element(
+    std::begin(data), std::end(data),
+    [](auto kvp1, auto kvp2) {return kvp1.second < kvp2.second; });
+
+  // print the bars
+  for (auto i = max->second / 200; i > 0; --i)
+  {
+    for (auto kvp : data)
+    {
+      std::cout
+        << std::fixed << std::setprecision(1) << std::setw(3)
+        << (kvp.second / 200 >= i ? (char)219 : ' ');
+    }
+
+    std::cout << std::endl;
+  }
+
+  // print the numbers
+  for (auto kvp : data)
+  {
+    std::cout
+      << std::fixed << std::setprecision(1) << std::setw(3)
+      << kvp.first;
+  }
+
+  std::cout << std::endl;
+}
+
+void Ch02_DemoGeneratingPseudoRandomNumbers()
+{
+  FUNC_INFO;
+  {
+    PASS_INFO(1);
+    auto mtgen = std::mt19937{};
+
+    for (auto i = 0; i < 10; ++i)
+    {
+      std::cout << mtgen() << std::endl;
+    }
+  }
+
+  {
+    PASS_INFO(2);
+    auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+    auto mtgen = std::mt19937{ static_cast<unsigned int>(seed) };
+
+    for (auto i = 0; i < 10; ++i)
+    {
+      std::cout << mtgen() << std::endl;
+    }
+  }
+
+  {
+    PASS_INFO(3);
+    std::random_device rd;
+    auto mtgen = std::mt19937{ rd() };
+
+    for (auto i = 0; i < 10; ++i)
+    {
+      std::cout << mtgen() << std::endl;
+    }
+  }
+
+  {
+    PASS_INFO(4);
+    std::random_device rd{};
+    auto mtgen = std::mt19937{ rd() };
+    auto ud = std::uniform_int_distribution<>{ 1, 6 };
+
+    generate_and_print(
+      [&mtgen, &ud]() {return ud(mtgen); });
+  }
+
+  {
+    PASS_INFO(5);
+    std::random_device rd{};
+    auto mtgen = std::mt19937{ rd() };
+    auto nd = std::normal_distribution<>{ 5, 2 };
+
+    generate_and_print(
+      [&mtgen, &nd]() {return static_cast<int>(std::round(nd(mtgen))); });
+  }
+
+  // set seed for random generator
+  {
+    PASS_INFO(6);
+    time_t T;
+    auto currtime = time(&T);
+    srand(currtime);
+    for (int i = 0; i < 50; i++)
+    {
+      auto wNum = rand();
+      cout << wNum % 3 << " ";
+      if (((i+1) % 10) == 0)
+        cout << endl;
+    }
+  }
+}
+

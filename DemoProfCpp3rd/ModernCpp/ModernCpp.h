@@ -23,5 +23,7 @@ void Ch01_DemoStructuredBindings();
 
 void Ch02_DemoConvertingNumericStringTypes();
 void Ch02_DemoNumberLimitsOtherProperties();
+void Ch02_DemoGeneratingPseudoRandomNumbers();
+
 
 #endif

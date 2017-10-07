@@ -68,10 +68,25 @@ double RandomWalkGenerator::computeRandomStep(double currentPrice)
   {
     val -= (m_stepSize * val);
   }
-  //printf("random r=%d, price %12.6f\n", r, val);
+  printf("random r=%d, price %12.6f\n", r, val);
   return val;
 }
 
+void RandomWalkGenerator::SetSeedForRandomGenerator()
+{
+  // get current time
+  time_t T;
+  auto currtime = time(&T);
+
+  // Converts given time since epoch to a calendar local time and 
+  // then to a textual representation
+  char buf[64]{};
+  ctime_s(buf, 26, &currtime);
+  cout << buf << endl;
+
+  // set current time as seed to generate real random number
+  srand(static_cast<unsigned int>(currtime));
+}
 
 //
 // This is the main method. It will generate random numbers within
@@ -81,6 +96,8 @@ std::vector<double> RandomWalkGenerator::generateWalk()
 {
   vector<double> walk;
   double prev = m_initialPrice;
+  
+  SetSeedForRandomGenerator();
 
   for (int i = 0; i < m_numSteps; ++i)
   {
