@@ -99,6 +99,7 @@ int main(int argc, char* argv[])
   Ch02_DemoCreatingCookedUserDefinedLiterals();
   Ch02_DemoCreatingRawUserDefinedLiterals();
   Ch02_DemoCreatingStringLibraryHelpers();
+  Ch02_DemoStringUsingRegularExpressions();
 
   return EXIT_SUCCESS;
 }

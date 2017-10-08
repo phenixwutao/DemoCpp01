@@ -29,7 +29,7 @@ void Ch02_DemoStandardLiteralOperators();
 void Ch02_DemoCreatingCookedUserDefinedLiterals();
 void Ch02_DemoCreatingRawUserDefinedLiterals();
 void Ch02_DemoCreatingStringLibraryHelpers();
-
+void Ch02_DemoStringUsingRegularExpressions();
 
 
 #endif
