@@ -111,6 +111,7 @@ int main(int argc, char* argv[])
   //Ch08_DemoSendingNotificationsBetweenThreads();
   Ch08_DemoUsingPromisesAndFuturesFromThreads();
   Ch08_DemoExecutingFunctionsAsynchronously();
+  Ch08_DemoUsingAtomicTypes();
 
   return EXIT_SUCCESS;
 }

@@ -4,6 +4,7 @@
 #define __MODERN_CPP_H
 
 #define FUNC_INFO (printf("-------------------- Function %s --------------------\n", __func__));
+#define SUBFUNC_INFO (printf("---------- Sub-Function %s ----------\n", __func__));
 #define PASS_INFO(k) (printf("---------- Pass %u ----------\n", k));
 
 void Ch01_DemoAuto();
@@ -42,6 +43,7 @@ void Ch08_DemoAvoidingUsingRecursiveMutexes();
 void Ch08_DemoSendingNotificationsBetweenThreads();
 void Ch08_DemoUsingPromisesAndFuturesFromThreads();
 void Ch08_DemoExecutingFunctionsAsynchronously();
+void Ch08_DemoUsingAtomicTypes();
 
 
 #endif
