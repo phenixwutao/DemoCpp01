@@ -2140,3 +2140,59 @@ server = 127.0.0.1
     }
   }
 }
+
+void Ch02_DemoReplacingStringContentUsingRegularExpressions()
+{
+  FUNC_INFO;
+  {
+    PASS_INFO(1);
+    auto text{ "abc aa bca ca bbbb"s };
+    auto rx = std::regex{ R"(\b[a|b|c]{3}\b)"s };
+    auto newtext = std::regex_replace(text, rx, "---"s);
+
+    std::cout << text << std::endl;
+    std::cout << newtext << std::endl;
+  }
+
+  {
+    PASS_INFO(2);
+    auto text{ "abc aa bca ca bbbb"s };
+    auto rx = std::regex{ R"(\b[a|b|c]{3}\b)"s };
+    auto newtext = std::regex_replace(text, rx, "---"s, std::regex_constants::format_first_only);
+
+    std::cout << text << std::endl;
+    std::cout << newtext << std::endl;
+  }
+
+  {
+    PASS_INFO(3);
+    auto text{ "bancila, marius"s };
+    auto rx = std::regex{ R"((\w+),\s*(\w+))"s };
+    auto newtext = std::regex_replace(text, rx, "$2 $1"s);
+
+    std::cout << text << std::endl;
+    std::cout << newtext << std::endl;
+  }
+
+  {
+    PASS_INFO(4);
+    auto text{ "this is a example with a error"s };
+    auto rx = std::regex{ R"(\ba ((a|e|i|u|o)\w+))"s };
+    auto newtext = std::regex_replace(text, rx, "an $1");
+
+    std::cout << text << std::endl;
+    std::cout << newtext << std::endl;
+  }
+
+  {
+    PASS_INFO(5);
+    auto text{ "today is 1.06.2016!!"s };
+    auto rx = std::regex{ R"((\d{1,2})(\.|-|/)(\d{1,2})(\.|-|/)(\d{4}))"s };
+    auto newtext1 = std::regex_replace(text, rx, R"($5$4$3$2$1)");
+    auto newtext2 = std::regex_replace(text, rx, R"([$`][$&][$'])");
+
+    std::cout << text << std::endl;
+    std::cout << newtext1 << std::endl;
+    std::cout << newtext2 << std::endl;
+  }
+}
