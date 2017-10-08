@@ -108,6 +108,7 @@ int main(int argc, char* argv[])
   Ch08_DemoHandlingExceptionsFromThreadFunctions();
   Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
   Ch08_DemoAvoidingUsingRecursiveMutexes();
+  Ch08_DemoSendingNotificationsBetweenThreads();
 
   return EXIT_SUCCESS;
 }
