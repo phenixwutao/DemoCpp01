@@ -24,6 +24,8 @@ void Ch01_DemoStructuredBindings();
 void Ch02_DemoConvertingNumericStringTypes();
 void Ch02_DemoNumberLimitsOtherProperties();
 void Ch02_DemoGeneratingPseudoRandomNumbers();
+void Ch02_DemoMonteCarloSimulation();
+
 
 
 #endif
