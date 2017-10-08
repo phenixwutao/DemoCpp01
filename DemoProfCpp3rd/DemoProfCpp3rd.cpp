@@ -105,6 +105,7 @@ int main(int argc, char* argv[])
   Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
   Ch08_DemoWorkingWithThreads();
+  Ch08_DemoHandlingExceptionsFromThreadFunctions();
 
   return EXIT_SUCCESS;
 }

@@ -5,6 +5,10 @@
 #include <string>
 #include <chrono>
 #include <iomanip>
+#include <vector>
+
+#include <thread>
+#include <mutex>
 
 #include "ModernCpp.h"
 
@@ -152,5 +156,69 @@ void Ch08_DemoWorkingWithThreads()
     t.join();
 
     print_time();
+  }
+}
+
+/*------------------ demo exception handling in thread ----------------------*/
+std::mutex                       g_mutex;
+std::vector<std::exception_ptr>  g_exceptions;
+
+void func1_exception()
+{
+  throw std::exception("exception 1");
+}
+
+void func2_exception()
+{
+  throw std::exception("exception 2");
+}
+
+void thread_func1_handle_exception()
+{
+  try
+  {
+    func1_exception();
+  }
+  catch (...)
+  {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    g_exceptions.push_back(std::current_exception());
+  }
+}
+
+void thread_func2_handle_exception()
+{
+  try
+  {
+    func2_exception();
+  }
+  catch (...)
+  {
+    std::lock_guard<std::mutex> lock(g_mutex);
+    g_exceptions.push_back(std::current_exception());
+  }
+}
+
+void Ch08_DemoHandlingExceptionsFromThreadFunctions()
+{
+  FUNC_INFO;
+  g_exceptions.clear();
+
+  std::thread t1(thread_func1_handle_exception);
+  std::thread t2(thread_func2_handle_exception);
+  t1.join();
+  t2.join();
+
+  for (auto const & e : g_exceptions)
+  {
+    try
+    {
+      if (e != nullptr)
+        std::rethrow_exception(e);
+    }
+    catch (std::exception const & ex)
+    {
+      std::cout << "Catch: " << ex.what() << std::endl;
+    }
   }
 }
