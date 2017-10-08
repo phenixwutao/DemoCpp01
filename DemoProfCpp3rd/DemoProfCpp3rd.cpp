@@ -104,11 +104,12 @@ int main(int argc, char* argv[])
   Ch02_DemoReplacingStringContentUsingRegularExpressions();
   Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
-  Ch08_DemoWorkingWithThreads();
-  Ch08_DemoHandlingExceptionsFromThreadFunctions();
-  Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
-  Ch08_DemoAvoidingUsingRecursiveMutexes();
-  Ch08_DemoSendingNotificationsBetweenThreads();
+  //Ch08_DemoWorkingWithThreads();
+  //Ch08_DemoHandlingExceptionsFromThreadFunctions();
+  //Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
+  //Ch08_DemoAvoidingUsingRecursiveMutexes();
+  //Ch08_DemoSendingNotificationsBetweenThreads();
+  Ch08_DemoUsingPromisesAndFuturesFromThreads();
 
   return EXIT_SUCCESS;
 }

@@ -40,6 +40,7 @@ void Ch08_DemoHandlingExceptionsFromThreadFunctions();
 void Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
 void Ch08_DemoAvoidingUsingRecursiveMutexes();
 void Ch08_DemoSendingNotificationsBetweenThreads();
+void Ch08_DemoUsingPromisesAndFuturesFromThreads();
 
 
 #endif

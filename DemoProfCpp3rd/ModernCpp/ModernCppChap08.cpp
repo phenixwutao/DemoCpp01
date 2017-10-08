@@ -15,6 +15,7 @@
 #include <mutex>
 #include <chrono>
 #include <condition_variable>
+#include <future>
 
 #include "ModernCpp.h"
 
@@ -539,3 +540,40 @@ void Ch08_DemoSendingNotificationsBetweenThreads()
 
   std::cout << "done producing and consuming" << std::endl;
 }
+
+/*------------------------ demo promise and future ------------------------*/
+std::mutex g2_mutex;
+
+void produce_value(std::promise<int>& p)
+{
+  // simulate long running operation
+  {
+    using namespace std::chrono_literals;
+    printf("sleep_for(2000ms)\n");
+    std::this_thread::sleep_for(2000ms);
+  }
+
+  p.set_value(42);
+}
+
+void consume_value(std::future<int>& f)
+{
+  auto value = f.get();
+
+  std::lock_guard<std::mutex> lock(g2_mutex);
+  std::cout << "future get value "<< value << std::endl;
+}
+
+void Ch08_DemoUsingPromisesAndFuturesFromThreads()
+{
+  FUNC_INFO;
+  std::promise<int> p;
+  std::thread t1(produce_value, std::ref(p));
+
+  std::future<int> f = p.get_future();
+  std::thread t2(consume_value, std::ref(f));
+
+  t1.join();
+  t2.join();
+}
+
