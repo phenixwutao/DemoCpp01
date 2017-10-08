@@ -26,6 +26,7 @@ void Ch02_DemoNumberLimitsOtherProperties();
 void Ch02_DemoGeneratingPseudoRandomNumbers();
 void Ch02_DemoMonteCarloSimulation();
 void Ch02_DemoStandardLiteralOperators();
+void Ch02_DemoCreatingCookedUserDefinedLiterals();
 
 
 
