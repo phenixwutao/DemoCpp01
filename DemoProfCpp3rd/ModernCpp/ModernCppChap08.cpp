@@ -577,3 +577,79 @@ void Ch08_DemoUsingPromisesAndFuturesFromThreads()
   t2.join();
 }
 
+
+std::mutex g3_mutex;
+
+void do_something()
+{
+  // simulate long running operation
+  {
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(2s);
+  }
+
+  std::lock_guard<std::mutex> lock(g3_mutex);
+  std::cout << "operation 1 done" << std::endl;
+}
+
+void do_something_else()
+{
+  // simulate long running operation
+  {
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(1s);
+  }
+
+  std::lock_guard<std::mutex> lock(g3_mutex);
+  std::cout << "operation 2 done" << std::endl;
+}
+
+int compute_something()
+{
+  // simulate long running operation
+  {
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(2s);
+  }
+
+  return 42;
+}
+
+int compute_something_else()
+{
+  // simulate long running operation
+  {
+    using namespace std::chrono_literals;
+    std::this_thread::sleep_for(1s);
+  }
+
+  return 24;
+}
+
+void Ch08_DemoExecutingFunctionsAsynchronously()
+{
+  FUNC_INFO;
+  {
+    PASS_INFO(1);
+    // Use the std::launch::async policy of the first argument to the function to
+    // make sure the function does run asynchronously
+    auto f = std::async(std::launch::async, do_something);
+
+    do_something_else();
+
+    f.wait(); // Make sure the asynchronous operation is completed
+
+    std::cout << "all done!" << std::endl;
+  }
+
+  {
+    PASS_INFO(2);
+    auto f = std::async(std::launch::async, compute_something);
+
+    auto value = compute_something_else();
+
+    value += f.get();
+
+    std::cout << value << std::endl;
+  }
+}

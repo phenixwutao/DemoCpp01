@@ -41,6 +41,7 @@ void Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
 void Ch08_DemoAvoidingUsingRecursiveMutexes();
 void Ch08_DemoSendingNotificationsBetweenThreads();
 void Ch08_DemoUsingPromisesAndFuturesFromThreads();
+void Ch08_DemoExecutingFunctionsAsynchronously();
 
 
 #endif

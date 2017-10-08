@@ -110,6 +110,7 @@ int main(int argc, char* argv[])
   //Ch08_DemoAvoidingUsingRecursiveMutexes();
   //Ch08_DemoSendingNotificationsBetweenThreads();
   Ch08_DemoUsingPromisesAndFuturesFromThreads();
+  Ch08_DemoExecutingFunctionsAsynchronously();
 
   return EXIT_SUCCESS;
 }
