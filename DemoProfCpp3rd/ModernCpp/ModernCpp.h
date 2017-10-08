@@ -37,6 +37,7 @@ void Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
 void Ch08_DemoWorkingWithThreads();
 void Ch08_DemoHandlingExceptionsFromThreadFunctions();
+void Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
 
 
 

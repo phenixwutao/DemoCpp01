@@ -152,7 +152,7 @@
     <ClCompile Include="chap23\Logger.cpp">
       <Filter>chap23</Filter>
     </ClCompile>
-    <ClCompile Include="ModernCpp\ModernCpp.cpp">
+    <ClCompile Include="ModernCpp\ModernCppChap08.cpp">
       <Filter>ModernCpp</Filter>
     </ClCompile>
     <ClCompile Include="ModernCpp\ModernCppChap02.cpp">

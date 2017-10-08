@@ -183,8 +183,8 @@
     <ClCompile Include="chap23\chap23MultiThreadProgramming.cpp" />
     <ClCompile Include="chap23\Logger.cpp" />
     <ClCompile Include="DemoProfCpp3rd.cpp" />
-    <ClCompile Include="ModernCpp\ModernCpp.cpp" />
     <ClCompile Include="ModernCpp\ModernCppChap02.cpp" />
+    <ClCompile Include="ModernCpp\ModernCppChap08.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
