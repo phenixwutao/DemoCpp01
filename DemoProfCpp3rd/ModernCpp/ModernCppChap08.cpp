@@ -267,31 +267,6 @@ void thread_process_func_3()
   g1_mutex.unlock();
 }
 
-template <class M>
-class lock_guard
-{
-public:
-  typedef M mutex_type;
-
-  explicit lock_guard(M& Mtx) : mtx(Mtx)
-  {
-    mtx.lock();
-  }
-
-  lock_guard(M& Mtx, std::adopt_lock_t) : mtx(Mtx)
-  {
-  }
-
-  ~lock_guard() noexcept
-  {
-    mtx.unlock();
-  }
-
-  lock_guard(const lock_guard&) = delete;
-  lock_guard& operator=(const lock_guard&) = delete;
-private:
-  M& mtx;
-};
 
 template <typename T>
 struct container
@@ -306,8 +281,24 @@ void move_between(container<T> & c1, container<T> & c2,
 {
   std::lock(c1.mutex, c2.mutex);
 
+  /*-------------------------------------------------------------------------------------------------
+  * std::defer_lock, std::try_to_lock and std::adopt_lock are instances of empty struct tag types 
+  * std::defer_lock_t, std::try_to_lock_t and std::adopt_lock_t respectively.
+  *
+  * They are used to specify locking strategies for std::lock_guard, std::unique_lock and std::shared_lock.
+
+  * --- Type ---    --- Effect(s) ---
+  * defer_lock_t	  do not acquire ownership of the mutex
+  * try_to_lock_t	  try to acquire ownership of the mutex without blocking
+  * adopt_lock_t	  assume the calling thread already has ownership of the mutex
+  *------------------------------------------------------------------------------------------------*/
   std::lock_guard<std::mutex> l1(c1.mutex, std::adopt_lock);
   std::lock_guard<std::mutex> l2(c2.mutex, std::adopt_lock);
+
+  // equivalent approach:
+  //std::unique_lock<std::mutex> lock1(c1.mutex, std::defer_lock);
+  //std::unique_lock<std::mutex> lock2(c2.mutex, std::defer_lock);
+  //std::lock(lock1, lock2);
 
   c1.data.erase(
     std::remove(c1.data.begin(), c1.data.end(), value),
@@ -371,4 +362,82 @@ void Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks()
     print_container(c2);
 
   }
+}
+
+class foo_recursive
+{
+  std::recursive_mutex m;
+  int data;
+
+public:
+  foo_recursive(int const d = 0) : data(d) {}
+
+  void update(int const d)
+  {
+    std::lock_guard<std::recursive_mutex> lock(m);
+    data = d;
+    cout << std::this_thread::get_id() << " data =" << data << endl;
+  }
+
+  int update_with_return(int const d)
+  {
+    std::lock_guard<std::recursive_mutex> lock(m);
+    auto temp = data;
+    update(d);
+    return temp;
+  }
+
+  void PrintInfo()
+  {
+    cout << std::this_thread::get_id() << " data =" << data << endl;
+  }
+};
+
+class foo_normal
+{
+  std::mutex m;
+  int data;
+
+public:
+  void internal_update(int const d) { data = d; }
+
+  foo_normal(int const d = 0) : data(d) {}
+
+  void update(int const d)
+  {
+    std::lock_guard<std::mutex> lock(m);
+    internal_update(d);
+    cout << std::this_thread::get_id() << " data =" << data << endl;
+  }
+
+  int update_with_return(int const d)
+  {
+    std::lock_guard<std::mutex> lock(m);
+    auto temp = data;
+    internal_update(d);
+    return temp;
+  }
+
+  void PrintInfo()
+  {
+    cout << std::this_thread::get_id() << " data =" << data << endl;
+  }
+};
+
+void Ch08_DemoAvoidingUsingRecursiveMutexes()
+{
+  FUNC_INFO;
+  PASS_INFO(1);
+  foo_normal foo(1);
+  foo.PrintInfo();
+  std::thread thrd(&foo_normal::update, &foo, std::move(2));
+  thrd.join();
+  foo.PrintInfo();
+
+  PASS_INFO(2);
+  foo_recursive foo_rec(3);
+  foo_rec.PrintInfo();
+  std::thread thrd_rec(&foo_recursive::update, &foo_rec, std::move(4));
+  thrd_rec.join();
+  foo_rec.PrintInfo();
 }
