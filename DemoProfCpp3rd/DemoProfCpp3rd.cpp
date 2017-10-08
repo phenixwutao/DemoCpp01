@@ -97,6 +97,7 @@ int main(int argc, char* argv[])
   //Ch02_DemoMonteCarloSimulation();
   Ch02_DemoStandardLiteralOperators();
   Ch02_DemoCreatingCookedUserDefinedLiterals();
+  Ch02_DemoCreatingRawUserDefinedLiterals();
 
   return EXIT_SUCCESS;
 }
