@@ -1485,3 +1485,78 @@ void Ch02_DemoMonteCarloSimulation()
     std::cout << "" << 4.0 * hit / Samples << std::endl;
   }
 }
+
+void Ch02_DemoStandardLiteralOperators()
+{
+  FUNC_INFO;
+  using namespace std::string_literals;
+
+  {
+    auto filename{ "C:\\Users\\Marius\\Documents\\"s };
+
+    auto pattern{ "(\\w+)=(\\d+)$"s };
+
+    auto sqlselect{
+      "SELECT *\n\
+FROM Books\n\
+WHERE Publisher=\'Paktpub\'\n\
+ORDER BY PubDate DESC"s };
+    PASS_INFO(1);
+    cout << filename << endl;
+    cout << pattern << endl;
+    cout << sqlselect << endl;
+  }
+
+  {
+    auto filename{ R"(C:\Users\Marius\Documents\)"s };
+
+    auto pattern{ R"((\w+)=(\d+)$)"s };
+
+    auto sqlselect{
+      R"(SELECT *
+FROM Books
+WHERE Publisher='Paktpub'
+ORDER BY PubDate DESC)"s };
+    PASS_INFO(2);
+    cout << filename << endl;
+    cout << pattern << endl;
+    cout << sqlselect << endl;
+  }
+
+  {
+    auto filename1{ R"(C:\Users\Marius\Documents\)"s };
+    auto filename2{ R"(C:\\Users\\Marius\\Documents\\)"s };
+
+    PASS_INFO(3);
+    // prints C:\Users\Marius\Documents\ 
+    std::cout << filename1 << std::endl;
+
+    // prints C:\\Users\\Marius\\Documents\\ 
+    std::cout << filename2 << std::endl;
+
+    auto text{ R"!!(This text contains both "( and )".)!!"s };
+    std::cout << text << std::endl;
+  }
+
+  {
+    auto t1{ LR"(text)" };	// const wchar_t*
+    auto t2{ u8R"(text)" };	// const char*
+    auto t3{ uR"(text)" };	// const char16_t*
+    auto t4{ UR"(text)" };	// const char32_t*
+
+    auto t5{ LR"(text)"s }; // wstring
+    auto t6{ u8R"(text)"s };// string
+    auto t7{ uR"(text)"s }; // u16string
+    auto t8{ UR"(text)"s }; // u32string
+    PASS_INFO(4);
+    cout << t1 << endl;
+    cout << t2 << endl;
+    cout << t3 << endl;
+    cout << t4 << endl;
+    cout << t5.c_str() << endl;
+    cout << t6 << endl;
+    cout << t7.c_str() << endl;
+    cout << t8.c_str() << endl;
+  }
+  printf("End\n");
+}

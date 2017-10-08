@@ -95,6 +95,7 @@ int main(int argc, char* argv[])
   Ch02_DemoNumberLimitsOtherProperties();
   Ch02_DemoGeneratingPseudoRandomNumbers();
   Ch02_DemoMonteCarloSimulation();
+  Ch02_DemoStandardLiteralOperators();
 
   return EXIT_SUCCESS;
 }
