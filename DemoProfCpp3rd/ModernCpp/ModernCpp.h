@@ -32,6 +32,7 @@ void Ch02_DemoCreatingStringLibraryHelpers();
 void Ch02_DemoStringUsingRegularExpressions();
 void Ch02_DemoParsingStringContentUsingRegularExpressions();
 void Ch02_DemoReplacingStringContentUsingRegularExpressions();
+void Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
 
 #endif

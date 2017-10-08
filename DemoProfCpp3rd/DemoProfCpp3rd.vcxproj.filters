@@ -105,6 +105,9 @@
     <ClInclude Include="ModernCpp\ModernCpp.h">
       <Filter>ModernCpp</Filter>
     </ClInclude>
+    <ClInclude Include="ModernCpp\string_view.h">
+      <Filter>ModernCpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
