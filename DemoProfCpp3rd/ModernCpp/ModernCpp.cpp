@@ -2076,3 +2076,67 @@ void Ch02_DemoStringUsingRegularExpressions()
   ltest3("john.doe@domain.com"s);
 }
 
+void Ch02_DemoParsingStringContentUsingRegularExpressions()
+{
+  FUNC_INFO;
+  auto text{
+    R"(
+#remove # to uncomment the following lines
+timeout=120
+server = 127.0.0.1
+
+#retrycount=3
+)"s
+  };
+
+  auto rx = std::regex{ R"(^(?!#)(\w+)\s*=\s*([\w\d]+[\w\d._,\-:]*)$)"s };
+
+  {
+    auto match = std::smatch{};
+    if (std::regex_search(text, match, rx))
+    {
+      std::cout << match[1] << '=' << match[2] << std::endl;
+    }
+  }
+
+  {
+    auto end = std::sregex_iterator{};
+    for (auto it = std::sregex_iterator{ std::begin(text), std::end(text), rx };
+      it != end;
+      ++it)
+    {
+      std::cout << '\'' << (*it)[1] << "\'=\'" << (*it)[2] << '\''
+        << std::endl;
+    }
+  }
+
+  {
+    auto end = std::sregex_token_iterator{};
+    for (auto it = std::sregex_token_iterator{ std::begin(text), std::end(text), rx };
+      it != end;
+      ++it)
+    {
+      std::cout << *it << std::endl;
+    }
+  }
+
+  {
+    auto end = std::sregex_token_iterator{};
+    for (auto it = std::sregex_token_iterator{ std::begin(text), std::end(text), rx, 1 };
+      it != end;
+      ++it)
+    {
+      std::cout << *it << std::endl;
+    }
+  }
+
+  {
+    auto end = std::sregex_token_iterator{};
+    for (auto it = std::sregex_token_iterator{ std::begin(text), std::end(text), rx, -1 };
+      it != end;
+      ++it)
+    {
+      std::cout << *it << std::endl;
+    }
+  }
+}

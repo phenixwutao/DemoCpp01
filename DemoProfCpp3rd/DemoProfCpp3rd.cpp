@@ -100,6 +100,7 @@ int main(int argc, char* argv[])
   Ch02_DemoCreatingRawUserDefinedLiterals();
   Ch02_DemoCreatingStringLibraryHelpers();
   Ch02_DemoStringUsingRegularExpressions();
+  Ch02_DemoParsingStringContentUsingRegularExpressions();
 
   return EXIT_SUCCESS;
 }
