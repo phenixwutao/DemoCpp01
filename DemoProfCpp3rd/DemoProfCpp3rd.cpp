@@ -104,6 +104,8 @@ int main(int argc, char* argv[])
   Ch02_DemoReplacingStringContentUsingRegularExpressions();
   Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
+  Ch08_DemoWorkingWithThreads();
+
   return EXIT_SUCCESS;
 }
 

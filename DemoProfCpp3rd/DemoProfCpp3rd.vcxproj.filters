@@ -155,5 +155,8 @@
     <ClCompile Include="ModernCpp\ModernCpp.cpp">
       <Filter>ModernCpp</Filter>
     </ClCompile>
+    <ClCompile Include="ModernCpp\ModernCppChap02.cpp">
+      <Filter>ModernCpp</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

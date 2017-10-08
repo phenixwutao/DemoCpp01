@@ -35,4 +35,7 @@ void Ch02_DemoReplacingStringContentUsingRegularExpressions();
 void Ch02_DemoUsingStringViewInsteadConstantStringReferences();
 
 
+void Ch08_DemoWorkingWithThreads();
+
+
 #endif
