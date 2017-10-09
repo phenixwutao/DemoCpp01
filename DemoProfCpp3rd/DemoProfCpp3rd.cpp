@@ -112,6 +112,7 @@ int main(int argc, char* argv[])
   Ch08_DemoUsingPromisesAndFuturesFromThreads();
   Ch08_DemoExecutingFunctionsAsynchronously();
   Ch08_DemoUsingAtomicTypes();
+  Ch08_DemoImplementingParallelMapWithThreads();
 
   return EXIT_SUCCESS;
 }

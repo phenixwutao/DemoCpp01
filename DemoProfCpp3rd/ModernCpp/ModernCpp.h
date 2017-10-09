@@ -44,6 +44,7 @@ void Ch08_DemoSendingNotificationsBetweenThreads();
 void Ch08_DemoUsingPromisesAndFuturesFromThreads();
 void Ch08_DemoExecutingFunctionsAsynchronously();
 void Ch08_DemoUsingAtomicTypes();
+void Ch08_DemoImplementingParallelMapWithThreads();
 
 
 #endif
