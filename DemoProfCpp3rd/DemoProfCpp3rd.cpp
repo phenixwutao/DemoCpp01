@@ -115,6 +115,8 @@ int main(int argc, char* argv[])
   Ch08_DemoImplementingParallelMapWithThreads();
   Ch08_DemoImplementingParallelMapWithTasks();
 
+  Ch03_DemoDefaultedAndDeletedFunctions();
+
   return EXIT_SUCCESS;
 }
 

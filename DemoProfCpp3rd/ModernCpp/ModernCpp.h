@@ -47,5 +47,7 @@ void Ch08_DemoUsingAtomicTypes();
 void Ch08_DemoImplementingParallelMapWithThreads();
 void Ch08_DemoImplementingParallelMapWithTasks();
 
+void Ch03_DemoDefaultedAndDeletedFunctions();
+
 
 #endif
