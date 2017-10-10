@@ -109,13 +109,14 @@ int main(int argc, char* argv[])
   //Ch08_DemoSynchronizingAccessToSharedDataWithMutexesAndLocks();
   //Ch08_DemoAvoidingUsingRecursiveMutexes();
   //Ch08_DemoSendingNotificationsBetweenThreads();
-  Ch08_DemoUsingPromisesAndFuturesFromThreads();
-  Ch08_DemoExecutingFunctionsAsynchronously();
-  Ch08_DemoUsingAtomicTypes();
-  Ch08_DemoImplementingParallelMapWithThreads();
-  Ch08_DemoImplementingParallelMapWithTasks();
+  //Ch08_DemoUsingPromisesAndFuturesFromThreads();
+  //Ch08_DemoExecutingFunctionsAsynchronously();
+  //Ch08_DemoUsingAtomicTypes();
+  //Ch08_DemoImplementingParallelMapWithThreads();
+  //Ch08_DemoImplementingParallelMapWithTasks();
 
   Ch03_DemoDefaultedAndDeletedFunctions();
+  Ch03_DemoUsingLambdasWithStandardAlgorithms();
 
   return EXIT_SUCCESS;
 }
