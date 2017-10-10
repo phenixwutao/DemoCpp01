@@ -118,6 +118,7 @@ int main(int argc, char* argv[])
   Ch03_DemoDefaultedAndDeletedFunctions();
   Ch03_DemoUsingLambdasWithStandardAlgorithms();
   Ch03_DemoUsingGenericLambdas();
+  Ch03_DemoWritingRecursiveLambda();
 
   return EXIT_SUCCESS;
 }
