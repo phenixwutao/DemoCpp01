@@ -53,6 +53,7 @@ void Ch03_DemoUsingGenericLambdas();
 void Ch03_DemoWritingRecursiveLambda();
 void Ch03_DemoWritingFunctionTemplateWithVariableNumberArguments();
 void Ch03_DemoComposingFunctionsIntoHigherOrderFunction();
+void Ch03_DemoUniformlyInvokingAnythingCallable();
 
 
 #endif

@@ -121,6 +121,7 @@ int main(int argc, char* argv[])
   Ch03_DemoWritingRecursiveLambda();
   Ch03_DemoWritingFunctionTemplateWithVariableNumberArguments();
   Ch03_DemoComposingFunctionsIntoHigherOrderFunction();
+  Ch03_DemoUniformlyInvokingAnythingCallable();
 
   return EXIT_SUCCESS;
 }
