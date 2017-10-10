@@ -164,6 +164,7 @@
     <ClInclude Include="chap19\chap19.h" />
     <ClInclude Include="chap23\chap23MultiThreadProgramming.h" />
     <ClInclude Include="chap23\Logger.h" />
+    <ClInclude Include="ModernCpp\funclib.h" />
     <ClInclude Include="ModernCpp\ModernCpp.h" />
     <ClInclude Include="ModernCpp\string_view.h" />
     <ClInclude Include="stdafx.h" />

@@ -51,6 +51,7 @@ void Ch03_DemoDefaultedAndDeletedFunctions();
 void Ch03_DemoUsingLambdasWithStandardAlgorithms();
 void Ch03_DemoUsingGenericLambdas();
 void Ch03_DemoWritingRecursiveLambda();
+void Ch03_DemoWritingFunctionTemplateWithVariableNumberArguments();
 
 
 #endif
