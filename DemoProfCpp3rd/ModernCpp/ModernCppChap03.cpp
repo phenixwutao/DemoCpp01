@@ -213,3 +213,59 @@ void Ch03_DemoUsingLambdasWithStandardAlgorithms()
   FUNC_INFO;
   DemoUsingLambdasWithStandardAlgorithms::execute();
 }
+
+namespace DemoUsingGenericLambdas
+{
+  using namespace std::string_literals;
+  using namespace std;
+
+  struct __lambda_name__
+  {
+    template<typename T1, typename T2>
+    auto operator()(T1 const s, T2 const n) const { return s + n; }
+
+    __lambda_name__(const __lambda_name__&) = default;
+    __lambda_name__(__lambda_name__&&) = default;
+    __lambda_name__& operator=(const __lambda_name__&) = delete;
+    ~__lambda_name__() = default;
+  };
+
+  void execute()
+  {
+    auto numbers = std::vector<int>{ 0, 2, -3, 5, -1, 6, 8, -4, 9 };
+    auto texts = std::vector<std::string>{ "hello"s, " "s, "world"s, "!"s };
+
+    // with non-generic lambdas
+    {
+      // begin,  end,  initial value, binary_operation
+      auto sum = std::accumulate(std::begin(numbers), std::end(numbers), 0,
+        [](int const s, int const n) {return s + n; });
+      cout << sum << endl;
+
+      auto text = std::accumulate(std::begin(texts), std::end(texts), ""s,
+        [](std::string const s, std::string const n) {return s + n; });
+      cout << text << endl;
+    }
+
+    // with generic lambdas
+    {
+      auto lsum = [](auto const s, auto const n) {return s + n; };
+
+      auto sum = std::accumulate(std::begin(numbers), std::end(numbers),
+        0, lsum);
+      cout << sum << endl;
+
+      auto text = std::accumulate(std::begin(texts), std::end(texts),
+        ""s, lsum);
+      cout << text << endl;
+    }
+  }
+
+}
+
+
+void Ch03_DemoUsingGenericLambdas()
+{
+  FUNC_INFO;
+  DemoUsingGenericLambdas::execute();
+}

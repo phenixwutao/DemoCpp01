@@ -49,6 +49,7 @@ void Ch08_DemoImplementingParallelMapWithTasks();
 
 void Ch03_DemoDefaultedAndDeletedFunctions();
 void Ch03_DemoUsingLambdasWithStandardAlgorithms();
+void Ch03_DemoUsingGenericLambdas();
 
 
 #endif
