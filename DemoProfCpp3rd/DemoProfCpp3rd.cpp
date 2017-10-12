@@ -123,6 +123,8 @@ int main(int argc, char* argv[])
   Ch03_DemoComposingFunctionsIntoHigherOrderFunction();
   Ch03_DemoUniformlyInvokingAnythingCallable();
 
+  Ch04_DemoConditionallyCompiling();
+
   return EXIT_SUCCESS;
 }
 

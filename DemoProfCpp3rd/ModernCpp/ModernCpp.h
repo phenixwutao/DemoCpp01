@@ -55,5 +55,7 @@ void Ch03_DemoWritingFunctionTemplateWithVariableNumberArguments();
 void Ch03_DemoComposingFunctionsIntoHigherOrderFunction();
 void Ch03_DemoUniformlyInvokingAnythingCallable();
 
+void Ch04_DemoConditionallyCompiling();
+
 
 #endif
