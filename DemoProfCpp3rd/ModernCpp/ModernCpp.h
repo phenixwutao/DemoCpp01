@@ -56,6 +56,7 @@ void Ch03_DemoComposingFunctionsIntoHigherOrderFunction();
 void Ch03_DemoUniformlyInvokingAnythingCallable();
 
 void Ch04_DemoConditionallyCompiling();
+void Ch04_DemoPreprocessStringificationAndConcatenation();
 
 
 #endif

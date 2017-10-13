@@ -1,9 +1,11 @@
 #include "StdAfx.h"
 
-
+#include <string>
 #include <iostream>
 
 #include "ModernCpp.h"
+using std::cout;
+using std::endl;
 
 namespace DemoConditionallyCompiling
   {
@@ -130,3 +132,53 @@ void Ch04_DemoConditionallyCompiling()
   FUNC_INFO;
   DemoConditionallyCompiling::execute();
   }
+
+namespace DemoPreprocessStringificationAndConcatenation
+{
+#define MAKE_STR2(x)    #x
+#define MAKE_STR(x)     MAKE_STR2(x)
+
+#define MERGE2(x, y)    x##y
+#define MERGE(x, y)     MERGE2(x, y)
+
+#define DECL_MAKE(x)    DECL_MAKE2(x)
+#define DECL_MAKE2(x)   x* make##_##x() { return new x(); }
+
+#define NUMBER 42
+
+  struct bar {};
+  struct foo {};
+
+  DECL_MAKE(foo);
+  DECL_MAKE(bar);
+
+  void execute()
+  {
+    std::string s1{ MAKE_STR(sample) };  // s1 = "sample"
+    std::string s2{ MAKE_STR2(sample) }; // s2 = "sample"
+
+    std::string s3{ MAKE_STR(NUMBER) };    // s3 = "42"
+    std::string s4{ MAKE_STR2(NUMBER) };   // s4 = "NUMBER"
+
+    auto f = make_foo(); // f is a foo*
+    auto b = make_bar(); // b is a bar*
+    cout << "s1 " << s1 << endl;
+    cout << "s2 " << s1 << endl;
+    cout << "s3 " << s1 << endl;
+    cout << "s4 " << s1 << endl;
+    cout << "MERGE(1, 2) "<< MERGE(1, 2) << endl;
+    cout << "f " << f << endl;
+    cout << "b " << b << endl;
+    if (f != nullptr)
+      delete f;
+    if (b != nullptr)
+      delete b;
+  }
+}
+
+void Ch04_DemoPreprocessStringificationAndConcatenation()
+{
+  FUNC_INFO;
+  DemoPreprocessStringificationAndConcatenation::execute();
+}
+

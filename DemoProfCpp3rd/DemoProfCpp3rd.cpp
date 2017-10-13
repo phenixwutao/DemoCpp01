@@ -124,6 +124,7 @@ int main(int argc, char* argv[])
   Ch03_DemoUniformlyInvokingAnythingCallable();
 
   Ch04_DemoConditionallyCompiling();
+  Ch04_DemoPreprocessStringificationAndConcatenation();
 
   return EXIT_SUCCESS;
 }
