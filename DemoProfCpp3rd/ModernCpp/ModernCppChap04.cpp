@@ -2,6 +2,7 @@
 
 #include <string>
 #include <iostream>
+#include <type_traits>
 
 #include "ModernCpp.h"
 using std::cout;
@@ -180,5 +181,71 @@ void Ch04_DemoPreprocessStringificationAndConcatenation()
 {
   FUNC_INFO;
   DemoPreprocessStringificationAndConcatenation::execute();
+}
+
+
+namespace DemoPerformingCompileTimeAssertionChecks
+{
+  struct alignas(8) item
+  {
+    int      id;
+    bool     active;
+    double   value;
+  };
+
+  template <typename T>
+  class pod_wrapper
+  {
+    static_assert(std::is_pod<T>::value, "Error: POD type expected!");
+
+    T value;
+  };
+
+  struct point
+  {
+    int x;
+    int y;
+  };
+
+  template<typename T>
+  auto mul(T const a, T const b)
+  {
+    static_assert(std::is_integral<T>::value, "Error: Integral type expected");
+
+    return a * b;
+  }
+
+  class Info
+  {
+  public:
+    Info() = default;
+    Info(const Info&) = delete;
+    Info(Info&&) = default;
+
+    Info& operator=(const Info&) = default;
+    Info& operator=(Info&&) = delete;
+  };
+
+  void execute()
+  {
+    pod_wrapper<int>         w1; // OK
+    pod_wrapper<point>       w2; // OK
+    //pod_wrapper<std::string> w3; // error: POD type expected
+
+    auto v1 = mul(1, 2);       // OK
+    //auto v2 = mul(12.0, 42.5); // error: Integral type expected
+
+    //static_assert(std::is_copy_constructible<Info>::value, "Error: Info requires copying");
+    static_assert(std::is_default_constructible<Info>::value, "Error: Info requires default-constructor");
+    static_assert(std::is_move_constructible<Info>::value, "Error: Info requires default-constructor");
+  }
+}
+
+#include <type_traits>
+
+void Ch04_DemoPerformingCompileTimeAssertionChecks()
+{
+  FUNC_INFO;
+  DemoPerformingCompileTimeAssertionChecks::execute();
 }
 

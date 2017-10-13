@@ -57,6 +57,7 @@ void Ch03_DemoUniformlyInvokingAnythingCallable();
 
 void Ch04_DemoConditionallyCompiling();
 void Ch04_DemoPreprocessStringificationAndConcatenation();
+void Ch04_DemoPerformingCompileTimeAssertionChecks();
 
 
 #endif

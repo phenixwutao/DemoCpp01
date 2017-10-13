@@ -125,6 +125,7 @@ int main(int argc, char* argv[])
 
   Ch04_DemoConditionallyCompiling();
   Ch04_DemoPreprocessStringificationAndConcatenation();
+  Ch04_DemoPerformingCompileTimeAssertionChecks();
 
   return EXIT_SUCCESS;
 }
