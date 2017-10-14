@@ -59,6 +59,7 @@ void Ch04_DemoConditionallyCompiling();
 void Ch04_DemoPreprocessStringificationAndConcatenation();
 void Ch04_DemoPerformingCompileTimeAssertionChecks();
 void Ch04_DemoConditionallyCompilingClassFunctionsWithEnable_if();
+void Ch04_DemoSelectingBranchesWithConstexpr_if();
 
 
 #endif
