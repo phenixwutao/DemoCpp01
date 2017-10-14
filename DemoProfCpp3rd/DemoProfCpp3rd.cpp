@@ -128,6 +128,7 @@ int main(int argc, char* argv[])
   Ch04_DemoPerformingCompileTimeAssertionChecks();
   Ch04_DemoConditionallyCompilingClassFunctionsWithEnable_if();
   Ch04_DemoSelectingBranchesWithConstexpr_if();
+  Ch04_DemoProvidingMetadataToCompilerWithAttributes();
 
   return EXIT_SUCCESS;
 }
