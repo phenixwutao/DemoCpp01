@@ -131,6 +131,7 @@ int main(int argc, char* argv[])
   Ch04_DemoProvidingMetadataToCompilerWithAttributes();
 
   Ch05_DemoUsingVectorAsDefaultContainer();
+  Ch05_DemoUsingBitsetForFixedSizeSequences();
 
   return EXIT_SUCCESS;
 }

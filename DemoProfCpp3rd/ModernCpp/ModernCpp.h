@@ -64,6 +64,7 @@ void Ch04_DemoProvidingMetadataToCompilerWithAttributes();
 
 
 void Ch05_DemoUsingVectorAsDefaultContainer();
+void Ch05_DemoUsingBitsetForFixedSizeSequences();
 
 
 #endif
