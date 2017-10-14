@@ -130,6 +130,8 @@ int main(int argc, char* argv[])
   Ch04_DemoSelectingBranchesWithConstexpr_if();
   Ch04_DemoProvidingMetadataToCompilerWithAttributes();
 
+  Ch05_DemoUsingVectorAsDefaultContainer();
+
   return EXIT_SUCCESS;
 }
 

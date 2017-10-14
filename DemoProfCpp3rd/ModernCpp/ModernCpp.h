@@ -63,5 +63,7 @@ void Ch04_DemoSelectingBranchesWithConstexpr_if();
 void Ch04_DemoProvidingMetadataToCompilerWithAttributes();
 
 
+void Ch05_DemoUsingVectorAsDefaultContainer();
+
 
 #endif
