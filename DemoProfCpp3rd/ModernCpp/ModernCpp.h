@@ -77,6 +77,7 @@ void Ch05_DemoContainerAccessWithNonMemberFunctions();
 void Ch06_DemoExpressingTimeIntervalsWithChrono();
 void Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock();
 void Ch06_DemoGeneratingHashValues();
+void Ch06_DemoRegisteringFunctionCalledWhenProgramExitsNormally();
 
 
 #endif
