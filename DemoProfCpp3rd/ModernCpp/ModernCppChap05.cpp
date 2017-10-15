@@ -1534,6 +1534,65 @@ namespace DemoWritingYourOwnRandomAccessIterator
 
 void Ch05_DemoWritingYourOwnRandomAccessIterator()
 {
+  FUNC_INFO;
   DemoWritingYourOwnRandomAccessIterator::execute();
 }
 
+namespace DemoContainerAccessWithNonMemberFunctions
+{
+  using namespace std::string_literals;
+
+  template <typename F, typename C>
+  void process(F&& f, C const & c)
+  {
+    std::for_each(std::begin(c), std::end(c), std::forward<F>(f));
+    cout << endl;
+  }
+
+  void execute()
+  {
+    std::vector<int> v1{ 1, 2, 3, 4, 5 };
+    for (auto i = std::begin(v1); i != std::end(v1); ++i)
+      std::cout << *i << " "; 
+    std::cout << std::endl;
+
+    std::vector<int> v2;
+    std::copy(std::cbegin(v1), std::cend(v1), std::back_inserter(v2));
+
+    int a[5] = { 1, 2, 3, 4, 5 };
+    auto pos = std::find_if(std::crbegin(a), std::crend(a),
+      [](int const n) {return n % 2 == 0; });
+
+    vector<std::string> sa; sa.resize(5);
+    vector<int> sb; sb.resize(5);
+    sa[0] = "1"s;
+    sa[1] = "2"s;
+    sa[2] = "3"s;
+    sa[3] = "4"s;
+    sa[4] = "5"s;
+
+    std::transform(
+      std::begin(sa), std::end(sa),
+      std::begin(sb),
+      [](std::string const & s) {return std::stoi(s); });
+
+    auto l = [](auto const e) 
+    {
+      std::cout << e << " "; 
+    };
+    PASS_INFO(1);
+    process(l, v1);
+
+    PASS_INFO(2);
+    process(l, a);
+
+    PASS_INFO(3);
+    process(l, sa);
+  }
+}
+
+void Ch05_DemoContainerAccessWithNonMemberFunctions()
+{
+  FUNC_INFO;
+  DemoContainerAccessWithNonMemberFunctions::execute();
+}
