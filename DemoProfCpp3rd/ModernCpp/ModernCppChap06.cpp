@@ -165,3 +165,95 @@ void Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock()
   DemoMeasuringFunctionExecutionTimeWithStandardClock::execute();
 }
 
+
+#include <set>
+#include <unordered_set>
+
+namespace DemoGeneratingHashValues // recipe_6_03
+{
+  using namespace std::string_literals;
+
+  struct Item
+  {
+    int         id;
+    std::string name;
+    double      value;
+
+    Item(int const id, std::string const & name, double const value)
+      : id(id), name(name), value(value)
+    {
+    }
+
+    bool operator==(Item const & other) const
+    {
+      return (id == other.id &&
+              name == other.name &&
+              value == other.value);
+    }
+
+    bool operator!=(Item const & other) const
+    {
+      return !(*this == other);
+    }
+
+    bool operator<(Item const & other) const
+    {
+      return (id < other.id &&
+              name < other.name &&
+              value < other.value);
+    }
+  };
+}
+
+namespace std
+{
+  // generate hash values for user-defined class type
+  template<>
+  struct hash<DemoGeneratingHashValues::Item>
+  {
+    //typedef DemoGeneratingHashValues::Item  argument_type;
+    //typedef size_t             result_type;
+    using argument_type = DemoGeneratingHashValues::Item;
+    using result_type = size_t;
+
+    result_type operator()(argument_type const & item) const
+    {
+      result_type hashValue = 17;
+      hashValue = 31 * hashValue + std::hash<int>{}(item.id);
+      hashValue = 31 * hashValue + std::hash<std::string>{}(item.name);
+      hashValue = 31 * hashValue + std::hash<double>{}(item.value);
+
+      cout << hashValue << endl;
+      return hashValue;
+    }
+  };
+}
+
+namespace DemoGeneratingHashValues
+{
+  void execute()
+  {
+    std::set<Item> set1
+    {
+      { 1, "one"s, 1.0 },
+      { 2, "two"s, 2.0 },
+      { 3, "three"s, 3.0 },
+    };
+
+    std::unordered_set<Item> set2
+    {
+      { 1, "one"s, 1.0 },
+      { 2, "two"s, 2.0 },
+      { 3, "three"s, 3.0 },
+    };
+    for (const auto& item : set2)
+      cout << item.value << endl;
+  }
+}
+
+void Ch06_DemoGeneratingHashValues()
+{
+  FUNC_INFO;
+  DemoGeneratingHashValues::execute();
+}
+

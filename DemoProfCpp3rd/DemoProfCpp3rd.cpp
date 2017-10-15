@@ -143,6 +143,7 @@ int main(int argc, char* argv[])
 
   Ch06_DemoExpressingTimeIntervalsWithChrono();
   Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock();
+  Ch06_DemoGeneratingHashValues();
 
   return EXIT_SUCCESS;
 }
