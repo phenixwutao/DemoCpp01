@@ -170,5 +170,8 @@
     <ClCompile Include="ModernCpp\ModernCppChap05.cpp">
       <Filter>ModernCpp</Filter>
     </ClCompile>
+    <ClCompile Include="ModernCpp\ModernCppChap06.cpp">
+      <Filter>ModernCpp</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

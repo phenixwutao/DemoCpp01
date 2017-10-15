@@ -141,6 +141,8 @@ int main(int argc, char* argv[])
   Ch05_DemoWritingYourOwnRandomAccessIterator();
   Ch05_DemoContainerAccessWithNonMemberFunctions();
 
+  Ch06_DemoExpressingTimeIntervalsWithChrono();
+
   return EXIT_SUCCESS;
 }
 

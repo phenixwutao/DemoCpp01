@@ -188,6 +188,7 @@
     <ClCompile Include="ModernCpp\ModernCppChap03.cpp" />
     <ClCompile Include="ModernCpp\ModernCppChap04.cpp" />
     <ClCompile Include="ModernCpp\ModernCppChap05.cpp" />
+    <ClCompile Include="ModernCpp\ModernCppChap06.cpp" />
     <ClCompile Include="ModernCpp\ModernCppChap08.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
