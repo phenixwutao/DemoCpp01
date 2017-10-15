@@ -142,6 +142,7 @@ int main(int argc, char* argv[])
   Ch05_DemoContainerAccessWithNonMemberFunctions();
 
   Ch06_DemoExpressingTimeIntervalsWithChrono();
+  Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock();
 
   return EXIT_SUCCESS;
 }

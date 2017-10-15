@@ -75,6 +75,7 @@ void Ch05_DemoWritingYourOwnRandomAccessIterator();
 void Ch05_DemoContainerAccessWithNonMemberFunctions();
 
 void Ch06_DemoExpressingTimeIntervalsWithChrono();
+void Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock();
 
 
 #endif
