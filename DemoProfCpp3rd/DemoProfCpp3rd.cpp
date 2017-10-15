@@ -136,6 +136,7 @@ int main(int argc, char* argv[])
   Ch05_DemoFindingElementsInRange();
   Ch05_DemoSortingRange();
   Ch05_DemoInitializingRange();
+  Ch05_DemoUsingSetOperationsOnRange();
 
   return EXIT_SUCCESS;
 }
