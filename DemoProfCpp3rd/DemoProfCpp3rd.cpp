@@ -132,6 +132,7 @@ int main(int argc, char* argv[])
 
   Ch05_DemoUsingVectorAsDefaultContainer();
   Ch05_DemoUsingBitsetForFixedSizeSequences();
+  Ch05_DemoUsingVectorBoolForBitSequences();
 
   return EXIT_SUCCESS;
 }
