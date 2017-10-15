@@ -134,6 +134,7 @@ int main(int argc, char* argv[])
   Ch05_DemoUsingBitsetForFixedSizeSequences();
   Ch05_DemoUsingVectorBoolForBitSequences();
   Ch05_DemoFindingElementsInRange();
+  Ch05_DemoSortingRange();
 
   return EXIT_SUCCESS;
 }
