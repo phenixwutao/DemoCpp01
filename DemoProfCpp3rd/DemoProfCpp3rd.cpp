@@ -135,6 +135,7 @@ int main(int argc, char* argv[])
   Ch05_DemoUsingVectorBoolForBitSequences();
   Ch05_DemoFindingElementsInRange();
   Ch05_DemoSortingRange();
+  Ch05_DemoInitializingRange();
 
   return EXIT_SUCCESS;
 }

@@ -68,6 +68,7 @@ void Ch05_DemoUsingBitsetForFixedSizeSequences();
 void Ch05_DemoUsingVectorBoolForBitSequences();
 void Ch05_DemoFindingElementsInRange();
 void Ch05_DemoSortingRange();
+void Ch05_DemoInitializingRange();
 
 
 
