@@ -138,6 +138,7 @@ int main(int argc, char* argv[])
   Ch05_DemoInitializingRange();
   Ch05_DemoUsingSetOperationsOnRange();
   Ch05_DemoUsingIteratorsInsertNewElements();
+  Ch05_DemoWritingYourOwnRandomAccessIterator();
 
   return EXIT_SUCCESS;
 }
