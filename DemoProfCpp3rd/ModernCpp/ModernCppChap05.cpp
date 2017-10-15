@@ -1036,3 +1036,90 @@ void Ch05_DemoUsingSetOperationsOnRange()
   FUNC_INFO;
   DemoUsingSetOperationsOnRange::execute();
 }
+
+void Ch05_DemoUsingIteratorsInsertNewElements()
+{
+  FUNC_INFO;
+  auto printVector = [&](const vector<int>& v)
+  {
+    for (const auto& it : v)
+      cout << it << " ";
+    cout << endl;
+  };
+
+  auto printList = [&](const list<int>& v)
+  {
+    for (const auto& it : v)
+      cout << it << " ";
+    cout << endl;
+  };
+
+  {
+    PASS_INFO(1);
+    std::vector<int> v{ 1,2,3,4,5 };
+    std::fill_n(std::back_inserter(v), 3, 0);
+
+    // v={1,2,3,4,5,0,0,0}
+    printVector(v);
+  }
+
+  {
+    PASS_INFO(2);
+    std::list<int> l{ 1,2,3,4,5 };
+    std::fill_n(std::front_inserter(l), 3, 0);
+
+    // l={0,0,0,1,2,3,4,5}
+    printList(l);
+  }
+
+  {
+    PASS_INFO(3);
+    std::vector<int> v{ 1,2,3,4,5 };
+    std::fill_n(std::inserter(v, v.begin()), 3, 0);
+
+    // v={0,0,0,1,2,3,4,5}
+    printVector(v);
+  }
+
+  {
+    PASS_INFO(4);
+    std::list<int> l{ 1,2,3,4,5 };
+    auto it = l.begin();
+    std::advance(it, 3);
+
+    std::fill_n(std::inserter(l, it), 3, 0);
+
+    // l={1,2,3,0,0,0,4,5}
+    printList(l);
+  }
+
+  {
+    PASS_INFO(5);
+    std::vector<int> v{ 1,2,3,4,5 };
+    std::back_insert_iterator<std::vector<int>> it(v);
+    *it = 6;
+    printVector(v);
+  }
+
+  {
+    PASS_INFO(6);
+    std::list<int> l{ 1,2,3,4,5 };
+    std::front_insert_iterator<std::list<int>> it(l);
+    *it = 0;
+    printList(l);
+  }
+
+  {
+    PASS_INFO(7);
+    std::vector<int> v{ 1,2,3,4,5 };
+    *std::back_inserter(v) = 6;
+    printVector(v);
+  }
+
+  {
+    PASS_INFO(8);
+    std::list<int> l{ 1,2,3,4,5 };
+    *std::front_inserter(l) = 0;
+    printList(l);
+  }
+}

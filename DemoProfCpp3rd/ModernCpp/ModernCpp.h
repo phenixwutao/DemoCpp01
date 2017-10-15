@@ -70,6 +70,8 @@ void Ch05_DemoFindingElementsInRange();
 void Ch05_DemoSortingRange();
 void Ch05_DemoInitializingRange();
 void Ch05_DemoUsingSetOperationsOnRange();
+void Ch05_DemoUsingIteratorsInsertNewElements();
+
 
 
 
