@@ -32,7 +32,7 @@ namespace DemoClassMemberInitializationOrder
     obj.Print();
   }
 }
-void Ch06_DemoClassMemberInitializationOrder()
+void Ch06_DHSClassMemberInitializationOrder()
 {
   FUNC_INFO;
   DemoClassMemberInitializationOrder::execute();
@@ -88,7 +88,7 @@ namespace DemoStaticClassMember
   }
 }
 
-void Ch06_DemoStaticClassMember()
+void Ch06_DHSStaticClassMember()
 {
   FUNC_INFO;
   DemoStaticClassMember::execute();
@@ -126,7 +126,7 @@ namespace DemoClassMemberInInitializationList
   }
 }
 
-void Ch06_DemoClassMemberInInitializationList()
+void Ch06_DHSClassMemberInInitializationList()
 {
   FUNC_INFO;
   DemoClassMemberInInitializationList::execute();
@@ -136,6 +136,8 @@ namespace DemoStaticAndNonStaticMembers
 {
   class object
   {
+  private:
+    static int k;
   public:
     static int i;
     int j;
@@ -161,6 +163,7 @@ namespace DemoStaticAndNonStaticMembers
   };
 
   int object::i = -1; // static member is initialised outside class
+  int object::k = 0;
 
   void execute()
   {
@@ -168,8 +171,37 @@ namespace DemoStaticAndNonStaticMembers
   }
 }
 
-void Ch06_DemoStaticAndNonStaticMembers()
+void Ch06_DHSStaticAndNonStaticMembers()
 {
   FUNC_INFO;
   DemoStaticAndNonStaticMembers::execute();
+}
+
+namespace DHSEmptyClass
+{
+  // demo compiler supplied functions for an empty class
+  class empty
+  {
+  public:
+    empty() {}                          // default constructor
+    empty(const empty& rhs) {}          // copy constructor
+
+    empty& operator=(const empty& rhs)  // copy assignment constructor
+    { return *this;}
+
+    empty* operator&()                  // address of operator
+    { return this; }
+
+    const empty* operator&() const      // const address of operator
+    { return this; }
+    ~empty() {}                         // destructor
+  };
+}
+void Ch06_DHSEmptyClassFunctions()
+{
+  FUNC_INFO;
+  DHSEmptyClass::empty a;
+  DHSEmptyClass::empty b;
+  DHSEmptyClass::empty* c = &a;
+  a = b;
 }

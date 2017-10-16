@@ -3,9 +3,11 @@
 #ifndef _DONGSHANHAI_H
 #define _DONGSHANHAI_H
 
-void Ch06_DemoClassMemberInitializationOrder();
-void Ch06_DemoStaticClassMember();
-void Ch06_DemoClassMemberInInitializationList();
-void Ch06_DemoStaticAndNonStaticMembers();
+void Ch06_DHSClassMemberInitializationOrder();
+void Ch06_DHSStaticClassMember();
+void Ch06_DHSClassMemberInInitializationList();
+void Ch06_DHSStaticAndNonStaticMembers();
+void Ch06_DHSEmptyClassFunctions();
+
 
 #endif

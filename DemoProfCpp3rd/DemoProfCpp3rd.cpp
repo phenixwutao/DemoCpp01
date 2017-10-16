@@ -151,10 +151,11 @@ int main(int argc, char* argv[])
 #endif
 
   // Dong cpp programming book:
-  Ch06_DemoClassMemberInitializationOrder();
-  Ch06_DemoStaticClassMember();
-  Ch06_DemoClassMemberInInitializationList();
-  Ch06_DemoStaticAndNonStaticMembers();
+  Ch06_DHSClassMemberInitializationOrder();
+  Ch06_DHSStaticClassMember();
+  Ch06_DHSClassMemberInInitializationList();
+  Ch06_DHSStaticAndNonStaticMembers();
+  Ch06_DHSEmptyClassFunctions();
 
   return EXIT_SUCCESS;
 }
