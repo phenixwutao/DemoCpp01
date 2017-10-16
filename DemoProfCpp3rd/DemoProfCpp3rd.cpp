@@ -153,6 +153,7 @@ int main(int argc, char* argv[])
   // Dong cpp programming book:
   Ch06_DemoClassMemberInitializationOrder();
   Ch06_DemoStaticClassMember();
+  Ch06_DemoClassMemberInInitializationList();
 
   return EXIT_SUCCESS;
 }

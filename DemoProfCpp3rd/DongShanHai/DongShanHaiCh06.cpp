@@ -92,3 +92,42 @@ void Ch06_DemoStaticClassMember()
 {
   DemoStaticClassMember::execute();
 }
+
+namespace DemoClassMemberInInitializationList
+{
+  class base 
+  {
+  public:
+    base() { cout << "base constructor" << endl; }
+    virtual ~base() { cout << "base destructor" << endl; }
+  };
+  class child : public base
+  {
+  public:
+    child(int val);
+    virtual ~child() { cout << "child destructor" << endl; }
+
+  private:
+    int& value;
+    const double kPI;
+  };
+
+  child::child(int val) : value(val),   // reference variable
+                          kPI(3.14159), // const variable
+                          base()        // base class constructor
+  {
+    cout << "child ctor: value=" << value << " kPI=" << kPI << endl;
+  }
+
+  void execute()
+  {
+    child mychild(2);
+  }
+}
+
+void Ch06_DemoClassMemberInInitializationList()
+{
+  FUNC_INFO;
+  DemoClassMemberInInitializationList::execute();
+}
+
