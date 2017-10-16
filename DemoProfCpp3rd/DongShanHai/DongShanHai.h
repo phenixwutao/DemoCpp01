@@ -5,3 +5,4 @@
 #define PASS_INFO(k) (printf("---------- Pass %u ----------\n", k));
 
 void Ch06_DemoClassMemberInitializationOrder();
+void Ch06_DemoStaticClassMember();
