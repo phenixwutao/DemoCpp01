@@ -10,6 +10,8 @@
 #include "chap23\chap23MultiThreadProgramming.h"
 #include "ModernCpp\ModernCpp.h"
 
+#include "DongShanHai\DongShanHai.h"
+
 int main(int argc, char* argv[])
 {
   printf("------------------------------------\n");
@@ -76,6 +78,7 @@ int main(int argc, char* argv[])
   //chap23TestLogger();
 
   // modern cpp demo functions
+#if 0
   Ch01_DemoAuto();
   Ch01_DemoAlias();
   Ch01_DemoInitializerList();
@@ -145,6 +148,10 @@ int main(int argc, char* argv[])
   Ch06_DemoMeasuringFunctionExecutionTimeWithStandardClock();
   Ch06_DemoGeneratingHashValues();
   Ch06_DemoRegisteringFunctionCalledWhenProgramExitsNormally();
+#endif
+
+  // Dong cpp programming book:
+  Ch06_DemoClassMemberInitializationOrder();
 
   return EXIT_SUCCESS;
 }

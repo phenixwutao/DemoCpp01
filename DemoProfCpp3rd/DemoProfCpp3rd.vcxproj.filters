@@ -34,6 +34,9 @@
     <Filter Include="ModernCpp">
       <UniqueIdentifier>{98699f93-9a7c-46d7-949e-79d3b21a1f38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DongShanHai">
+      <UniqueIdentifier>{13fd69a6-430d-430c-815e-d5dcc53305f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -111,6 +114,9 @@
     <ClInclude Include="ModernCpp\funclib.h">
       <Filter>ModernCpp</Filter>
     </ClInclude>
+    <ClInclude Include="DongShanHai\DongShanHai.h">
+      <Filter>DongShanHai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="ModernCpp\ModernCppChap06.cpp">
       <Filter>ModernCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="DongShanHai\DongShanHaiCh06.cpp">
+      <Filter>DongShanHai</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
