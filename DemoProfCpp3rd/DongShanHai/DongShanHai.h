@@ -9,6 +9,7 @@ void Ch06_DHSClassMemberInInitializationList();
 void Ch06_DHSStaticAndNonStaticMembers();
 void Ch06_DHSEmptyClassFunctions();
 void Ch06_DHSMissUsedConstructor(); // page 177
+void Ch06_DHSExplicitConstructor(); // page 179
 
 
 #endif

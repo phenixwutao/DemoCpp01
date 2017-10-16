@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 
 #include <iostream>
+#include <string>
 
 #include "DongShanHai.h"
 
@@ -233,4 +234,37 @@ void Ch06_DHSMissUsedConstructor()
 {
   FUNC_INFO;
   DHSMissUsedConstructor::execute();
+}
+
+namespace DHSExplicitConstructor
+{
+  class Number
+  {
+  public:
+    string type;
+    Number() : type("void") {}
+    Number(int) : type("int") {}
+    explicit Number(short int) : type("short") {}
+    Number(string) : type("string") {}
+  };
+  void execute()
+  {
+    Number a = 2; // implicitly call Number(int)
+    Number b(1);  // call Number(int)
+    Number c((short int)1); // explicitly call Number(short int)
+    cout << a.type << endl;
+    cout << b.type << endl;
+    cout << c.type << endl;
+
+    Number d("hi");     // call Number(string)
+    Number e = "hi";    // implicitly call Number(string)
+    cout << d.type << endl;
+    cout << e.type << endl;
+  }
+}
+
+void Ch06_DHSExplicitConstructor()
+{
+  FUNC_INFO;
+  DHSExplicitConstructor::execute();
 }

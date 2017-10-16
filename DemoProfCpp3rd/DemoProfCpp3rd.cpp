@@ -157,6 +157,7 @@ int main(int argc, char* argv[])
   Ch06_DHSStaticAndNonStaticMembers();
   Ch06_DHSEmptyClassFunctions();
   Ch06_DHSMissUsedConstructor();
+  Ch06_DHSExplicitConstructor();
 
   return EXIT_SUCCESS;
 }
