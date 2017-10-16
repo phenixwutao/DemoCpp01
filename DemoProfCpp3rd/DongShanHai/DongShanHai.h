@@ -6,5 +6,6 @@
 void Ch06_DemoClassMemberInitializationOrder();
 void Ch06_DemoStaticClassMember();
 void Ch06_DemoClassMemberInInitializationList();
+void Ch06_DemoStaticAndNonStaticMembers();
 
 #endif

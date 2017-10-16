@@ -154,6 +154,7 @@ int main(int argc, char* argv[])
   Ch06_DemoClassMemberInitializationOrder();
   Ch06_DemoStaticClassMember();
   Ch06_DemoClassMemberInInitializationList();
+  Ch06_DemoStaticAndNonStaticMembers();
 
   return EXIT_SUCCESS;
 }

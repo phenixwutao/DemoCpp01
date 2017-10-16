@@ -90,6 +90,7 @@ namespace DemoStaticClassMember
 
 void Ch06_DemoStaticClassMember()
 {
+  FUNC_INFO;
   DemoStaticClassMember::execute();
 }
 
@@ -131,3 +132,44 @@ void Ch06_DemoClassMemberInInitializationList()
   DemoClassMemberInInitializationList::execute();
 }
 
+namespace DemoStaticAndNonStaticMembers
+{
+  class object
+  {
+  public:
+    static int i;
+    int j;
+
+    object(int a) : 
+      // i(1), // 1 error: static member cannot be initialised inside class
+      j(a)
+    {
+    }
+
+    void func1() 
+    {
+      cout << i << j << endl;
+    }
+    static void func2()
+    {
+      // cannot use non-static member in static function,
+      // j must be related to specified object
+      // cout << i << j << endl;
+
+      cout << i << endl;
+    }
+  };
+
+  int object::i = -1; // static member is initialised outside class
+
+  void execute()
+  {
+    object A(3);
+  }
+}
+
+void Ch06_DemoStaticAndNonStaticMembers()
+{
+  FUNC_INFO;
+  DemoStaticAndNonStaticMembers::execute();
+}
