@@ -268,3 +268,45 @@ void Ch06_DHSExplicitConstructor()
   FUNC_INFO;
   DHSExplicitConstructor::execute();
 }
+
+namespace DHSVirtualConstructor
+{ 
+  class parent
+  {
+  public:
+    parent()
+    {
+      cout << "Construct parent" << endl;
+    }
+
+    virtual ~parent()
+    {
+      cout << "Destruct parent" << endl;
+    }
+  };
+
+  class child : public parent
+  {
+  public:
+    child() : parent()
+    {
+      cout << "Construct child" << endl;
+    }
+
+    virtual ~child() override
+    {
+      cout << "Destruct child" << endl;
+    }
+  };
+  void execute()
+  {
+    parent* a = new child;
+    delete a;
+  }
+}
+
+void Ch06_DHSVirtualConstructor()
+{
+  FUNC_INFO;
+  DHSVirtualConstructor::execute();
+}

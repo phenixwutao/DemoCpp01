@@ -158,6 +158,7 @@ int main(int argc, char* argv[])
   Ch06_DHSEmptyClassFunctions();
   Ch06_DHSMissUsedConstructor();
   Ch06_DHSExplicitConstructor();
+  Ch06_DHSVirtualConstructor();
 
   return EXIT_SUCCESS;
 }
