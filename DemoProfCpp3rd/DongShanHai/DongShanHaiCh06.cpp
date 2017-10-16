@@ -205,3 +205,32 @@ void Ch06_DHSEmptyClassFunctions()
   DHSEmptyClass::empty* c = &a;
   a = b;
 }
+
+namespace DHSMissUsedConstructor
+{
+  struct cls
+  {
+    int m_i;
+    cls(int i) : m_i(i)
+    {
+      cout << "cls(int) " << this << endl;
+    }
+    cls()
+    {
+      cls(0); // error: generate a temp object only
+      cout << "cls() " << this << endl;
+    }
+  };
+
+  void execute()
+  {
+    cls a;
+    cout << "&a= " << &a << endl;
+    cout << a.m_i << endl; // m_i is un-initialzed yet
+  }
+}
+void Ch06_DHSMissUsedConstructor()
+{
+  FUNC_INFO;
+  DHSMissUsedConstructor::execute();
+}
