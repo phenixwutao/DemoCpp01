@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCLINETCpp", "DemoCLINET
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DemoVisualBasicConsoleApplication", "DemoVisualBasicConsoleApplication\DemoVisualBasicConsoleApplication.vbproj", "{546AC75D-28CD-489E-B08A-3ED46E6F78BE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DemoPythonApplication", "DemoPythonApplication\DemoPythonApplication.pyproj", "{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,12 @@ Global
 		{546AC75D-28CD-489E-B08A-3ED46E6F78BE}.Release|x64.Build.0 = Release|Any CPU
 		{546AC75D-28CD-489E-B08A-3ED46E6F78BE}.Release|x86.ActiveCfg = Release|Any CPU
 		{546AC75D-28CD-489E-B08A-3ED46E6F78BE}.Release|x86.Build.0 = Release|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Release|x64.ActiveCfg = Release|Any CPU
+		{0C441AA4-FDAE-4AD4-81D6-1093E18E31C6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
