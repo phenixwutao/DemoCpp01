@@ -132,7 +132,6 @@ namespace DuoAuth
     {
       string canon_params = CanonicalizeParams();
       string date_string = DateToRFC822(this.date);
-      date_string = "Thu, 07 Dec 2017 20:30:09 -0000";
       return Sign(canon_params, date_string);
     }
   }

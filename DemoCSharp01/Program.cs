@@ -15,7 +15,7 @@ namespace DemoCSharp01
       string skey = "nMz9aTvyDA4mlyuWNhyE2fvhh9gJcfwtpu788MUL";
       string host = "api-fd5b4799.duosecurity.com";
       string method = "POST";
-      string path = "'/auth/v2/enroll";
+      string path = "/auth/v2/enroll";
       DateTime date = System.DateTime.UtcNow;
       System.Collections.Generic.Dictionary<string, string> pams = new System.Collections.Generic.Dictionary<string, string>();
       pams.Add("username", "ZZZ");
