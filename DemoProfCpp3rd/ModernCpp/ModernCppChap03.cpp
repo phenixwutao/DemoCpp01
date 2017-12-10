@@ -584,15 +584,16 @@ namespace DemoUniformlyInvokingAnythingCallable
         std::forward<F>(f),
         std::get<I>(std::forward<T>(t))...);
     }
-  }
 
-  template <class F, class T>
-  auto apply(F&& f, T&& t)
-  {
-    return details::apply(
-      std::forward<F>(f),
-      std::forward<T>(t),
-      std::make_index_sequence<std::tuple_size<std::decay_t<T>>::value>{});
+
+    template <class F, class T>
+    auto apply(F&& f, T&& t)
+    {
+      return details::apply(
+        std::forward<F>(f),
+        std::forward<T>(t),
+        std::make_index_sequence<std::tuple_size<std::decay_t<T>>::value>{});
+    }
   }
 
   void execute()

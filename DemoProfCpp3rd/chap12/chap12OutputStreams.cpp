@@ -349,7 +349,7 @@ void chap12TestJumpingWithSeekTell()
   fout << "12345";
 
   // 2. Verify that the marker is at position 5.
-  ios_base::streampos curPos = fout.tellp();
+  auto curPos = fout.tellp();
   if (5 == curPos)
   {
     cout << "Test passed: Currently at position 5" << endl;

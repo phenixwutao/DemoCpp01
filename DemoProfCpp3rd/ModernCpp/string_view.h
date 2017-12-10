@@ -726,6 +726,7 @@ namespace std {
    }
 }
 
+#if 0
 namespace std {
 
    // [string.view.hash]
@@ -757,5 +758,6 @@ namespace std {
 #endif
 
 }
+#endif
 
 #endif // _LIBCPP_LFTS_STRING_VIEW

@@ -124,9 +124,9 @@ auto func2(int const i)
 }
 
 /*------------------demo alias -----------------*/
-typedef unsigned char   byte;
-typedef unsigned char * pbyte;
-typedef int             array_t[10];
+//typedef unsigned char   byte;
+//typedef unsigned char * pbyte;
+//typedef int             array_t[10];
 //typedef void(*fn)(byte, double);
 
 template<typename T>
@@ -157,7 +157,7 @@ class custom_allocator { /* ... */ };
 template <typename T>
 using vec_t_ca = std::vector<T, custom_allocator<T>>;
 
-void func(byte b, double d) {}
+void func3(unsigned char b, double d) {}
 
 // demo new style alias
 void Ch01_DemoAlias()
@@ -167,12 +167,12 @@ void Ch01_DemoAlias()
     using byte = unsigned char;
     using pbyte = unsigned char *;
     using array_t = int[10];
-    using fn = void(byte, double);
+    using fn = void(unsigned char, double);
 
     byte b{ 42 };
     pbyte pb = new byte[10]{ 0 };
     array_t a{ 0,1,2,3,4,5,6,7,8,9 };
-    fn* f = func;
+    fn *f = func3;
     f(1, 42.0);
 
     // lambda function

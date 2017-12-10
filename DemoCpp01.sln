@@ -1,8 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shell_script", "shell_script", "{1BB2CD41-147C-4D94-8956-627B941E8406}"
+	ProjectSection(SolutionItems) = preProject
+		shell_script\my_build_solution.bat = shell_script\my_build_solution.bat
+		shell_script\myTestScript.bat = shell_script\myTestScript.bat
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCpp01", "DemoCpp01\DemoCpp01.vcxproj", "{DFDC4E94-E588-46AD-82C9-C48358B02E00}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoProfCpp3rd", "DemoProfCpp3rd\DemoProfCpp3rd.vcxproj", "{775B2E7B-FB8E-40BE-A82A-5680F3CA087F}"
@@ -10,12 +16,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCppMultithreading", "DemoCppMultithreading\DemoCppMultithreading.vcxproj", "{09BAC05A-5584-4121-9ACB-36B6CAE79BBE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "POSIXThreads", "POSIXThreads\POSIXThreads.vcxproj", "{AD3DC3FC-04D2-4D7F-8300-757BAA2EC5C9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shell_script", "shell_script", "{1BB2CD41-147C-4D94-8956-627B941E8406}"
-	ProjectSection(SolutionItems) = preProject
-		shell_script\my_build_solution.bat = shell_script\my_build_solution.bat
-		shell_script\myTestScript.bat = shell_script\myTestScript.bat
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCLINETCpp", "DemoCLINETCpp\DemoCLINETCpp.vcxproj", "{89546FFB-6842-4B6B-9576-469662C9BFB5}"
 EndProject
@@ -118,5 +118,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CF93C80-E432-4FCF-B38F-8B8FB1BFBB97}
 	EndGlobalSection
 EndGlobal
