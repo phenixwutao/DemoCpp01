@@ -78,6 +78,9 @@
     <ClInclude Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Date.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -111,6 +114,9 @@
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Date.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>

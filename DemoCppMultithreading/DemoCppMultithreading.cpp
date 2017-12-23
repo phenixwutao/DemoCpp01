@@ -79,6 +79,7 @@ int main()
   // Options Derivatives Programming
   OptionsDerivTestValueOptions();
   OptionsDerivTestRandomWalks();
+  OptionsDerivTestDate();
 
   return EXIT_SUCCESS;
 }

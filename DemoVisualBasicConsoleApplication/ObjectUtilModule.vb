@@ -8,5 +8,7 @@
     Dim obj As New ObjectModule.DemoObject()
     obj.UniqueNumber = 1
     Console.WriteLine("Object group is: " + obj.Group())
+    Return obj.UniqueNumber
+
   End Function
 End Module

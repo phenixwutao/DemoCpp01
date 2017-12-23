@@ -10,9 +10,9 @@
           sGroup = "development"
         Case Is = 2
           sGroup = "customer support"
-        Case Is = 2
+        Case Is = 3
           sGroup = "marketing"
-        Case Is = 2
+        Case Is = 4
           sGroup = "implementation"
       End Select
       Return sGroup

@@ -3,10 +3,12 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 #include "Ch01GenericOption.h"
 #include "Ch02RandomWalkGenerator.h"
 #include "OptionsDerivatives.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -43,4 +45,19 @@ void OptionsDerivTestValueOptions()
     value = option.profitAtExpiration(price);
     cout << price << ", " << value << endl;
   }
+}
+
+void OptionsDerivTestDate()
+{
+  Date d(2015, 9, 12);
+  DayOfTheWeek wd = d.dayOfTheWeek();
+  cout << "day of the week: " << wd << " " << d.dayOfWeek() << endl;
+  d.print();
+
+  d.add(25);
+  d.print();
+
+  d.addTradingDays(120);
+  d.print();
+  cout << "day of the week: " << d.dayOfTheWeek() << " " << d.dayOfWeek() << endl;
 }
