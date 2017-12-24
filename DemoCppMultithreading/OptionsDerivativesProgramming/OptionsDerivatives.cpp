@@ -11,6 +11,7 @@
 #include "Date.h"
 #include "Chap05DataSource.h"
 #include "Chap05DesignPatterns.h"
+#include "Chap05Observer.h"
 
 using namespace std;
 
@@ -75,8 +76,22 @@ void OptionsDerivTestDataSource()
 
 void OptionsDerivTestClearingHouse()
 {
-  Trade trade;
+  TradeA trade;
   ClearingHouse &ch = ClearingHouse::getClearingHouse();
   ch.clearTrade(trade);
   ClearingHouse::DestroyClearingHouse(&ch);
+}
+
+void OptionsDerivTestTradeObserver()
+{
+  TradingLedger tl;
+  PTradeObserver observer1 = PTradeObserver(new TradeObserver(&tl));
+  PTradeObserver observer2 = PTradeObserver(new TradeObserver(&tl));
+  tl.addObserver(observer1);
+  tl.addObserver(observer2);
+
+  // perform trading system here
+
+  TradeB trade;
+  tl.addTrade(trade);
 }

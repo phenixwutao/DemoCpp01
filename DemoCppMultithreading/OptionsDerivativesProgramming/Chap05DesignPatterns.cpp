@@ -33,6 +33,6 @@ void ClearingHouse::DestroyClearingHouse(ClearingHouse* p)
 }
 
 
-void ClearingHouse::clearTrade(const Trade &t)
+void ClearingHouse::clearTrade(const TradeA &t)
 {
 }

@@ -5,7 +5,7 @@
 #ifndef DESIGNPATTERNS_HPP
 #define DESIGNPATTERNS_HPP
 
-class Trade {
+class TradeA {
     //  ....
 };
 
@@ -22,7 +22,7 @@ public:
     static ClearingHouse &getClearingHouse();
     static void DestroyClearingHouse(ClearingHouse* p);
 
-    void clearTrade(const Trade &);
+    void clearTrade(const TradeA &);
 
 private:
     static ClearingHouse *s_clearingHouse;
