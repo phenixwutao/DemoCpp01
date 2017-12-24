@@ -153,6 +153,8 @@
     <ClInclude Include="chap04\Chap04SynchronizingConcurrentOperations.h" />
     <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h" />
+    <ClInclude Include="OptionsDerivativesProgramming\Chap05DataSource.h" />
+    <ClInclude Include="OptionsDerivativesProgramming\Chap05DesignPatterns.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Date.h" />
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.h" />
@@ -168,6 +170,8 @@
     <ClCompile Include="chap05\chap05MemoryModelAtomicOperation.cpp" />
     <ClCompile Include="DemoCppMultithreading.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp" />
+    <ClCompile Include="OptionsDerivativesProgramming\Chap05DataSource.cpp" />
+    <ClCompile Include="OptionsDerivativesProgramming\Chap05DesignPatterns.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Date.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.cpp" />

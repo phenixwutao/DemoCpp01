@@ -9,6 +9,8 @@
 #include "Ch02RandomWalkGenerator.h"
 #include "OptionsDerivatives.h"
 #include "Date.h"
+#include "Chap05DataSource.h"
+#include "Chap05DesignPatterns.h"
 
 using namespace std;
 
@@ -60,4 +62,21 @@ void OptionsDerivTestDate()
   d.addTradingDays(120);
   d.print();
   cout << "day of the week: " << d.dayOfTheWeek() << " " << d.dayOfWeek() << endl;
+}
+
+void OptionsDerivTestDataSource()
+{
+  // DataSource *source = new DataSource(""); // this will not work!
+  DataSource *source = DataSource::createInstance();
+  source->readData();
+  // do something else with data
+  delete source;
+}
+
+void OptionsDerivTestClearingHouse()
+{
+  Trade trade;
+  ClearingHouse &ch = ClearingHouse::getClearingHouse();
+  ch.clearTrade(trade);
+  ClearingHouse::DestroyClearingHouse(&ch);
 }

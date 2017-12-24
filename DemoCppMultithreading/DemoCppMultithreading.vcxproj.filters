@@ -81,6 +81,12 @@
     <ClInclude Include="OptionsDerivativesProgramming\Date.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Chap05DataSource.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Chap05DesignPatterns.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -117,6 +123,12 @@
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\Date.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Chap05DataSource.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Chap05DesignPatterns.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>

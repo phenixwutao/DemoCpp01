@@ -80,6 +80,8 @@ int main()
   OptionsDerivTestValueOptions();
   OptionsDerivTestRandomWalks();
   OptionsDerivTestDate();
+  OptionsDerivTestDataSource();
+  OptionsDerivTestClearingHouse();
 
   return EXIT_SUCCESS;
 }
