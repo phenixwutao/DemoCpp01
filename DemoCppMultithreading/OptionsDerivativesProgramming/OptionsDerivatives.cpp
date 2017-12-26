@@ -12,6 +12,7 @@
 #include "Chap05DataSource.h"
 #include "Chap05DesignPatterns.h"
 #include "Chap05Observer.h"
+#include "Chap08Functional.h"
 
 using namespace std;
 
@@ -94,4 +95,15 @@ void OptionsDerivTestTradeObserver()
 
   TradeB trade;
   tl.addTrade(trade);
+}
+
+void OptionsDerivTestFunctionalExamples()
+{
+  test_compare();
+  test_operator();
+  test_transform();
+  use_bind();
+  use_lambda();
+  use_lambda2();
+  test_use_function();
 }

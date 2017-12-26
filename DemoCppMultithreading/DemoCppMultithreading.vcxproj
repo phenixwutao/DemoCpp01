@@ -155,6 +155,8 @@
     <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Chap05DataSource.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Chap05DesignPatterns.h" />
+    <ClInclude Include="OptionsDerivativesProgramming\Chap08Functional.h" />
+    <ClInclude Include="OptionsDerivativesProgramming\Chap09Matrix.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Date.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Chap05Observer.h" />
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h" />
@@ -173,6 +175,8 @@
     <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Chap05DataSource.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Chap05DesignPatterns.cpp" />
+    <ClCompile Include="OptionsDerivativesProgramming\Chap08Functional.cpp" />
+    <ClCompile Include="OptionsDerivativesProgramming\Chap09Matrix.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Date.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Chap05Observer.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp" />

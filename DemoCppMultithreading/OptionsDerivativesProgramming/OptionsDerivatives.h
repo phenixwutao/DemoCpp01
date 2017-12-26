@@ -5,3 +5,4 @@ void OptionsDerivTestDate();
 void OptionsDerivTestDataSource();
 void OptionsDerivTestClearingHouse();
 void OptionsDerivTestTradeObserver();
+void OptionsDerivTestFunctionalExamples();

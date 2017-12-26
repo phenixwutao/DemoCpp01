@@ -83,6 +83,7 @@ int main()
   OptionsDerivTestDataSource();
   OptionsDerivTestClearingHouse();
   OptionsDerivTestTradeObserver();
+  OptionsDerivTestFunctionalExamples();
 
   return EXIT_SUCCESS;
 }

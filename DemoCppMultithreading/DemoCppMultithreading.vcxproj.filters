@@ -90,6 +90,12 @@
     <ClInclude Include="OptionsDerivativesProgramming\Chap05Observer.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Chap08Functional.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsDerivativesProgramming\Chap09Matrix.h">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -135,6 +141,12 @@
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\Chap05Observer.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Chap08Functional.cpp">
+      <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsDerivativesProgramming\Chap09Matrix.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClCompile>
   </ItemGroup>
