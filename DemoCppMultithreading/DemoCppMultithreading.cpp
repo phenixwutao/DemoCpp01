@@ -84,6 +84,7 @@ int main()
   OptionsDerivTestClearingHouse();
   OptionsDerivTestTradeObserver();
   OptionsDerivTestFunctionalExamples();
+  OptionsDerivTestPolynomialFunction();
 
   return EXIT_SUCCESS;
 }

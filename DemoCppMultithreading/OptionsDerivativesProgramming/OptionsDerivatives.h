@@ -6,3 +6,4 @@ void OptionsDerivTestDataSource();
 void OptionsDerivTestClearingHouse();
 void OptionsDerivTestTradeObserver();
 void OptionsDerivTestFunctionalExamples();
+void OptionsDerivTestPolynomialFunction();

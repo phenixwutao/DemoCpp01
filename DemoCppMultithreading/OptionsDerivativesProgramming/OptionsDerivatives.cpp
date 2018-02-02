@@ -13,6 +13,7 @@
 #include "Chap05DesignPatterns.h"
 #include "Chap05Observer.h"
 #include "Chap08Functional.h"
+#include "Chap10MathFunction.h"
 
 using namespace std;
 
@@ -106,4 +107,21 @@ void OptionsDerivTestFunctionalExamples()
   use_lambda();
   use_lambda2();
   test_use_function();
+}
+
+void OptionsDerivTestPolynomialFunction()
+{
+  PolynomialFunction f({ 1, 0, 0 });
+
+  double begin = -2, end = 2;
+  double step = (end - begin) / 100.0;
+  for (int i = 0; i<100; ++i)
+  {
+    cout << begin + step * i << ", ";
+  }
+  cout << endl;
+  for (int i = 0; i<100; ++i)
+  {
+    cout << f(begin + step * i) << ", ";
+  }
 }
