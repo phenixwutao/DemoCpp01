@@ -772,12 +772,10 @@ void Ch01_DemoRangeBasedForLoop()
     }
 
     // C++17 STD only
-#ifdef DECOMPOSITION_AVAILABLE 
-    for (auto&&[rate, flag] : getRates())
+    for (auto&&[rate, flag] : getRates2())
     {
-      std::cout << rate << std::endl;
+      std::cout << rate << " : " << flag << std::endl;
     }
-#endif
   }
 }
 
@@ -1158,6 +1156,13 @@ void Ch01_DemoStructuredBindings()
     std::tie(it, inserted) = m.insert({ 1, "two" });
     std::cout << "inserted = " << inserted << std::endl
       << "value = " << it->second << std::endl;
+
+    // C++17 structured bindings: elevate the unpacking of tuple elements into named objects
+    // to the rank of a language feature; it does not require the use of std::tie(), and 
+    // objects are initialized when declared:
+    auto[it, inserted] = m.insert({ 1, "three" });
+    std::cout << "inserted = " << inserted << std::endl
+      << "value = " << it->second << std::endl;
   }
 
   {
@@ -1170,10 +1175,12 @@ void Ch01_DemoStructuredBindings()
     std::cout << "id=" << id
       << " name=" << name
       << " score=" << score << std::endl;
+
+    // Use structured bindings to unpack the values of the tuple into named objects
+    auto[id, name, score] = find();
   }
 
   // C++17 only
-#ifdef STRUCTURED_BINDINGS
   {
     std::map<int, std::string> m;
     if (auto[it, inserted] = m.insert({ 1, "two" }); inserted)
@@ -1200,8 +1207,29 @@ void Ch01_DemoStructuredBindings()
       std::cout << name << std::endl;
     }
   }
-#endif
 
+  {
+    // C++ 17 : if(init; condition)
+    std::map<int, std::string> m;
+    if (auto[it, fInsert] = m.insert({ 1, "hello" }); fInsert)
+      std::cout << "value = " << it->second << std::endl;
+
+    // C++ 17 : switch(init; condition)
+    switch (auto[it, fInsert] = m.insert({ 1, "hello" }); it->first)
+    {
+    case 1:
+      std::cout << "1 value = " << it->second << std::endl;
+      break;
+    case 2:
+      std::cout << "2 value = " << it->second << std::endl;
+      break;
+    case 3:
+      std::cout << "3 value = " << it->second << std::endl;
+      break;
+    default:
+      break;
+    }
+  }
 }
 
 void Ch02_DemoConvertingNumericStringTypes()
