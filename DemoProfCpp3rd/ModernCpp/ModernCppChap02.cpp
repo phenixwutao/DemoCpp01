@@ -1160,9 +1160,9 @@ void Ch01_DemoStructuredBindings()
     // C++17 structured bindings: elevate the unpacking of tuple elements into named objects
     // to the rank of a language feature; it does not require the use of std::tie(), and 
     // objects are initialized when declared:
-    auto[it, inserted] = m.insert({ 1, "three" });
-    std::cout << "inserted = " << inserted << std::endl
-      << "value = " << it->second << std::endl;
+    auto[it2, inserted2] = m.insert({ 1, "three" });
+    std::cout << "inserted = " << inserted2 << std::endl
+      << "value = " << it2->second << std::endl;
   }
 
   {
@@ -1177,7 +1177,7 @@ void Ch01_DemoStructuredBindings()
       << " score=" << score << std::endl;
 
     // Use structured bindings to unpack the values of the tuple into named objects
-    auto[id, name, score] = find();
+    auto[id2, name2, score2] = find();
   }
 
   // C++17 only
