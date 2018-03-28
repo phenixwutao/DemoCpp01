@@ -16,6 +16,9 @@
     <Filter Include="AbstractFactory">
       <UniqueIdentifier>{db2148d4-4d72-4b66-b38f-79cac13f2fce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AdapterClass">
+      <UniqueIdentifier>{d2374dfe-1d80-47ea-bd2d-871b283660db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,6 +30,9 @@
     <ClInclude Include="AbstractFactory\CarFactory.h">
       <Filter>AbstractFactory</Filter>
     </ClInclude>
+    <ClInclude Include="AdapterClass\AdapterClass.h">
+      <Filter>AdapterClass</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="AbstractFactory\CarFactory.cpp">
       <Filter>AbstractFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="AdapterClass\AdapterClass.cpp">
+      <Filter>AdapterClass</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
