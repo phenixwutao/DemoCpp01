@@ -1,6 +1,6 @@
 #pragma once
 
-namespace AdapterClass {
+namespace AdapterObject {
   // Old version interface
   class OldVersion
   {
@@ -10,24 +10,26 @@ namespace AdapterClass {
   };
 
 
-  // New version interface    // can be abstract
+  // New version interface
   class NewVersion
   {
   public:
     NewVersion(int input);
-    virtual void Display();  // Can be abstract
-
+    virtual void Display();
   protected:
     int myData;
   };
 
   // Adapter
-  class Adapter : public NewVersion, private OldVersion
+  class Adapter : public NewVersion
   {
   public:
     Adapter(int input);
-    void Display();   // implement with the adapee
+    void Display();
+    ~Adapter();
+  private:
+    OldVersion * oldVersion;
   };
 
-  void TestAdapterClass();
+  void TestAdapterObject();
 }

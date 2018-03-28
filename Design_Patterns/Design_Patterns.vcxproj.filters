@@ -19,6 +19,9 @@
     <Filter Include="AdapterClass">
       <UniqueIdentifier>{d2374dfe-1d80-47ea-bd2d-871b283660db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AdapterObject">
+      <UniqueIdentifier>{dd802239-5475-4cee-9536-f71e26813ffb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="AdapterClass\AdapterClass.h">
       <Filter>AdapterClass</Filter>
     </ClInclude>
+    <ClInclude Include="AdapterObject\AdapterObject.h">
+      <Filter>AdapterObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -46,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="AdapterClass\AdapterClass.cpp">
       <Filter>AdapterClass</Filter>
+    </ClCompile>
+    <ClCompile Include="AdapterObject\AdapterObject.cpp">
+      <Filter>AdapterObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

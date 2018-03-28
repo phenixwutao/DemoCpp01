@@ -5,40 +5,44 @@
 #include <sstream>
 using namespace std;
 
-OldVersion::OldVersion()
-{
-}
+namespace AdapterClass {
 
-void OldVersion::OldDisplay(int input)
-{
-	stringstream out;
-	out<<input;
-	cout<<out.str()<<endl;
-}
+  OldVersion::OldVersion()
+  {
+  }
 
-NewVersion::NewVersion(int input)
-{
-	myData = input;
-}
+  void OldVersion::OldDisplay(int input)
+  {
+    stringstream out;
+    out << input;
+    cout << out.str() << endl;
+  }
 
-void NewVersion::Display()
-{
-}
+  NewVersion::NewVersion(int input)
+  {
+    myData = input;
+  }
 
-Adapter::Adapter(int input) : NewVersion(input), OldVersion()
-{
-}
+  void NewVersion::Display()
+  {
+  }
 
-void Adapter::Display()
-{
-	OldDisplay(myData);
-}
+  Adapter::Adapter(int input) : NewVersion(input), OldVersion()
+  {
+  }
 
-void TestAdapterClass()
-{
-  int test = 5;
-  NewVersion* myInterface;
-  myInterface = new Adapter(test);
-  myInterface->Display();
-  delete myInterface;
+  void Adapter::Display()
+  {
+    OldDisplay(myData);
+  }
+
+  void TestAdapterClass()
+  {
+    printf("in %s\n", __func__);
+    int test = 5;
+    NewVersion* myInterface;
+    myInterface = new Adapter(test);
+    myInterface->Display();
+    delete myInterface;
+  }
 }
