@@ -151,6 +151,7 @@
     <ClInclude Include="AdapterClass\AdapterClass.h" />
     <ClInclude Include="AdapterObject\AdapterObject.h" />
     <ClInclude Include="Bridge\Bridge.h" />
+    <ClInclude Include="Builder\CarBuilder.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClCompile Include="AdapterClass\AdapterClass.cpp" />
     <ClCompile Include="AdapterObject\AdapterObject.cpp" />
     <ClCompile Include="Bridge\Bridge.cpp" />
+    <ClCompile Include="Builder\CarBuilder.cpp" />
     <ClCompile Include="Design_Patterns.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
