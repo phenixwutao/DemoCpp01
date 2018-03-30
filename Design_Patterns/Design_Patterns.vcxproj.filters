@@ -46,6 +46,9 @@
     <Filter Include="FactoryMethod">
       <UniqueIdentifier>{4735b270-788a-45df-b83c-c6f809b71793}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Flyweight">
+      <UniqueIdentifier>{cff17e7d-ffd5-4d67-a9b2-68f189751516}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,6 +90,9 @@
     <ClInclude Include="FactoryMethod\FactoryMethod.h">
       <Filter>FactoryMethod</Filter>
     </ClInclude>
+    <ClInclude Include="Flyweight\Flyweight.h">
+      <Filter>Flyweight</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -127,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="FactoryMethod\FactoryMethod.cpp">
       <Filter>FactoryMethod</Filter>
+    </ClCompile>
+    <ClCompile Include="Flyweight\Flyweight.cpp">
+      <Filter>Flyweight</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
