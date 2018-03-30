@@ -43,6 +43,9 @@
     <Filter Include="Facade">
       <UniqueIdentifier>{ceb4e9f0-e964-47a8-9c16-9de33534742c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FactoryMethod">
+      <UniqueIdentifier>{4735b270-788a-45df-b83c-c6f809b71793}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="Facade\Facade.h">
       <Filter>Facade</Filter>
     </ClInclude>
+    <ClInclude Include="FactoryMethod\FactoryMethod.h">
+      <Filter>FactoryMethod</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -118,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Facade\Facade.cpp">
       <Filter>Facade</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryMethod\FactoryMethod.cpp">
+      <Filter>FactoryMethod</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

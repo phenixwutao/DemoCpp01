@@ -157,6 +157,7 @@
     <ClInclude Include="Composite\Composite.h" />
     <ClInclude Include="Decorator\Decorator.h" />
     <ClInclude Include="Facade\Facade.h" />
+    <ClInclude Include="FactoryMethod\FactoryMethod.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -172,6 +173,7 @@
     <ClCompile Include="Decorator\Decorator.cpp" />
     <ClCompile Include="Design_Patterns.cpp" />
     <ClCompile Include="Facade\Facade.cpp" />
+    <ClCompile Include="FactoryMethod\FactoryMethod.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
