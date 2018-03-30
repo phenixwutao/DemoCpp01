@@ -40,6 +40,9 @@
     <Filter Include="Decorator">
       <UniqueIdentifier>{64f5f2ab-d2ff-4278-9d81-b33a8b8126df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Facade">
+      <UniqueIdentifier>{ceb4e9f0-e964-47a8-9c16-9de33534742c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="Decorator\Decorator.h">
       <Filter>Decorator</Filter>
     </ClInclude>
+    <ClInclude Include="Facade\Facade.h">
+      <Filter>Facade</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Decorator\Decorator.cpp">
       <Filter>Decorator</Filter>
+    </ClCompile>
+    <ClCompile Include="Facade\Facade.cpp">
+      <Filter>Facade</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
