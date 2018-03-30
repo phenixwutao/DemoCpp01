@@ -49,6 +49,9 @@
     <Filter Include="Flyweight">
       <UniqueIdentifier>{cff17e7d-ffd5-4d67-a9b2-68f189751516}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interpreter">
+      <UniqueIdentifier>{720edaf4-fd12-4c07-8c13-259ceb8c4274}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="Flyweight\Flyweight.h">
       <Filter>Flyweight</Filter>
     </ClInclude>
+    <ClInclude Include="Interpreter\Interpreter.h">
+      <Filter>Interpreter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Flyweight\Flyweight.cpp">
       <Filter>Flyweight</Filter>
+    </ClCompile>
+    <ClCompile Include="Interpreter\Interpreter.cpp">
+      <Filter>Interpreter</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
