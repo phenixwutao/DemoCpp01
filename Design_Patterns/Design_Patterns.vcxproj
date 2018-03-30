@@ -154,6 +154,7 @@
     <ClInclude Include="Builder\CarBuilder.h" />
     <ClInclude Include="ChainOfResponsibility\ChainOfResponsibility.h" />
     <ClInclude Include="Command\Command.h" />
+    <ClInclude Include="Composite\Composite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -165,6 +166,7 @@
     <ClCompile Include="Builder\CarBuilder.cpp" />
     <ClCompile Include="ChainOfResponsibility\ChainOfResponsibility.cpp" />
     <ClCompile Include="Command\Command.cpp" />
+    <ClCompile Include="Composite\Composite.cpp" />
     <ClCompile Include="Design_Patterns.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

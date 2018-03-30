@@ -34,6 +34,9 @@
     <Filter Include="Command">
       <UniqueIdentifier>{e16cf3a5-86de-4f61-8d02-1d422a212dd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Composite">
+      <UniqueIdentifier>{63ed03da-e2e8-491e-8193-79650cfc3bf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="Command\Command.h">
       <Filter>Command</Filter>
     </ClInclude>
+    <ClInclude Include="Composite\Composite.h">
+      <Filter>Composite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Command\Command.cpp">
       <Filter>Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Composite\Composite.cpp">
+      <Filter>Composite</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
