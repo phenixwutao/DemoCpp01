@@ -52,6 +52,9 @@
     <Filter Include="Interpreter">
       <UniqueIdentifier>{720edaf4-fd12-4c07-8c13-259ceb8c4274}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Iterator">
+      <UniqueIdentifier>{c25060c5-9277-4552-af2a-4a72a1b5dc78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -99,6 +102,12 @@
     <ClInclude Include="Interpreter\Interpreter.h">
       <Filter>Interpreter</Filter>
     </ClInclude>
+    <ClInclude Include="Iterator\Iterator.h">
+      <Filter>Iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="Iterator\List.h">
+      <Filter>Iterator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -145,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="Interpreter\Interpreter.cpp">
       <Filter>Interpreter</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator\Iterator.cpp">
+      <Filter>Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator\List.cpp">
+      <Filter>Iterator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
