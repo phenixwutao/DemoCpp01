@@ -76,6 +76,9 @@
     <Filter Include="State">
       <UniqueIdentifier>{5cd8f479-1949-4182-9c73-d267e1421858}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Strategy">
+      <UniqueIdentifier>{801bc52c-d0dd-4500-9895-81a937842120}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="State\State.h">
       <Filter>State</Filter>
     </ClInclude>
+    <ClInclude Include="Strategy\Strategy.h">
+      <Filter>Strategy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="State\State.cpp">
       <Filter>State</Filter>
+    </ClCompile>
+    <ClCompile Include="Strategy\Strategy.cpp">
+      <Filter>Strategy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
