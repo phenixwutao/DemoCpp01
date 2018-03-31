@@ -55,6 +55,9 @@
     <Filter Include="Iterator">
       <UniqueIdentifier>{c25060c5-9277-4552-af2a-4a72a1b5dc78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mediator">
+      <UniqueIdentifier>{b5756a7a-f4d7-4d4d-9c6e-0849ef62a1f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -108,6 +111,9 @@
     <ClInclude Include="Iterator\List.h">
       <Filter>Iterator</Filter>
     </ClInclude>
+    <ClInclude Include="Mediator\Mediator.h">
+      <Filter>Mediator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -160,6 +166,9 @@
     </ClCompile>
     <ClCompile Include="Iterator\List.cpp">
       <Filter>Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator\Mediator.cpp">
+      <Filter>Mediator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
