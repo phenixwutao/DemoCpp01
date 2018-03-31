@@ -58,6 +58,9 @@
     <Filter Include="Mediator">
       <UniqueIdentifier>{b5756a7a-f4d7-4d4d-9c6e-0849ef62a1f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memento">
+      <UniqueIdentifier>{c11a97b0-4192-41c2-a633-53b268a236be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="Mediator\Mediator.h">
       <Filter>Mediator</Filter>
     </ClInclude>
+    <ClInclude Include="Memento\Memento.h">
+      <Filter>Memento</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -169,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="Mediator\Mediator.cpp">
       <Filter>Mediator</Filter>
+    </ClCompile>
+    <ClCompile Include="Memento\Memento.cpp">
+      <Filter>Memento</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
