@@ -70,6 +70,9 @@
     <Filter Include="Proxy">
       <UniqueIdentifier>{75f64cf5-d1a7-4765-a196-d6667abba7d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Singleton">
+      <UniqueIdentifier>{8fa45db5-4c31-4ab2-a93c-61d6888d01e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -138,6 +141,9 @@
     <ClInclude Include="Proxy\Proxy.h">
       <Filter>Proxy</Filter>
     </ClInclude>
+    <ClInclude Include="Singleton\Singleton.h">
+      <Filter>Singleton</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -205,6 +211,9 @@
     </ClCompile>
     <ClCompile Include="Proxy\Proxy.cpp">
       <Filter>Proxy</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton\Singleton.cpp">
+      <Filter>Singleton</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
