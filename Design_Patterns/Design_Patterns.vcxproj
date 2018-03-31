@@ -165,6 +165,7 @@
     <ClInclude Include="Mediator\Mediator.h" />
     <ClInclude Include="Memento\Memento.h" />
     <ClInclude Include="Observer\Observer.h" />
+    <ClInclude Include="Prototype\Prototype.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -188,6 +189,7 @@
     <ClCompile Include="Mediator\Mediator.cpp" />
     <ClCompile Include="Memento\Memento.cpp" />
     <ClCompile Include="Observer\Observer.cpp" />
+    <ClCompile Include="Prototype\Prototype.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
