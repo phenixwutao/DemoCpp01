@@ -166,6 +166,7 @@
     <ClInclude Include="Memento\Memento.h" />
     <ClInclude Include="Observer\Observer.h" />
     <ClInclude Include="Prototype\Prototype.h" />
+    <ClInclude Include="Proxy\Proxy.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -190,6 +191,7 @@
     <ClCompile Include="Memento\Memento.cpp" />
     <ClCompile Include="Observer\Observer.cpp" />
     <ClCompile Include="Prototype\Prototype.cpp" />
+    <ClCompile Include="Proxy\Proxy.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

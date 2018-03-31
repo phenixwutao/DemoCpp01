@@ -67,6 +67,9 @@
     <Filter Include="Prototype">
       <UniqueIdentifier>{d8c644d8-8480-4bf9-a625-fb642e7dc61d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Proxy">
+      <UniqueIdentifier>{75f64cf5-d1a7-4765-a196-d6667abba7d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,6 +135,9 @@
     <ClInclude Include="Prototype\Prototype.h">
       <Filter>Prototype</Filter>
     </ClInclude>
+    <ClInclude Include="Proxy\Proxy.h">
+      <Filter>Proxy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -196,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="Prototype\Prototype.cpp">
       <Filter>Prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="Proxy\Proxy.cpp">
+      <Filter>Proxy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
