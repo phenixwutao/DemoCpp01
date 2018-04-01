@@ -61,6 +61,9 @@
     <Filter Include="Singleton">
       <UniqueIdentifier>{ea8559fb-39ee-4127-8afc-ca819a60f2f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="State">
+      <UniqueIdentifier>{c3035ef8-f92d-4c8e-b962-181b32ba02dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -117,6 +120,9 @@
     <ClInclude Include="Singleton\Singleton.h">
       <Filter>Singleton</Filter>
     </ClInclude>
+    <ClInclude Include="State\State.h">
+      <Filter>State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -172,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="Singleton\Singleton.cpp">
       <Filter>Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="State\State.cpp">
+      <Filter>State</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
