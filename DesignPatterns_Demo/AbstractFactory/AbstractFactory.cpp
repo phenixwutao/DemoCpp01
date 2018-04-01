@@ -84,6 +84,7 @@ namespace DemoAbstractFactory {
   }
   void TestAbstractFactory()
   {
+    FUNC_INFO;
     ConcreateFactory1 *pFactory1 = new ConcreateFactory1;
     AbstractProductA *pProductA1 = pFactory1->CreateProductA();
     AbstractProductB *pProductB1 = pFactory1->CreateProductB();

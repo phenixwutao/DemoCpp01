@@ -148,11 +148,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AbstractFactory\AbstractFactory.h" />
+    <ClInclude Include="Adapter\Adapter.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AbstractFactory\AbstractFactory.cpp" />
+    <ClCompile Include="Adapter\Adapter.cpp" />
     <ClCompile Include="DesignPatterns_Demo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
