@@ -37,6 +37,9 @@
     <Filter Include="Decorator">
       <UniqueIdentifier>{16fc2c33-2c3a-417a-a201-712ee25f78b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{d8e04d64-0434-47d2-a948-93d05b6743b1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,6 +72,9 @@
     <ClInclude Include="Decorator\Decorator.h">
       <Filter>Decorator</Filter>
     </ClInclude>
+    <ClInclude Include="Factory\Factory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -100,6 +106,9 @@
     </ClCompile>
     <ClCompile Include="Decorator\Decorator.cpp">
       <Filter>Decorator</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory\Factory.cpp">
+      <Filter>Factory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
