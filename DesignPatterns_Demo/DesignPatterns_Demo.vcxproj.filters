@@ -70,6 +70,9 @@
     <Filter Include="TemplateMethod">
       <UniqueIdentifier>{74930747-8af8-4ba4-aed2-e3c1ef96394f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{c935b84a-22ab-4500-b6f8-adf0b19b4385}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -135,6 +138,9 @@
     <ClInclude Include="TemplateMethod\TemplateMethod.h">
       <Filter>TemplateMethod</Filter>
     </ClInclude>
+    <ClInclude Include="Visitor\Visitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -199,6 +205,9 @@
     </ClCompile>
     <ClCompile Include="TemplateMethod\TemplateMethod.cpp">
       <Filter>TemplateMethod</Filter>
+    </ClCompile>
+    <ClCompile Include="Visitor\Visitor.cpp">
+      <Filter>Visitor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
