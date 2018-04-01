@@ -49,6 +49,9 @@
     <Filter Include="Memento">
       <UniqueIdentifier>{ca6449ae-25a8-4ec0-bddd-59eeeccf092e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Observer">
+      <UniqueIdentifier>{df64f223-acd5-498a-883d-a1e9115bce97}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -93,6 +96,9 @@
     <ClInclude Include="Memento\Memento.h">
       <Filter>Memento</Filter>
     </ClInclude>
+    <ClInclude Include="Observer\Observer.h">
+      <Filter>Observer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -136,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="Memento\Memento.cpp">
       <Filter>Memento</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer\Observer.cpp">
+      <Filter>Observer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
