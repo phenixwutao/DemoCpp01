@@ -25,6 +25,9 @@
     <Filter Include="Builder">
       <UniqueIdentifier>{34d6038a-91ce-42ee-912c-4dd197a122d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ChainOfResponsibility">
+      <UniqueIdentifier>{37faa55e-3da2-45fe-888c-671e3b1f7ce6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -45,6 +48,9 @@
     <ClInclude Include="Builder\Builder.h">
       <Filter>Builder</Filter>
     </ClInclude>
+    <ClInclude Include="ChainOfResponsibility\ChainOfResponsibility.h">
+      <Filter>ChainOfResponsibility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -64,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="Builder\Builder.cpp">
       <Filter>Builder</Filter>
+    </ClCompile>
+    <ClCompile Include="ChainOfResponsibility\ChainOfResponsibility.cpp">
+      <Filter>ChainOfResponsibility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
