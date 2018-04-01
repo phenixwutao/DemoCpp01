@@ -22,6 +22,9 @@
     <Filter Include="Bridge">
       <UniqueIdentifier>{fbfa4609-d867-42ed-93ab-37d56fe75a91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Builder">
+      <UniqueIdentifier>{34d6038a-91ce-42ee-912c-4dd197a122d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -39,6 +42,9 @@
     <ClInclude Include="Bridge\Bridge.h">
       <Filter>Bridge</Filter>
     </ClInclude>
+    <ClInclude Include="Builder\Builder.h">
+      <Filter>Builder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="Bridge\Bridge.cpp">
       <Filter>Bridge</Filter>
+    </ClCompile>
+    <ClCompile Include="Builder\Builder.cpp">
+      <Filter>Builder</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
