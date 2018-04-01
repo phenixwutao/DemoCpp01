@@ -40,6 +40,9 @@
     <Filter Include="Factory">
       <UniqueIdentifier>{d8e04d64-0434-47d2-a948-93d05b6743b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FlyWeight">
+      <UniqueIdentifier>{31d32cc3-4716-4156-a2c2-1d4cce743915}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,6 +78,9 @@
     <ClInclude Include="Factory\Factory.h">
       <Filter>Factory</Filter>
     </ClInclude>
+    <ClInclude Include="FlyWeight\FlyWeight.h">
+      <Filter>FlyWeight</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -109,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Factory\Factory.cpp">
       <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyWeight\FlyWeight.cpp">
+      <Filter>FlyWeight</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
