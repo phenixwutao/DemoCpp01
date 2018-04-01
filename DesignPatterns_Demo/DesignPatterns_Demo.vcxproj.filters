@@ -43,6 +43,9 @@
     <Filter Include="FlyWeight">
       <UniqueIdentifier>{31d32cc3-4716-4156-a2c2-1d4cce743915}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Iterator">
+      <UniqueIdentifier>{004afe2f-3bbb-4008-9be6-c5a8c2b308de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -81,6 +84,9 @@
     <ClInclude Include="FlyWeight\FlyWeight.h">
       <Filter>FlyWeight</Filter>
     </ClInclude>
+    <ClInclude Include="Iterator\Iterator.h">
+      <Filter>Iterator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -118,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="FlyWeight\FlyWeight.cpp">
       <Filter>FlyWeight</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator\Iterator.cpp">
+      <Filter>Iterator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
