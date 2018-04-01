@@ -152,6 +152,7 @@
     <ClInclude Include="Bridge\Bridge.h" />
     <ClInclude Include="Builder\Builder.h" />
     <ClInclude Include="ChainOfResponsibility\ChainOfResponsibility.h" />
+    <ClInclude Include="Command\Command.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="Bridge\Bridge.cpp" />
     <ClCompile Include="Builder\Builder.cpp" />
     <ClCompile Include="ChainOfResponsibility\ChainOfResponsibility.cpp" />
+    <ClCompile Include="Command\Command.cpp" />
     <ClCompile Include="DesignPatterns_Demo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

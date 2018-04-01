@@ -28,6 +28,9 @@
     <Filter Include="ChainOfResponsibility">
       <UniqueIdentifier>{37faa55e-3da2-45fe-888c-671e3b1f7ce6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Command">
+      <UniqueIdentifier>{f65827eb-0dbc-450d-8d41-4e9a438189aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -51,6 +54,9 @@
     <ClInclude Include="ChainOfResponsibility\ChainOfResponsibility.h">
       <Filter>ChainOfResponsibility</Filter>
     </ClInclude>
+    <ClInclude Include="Command\Command.h">
+      <Filter>Command</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="ChainOfResponsibility\ChainOfResponsibility.cpp">
       <Filter>ChainOfResponsibility</Filter>
+    </ClCompile>
+    <ClCompile Include="Command\Command.cpp">
+      <Filter>Command</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
