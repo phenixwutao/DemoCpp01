@@ -34,6 +34,9 @@
     <Filter Include="Composite">
       <UniqueIdentifier>{fa46af3d-2640-4406-9f51-b7151eb73daf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Decorator">
+      <UniqueIdentifier>{16fc2c33-2c3a-417a-a201-712ee25f78b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="Composite\Composite.h">
       <Filter>Composite</Filter>
     </ClInclude>
+    <ClInclude Include="Decorator\Decorator.h">
+      <Filter>Decorator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Composite\Composite.cpp">
       <Filter>Composite</Filter>
+    </ClCompile>
+    <ClCompile Include="Decorator\Decorator.cpp">
+      <Filter>Decorator</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
