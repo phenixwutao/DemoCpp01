@@ -19,6 +19,9 @@
     <Filter Include="Adapter">
       <UniqueIdentifier>{0ce04102-6f7c-4ade-b58d-24c82c78c149}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bridge">
+      <UniqueIdentifier>{fbfa4609-d867-42ed-93ab-37d56fe75a91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -33,6 +36,9 @@
     <ClInclude Include="Adapter\Adapter.h">
       <Filter>Adapter</Filter>
     </ClInclude>
+    <ClInclude Include="Bridge\Bridge.h">
+      <Filter>Bridge</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -46,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="Adapter\Adapter.cpp">
       <Filter>Adapter</Filter>
+    </ClCompile>
+    <ClCompile Include="Bridge\Bridge.cpp">
+      <Filter>Bridge</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
