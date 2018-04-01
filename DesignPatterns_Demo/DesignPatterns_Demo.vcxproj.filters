@@ -46,6 +46,9 @@
     <Filter Include="Iterator">
       <UniqueIdentifier>{004afe2f-3bbb-4008-9be6-c5a8c2b308de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memento">
+      <UniqueIdentifier>{ca6449ae-25a8-4ec0-bddd-59eeeccf092e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,6 +90,9 @@
     <ClInclude Include="Iterator\Iterator.h">
       <Filter>Iterator</Filter>
     </ClInclude>
+    <ClInclude Include="Memento\Memento.h">
+      <Filter>Memento</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -127,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Iterator\Iterator.cpp">
       <Filter>Iterator</Filter>
+    </ClCompile>
+    <ClCompile Include="Memento\Memento.cpp">
+      <Filter>Memento</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
