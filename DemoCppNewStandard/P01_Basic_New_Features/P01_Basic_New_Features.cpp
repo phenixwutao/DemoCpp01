@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 #include <regex>
+#include <algorithm>
+#include <thread>
 using namespace std;
 
 namespace BasicNewFeatures {
@@ -225,6 +227,138 @@ namespace BasicNewFeatures {
     InitializerLists::Widget3 w3 { 1, 2, 3};
     InitializerLists::Widget3 w4 { 1.0f,2.0,3.0 };
     InitializerLists::Widget3 w5 {"hello","world","miss"};
+  }
+
+  void DemoLambdaFunctions()
+  {
+    FUNC_INFO;
+    std::vector<int> vec;
+    vec.emplace_back(1);
+    vec.emplace_back(10);
+    vec.emplace_back(3);
+    vec.emplace_back(8);
+    vec.emplace_back(6);
+    vec.emplace_back(2);
+    auto vecPredict = [](const int& v1, const int& v2)
+    {
+      return v1 < v2; 
+    };
+
+    std::sort(vec.begin(), vec.end(), vecPredict);
+    for (const auto& it : vec)
+      cout << it << endl;
+
+    // capture local variables by copy
+    int wMin = 4;
+    int wMax = 9;
+    auto it = std::find_if(vec.begin(), vec.end(),
+      [wMin, wMax](int i) {return i > wMin && i < wMax; });
+    cout << *it << endl;
+
+    // capture local variables by reference
+    auto it2 = std::find_if(vec.cbegin(), vec.cend(),
+      [&wMin, &wMax](int i) {return i > wMin && i < wMax; });
+    cout << *it2 << endl;
+
+    // capture local variables by copy and reference
+    it2 = std::find_if(vec.cbegin(), vec.cend(),
+      [wMin, &wMax](int i) {return i > wMin && i < wMax; });
+    cout << *it2 << endl;
+
+    // capture mode default by copy
+    it2 = std::find_if(vec.cbegin(), vec.cend(),
+      [=](int i) {return i > wMin && i < wMax; });
+    cout << *it2 << endl;
+
+    // capture mode default by reference
+    it2 = std::find_if(vec.cbegin(), vec.cend(),
+      [&](int i) {return i > wMin && i < wMax; });
+    cout << *it2 << endl;
+
+    // Default overridable on a per-variable basis
+    // default is captured by value, but wMax is by reference
+    it2 = std::find_if(vec.cbegin(), vec.cend(),
+      [=,&wMax](int i) {return i > wMin && i < wMax; });
+    cout << *it2 << endl;
+  }
+
+  namespace DemoLambda {
+    class MyLambda
+    {
+    public:
+      void operation();
+    private:
+      vector<int> list;
+      int wMin = 4;
+    };
+
+    void MyLambda::operation()
+    {
+      list.emplace_back(1);
+      list.emplace_back(3);
+      list.emplace_back(5);
+      list.emplace_back(8);
+
+      // capture class member by this pointer
+      auto it = std::find_if(list.begin(), list.end(),
+        [this](int i) {return i > wMin; });
+      cout << *it << endl;
+
+      // default capture mode (by copy) makes this available:
+      it = std::find_if(list.begin(), list.end(),
+        [=](int i) {return i > wMin; });
+      cout << *it << endl;
+
+      // default capture mode (by reference) makes this available:
+      it = std::find_if(list.begin(), list.end(),
+        [&](int i) {return i > wMin; });
+      cout << *it << endl;
+    }
+  }
+  void DemoLambdaCapturingClassMembers()
+  {
+    FUNC_INFO;
+    DemoLambda::MyLambda lamb;
+    lamb.operation();
+  }
+  
+  void DemoLambdaReturnTypes()
+  {
+    FUNC_INFO;
+    vector<double> vec;
+    vec.emplace_back(1.1);
+    vec.emplace_back(1.2);
+    vec.emplace_back(1.3);
+    std::transform(vec.begin(), vec.end(), vec.begin(),
+      [](double val)->double
+      {return val * val; });
+
+    for (const auto& it : vec)
+      cout << it << endl;
+
+    // Trailing Return Type
+    auto mySquare = [=](int i)->int {return i * i; };
+    cout << mySquare(3) << endl;
+  }
+
+  namespace LambdaParameter
+  {
+    void DoWork()
+    {
+      auto trd_id = std::this_thread::get_id();
+      cout << "running " << __func__ << " in thread " << trd_id << endl;
+    }
+  }
+  void DemoLambdaWithoutParameterLists()
+  {
+    FUNC_INFO;
+    // lambda with empty parameter list
+    thread t1( []() { LambdaParameter::DoWork(); } );
+    t1.join();
+
+    // lambda without empty parameter list
+    thread t2( [] { LambdaParameter::DoWork(); });
+    t2.join();
   }
 
 }

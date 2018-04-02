@@ -10,5 +10,9 @@ namespace BasicNewFeatures {
   void DemoRawString();
   void DemoUniformInitializationSyntax();
   void DemoInitializerLists();
+  void DemoLambdaFunctions();
+  void DemoLambdaCapturingClassMembers();
+  void DemoLambdaReturnTypes();
+  void DemoLambdaWithoutParameterLists();
 }
 #endif
