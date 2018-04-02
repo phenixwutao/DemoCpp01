@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Design_Patterns", "Design_P
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DesignPatterns_Demo", "DesignPatterns_Demo\DesignPatterns_Demo.vcxproj", "{88C8772D-89A6-415D-B2BE-59C9CF1EDFCB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DemoCppNewStandard", "DemoCppNewStandard\DemoCppNewStandard.vcxproj", "{705C163B-6292-4B46-A828-46D9958849A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -139,6 +141,16 @@ Global
 		{88C8772D-89A6-415D-B2BE-59C9CF1EDFCB}.Release|x64.Build.0 = Release|x64
 		{88C8772D-89A6-415D-B2BE-59C9CF1EDFCB}.Release|x86.ActiveCfg = Release|Win32
 		{88C8772D-89A6-415D-B2BE-59C9CF1EDFCB}.Release|x86.Build.0 = Release|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Debug|x64.ActiveCfg = Debug|x64
+		{705C163B-6292-4B46-A828-46D9958849A9}.Debug|x64.Build.0 = Debug|x64
+		{705C163B-6292-4B46-A828-46D9958849A9}.Debug|x86.ActiveCfg = Debug|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Debug|x86.Build.0 = Debug|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Release|x64.ActiveCfg = Release|x64
+		{705C163B-6292-4B46-A828-46D9958849A9}.Release|x64.Build.0 = Release|x64
+		{705C163B-6292-4B46-A828-46D9958849A9}.Release|x86.ActiveCfg = Release|Win32
+		{705C163B-6292-4B46-A828-46D9958849A9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
