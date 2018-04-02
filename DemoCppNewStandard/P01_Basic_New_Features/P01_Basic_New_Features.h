@@ -5,5 +5,8 @@
 namespace BasicNewFeatures {
   void DemoBasicForLoop();
   void DemoNullptr();
+  void DemoTemplateFunctionNullptr();
+  void DemoUnicodeSupport();
+  void DemoRawString();
 }
 #endif
