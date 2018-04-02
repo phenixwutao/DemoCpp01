@@ -194,4 +194,37 @@ namespace BasicNewFeatures {
     // UniformInitialization::Wid2 w6 { 10.5 }; // compiler error
   }
 
+  namespace InitializerLists
+  {
+    class Widget3 {
+    public:
+      Widget3(double value, double uncertainty)      // #1
+      {
+        cout << "Widget3 call #1" << endl;
+      }
+
+      Widget3(std::initializer_list<double> values)  // #2
+      {
+        cout << "Widget3 call #2 double" << endl;
+      }
+      Widget3(std::initializer_list<int> values)  // #3
+      {
+        cout << "Widget3 call #3 int" << endl;
+      }
+      Widget3(std::initializer_list<string> values)  // #4
+      {
+        cout << "Widget3 call #4 string" << endl;
+      }
+    };
+  }
+  void DemoInitializerLists()
+  {
+    double d1(1.1), d2(2.2);
+    InitializerLists::Widget3 w2 (d1, d2);   // calls #1
+    InitializerLists::Widget3 w1 { d1, d2 }; // calls #2
+    InitializerLists::Widget3 w3 { 1, 2, 3};
+    InitializerLists::Widget3 w4 { 1.0f,2.0,3.0 };
+    InitializerLists::Widget3 w5 {"hello","world","miss"};
+  }
+
 }

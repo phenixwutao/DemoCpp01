@@ -9,5 +9,6 @@ namespace BasicNewFeatures {
   void DemoUnicodeSupport();
   void DemoRawString();
   void DemoUniformInitializationSyntax();
+  void DemoInitializerLists();
 }
 #endif
