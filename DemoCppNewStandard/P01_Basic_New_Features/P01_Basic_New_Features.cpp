@@ -398,6 +398,7 @@ namespace BasicNewFeatures {
 
   void DemoLambdasAsContainerComparisonFunctions()
   {
+    FUNC_INFO;
     auto cmpFunction = [](int a, int b) // compare values, not pointer
                        { return a > b; };
     // setup sort function (default is less than)
@@ -411,4 +412,21 @@ namespace BasicNewFeatures {
     cout << endl;
   }
 
+  namespace DemoUsing {
+    void func(int a)
+    {
+      printf("call func %d\n", a);
+    }
+  }
+  void DemoUsingVersusTypedef()
+  {
+    FUNC_INFO;
+    typedef void(*CallBackPtr1)(int); // function pointer typedef
+    CallBackPtr1 myCallBack1 = &DemoUsing::func;
+    myCallBack1(1);
+
+    using CallBackPtr2 = void(*)(int); // by using
+    CallBackPtr2 myCallBack2 = DemoUsing::func;
+    myCallBack2(2);
+  }
 }
