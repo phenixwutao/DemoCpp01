@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <string>
 #include <regex>
 #include <algorithm>
@@ -394,4 +395,20 @@ namespace BasicNewFeatures {
 
     StoringClosures::UseFunction(func3, val);
   }
+
+  void DemoLambdasAsContainerComparisonFunctions()
+  {
+    auto cmpFunction = [](int a, int b) // compare values, not pointer
+                       { return a > b; };
+    // setup sort function (default is less than)
+    std::set<int, decltype(cmpFunction)> s(cmpFunction); // sort set that way
+    s.insert(9);
+    s.insert(3);
+    s.insert(6);
+    s.insert(4);
+    for (const auto& it : s)
+      cout << it << " ";
+    cout << endl;
+  }
+
 }
