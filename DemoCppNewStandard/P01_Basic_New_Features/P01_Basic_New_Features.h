@@ -8,5 +8,6 @@ namespace BasicNewFeatures {
   void DemoTemplateFunctionNullptr();
   void DemoUnicodeSupport();
   void DemoRawString();
+  void DemoUniformInitializationSyntax();
 }
 #endif

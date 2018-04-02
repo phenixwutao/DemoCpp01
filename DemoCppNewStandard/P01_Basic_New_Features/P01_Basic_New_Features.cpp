@@ -111,4 +111,87 @@ namespace BasicNewFeatures {
     auto name = R"HHH(test folder C:\Program files\IT2 Solutions\AppServer;)HHH";
     cout << name << endl;
   }
+  namespace UniformInitialization
+  {
+    struct Point
+    {
+      Point(int x, int y)
+      {
+      }
+
+      int x;
+      int y;
+    };
+
+    struct Point1
+    {
+      int x;
+      int y;
+    };
+
+    class Point2
+    {
+    public:
+      Point2(int a, int b)
+      {
+      }
+    private:
+      int x;
+      int y;
+    };
+
+    class Widget {
+    public:
+      Widget() : data{ 1, 2, 3, 4, 5 } {}
+    private:
+      const int data[5];
+    };
+    
+    void funcUniformInitialization(const std::vector<int>& v) // func. declaration
+    {
+    }
+
+    Point2 makePoint()  // return expression;
+                        // calls Point2 ctor
+    {
+      return { 0, 0 };
+    }
+
+    class Wid2 {
+    public:
+      explicit Wid2(int a) {}
+    private:
+      int x;
+    };
+  }
+  void DemoUniformInitializationSyntax()
+  {
+    int z { 3 };
+    int zID[] = {1,2,3};
+    UniformInitialization::Point t1{ 1,2 };
+    UniformInitialization::Point t2(3, 4);
+    const UniformInitialization::Point t3 = { 2,3 };
+
+
+    const int val1 { 5 };
+    const int val2 { 5 };
+    int a[] { 1, 2, val1, val1 + val2 };
+    const UniformInitialization::Point1 p1{ 10, 20 }; // Uniform Initialization
+    const UniformInitialization::Point2 p2{ 10, 20 }; // calls Point2 ctor
+    const std::vector<int> cv{ a[0], 20, val2 };
+    const float * pData = new const float[4]{ 1.5, val1 - val2, 3.5, 4.5 };
+    delete pData;
+    
+    auto p3 = UniformInitialization::makePoint();
+
+    UniformInitialization::funcUniformInitialization({ val1, val2, 10, 20, 30 }); // function argument
+
+    UniformInitialization::Wid2 w1 { 10 };
+    UniformInitialization::Wid2 w2 (10);
+    // UniformInitialization::Wid2 w3 = { 10 };// error
+    // UniformInitialization::Wid2 w4 = (10);  // error
+    UniformInitialization::Wid2 w5 (10.5);   // compiler warning
+    // UniformInitialization::Wid2 w6 { 10.5 }; // compiler error
+  }
+
 }
