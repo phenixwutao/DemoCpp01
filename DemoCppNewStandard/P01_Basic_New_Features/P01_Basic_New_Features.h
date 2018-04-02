@@ -14,5 +14,6 @@ namespace BasicNewFeatures {
   void DemoLambdaCapturingClassMembers();
   void DemoLambdaReturnTypes();
   void DemoLambdaWithoutParameterLists();
+  void DemoLambdaStoringClosures();
 }
 #endif

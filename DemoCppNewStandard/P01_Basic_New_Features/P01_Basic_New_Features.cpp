@@ -361,4 +361,37 @@ namespace BasicNewFeatures {
     t2.join();
   }
 
+  namespace StoringClosures
+  {
+    void UseFunction(std::function<bool(long)> func, long val)
+    {
+      printf("---- in %s  %d\n", __func__, func(val));
+    }
+
+    // Storing Closures for class data members
+    class Widget {
+    private:
+      std::function<bool(long)> eventHandler; // fine
+    };
+  }
+  void DemoLambdaStoringClosures()
+  {
+    FUNC_INFO;
+    long val = 6;
+    // using auto
+    auto func1 = [=](long x) { return x % 5 == 0; };
+    cout << (func1(val) == true ? "Yes" : "No")<< endl;
+
+    // using std::function< return-type (parameter) >
+    // function type is std::function<bool(long)>
+    val = 10;
+    std::function<bool(long)> func2 = [=](long x) { return x % 5 == 0; };
+    cout << (func2(val) == true ? "Yes" : "No") << endl;
+
+    // function type is std::function<auto (long)->bool>
+    std::function<auto(long)->bool> func3 = [=](long x) { return x % 5 == 0; };
+    cout << (func3(val) == true ? "Yes" : "No") << endl;
+
+    StoringClosures::UseFunction(func3, val);
+  }
 }
