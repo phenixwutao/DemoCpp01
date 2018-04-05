@@ -20,5 +20,7 @@ namespace BasicNewFeatures {
   void DemoBasicThreads();
   void DemoBasicThreadLifetime();
   void DemoThreadAsynchronousCall();
+  void DemoThreadFuture();
+  void DemoThreadFutureWaitFor();
 }
 #endif

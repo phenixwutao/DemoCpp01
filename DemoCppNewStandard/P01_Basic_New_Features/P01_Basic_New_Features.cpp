@@ -562,4 +562,38 @@ namespace BasicNewFeatures {
     cout << "Automatic output is " << wOutput << endl;
   }
 
+  namespace ThreadFuture
+  {
+    int demoCall(int x, int y)
+    {
+      for (int i = 1; i <= 5; ++i)
+      {
+        printf("sleep %d second in %s\n", i, __func__);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+      }
+      return x < y ? y : x;
+    }
+  }
+  void DemoThreadFuture()
+  {
+    FUNC_INFO;
+    std::future<int> func = std::async([] { return ThreadFuture::demoCall(3,7); });
+    func.wait();
+    auto wOutput = func.get();
+    cout << "wait output is " << wOutput << endl;
+  }
+
+  void DemoThreadFutureWaitFor()
+  {
+    FUNC_INFO;
+    std::future<int> funcWait =
+      std::async(std::launch::async, [] { return ThreadFuture::demoCall(3, 8); });
+    // if result isn't ready, do some work
+    while (funcWait.wait_for(std::chrono::seconds(2)) != std::future_status::ready)
+    {
+      cout << "Still waiting, not ready ..." << endl;
+    }
+    auto val = funcWait.get();
+    cout << "wait_for output is " << val << endl;
+  }
 }
