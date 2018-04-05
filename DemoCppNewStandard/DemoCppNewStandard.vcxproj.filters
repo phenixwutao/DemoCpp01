@@ -16,6 +16,9 @@
     <Filter Include="P01_Basic_New_Features">
       <UniqueIdentifier>{48327c72-2711-4143-8275-3c9d7e887f16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="P02_New_Libs_Enhancement">
+      <UniqueIdentifier>{845ee64a-5126-47bd-8a6f-8ac98e53bddb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,6 +30,9 @@
     <ClInclude Include="P01_Basic_New_Features\P01_Basic_New_Features.h">
       <Filter>P01_Basic_New_Features</Filter>
     </ClInclude>
+    <ClInclude Include="P02_New_Libs_Enhancement\P02_New_Libs_Enhancement.h">
+      <Filter>P02_New_Libs_Enhancement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +43,9 @@
     </ClCompile>
     <ClCompile Include="P01_Basic_New_Features\P01_Basic_New_Features.cpp">
       <Filter>P01_Basic_New_Features</Filter>
+    </ClCompile>
+    <ClCompile Include="P02_New_Libs_Enhancement\P02_New_Libs_Enhancement.cpp">
+      <Filter>P02_New_Libs_Enhancement</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
