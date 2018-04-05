@@ -22,5 +22,6 @@ namespace BasicNewFeatures {
   void DemoThreadAsynchronousCall();
   void DemoThreadFuture();
   void DemoThreadFutureWaitFor();
+  void DemoThreadFutureVoid();
 }
 #endif

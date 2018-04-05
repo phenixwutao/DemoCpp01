@@ -573,6 +573,8 @@ namespace BasicNewFeatures {
       }
       return x < y ? y : x;
     }
+    void returnVoidCall()
+    {}
   }
   void DemoThreadFuture()
   {
@@ -596,4 +598,12 @@ namespace BasicNewFeatures {
     auto val = funcWait.get();
     cout << "wait_for output is " << val << endl;
   }
+
+  void DemoThreadFutureVoid()
+  {
+    FUNC_INFO;
+    std::future<void> f1 = std::async( [] { ThreadFuture::returnVoidCall(); } );
+    f1.get();
+  }
+
 }
