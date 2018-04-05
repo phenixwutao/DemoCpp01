@@ -19,5 +19,6 @@ namespace BasicNewFeatures {
   void DemoUsingVersusTypedef();
   void DemoBasicThreads();
   void DemoBasicThreadLifetime();
+  void DemoThreadAsynchronousCall();
 }
 #endif

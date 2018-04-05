@@ -8,6 +8,7 @@
 #include <regex>
 #include <algorithm>
 #include <thread>
+#include <future>
 using namespace std;
 
 namespace BasicNewFeatures {
@@ -482,6 +483,12 @@ namespace BasicNewFeatures {
     {
       printf("call %s  %d  %d\n", __func__, xParam, yParam);
     }
+    void f3(int xVal, const BasicThread::Widget& wVal)
+    {}
+    void f4(const int& xParam, const int& yParam)
+    {
+      printf("call %s  %d  %d\n", __func__, xParam, yParam);
+    }
   }
   void DemoBasicThreadLifetime()
   {
@@ -509,6 +516,50 @@ namespace BasicNewFeatures {
 
     // error, closure holds a copy
     // std::thread t5([=] { BasicThreadLifetime::f1(xParam, yParam); });
+
+    // invoke f3 with copies
+    int xx = 9;
+    BasicThread::Widget wVal;
+    std::thread t6(std::bind(BasicThreadLifetime::f3, xx, wVal));
+    t6.join();
+
+    xParam = 7;
+    yParam = 8;
+    std::thread t7(BasicThreadLifetime::f4, xParam, yParam);
+    t7.join();
+  }
+
+  namespace ThreadAsynchronousCall {
+    int bestValue(int x, int y)
+    {
+      return x < y ? y : x;
+    }
+  }
+  void DemoThreadAsynchronousCall()
+  {
+    FUNC_INFO;
+    std::future<int> func = std::async([]() {return ThreadAsynchronousCall::bestValue(10, 13); });
+    // get result or exception:
+    auto wOutput = func.get();
+    cout << "future output is " << wOutput << endl;
+
+
+    // using std::launch::async function runs on a new thread
+    std::future<int> funcAsynch = std::async(std::launch::async, []() {return ThreadAsynchronousCall::bestValue(10, 13); });
+    wOutput = funcAsynch.get();
+    cout << "async output is " << wOutput << endl;
+
+    // using std::launch::deferred function runs on calling thread
+    std::future<int> funcDeferred = std::async(std::launch::deferred, []() {return ThreadAsynchronousCall::bestValue(10, 13); });
+    wOutput = funcDeferred.get();
+    cout << "deferred output is " << wOutput << endl;
+
+    // using Automatic: The function chooses the policy automatically (at some point).
+    // This depends on the system and library implementation, which generally optimizes for
+    // the current availability of concurrency in the system.
+    std::future<int> funcAutomatic = std::async(launch::async | launch::deferred, []() {return ThreadAsynchronousCall::bestValue(10, 13); });
+    wOutput = funcAutomatic.get();
+    cout << "Automatic output is " << wOutput << endl;
   }
 
 }
