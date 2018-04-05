@@ -17,5 +17,7 @@ namespace BasicNewFeatures {
   void DemoLambdaStoringClosures();
   void DemoLambdasAsContainerComparisonFunctions();
   void DemoUsingVersusTypedef();
+  void DemoBasicThreads();
+  void DemoBasicThreadLifetime();
 }
 #endif

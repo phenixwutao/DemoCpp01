@@ -429,4 +429,86 @@ namespace BasicNewFeatures {
     CallBackPtr2 myCallBack2 = DemoUsing::func;
     myCallBack2(2);
   }
+
+  namespace BasicThread
+  {
+    void doThis()
+    {
+      printf("call %s\n", __func__);
+    }
+
+    class Widget {
+    public:
+      void operator()() const
+      {
+        printf("call %s\n", __func__);
+      }
+
+      void normalize(long double, int, const std::vector<float>&)
+      {
+        printf("call %s\n", __func__);
+      }
+    };
+  }
+
+  void DemoBasicThreads()
+  {
+    FUNC_INFO;
+    std::thread t1(BasicThread::doThis); // run function asynch as normal
+    t1.join();
+
+    BasicThread::Widget w;
+    std::thread t2(w); // "run" class function object asynch.
+    t2.join();
+
+    long double ld = 100.0;
+    int x =2;
+    vector<float> vec { 1.0F, 2.0F, 3.0F };
+    // "run" closure asynch (lambda expression function)
+    std::thread t3( [&](){ w.normalize(ld, x, vec); } );
+    t3.join();
+  }
+
+  namespace BasicThreadLifetime
+  {
+    void f1(int& xParam, int& yParam)
+    {
+      xParam = 1;
+      yParam = 2;
+      printf("call %s  %d  %d\n", __func__, xParam, yParam);
+    }
+
+    void f2(int xParam, int yParam)
+    {
+      printf("call %s  %d  %d\n", __func__, xParam, yParam);
+    }
+  }
+  void DemoBasicThreadLifetime()
+  {
+    FUNC_INFO;
+    int xParam(3), yParam(4);
+    printf("1 call %s  %d  %d\n", __func__, xParam, yParam);
+
+    std::thread t1(BasicThreadLifetime::f1, std::ref(xParam), std::ref(yParam));
+    printf("2 call %s  %d  %d\n", __func__, xParam, yParam);
+
+    t1.join();
+    printf("3 call %s  %d  %d\n", __func__, xParam, yParam);
+
+    // okay, closure holds a copy
+    std::thread t2([=] { BasicThreadLifetime::f2(xParam, yParam); });
+    t2.join();
+
+    // okay, closure holds a reference
+    std::thread t3([&] { BasicThreadLifetime::f2(xParam, yParam); });
+    t3.join();
+
+    // okay, closure holds a reference
+    std::thread t4([&] { BasicThreadLifetime::f1(xParam, yParam); });
+    t4.join();
+
+    // error, closure holds a copy
+    // std::thread t5([=] { BasicThreadLifetime::f1(xParam, yParam); });
+  }
+
 }
