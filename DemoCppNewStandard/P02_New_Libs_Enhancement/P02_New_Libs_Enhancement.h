@@ -5,5 +5,6 @@
 namespace NewLibsEnhancement {
   void DemoUniquePointer();
   void DemoUniquePointerMoveObject();
+  void DemoForwardList();
 }
 #endif

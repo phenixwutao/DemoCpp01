@@ -2,9 +2,11 @@
 #include "P02_New_Libs_Enhancement.h"
 
 #include <algorithm>
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
+#include <forward_list>
 using namespace std;
 
 namespace NewLibsEnhancement {
@@ -147,5 +149,29 @@ namespace NewLibsEnhancement {
       //  });
     }
 
+  }
+
+  void DemoForwardList()
+  {
+    forward_list<int> list;
+    list.push_front(1);
+    list.push_front(5);
+    list.push_front(7);
+    for (auto & it : list)
+      cout << it << " ";
+    cout << endl;
+
+    list.pop_front();
+    for (auto & it : list)
+      cout << it << " ";
+    cout << endl;
+
+    list.clear();
+    list.insert_after(list.before_begin(), 3);
+    list.insert_after(list.begin(), 5);
+    list.insert_after(list.begin(), 6);
+    for (auto & it : list)
+      cout << it << " ";
+    cout << endl;
   }
 }
