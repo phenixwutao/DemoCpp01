@@ -154,6 +154,7 @@ namespace NewLibsEnhancement {
 
   void DemoForwardList()
   {
+    FUNC_INFO;
     forward_list<int> list;
     list.push_front(1);
     list.push_front(5);
@@ -176,7 +177,8 @@ namespace NewLibsEnhancement {
     cout << endl;
   }
 
-  namespace MyRegExp {
+  namespace MyRegExp
+  {
     const std::regex SSNRegex(R"(\d{3}-\d{2}-\d{4})");
     bool looksLikeSSN(const std::string& text)
     {
@@ -194,6 +196,7 @@ namespace NewLibsEnhancement {
   }
   void DemoRegularExpression()
   {
+    FUNC_INFO;
     string text("modern.cpp.865-22-9866-X");
     auto fLike = MyRegExp::looksLikeSSN(text);
     printf("looks like SSN: %d\n", fLike);
@@ -204,5 +207,30 @@ namespace NewLibsEnhancement {
     cout << text << endl;
     MyRegExp::dashifySSNs(text);
     cout << text << endl;
+  }
+
+  namespace CallableFunction {
+    void myfunc(int a)
+    {
+      printf("call myfunc(%d)\n", a);
+    }
+
+    class Widget {
+    public:
+      using FuncPtr = void(*)(int);
+      void operator()(int a) // function call operator
+      {
+        printf("call operator()(%d)\n", a);
+      }
+    };
+  }
+
+  void DemoCallableEntity()
+  {
+    FUNC_INFO;
+    void(*MyFuncPtr)(int) = CallableFunction::myfunc;
+    MyFuncPtr(9);
+    CallableFunction::Widget w;
+    w(2);
   }
 }

@@ -7,5 +7,6 @@ namespace NewLibsEnhancement {
   void DemoUniquePointerMoveObject();
   void DemoForwardList();
   void DemoRegularExpression();
+  void DemoCallableEntity();
 }
 #endif
