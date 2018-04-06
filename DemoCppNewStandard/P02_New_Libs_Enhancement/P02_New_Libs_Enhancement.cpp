@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <forward_list>
+#include <regex>
 using namespace std;
 
 namespace NewLibsEnhancement {
@@ -173,5 +174,35 @@ namespace NewLibsEnhancement {
     for (auto & it : list)
       cout << it << " ";
     cout << endl;
+  }
+
+  namespace MyRegExp {
+    const std::regex SSNRegex(R"(\d{3}-\d{2}-\d{4})");
+    bool looksLikeSSN(const std::string& text)
+    {
+      return std::regex_match(text, SSNRegex);
+    }
+    bool mayContainSSN(const std::string& text)
+    {
+      return std::regex_search(text, SSNRegex);
+    }
+    void dashifySSNs(std::string& text)
+    {
+      const std::string dashes("-----------");
+      text = std::regex_replace(text, SSNRegex, dashes);
+    }
+  }
+  void DemoRegularExpression()
+  {
+    string text("modern.cpp.865-22-9866-X");
+    auto fLike = MyRegExp::looksLikeSSN(text);
+    printf("looks like SSN: %d\n", fLike);
+
+    auto fHasSSN = MyRegExp::mayContainSSN(text);
+    printf("contains   SSN: %d\n", fHasSSN);
+
+    cout << text << endl;
+    MyRegExp::dashifySSNs(text);
+    cout << text << endl;
   }
 }
