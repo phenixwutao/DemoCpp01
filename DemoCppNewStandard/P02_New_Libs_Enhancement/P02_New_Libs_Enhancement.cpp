@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <forward_list>
+#include <functional>
 #include <regex>
 using namespace std;
 
@@ -223,6 +224,21 @@ namespace NewLibsEnhancement {
         printf("call operator()(%d)\n", a);
       }
     };
+
+    int someFunc(std::string&)
+    {
+      printf("call %s\n", __func__);
+      return 1;
+    }
+
+    class Gadget {
+    public:
+      int operator()(std::string& str) // function call operator
+      {
+        printf("call %s\n", __func__);
+        return std::stoi(str);
+      }
+    };
   }
 
   void DemoCallableEntity()
@@ -230,7 +246,30 @@ namespace NewLibsEnhancement {
     FUNC_INFO;
     void(*MyFuncPtr)(int) = CallableFunction::myfunc;
     MyFuncPtr(9);
+
+    using FuncAlias = void(*)(int);
+    FuncAlias func_alias = CallableFunction::myfunc;
+    func_alias(3);
+
     CallableFunction::Widget w;
     w(2);
   }
+
+  void DemoUsingStdFunction()
+  {
+    FUNC_INFO;
+    std::function<int(std::string&)> f;
+    f = CallableFunction::someFunc;
+    string text("321");
+    cout << f(std::ref(text)) << endl;
+
+    f = [](std::string &s)->unsigned
+    { s += "!"; return s.size(); };
+    cout << f(text) << endl;
+
+    CallableFunction::Gadget g;
+    f = g;
+    cout << f(text) << endl;
+  }
+
 }

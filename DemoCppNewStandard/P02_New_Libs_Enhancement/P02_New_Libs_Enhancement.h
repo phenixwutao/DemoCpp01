@@ -8,5 +8,6 @@ namespace NewLibsEnhancement {
   void DemoForwardList();
   void DemoRegularExpression();
   void DemoCallableEntity();
+  void DemoUsingStdFunction();
 }
 #endif
