@@ -272,4 +272,94 @@ namespace NewLibsEnhancement {
     cout << f(text) << endl;
   }
 
+  namespace BindBasis
+  {
+    int func(int x, int y)
+    {
+      printf("bind x %d y %d\n", x, y);
+      return x + y;
+    }
+    class Widget {
+    public:
+      int calcSum(int x, int y)
+      {
+        printf("x= %d y= %d\n", x, y);
+        return x + y;
+      }
+    };
+
+    int funcParam(int a, int b, int c)
+    {
+      printf("a = %d, b = %d, c = %d\n", a,b,c);
+      return a + b + c;
+    }
+  }
+  void DemoBindBasis()
+  {
+    FUNC_INFO;
+    // 1st argument is 10, 2nd argument is _1
+    // std::placeholders max number of place holders is 20, starting from _1 ... _20
+    auto bf = std::bind(BindBasis::func, 2, std::placeholders::_1);
+    printf("call bf is: %d\n", bf(3));
+
+    auto bf2 = std::bind(BindBasis::func, std::placeholders::_2, std::placeholders::_1);
+    printf("call bf2 is: %d\n", bf2(2,3));
+  }
+
+  void DemoBindClassFunction()
+  {
+    FUNC_INFO;
+    // bind class object
+    BindBasis::Widget obj;
+    auto funcBindObject = std::bind(&BindBasis::Widget::calcSum, obj, std::placeholders::_2, std::placeholders::_1);
+    printf("bind Widget object: %d\n", funcBindObject(2, 3));
+
+    // bind class object pointer
+    BindBasis::Widget* pobj = new BindBasis::Widget;
+    auto funcBindPtr = std::bind(&BindBasis::Widget::calcSum, pobj, std::placeholders::_2, std::placeholders::_1);
+    printf("bind Widget object pointer: %d\n", funcBindPtr(4, 5));
+    delete pobj;
+
+    // bind class shared pointer
+    std::shared_ptr<BindBasis::Widget> pWidShr = std::make_shared<BindBasis::Widget>();
+    auto funcShared = std::bind(&BindBasis::Widget::calcSum, pWidShr, std::placeholders::_2, std::placeholders::_1);
+    printf("bind Widget shared pointer: %d\n", funcShared(6, 7));
+
+    // bind class unqiue pointer
+    std::unique_ptr<BindBasis::Widget> pWidUniq = std::make_unique<BindBasis::Widget>();
+    // std::unique_ptr must be wrapped by std::ref when bound, because std::unique_ptr isn't
+    // copyable. It's only movable.
+    auto funcUniq = std::bind(&BindBasis::Widget::calcSum, std::ref(pWidUniq), std::placeholders::_2, std::placeholders::_1);
+    printf("bind Widget unqiue pointer: %d\n", funcUniq(8, 9));
+
+    // Binding Beyond the 2nd Argument
+    std::vector<BindBasis::Widget> vec;
+    for (int i = 0; i < 5; i++)
+    {
+      BindBasis::Widget wid;
+      vec.emplace_back(wid);
+    }
+
+    for_each(vec.begin(), vec.end(),
+      std::bind(&BindBasis::Widget::calcSum, std::placeholders::_1, 10, 20));
+  }
+
+  void DemoBindPositions()
+  {
+    FUNC_INFO;
+    using namespace std::placeholders;
+    std::function<int(int, int)> f1 = std::bind(BindBasis::funcParam, _1, _1, _2);
+    int x(1), y(2), z(3);
+    printf("f1 %d\n", f1(x, y));
+
+    std::function<int(int, int, int)> f2 = std::bind(BindBasis::funcParam, _3, _2, _1);
+    printf("f2 %d\n", f2(x, y, z));
+
+    // use lambda, the same as std::bind
+    auto f3 = [=](int x, int y, int z) -> int
+    {
+      return BindBasis::funcParam(z, y, x);
+    };
+    printf("f3 %d\n", f3(x, y, z));
+  }
 }

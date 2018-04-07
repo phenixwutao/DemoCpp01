@@ -9,5 +9,8 @@ namespace NewLibsEnhancement {
   void DemoRegularExpression();
   void DemoCallableEntity();
   void DemoUsingStdFunction();
+  void DemoBindBasis();
+  void DemoBindClassFunction();
+  void DemoBindPositions();
 }
 #endif
