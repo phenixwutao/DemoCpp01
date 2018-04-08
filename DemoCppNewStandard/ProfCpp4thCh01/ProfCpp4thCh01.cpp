@@ -2,6 +2,7 @@
 #include "ProfCpp4thCh01.h"
 
 #include <iostream>
+#include <string>
 using namespace std;
 namespace chap01
 {
@@ -108,5 +109,43 @@ namespace chap01
       printf("unhandled number %d\n", i);
       break;
     }
+  }
+
+  namespace FunctionReturnType
+  {
+    auto calc(int a, int b) ->decltype (a+b)
+    {
+      return a + b;
+    }
+    auto calc2(int a, int b)
+    {
+      return a + b;
+    }
+    template<typename T1, typename T2>
+    auto calc3(T1&& a, T2&& b)
+    {
+      return a + b;
+    }
+    template<typename T1, typename T2> // detect return type is optional
+    auto calc4(const T1& a, const T2& b) -> decltype(a+b)
+    {
+      return a + b;
+    }
+  }
+  void ch01DemoFunctionReturnTypeDeduction()
+  {
+    FUNC_INFO;
+    printf("calc %d\n", FunctionReturnType::calc(1,2));
+    printf("calc2 %d\n", FunctionReturnType::calc2(1, 2));
+
+    cout << "calc3 " << FunctionReturnType::calc3(1.1, 1.2) << endl;
+    cout << "calc3 " << FunctionReturnType::calc3(3, 4) << endl;
+    string a1("hi,");
+    string a2("Adam");
+    cout << "calc3 " << FunctionReturnType::calc3(a1, a2) << endl;
+
+    cout << "calc4 " << FunctionReturnType::calc4(1.1, 1.2) << endl;
+    cout << "calc4 " << FunctionReturnType::calc4(3, 4) << endl;
+    cout << "calc4 " << FunctionReturnType::calc4(a1, a2) << endl;
   }
 }

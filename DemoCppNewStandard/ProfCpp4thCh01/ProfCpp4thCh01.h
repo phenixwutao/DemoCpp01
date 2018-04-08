@@ -12,5 +12,6 @@ namespace chap01
   void ch01DemoNamespaceCpp17();
   void ch01DemoEnumClass();
   void ch01DemoSwitchFallthrough();
+  void ch01DemoFunctionReturnTypeDeduction();
 }
 #endif
