@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "P03_New_Class_Features.h"
 #include <memory>
+#include <utility>      // std::forward
+#include <string>
+#include <vector>
 using namespace std;
 
 namespace NewClassFeatures {
@@ -102,6 +105,21 @@ namespace NewClassFeatures {
     private:
       Widget w; // lacks move support
     };
+
+    class Widget2 {
+    public:
+      // using std::forward to initialise member variables
+      Widget2(std::string&& name, std::vector<int>&& coords)
+        : m_name(std::forward<string>(name))
+        , m_coordinates(std::forward<std::vector<int>>(coords))
+      {
+        printf("call Widget2 move ctor\n");
+      }
+
+    private:
+      std::string m_name;
+      std::vector<int> m_coordinates;
+    };
   }
   void DemoMoveClassHierarchy()
   {
@@ -112,4 +130,12 @@ namespace NewClassFeatures {
     // because Widget move ctor is not supplied. If move ctor is supplied, will be used.
     ClassHierarchy::Gadget g2 = std::move(g);
   }
+
+  void DemoForwarding()
+  {
+    std::string name("triangle");
+    std::vector<int> vec;
+    ClassHierarchy::Widget2 g(std::move(name), std::move(vec));
+  }
+
 }
