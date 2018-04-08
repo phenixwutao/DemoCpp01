@@ -70,4 +70,43 @@ namespace chap01
 
   }
 
+  void ch01DemoSwitchFallthrough()
+  {
+    FUNC_INFO;
+    // With C++17, you can tell the compiler that a fallthrough is intentional
+    // using the [[fallthrough]] attribute as follows:
+    int iCol = 2;
+    switch (iCol)
+    {
+    case 1:
+      [[fallthrough]]; // tell the compiler that a fallthrough is intentional
+    case 2:
+      printf("group 1\n");
+      break;
+    case 3:
+      [[fallthrough]]; // tell the compiler that a fallthrough is intentional
+    case 4:
+      printf("group 2\n");
+      break;
+    default:
+      printf("group default\n");
+      break;
+    }
+
+    auto func2 = [=](int i)->int {return i + 2; };
+    switch (int i = 1;  func2(i))
+    {
+    case 1:
+      printf("case 1 i = %d\n", i);
+    case 3:
+      printf("case 3 i = %d\n", i);
+    case 5:
+      printf("case 5 i = %d\n", i);
+      break;
+
+    default:
+      printf("unhandled number %d\n", i);
+      break;
+    }
+  }
 }
