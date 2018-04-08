@@ -14,5 +14,7 @@ namespace chap01
   void ch01DemoSwitchFallthrough();
   void ch01DemoFunctionReturnTypeDeduction();
   void ch01DemoArrayInitializationSize();
+  void ch01DemoStdArray();
+  void ch01DemoStructuredBindings();
 }
 #endif

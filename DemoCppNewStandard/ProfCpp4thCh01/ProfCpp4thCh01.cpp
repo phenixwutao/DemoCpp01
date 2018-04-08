@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <array>
 using namespace std;
 namespace chap01
 {
@@ -167,4 +168,32 @@ namespace chap01
       printf("myarray4[%d]=%d\n", i, myarray4[i]);
     }
   }
+
+  void ch01DemoStdArray()
+  {
+    FUNC_INFO;
+    std::array<int, 3> arr  { 9, 8, 7 };
+    cout << "Array size = " << arr.size() << endl;
+    cout << "2nd element = " << arr[1] << endl;
+    for (const auto& it : arr)
+      cout << "element: " << it << endl;
+  }
+
+  namespace StructuredBinding
+  {
+    struct Point { double mX, mY, mZ; };
+  }
+  void ch01DemoStructuredBindings()
+  {
+    FUNC_INFO;
+    std::array<int, 3> values{ 9, 8, 7 };
+    auto[a, b, c] = values;
+    printf("a %d b %d c %d\n", a,b,c);
+
+    StructuredBinding::Point point;
+    point.mX = 1.1; point.mY = 2.2; point.mZ = 3.3;
+    auto[x, y, z] = point;
+    printf("x %8.4f y %8.4f z %8.4f\n", x, y, z);
+  }
+
 }
