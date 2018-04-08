@@ -16,5 +16,7 @@ namespace chap01
   void ch01DemoArrayInitializationSize();
   void ch01DemoStdArray();
   void ch01DemoStructuredBindings();
+  void ch01DemoInitializerList();
+  void ch01DemoSmartPointers();
 }
 #endif

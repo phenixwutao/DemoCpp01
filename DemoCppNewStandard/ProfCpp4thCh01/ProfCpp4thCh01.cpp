@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <memory>
 using namespace std;
 namespace chap01
 {
@@ -193,7 +194,73 @@ namespace chap01
     StructuredBinding::Point point;
     point.mX = 1.1; point.mY = 2.2; point.mZ = 3.3;
     auto[x, y, z] = point;
-    printf("x %8.4f y %8.4f z %8.4f\n", x, y, z);
+    printf("x %8.4f, y %8.4f, z %8.4f\n", x, y, z);
+  }
+
+  namespace DemoInitList
+  {
+    int makeSum(const initializer_list<int>& lst)
+    {
+      int total = 0;
+      for (auto value : lst) {
+        total += value;
+      }
+      return total;
+    }
+  }
+
+  void ch01DemoInitializerList()
+  {
+    FUNC_INFO;
+    int a = DemoInitList::makeSum({ 1,2,3 });
+    int b = DemoInitList::makeSum({ 10,20,30,40,50,60 });
+    cout << a << endl;
+    cout << b << endl;
+  }
+
+  namespace DemoSmartPtr
+  {
+    struct Employee
+    {
+      char firstInitial = 'M';
+      char lastInitial = 'G';
+      int  employeeNumber = 42;
+      int  salary = 80'000;
+    };
+  }
+  void ch01DemoSmartPointers()
+  {
+    FUNC_INFO;
+    using MyEmployee = DemoSmartPtr::Employee;
+    {
+      // Using a unique_ptr
+      auto anEmployee = make_unique<MyEmployee>();
+      if (anEmployee) {
+        cout << "Salary: " << anEmployee->salary << endl;
+      }
+    }
+
+    {
+      // Storing an array of size 10 in a unique_ptr
+      auto employees = make_unique<MyEmployee[]>(10);
+      cout << "Salary: " << employees[0].salary << endl;
+      cout << "Salary: " << employees[9].salary << endl;
+    }
+
+    {
+      // Using a shared_ptr
+      auto anEmployee = make_shared<MyEmployee>();
+      if (anEmployee) {
+        cout << "Salary: " << anEmployee->salary << endl;
+      }
+    }
+
+    {
+      // Storing an array of size 10 in a shared_ptr (C++17)
+      shared_ptr<MyEmployee[]> employees(new MyEmployee[10]);
+      cout << "Salary: " << employees[0].salary << endl;
+      cout << "Salary: " << employees[9].salary << endl;
+    }
   }
 
 }
