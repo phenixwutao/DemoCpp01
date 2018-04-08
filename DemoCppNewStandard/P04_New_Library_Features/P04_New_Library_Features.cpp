@@ -119,6 +119,42 @@ namespace NewLibraryFeatures {
     string b("Adam");
     auto sOut = ClassDeclType::myfunc(a,b);
     cout << "sOut = " << sOut << endl;
-
   }
+
+  namespace VirtualFunc
+  {
+    class WidBaseNonVirtual
+    {
+    };
+
+    class WidgetNonVirtual : public WidBaseNonVirtual
+    {
+    };
+
+    class WidBase
+    {
+    public:
+      virtual ~WidBase() {}
+      virtual void info() {}
+      virtual void action() {}
+    };
+
+    class Widget : public WidBase
+    {
+    public:
+      virtual ~Widget() {}
+      virtual void info() {}
+      virtual void action() {}
+    };
+  }
+  void DemoVirtualFunctions()
+  {
+    auto aWid = new VirtualFunc::WidgetNonVirtual;
+    auto wid1 = new VirtualFunc::Widget;
+    auto wid2 = new VirtualFunc::WidBase;
+    delete aWid;
+    delete wid1;
+    delete wid2;
+  }
+
 }

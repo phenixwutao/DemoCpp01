@@ -6,5 +6,6 @@ namespace NewLibraryFeatures {
   void DemoStaticAssert();
   void DemoConversionOperator();
   void DemoDeclType();
+  void DemoVirtualFunctions();
 }
 #endif
