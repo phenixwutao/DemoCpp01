@@ -158,6 +158,7 @@ namespace NewClassFeatures {
       int y  { 6 };
       double wage { 0.0 };
     };
+
   }
   void DemoClassDefaultMemberFunctions()
   {
@@ -174,4 +175,70 @@ namespace NewClassFeatures {
     ClassDefault::Widget w {-1};
   }
 
+  namespace InheritingConstructors
+  {
+    class Base {
+    public:
+      Base()
+      {
+        printf("call Base ctor\n");
+      }
+      
+      virtual ~Base() {}
+
+      explicit Base(int)
+      {
+        printf("call Base ctor Base(int)\n");
+      }
+
+      void f(int)
+      {
+        printf("call Base f(int)\n");
+      }
+    };
+
+    class Derived : public Base {
+    public:
+      using Base::f;    // okay in C++98 and C++0x
+      using Base::Base; // okay in C++0x only; causes implicit
+                        // declaration of Derived::Derived(int),
+                        // which, if used, calls Base::Base(int)
+                        // overloads inherited Base::f
+      void f()
+      {
+        printf("call Derived f()\n");
+      }
+
+      // overloads inherited Base ctor
+      Derived(int x, int y)
+      {
+        printf("call Derived ctor Derived(int x, int y)\n");
+      }
+    };
+
+    class A {
+    public:
+      explicit A(int x) {}
+    };
+
+    class B : public A {
+    public:
+      using A::A; // use base class constructor A::A(int)
+    private:
+      std::string name = "Uninitialized";
+      int x = 0, y = 0;
+    };
+  }
+  void DemoInheritingConstructors()
+  {
+    FUNC_INFO;
+    InheritingConstructors::Derived d1(44); // okay in C++0x due to ctor inheritance
+    d1.f(1);
+    d1.f();
+    InheritingConstructors::Derived d2(5, 10); // normal use of Derived::Derived(int, int)
+    d1.f(2);
+    d1.f();
+
+    InheritingConstructors::B d(10);
+  }
 }

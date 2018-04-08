@@ -7,5 +7,6 @@ namespace NewClassFeatures {
   void DemoMoveClassHierarchy();
   void DemoForwarding();
   void DemoClassDefaultMemberFunctions();
+  void DemoInheritingConstructors();
 }
 #endif
