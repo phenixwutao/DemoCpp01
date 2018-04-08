@@ -133,9 +133,45 @@ namespace NewClassFeatures {
 
   void DemoForwarding()
   {
+    FUNC_INFO;
     std::string name("triangle");
     std::vector<int> vec;
     ClassHierarchy::Widget2 g(std::move(name), std::move(vec));
+  }
+
+  namespace ClassDefault
+  {
+    class Widget {
+    public:
+      // Constructor initializer lists override defaults:
+      Widget(int a) : x(a)
+      {
+        printf("x = %d\n", x);
+      }
+
+    private:
+      // default initial values
+      int x = 5;
+      string name = "";
+
+      // Uniform initialization syntax
+      int y  { 6 };
+      double wage { 0.0 };
+    };
+  }
+  void DemoClassDefaultMemberFunctions()
+  {
+    /***************************************************************
+    * The "special" member functions are implicity generated if used:
+    * [1] Default constructor - Only if no user-declared constructors.
+    * [2] Destructor
+    * [3] Copy operations (copy constructor, copy operator=)
+    *     Only if move operations not user-declared.
+    * [4] Move operations (move constructor, move operator=)
+    *     Only if copy operations not user-declared.
+    ****************************************************************/
+    FUNC_INFO;
+    ClassDefault::Widget w {-1};
   }
 
 }

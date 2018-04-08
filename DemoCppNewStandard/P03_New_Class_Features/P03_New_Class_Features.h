@@ -6,5 +6,6 @@ namespace NewClassFeatures {
   void DemoCopyMoveObject();
   void DemoMoveClassHierarchy();
   void DemoForwarding();
+  void DemoClassDefaultMemberFunctions();
 }
 #endif
