@@ -13,5 +13,6 @@ namespace chap01
   void ch01DemoEnumClass();
   void ch01DemoSwitchFallthrough();
   void ch01DemoFunctionReturnTypeDeduction();
+  void ch01DemoArrayInitializationSize();
 }
 #endif

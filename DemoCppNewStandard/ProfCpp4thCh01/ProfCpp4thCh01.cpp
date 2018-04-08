@@ -113,7 +113,7 @@ namespace chap01
 
   namespace FunctionReturnType
   {
-    auto calc(int a, int b) ->decltype (a+b)
+    auto calc(int a, int b) ->decltype (a + b)
     {
       return a + b;
     }
@@ -127,7 +127,7 @@ namespace chap01
       return a + b;
     }
     template<typename T1, typename T2> // detect return type is optional
-    auto calc4(const T1& a, const T2& b) -> decltype(a+b)
+    auto calc4(const T1& a, const T2& b) -> decltype(a + b)
     {
       return a + b;
     }
@@ -135,7 +135,7 @@ namespace chap01
   void ch01DemoFunctionReturnTypeDeduction()
   {
     FUNC_INFO;
-    printf("calc %d\n", FunctionReturnType::calc(1,2));
+    printf("calc %d\n", FunctionReturnType::calc(1, 2));
     printf("calc2 %d\n", FunctionReturnType::calc2(1, 2));
 
     cout << "calc3 " << FunctionReturnType::calc3(1.1, 1.2) << endl;
@@ -147,5 +147,24 @@ namespace chap01
     cout << "calc4 " << FunctionReturnType::calc4(1.1, 1.2) << endl;
     cout << "calc4 " << FunctionReturnType::calc4(3, 4) << endl;
     cout << "calc4 " << FunctionReturnType::calc4(a1, a2) << endl;
+  }
+
+  void ch01DemoArrayInitializationSize()
+  {
+    FUNC_INFO;
+    int myarray[3]  { 1 };    // 1,0,0
+    int myarray2[3] = { 2 };  // 2,0,0
+    int myarray3[3] { };      // 0,0,0
+    int myarray4[] = { 1,2,3,4 };
+    auto wSize = std::size(myarray);
+    auto wSize4 = std::size(myarray4);
+    for (int i = 0; i < wSize; i++)
+    {
+      printf("myarray[%d]=%d,\tmyarray2[%d]=%d,\tmyarray3[%d]=%d\n", i, myarray[i], i, myarray2[i], i, myarray3[i]);
+    }
+    for (int i = 0; i < std::size(myarray4); ++i)
+    {
+      printf("myarray4[%d]=%d\n", i, myarray4[i]);
+    }
   }
 }
