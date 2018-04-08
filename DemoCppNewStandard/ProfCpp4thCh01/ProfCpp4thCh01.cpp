@@ -34,10 +34,40 @@ namespace chap01
 
   void ch01DemoNamespaceCpp17()
   {
+    FUNC_INFO;
     // namespace alias
     namespace MyMath = MyLib::MyMath::General;
 
     cout << "MyMath::add " << MyMath::add(1, 2) << endl;
+  }
+
+  // By default, the underlying enumeration value is an integer,
+  // but this can be changed as follows:
+  enum class PieceType : unsigned long
+  {
+    King = 1,
+    Queen,
+    Rook = 10,
+    Pawn
+  };
+
+  void ch01DemoEnumClass()
+  {
+    FUNC_INFO;
+    PieceType piece = PieceType::King;
+    int val = static_cast<int>(piece);
+    if (piece == PieceType::King)
+    {
+      printf("it is king\n");
+    }
+
+    if (val == 1)
+    {
+      printf("it is king\n");
+    }
+    else
+      printf("it is not king\n");
+
   }
 
 }
