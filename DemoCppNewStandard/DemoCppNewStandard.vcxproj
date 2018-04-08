@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="P01_Basic_New_Features\P01_Basic_New_Features.h" />
     <ClInclude Include="P02_New_Libs_Enhancement\P02_New_Libs_Enhancement.h" />
+    <ClInclude Include="P03_New_Class_Features\P03_New_Class_Features.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClCompile Include="DemoCppNewStandard.cpp" />
     <ClCompile Include="P01_Basic_New_Features\P01_Basic_New_Features.cpp" />
     <ClCompile Include="P02_New_Libs_Enhancement\P02_New_Libs_Enhancement.cpp" />
+    <ClCompile Include="P03_New_Class_Features\P03_New_Class_Features.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
