@@ -5,6 +5,7 @@
 #include <string>
 #include <array>
 #include <memory>
+#include <vector>
 using namespace std;
 namespace chap01
 {
@@ -227,6 +228,16 @@ namespace chap01
       int  employeeNumber = 42;
       int  salary = 80'000;
     };
+
+    class CircleClass
+    {
+    public:
+      CircleClass(int x, int y, double radius)
+        : mX(x), mY(y), mRadius(radius) {}
+    private:
+      int mX, mY;
+      double mRadius;
+    };
   }
   void ch01DemoSmartPointers()
   {
@@ -263,4 +274,39 @@ namespace chap01
     }
   }
 
+  class MyUniformClass
+  {
+  public:
+    // initialize class member of array
+    MyUniformClass() : mArray { 1, 1, 2, 3 }
+    {}
+
+  private:
+    int mArray[4];
+  };
+
+  void ch01DemoUniformInitialization()
+  {
+    // Uniform Initialization will call constructor
+    DemoSmartPtr::CircleClass mycircle1 = { 2,2,2.5 };
+    DemoSmartPtr::CircleClass mycircle2 { 2,2,2.5 };
+
+    int a = 3;
+    int b(3);
+    int c = { 3 }; // Uniform initialization
+    int d { 3 };    // Uniform initialization
+    int e {};       // Uniform initialization, e will be 0
+
+    // Uniform initialization also works with vectors
+    vector<string> myVec = { "String 1", "String 2", "String 3" };
+
+    // Uniform initialization can also be used with dynamically allocated arrays
+    int* pArray = new int[4] { 5,6,7,8 };
+    delete[] pArray;
+    pArray = nullptr;
+
+    // Create a MyUniformClass object
+    MyUniformClass myClass;
+
+  }
 }
