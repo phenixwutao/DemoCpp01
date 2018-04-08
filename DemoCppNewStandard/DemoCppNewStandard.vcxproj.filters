@@ -25,6 +25,9 @@
     <Filter Include="P04_New_Library_Features">
       <UniqueIdentifier>{79a962d5-8e06-4efa-aac0-ad7ba5cfff12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh01">
+      <UniqueIdentifier>{d3cb5bf2-3a4d-455c-a3a6-ef97113134c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -45,6 +48,9 @@
     <ClInclude Include="P04_New_Library_Features\P04_New_Library_Features.h">
       <Filter>P04_New_Library_Features</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh01\ProfCpp4thCh01.h">
+      <Filter>ProfCpp4thCh01</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -64,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="P04_New_Library_Features\P04_New_Library_Features.cpp">
       <Filter>P04_New_Library_Features</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh01\ProfCpp4thCh01.cpp">
+      <Filter>ProfCpp4thCh01</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
