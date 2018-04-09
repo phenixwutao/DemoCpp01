@@ -4,6 +4,8 @@
 #include <iostream>
 #include <array>
 #include <memory>
+#include <cstdio>
+
 using namespace std;
 namespace chap07
 {
@@ -161,7 +163,67 @@ namespace chap07
     // use unique_ptr with customised deleter
     std::unique_ptr<int, decltype(free)*> 
       myIntSmartPtr(DemoUnique::malloc_int(42), free);
-
   }
 
+  namespace DemoShared 
+  {
+    int* malloc_int(int value)
+    {
+      int* p = (int*)malloc(sizeof(int));
+      *p = value;
+      return p;
+    }
+
+    void CloseFile(FILE* filePtr)
+    {
+      if (filePtr == nullptr)
+        return;
+      fclose(filePtr);
+      cout << "File closed." << endl;
+    }
+
+    class Simple
+    {
+    public:
+      Simple() { cout << "Simple constructor called!" << endl; }
+      ~Simple() { cout << "Simple destructor called!" << endl; }
+    };
+
+    void doubleDelete()
+    {
+      Simple* mySimple = new Simple();
+      shared_ptr<Simple> smartPtr1(mySimple);
+      shared_ptr<Simple> smartPtr2(mySimple);
+    }
+
+    void noDoubleDelete()
+    {
+      auto smartPtr1 = make_shared<Simple>();
+      shared_ptr<Simple> smartPtr2(smartPtr1);
+    }
+  }
+  void ch07DemoSharedPtr()
+  {
+    FUNC_INFO;
+    // shared_ptr with customised deleter
+    shared_ptr<int> myIntSmartPtr(DemoShared::malloc_int(42), free);
+
+#if defined(_MSC_VER)
+    // Using Microsoft Visual C++
+    FILE* f = nullptr;
+    fopen_s(&f, "data.txt", "w");
+#else
+    FILE* f = fopen("data.txt", "w");
+#endif
+    shared_ptr<FILE> filePtr(f, DemoShared::CloseFile);
+    if (filePtr == nullptr) {
+      cerr << "Error opening file." << endl;
+    }
+    else {
+      cout << "File opened." << endl;
+      // Use filePtr
+    }
+
+    DemoShared::noDoubleDelete();
+  }
 }

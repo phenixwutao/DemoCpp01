@@ -7,5 +7,6 @@ namespace chap07
   void ch07DemoMultiDimensionArray();
   void ch07DemoArrayAndPointer();
   void ch07DemoUniquePtr();
+  void ch07DemoSharedPtr();
 }
 #endif
