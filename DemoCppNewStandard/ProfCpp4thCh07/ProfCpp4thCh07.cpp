@@ -69,6 +69,25 @@ namespace chap07
       delete[] myArray;         //  Delete first dimension
     }
 
+    void doubleInts(int* theArray, size_t size)
+    {
+      for (size_t i = 0; i < size; i++) {
+        theArray[i] *= 2;
+        cout << theArray[i] << " ";
+      }
+      cout << endl;
+    }
+
+    template<size_t N>
+    void doubleIntsStack(int(&theArray)[N])
+    {
+      for (size_t i = 0; i < N; i++) {
+        theArray[i] *= 2;
+        cout << theArray[i] << " ";
+      }
+      cout << endl;
+    }
+
   }
   void ch07DemoMultiDimensionArray()
   {
@@ -92,4 +111,22 @@ namespace chap07
     MultiDimension::releaseCharacterBoard(pboard, xDimension);
   }
 
+  void ch07DemoArrayAndPointer()
+  {
+    FUNC_INFO;
+    size_t arrSize = 4;
+    int* heapArray = new int[arrSize] { 1, 5, 3, 4 };
+    MultiDimension::doubleInts(heapArray, arrSize);
+    //doubleIntsStack(heapArray);	// Does not work.
+    delete[] heapArray;
+    heapArray = nullptr;
+
+    int stackArray[] = { 5, 7, 9, 11 };
+    arrSize = std::size(stackArray);	// Since C++17, requires <array>
+                                      //arrSize = sizeof(stackArray) / sizeof(stackArray[0]); // Pre-C++17, see Ch1
+    MultiDimension::doubleInts(stackArray, arrSize);
+    MultiDimension::doubleInts(&stackArray[0], arrSize);
+
+    MultiDimension::doubleIntsStack(stackArray);
+  }
 }
