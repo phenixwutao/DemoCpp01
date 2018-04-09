@@ -201,6 +201,13 @@ namespace chap07
       auto smartPtr1 = make_shared<Simple>();
       shared_ptr<Simple> smartPtr2(smartPtr1);
     }
+    class Foo
+    {
+    public:
+      Foo(int value) : mData(value) { }
+      int mData;
+    };
+
   }
   void ch07DemoSharedPtr()
   {
@@ -225,5 +232,18 @@ namespace chap07
     }
 
     DemoShared::noDoubleDelete();
+  }
+
+  void ch07DemoSharedAlias()
+  {
+    FUNC_INFO;
+    // shared pointer foo is referencing to Foo object
+    auto foo = make_shared<DemoShared::Foo>(42);
+    // shared pointer aliasing is referncing to foo pointer, 
+    // which is pointing to int, part of Foo object
+    auto aliasing = shared_ptr<int>(foo, &foo->mData);
+
+    // The Foo object is only destroyed when both shared_ptrs (foo and aliasing)
+    // are destroyed.
   }
 }
