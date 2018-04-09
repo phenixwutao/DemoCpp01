@@ -154,6 +154,7 @@
     <ClInclude Include="P04_New_Library_Features\P04_New_Library_Features.h" />
     <ClInclude Include="ProfCpp4thCh01\ProfCpp4thCh01.h" />
     <ClInclude Include="ProfCpp4thCh02\ProfCpp4thCh02.h" />
+    <ClInclude Include="ProfCpp4thCh07\ProfCpp4thCh07.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -165,6 +166,7 @@
     <ClCompile Include="P04_New_Library_Features\P04_New_Library_Features.cpp" />
     <ClCompile Include="ProfCpp4thCh01\ProfCpp4thCh01.cpp" />
     <ClCompile Include="ProfCpp4thCh02\ProfCpp4thCh02.cpp" />
+    <ClCompile Include="ProfCpp4thCh07\ProfCpp4thCh07.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

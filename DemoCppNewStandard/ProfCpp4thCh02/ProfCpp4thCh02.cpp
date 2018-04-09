@@ -122,6 +122,12 @@ Line 2)";
       return fileName.substr(fileName.rfind('.'));
     }
   }
+
+  /*
+  * Use an std::string_view instead of const std::string& or const char* 
+  * whenever a function or method requires a read-only string as one of 
+  * its parameters.
+  */
   void ch02DemoStringViews()
   {
     FUNC_INFO;
@@ -138,12 +144,19 @@ Line 2)";
 
     // Raw string buffer with given length.
     const char* raw = "test.ext";
-    size_t length = 8;
+    size_t length = strlen(raw);
     cout << "Raw: " << StringView::extractExtension(string_view(raw, length)) << endl;
 
     // Assigning the result to a std::string.
     string extension = StringView::extractExtension(fileName).data();
 
+    string str = "Hello";
+    string_view sv = " world";
+    auto result = str + sv.data();
+    cout << result << endl;
+
+    // user-defined literal "sv" stands for string_view object
+    auto sVW1 = "My string_view"sv;
   }
 
 }
