@@ -91,4 +91,25 @@ Line 2)";
     cout << str8 << endl;
     cout << str9 << endl;
   }
+
+  void ch02DemoStringCmpConversion()
+  {
+    FUNC_INFO;
+    const char* name1 = "Martin";
+    const char* name2 = "Martina";
+    auto wOut = strcmp(name1, name2);
+    if (wOut < 0)
+      printf("name1 %s is less than name2 %s\n", name1, name2);
+    else if (wOut > 0)
+      printf("name1 %s is greater than name2 %s\n", name1, name2);
+    else
+      printf("name1 %s the same as name2 %s\n", name1, name2);
+
+
+    const string toParse = "   123USD";
+    size_t index = 0;
+    int value = stoi(toParse, &index);
+    cout << "Parsed value: " << value << endl;
+    cout << "First non-parsed character: '" << toParse[index] << "'" << endl;
+  }
 }
