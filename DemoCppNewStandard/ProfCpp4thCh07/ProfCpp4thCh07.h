@@ -4,5 +4,6 @@
 namespace chap07
 {
   void ch07DemoArrayDeleteOnHeap();
+  void ch07DemoMultiDimensionArray();
 }
 #endif
