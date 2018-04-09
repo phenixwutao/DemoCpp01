@@ -10,5 +10,6 @@ namespace chap07
   void ch07DemoSharedPtr();
   void ch07DemoSharedAlias();
   void ch07DemoWeakPtr();
+  void ch08DemoMoveSmartPtr();
 }
 #endif

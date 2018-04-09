@@ -278,4 +278,39 @@ namespace chap07
     WeakPtr::useResource(weakSimple);
   }
 
+  namespace MoveSmartPtr
+  {
+    unique_ptr<DemoShared::Simple> create()
+    {
+      auto ptr = make_unique<DemoShared::Simple>();
+      // Do something with ptr...
+      return ptr;
+    }
+
+    // enable_shared_from_this class allows a method on an object to safely 
+    // return a shared_ptr or weak_ptr to itself
+    class Foo : public enable_shared_from_this<Foo>
+    {
+    public:
+      shared_ptr<Foo> getPointer()
+      {
+        return shared_from_this();
+      }
+      /*
+      * shared_from_this(): returns a shared_ptr that shares ownership of the object.
+      * weak_from_this(): returns a weak_ptr that tracks ownership of the object.
+      */
+    };
+
+  }
+  void ch08DemoMoveSmartPtr()
+  {
+    FUNC_INFO;
+    unique_ptr<DemoShared::Simple> mySmartPtr1 = MoveSmartPtr::create();
+    auto mySmartPtr2 = MoveSmartPtr::create();
+
+    auto ptr1 = make_shared<MoveSmartPtr::Foo>();
+    auto ptr2 = ptr1->getPointer();
+
+  }
 }
