@@ -2,6 +2,8 @@
 #include "ProfCpp4thCh07.h"
 
 #include <iostream>
+#include <array>
+#include <memory>
 using namespace std;
 namespace chap07
 {
@@ -129,4 +131,37 @@ namespace chap07
 
     MultiDimension::doubleIntsStack(stackArray);
   }
+
+  namespace DemoUnique 
+  {
+    class Foo
+    {
+    public:
+      Foo(unique_ptr<int> data) : mData(move(data)) { }
+
+    private:
+      unique_ptr<int> mData;
+    };
+
+    int* malloc_int(int value)
+    {
+      int* p = (int*)malloc(sizeof(int));
+      *p = value;
+      return p;
+    }
+
+  }
+  void ch07DemoUniquePtr()
+  {
+    FUNC_INFO;
+    // unique_ptr represents unique ownership, it cannot be copied, must move
+    auto mySmartPtr = std::make_unique<int>(2);
+    DemoUnique::Foo obj(std::move(mySmartPtr));
+
+    // use unique_ptr with customised deleter
+    std::unique_ptr<int, decltype(free)*> 
+      myIntSmartPtr(DemoUnique::malloc_int(42), free);
+
+  }
+
 }
