@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <string_view>
+#include <cstddef>
 using namespace std;
 namespace chap02
 {
@@ -112,4 +114,36 @@ Line 2)";
     cout << "Parsed value: " << value << endl;
     cout << "First non-parsed character: '" << toParse[index] << "'" << endl;
   }
+
+  namespace StringView {
+    // C++17 std::string_view class
+    string_view extractExtension(string_view fileName)
+    {
+      return fileName.substr(fileName.rfind('.'));
+    }
+  }
+  void ch02DemoStringViews()
+  {
+    FUNC_INFO;
+    // C++ std::string.
+    string fileName = R"(c:\temp\my file.ext)";
+    cout << "C++ string: " << StringView::extractExtension(fileName) << endl;
+
+    // C-style string.
+    const char* cString = R"(c:\temp\my file.ext)";
+    cout << "C string: " << StringView::extractExtension(cString) << endl;
+
+    // String literal.
+    cout << "Literal: " << StringView::extractExtension(R"(c:\temp\my file.ext)") << endl;
+
+    // Raw string buffer with given length.
+    const char* raw = "test.ext";
+    size_t length = 8;
+    cout << "Raw: " << StringView::extractExtension(string_view(raw, length)) << endl;
+
+    // Assigning the result to a std::string.
+    string extension = StringView::extractExtension(fileName).data();
+
+  }
+
 }
