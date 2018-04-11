@@ -6,6 +6,10 @@
 #include <initializer_list>
 #include <stdexcept>
 #include <vector>
+#include <string>
+#include <cassert>
+#include <utility>
+#include <type_traits>
 
 using namespace std;
 namespace chap08
@@ -66,5 +70,43 @@ namespace chap08
 
     SpreadsheetCell cell(4);
     cell = cell; // self-assignment
+  }
+
+  namespace DeleteConstructor {
+    class LLL {
+    public:
+      static int square(int x) { return x * x; }
+      ~LLL() = delete;
+    };
+  }
+  void ch08DemoExplicitlyDeletedConstructors()
+  {
+    // DeleteConstructor::LLL a; // error cannot delete object
+    printf("square = %d\n", DeleteConstructor::LLL::square(2));
+  }
+
+  void ch08DemoCpp17AsconstRemoveconstAndReference()
+  {
+    FUNC_INFO;
+    std::string mutableString = "Hello World!";
+    const std::string& constView = std::as_const(mutableString);
+
+    /*
+    *   template <class T>
+    *   constexpr std::add_const_t<T>& as_const(T& t) noexcept;
+    *
+    *   template <class T>
+    *   void as_const(const T&&) = delete;
+    */
+
+    assert(&constView == &mutableString);
+    assert(&std::as_const(mutableString) == &mutableString);
+
+    using WhatTypeIsIt = std::remove_reference_t<decltype(std::as_const(mutableString))>;
+
+    static_assert(std::is_same<std::remove_const_t<WhatTypeIsIt>, std::string>::value,
+      "WhatTypeIsIt should be some kind of string.");
+    static_assert(!std::is_same< WhatTypeIsIt, std::string >::value,
+      "WhatTypeIsIt shouldn't be a mutable string.");
   }
 }
