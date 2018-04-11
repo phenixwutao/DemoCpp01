@@ -311,6 +311,5 @@ namespace chap07
 
     auto ptr1 = make_shared<MoveSmartPtr::Foo>();
     auto ptr2 = ptr1->getPointer();
-
   }
 }
