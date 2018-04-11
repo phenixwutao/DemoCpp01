@@ -109,4 +109,31 @@ namespace chap08
     static_assert(!std::is_same< WhatTypeIsIt, std::string >::value,
       "WhatTypeIsIt shouldn't be a mutable string.");
   }
+
+
+  namespace DeletingOverload
+  {
+    class Base
+    {
+    public:
+      void func(int x) {}
+      void func(double x) = delete;
+    };
+    class Sub : public Base
+    {
+    public:
+      void func(int x) = delete;
+      void func(double x) {}
+    };
+  }
+  void ch08DemoExplicitlyDeletingOverloads()
+  {
+    DeletingOverload::Base b;
+    // b.func(1.2); // compiler error, can not call deleted function
+    b.func(1); // OK
+
+    DeletingOverload::Sub s;
+    s.func(1.2);
+    // s.func(2); // compiler error, can not call deleted function
+  }
 }

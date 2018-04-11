@@ -7,5 +7,6 @@ namespace chap08
   void ch08DemoCopyAssignment();
   void ch08DemoExplicitlyDeletedConstructors();
   void ch08DemoCpp17AsconstRemoveconstAndReference();
+  void ch08DemoExplicitlyDeletingOverloads();
 }
 #endif
