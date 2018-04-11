@@ -4,5 +4,6 @@
 namespace chap08
 {
   void ch08DemoInitializerListCtor();
+  void ch08DemoCopyAssignment();
 }
 #endif

@@ -69,6 +69,9 @@
     <ClInclude Include="ProfCpp4thCh08\ProfCpp4thCh08.h">
       <Filter>ProfCpp4thCh08</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell.h">
+      <Filter>ProfCpp4thCh08</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -99,6 +102,9 @@
       <Filter>ProfCpp4thCh07</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh08\ProfCpp4thCh08.cpp">
+      <Filter>ProfCpp4thCh08</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell.cpp">
       <Filter>ProfCpp4thCh08</Filter>
     </ClCompile>
   </ItemGroup>

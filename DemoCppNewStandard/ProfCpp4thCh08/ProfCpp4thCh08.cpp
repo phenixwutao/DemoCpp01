@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh08.h"
+#include "SpreadsheetCell.h"
 
 #include <iostream>
 #include <initializer_list>
@@ -55,4 +56,15 @@ namespace chap08
     }
   }
 
+  void ch08DemoCopyAssignment()
+  {
+    FUNC_INFO;
+    SpreadsheetCell myCell, anotherCell, aThirdCell;
+
+    myCell = anotherCell = aThirdCell;
+    myCell.operator=(anotherCell.operator=(aThirdCell));
+
+    SpreadsheetCell cell(4);
+    cell = cell; // self-assignment
+  }
 }
