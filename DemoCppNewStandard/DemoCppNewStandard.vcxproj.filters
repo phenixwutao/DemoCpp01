@@ -37,6 +37,9 @@
     <Filter Include="ProfCpp4thCh08">
       <UniqueIdentifier>{360aa8a5-6ed8-420b-a7e0-9297048fad53}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh09">
+      <UniqueIdentifier>{a7377529-1c34-47cc-aa90-5a55b4feb6ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -69,8 +72,14 @@
     <ClInclude Include="ProfCpp4thCh08\ProfCpp4thCh08.h">
       <Filter>ProfCpp4thCh08</Filter>
     </ClInclude>
-    <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell.h">
+    <ClInclude Include="ProfCpp4thCh09\ProfCpp4thCh09.h">
+      <Filter>ProfCpp4thCh09</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell08.h">
       <Filter>ProfCpp4thCh08</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh09\SpreadsheetCell09.h">
+      <Filter>ProfCpp4thCh09</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +113,14 @@
     <ClCompile Include="ProfCpp4thCh08\ProfCpp4thCh08.cpp">
       <Filter>ProfCpp4thCh08</Filter>
     </ClCompile>
-    <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell.cpp">
+    <ClCompile Include="ProfCpp4thCh09\ProfCpp4thCh09.cpp">
+      <Filter>ProfCpp4thCh09</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell08.cpp">
       <Filter>ProfCpp4thCh08</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh09\SpreadsheetCell09.cpp">
+      <Filter>ProfCpp4thCh09</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

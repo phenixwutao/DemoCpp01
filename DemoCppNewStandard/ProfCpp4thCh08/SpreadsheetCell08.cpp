@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "SpreadsheetCell.h"
+#include "SpreadsheetCell08.h"
 
 using namespace std;
 namespace chap08

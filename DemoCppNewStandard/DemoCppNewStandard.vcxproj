@@ -156,7 +156,9 @@
     <ClInclude Include="ProfCpp4thCh02\ProfCpp4thCh02.h" />
     <ClInclude Include="ProfCpp4thCh07\ProfCpp4thCh07.h" />
     <ClInclude Include="ProfCpp4thCh08\ProfCpp4thCh08.h" />
-    <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell.h" />
+    <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell08.h" />
+    <ClInclude Include="ProfCpp4thCh09\ProfCpp4thCh09.h" />
+    <ClInclude Include="ProfCpp4thCh09\SpreadsheetCell09.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -170,7 +172,9 @@
     <ClCompile Include="ProfCpp4thCh02\ProfCpp4thCh02.cpp" />
     <ClCompile Include="ProfCpp4thCh07\ProfCpp4thCh07.cpp" />
     <ClCompile Include="ProfCpp4thCh08\ProfCpp4thCh08.cpp" />
-    <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell.cpp" />
+    <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell08.cpp" />
+    <ClCompile Include="ProfCpp4thCh09\ProfCpp4thCh09.cpp" />
+    <ClCompile Include="ProfCpp4thCh09\SpreadsheetCell09.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

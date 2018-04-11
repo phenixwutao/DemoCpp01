@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh08.h"
-#include "SpreadsheetCell.h"
+#include "SpreadsheetCell08.h"
 
 #include <iostream>
 #include <initializer_list>
@@ -63,12 +63,12 @@ namespace chap08
   void ch08DemoCopyAssignment()
   {
     FUNC_INFO;
-    SpreadsheetCell myCell, anotherCell, aThirdCell;
+    chap08::SpreadsheetCell myCell, anotherCell, aThirdCell;
 
     myCell = anotherCell = aThirdCell;
     myCell.operator=(anotherCell.operator=(aThirdCell));
 
-    SpreadsheetCell cell(4);
+    chap08::SpreadsheetCell cell(4);
     cell = cell; // self-assignment
   }
 
@@ -125,6 +125,14 @@ namespace chap08
       void func(int x) = delete;
       void func(double x) {}
     };
+
+
+    class Spreadsheet2
+    {
+    private:
+      static inline size_t sCounter = 0; // inline static member
+    };
+
   }
   void ch08DemoExplicitlyDeletingOverloads()
   {
