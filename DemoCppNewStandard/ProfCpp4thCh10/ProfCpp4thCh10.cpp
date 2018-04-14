@@ -285,4 +285,32 @@ namespace chap10
     std::unique_ptr<Cherry> theCherry(theTree.pick());
     theCherry->printType();
   }
+
+  namespace InheritCtor
+  {
+    class Base
+    {
+    public:
+      virtual ~Base() = default;
+      Base() = default;
+      Base(std::string_view str) {}
+    };
+
+    class Derived : public Base
+    {
+    public:
+      // The using statement inherits all constructors from the parent class
+      // except the default constructor
+      using Base::Base;
+
+      Derived(int i) {}
+    };
+  }
+  void chap10DemoInheritedConstructor()
+  {
+    FUNC_INFO;
+    InheritCtor::Base base("Hello");        // OK, calls string_view Base ctor
+    InheritCtor::Derived derived1(1);       // OK, calls integer Derived ctor
+    InheritCtor::Derived derived2("Hello"); // Error, Derived does not inherit string_view ctor
+  }
 }

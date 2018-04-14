@@ -9,4 +9,5 @@ namespace chap10
   void chap10DemoMultiInheritance();
   void chap10DemoDiamondClass();
   void chap10DemoPickCherry();
+  void chap10DemoInheritedConstructor();
 }
