@@ -7,4 +7,5 @@ namespace chap10
   void chap10DemoConstructorCallVirtualMethod();
   void chap10DemoPolymorphicSpreadsheet();
   void chap10DemoMultiInheritance();
+  void chap10DemoDiamondClass();
 }

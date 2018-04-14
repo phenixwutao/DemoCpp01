@@ -238,7 +238,40 @@ namespace chap10
     myConfusedAnimal.eat();                   // Error! Ambiguous call to method eat()
     dynamic_cast<Dog&>(myConfusedAnimal).eat(); // Calls Dog::eat()
     myConfusedAnimal.Dog::eat();                // Calls Dog::eat()
+  }
 
+  namespace Diamond {
+    class Animal
+    {
+    public:
+      virtual void eat() = 0;
+    };
+
+    class Dog : public Animal
+    {
+    public:
+      virtual void bark() { cout << "woof!" << endl; }
+      virtual void eat() override { cout << "The dog ate." << endl; }
+    };
+
+    class Bird : public Animal
+    {
+    public:
+      virtual void chirp() { cout << "chirp!" << endl; }
+      virtual void eat() override { cout << "The bird ate." << endl; }
+    };
+
+    class DogBird : public Dog, public Bird
+    {
+    public:
+      using Dog::eat;
+    };
+  }
+
+  void chap10DemoDiamondClass()
+  {
+    Diamond::DogBird myConfusedAnimal;
+    myConfusedAnimal.eat();
   }
 
 }
