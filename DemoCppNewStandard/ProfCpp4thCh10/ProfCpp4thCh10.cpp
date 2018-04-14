@@ -11,6 +11,12 @@ namespace chap10
     class Base
     {
     public:
+      virtual ~Base() = default;
+      virtual void info()
+      {
+        printf("Base info\n");
+      }
+
       void Run() {
         printf("Base run\n");
       }
@@ -19,6 +25,13 @@ namespace chap10
     class Sub : public Base
     {
     public:
+      virtual ~Sub() = default;
+
+      void info() override
+      {
+        printf("Sub info\n");
+      }
+
       void Run() {
         printf("Sub run\n");
       }
@@ -45,6 +58,29 @@ namespace chap10
 
     DemoOverload::Base* ps = new DemoOverload::Sub;
     ps->Run();
+    delete ps;
+  }
+
+  void chap10DemoClassMethodOverride()
+  {
+    FUNC_INFO;
+    DemoOverload::Base b;
+    b.info();
+    DemoOverload::Sub s;
+    s.info();
+
+    DemoOverload::Base& refb = b;
+    refb.info();
+
+    DemoOverload::Base& refs = s;
+    refs.info();
+
+    DemoOverload::Base* pb = new DemoOverload::Base;
+    pb->info();
+    delete pb;
+
+    DemoOverload::Base* ps = new DemoOverload::Sub;
+    ps->info();
     delete ps;
   }
 }
