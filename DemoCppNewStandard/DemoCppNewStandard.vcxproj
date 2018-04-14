@@ -159,6 +159,10 @@
     <ClInclude Include="ProfCpp4thCh08\SpreadsheetCell08.h" />
     <ClInclude Include="ProfCpp4thCh09\ProfCpp4thCh09.h" />
     <ClInclude Include="ProfCpp4thCh09\SpreadsheetCell09.h" />
+    <ClInclude Include="ProfCpp4thCh10\BingCherry.h" />
+    <ClInclude Include="ProfCpp4thCh10\BingCherryTree.h" />
+    <ClInclude Include="ProfCpp4thCh10\Cherry.h" />
+    <ClInclude Include="ProfCpp4thCh10\CherryTree.h" />
     <ClInclude Include="ProfCpp4thCh10\DoubleSpreadsheetCell10.h" />
     <ClInclude Include="ProfCpp4thCh10\ProfCpp4thCh10.h" />
     <ClInclude Include="ProfCpp4thCh10\SpreadsheetCell10.h" />
@@ -179,6 +183,10 @@
     <ClCompile Include="ProfCpp4thCh08\SpreadsheetCell08.cpp" />
     <ClCompile Include="ProfCpp4thCh09\ProfCpp4thCh09.cpp" />
     <ClCompile Include="ProfCpp4thCh09\SpreadsheetCell09.cpp" />
+    <ClCompile Include="ProfCpp4thCh10\BingCherry.cpp" />
+    <ClCompile Include="ProfCpp4thCh10\BingCherryTree.cpp" />
+    <ClCompile Include="ProfCpp4thCh10\Cherry.cpp" />
+    <ClCompile Include="ProfCpp4thCh10\CherryTree.cpp" />
     <ClCompile Include="ProfCpp4thCh10\DoubleSpreadsheetCell10.cpp" />
     <ClCompile Include="ProfCpp4thCh10\ProfCpp4thCh10.cpp" />
     <ClCompile Include="ProfCpp4thCh10\StringSpreadsheetCell10.cpp" />

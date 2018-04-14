@@ -4,6 +4,8 @@
 #include "DoubleSpreadsheetCell10.h"
 #include "StringSpreadsheetCell10.h"
 
+#include "BingCherryTree.h"
+
 #include <iostream>
 #include <vector>
 #include <memory>
@@ -270,8 +272,17 @@ namespace chap10
 
   void chap10DemoDiamondClass()
   {
+    FUNC_INFO;
     Diamond::DogBird myConfusedAnimal;
     myConfusedAnimal.eat();
   }
 
+  void chap10DemoPickCherry()
+  {
+    FUNC_INFO;
+    using namespace Chap10;
+    BingCherryTree theTree;
+    std::unique_ptr<Cherry> theCherry(theTree.pick());
+    theCherry->printType();
+  }
 }

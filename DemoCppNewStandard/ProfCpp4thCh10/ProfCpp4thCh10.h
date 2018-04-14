@@ -8,4 +8,5 @@ namespace chap10
   void chap10DemoPolymorphicSpreadsheet();
   void chap10DemoMultiInheritance();
   void chap10DemoDiamondClass();
+  void chap10DemoPickCherry();
 }

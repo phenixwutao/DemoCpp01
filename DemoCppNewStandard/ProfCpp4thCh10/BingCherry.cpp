@@ -1,0 +1,15 @@
+#include "stdafx.h"
+#include "BingCherry.h"
+#include <iostream>
+
+namespace Chap10 {
+  void BingCherry::printType()
+  {
+    std::cout << "I am a Bing Cherry" << std::endl;
+  }
+
+  void BingCherry::polish()
+  {
+    std::cout << "I am getting polished" << std::endl;
+  }
+}

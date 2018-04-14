@@ -96,6 +96,18 @@
     <ClInclude Include="ProfCpp4thCh10\StringSpreadsheetCell10.h">
       <Filter>ProfCpp4thCh10</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\BingCherry.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\BingCherryTree.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\Cherry.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\CherryTree.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -144,6 +156,18 @@
       <Filter>ProfCpp4thCh10</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh10\StringSpreadsheetCell10.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\BingCherry.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\BingCherryTree.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\Cherry.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\CherryTree.cpp">
       <Filter>ProfCpp4thCh10</Filter>
     </ClCompile>
   </ItemGroup>
