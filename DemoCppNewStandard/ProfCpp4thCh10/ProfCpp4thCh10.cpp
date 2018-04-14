@@ -1,7 +1,12 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh10.h"
+#include "SpreadsheetCell10.h"
+#include "DoubleSpreadsheetCell10.h"
+#include "StringSpreadsheetCell10.h"
 
 #include <iostream>
+#include <vector>
+#include <memory>
 using namespace std;
 
 namespace chap10
@@ -129,7 +134,14 @@ namespace chap10
     public:
       Child() { cout << "3\n"; }
       virtual ~Child() { cout << "3\n"; info(); }
-      virtual void info() { cout << "Child info" << endl; }
+      virtual void info()
+      {
+        // Microsoft Visual C++ supports the __super keyword
+        __super::info();
+
+        cout << "Child info" << endl;
+      }
+
     private:
       Object mObj;
     };
@@ -142,6 +154,48 @@ namespace chap10
 
     VirtualMethod::Parent* pParent = new VirtualMethod::Child;
     delete pParent;
+  }
+
+  namespace PolymorphicSpreadsheet
+  {
+    StringSpreadsheetCell operator+(const StringSpreadsheetCell& lhs,
+                                    const StringSpreadsheetCell& rhs)
+    {
+      StringSpreadsheetCell newCell;
+      newCell.set(lhs.getString() + rhs.getString());
+      return newCell;
+    }
+  }
+
+  void chap10DemoPolymorphicSpreadsheet()
+  {
+    FUNC_INFO;
+    vector<unique_ptr<SpreadsheetCell>> cellArray;
+
+    cellArray.push_back(make_unique<StringSpreadsheetCell>());
+    cellArray.push_back(make_unique<StringSpreadsheetCell>());
+    cellArray.push_back(make_unique<DoubleSpreadsheetCell>());
+
+    cellArray[0]->set("hello");
+    cellArray[1]->set("10");
+    cellArray[2]->set("18");
+
+    cout << "Vector values are [" << 
+      cellArray[0]->getString() << "," <<
+      cellArray[1]->getString() << "," <<
+      cellArray[2]->getString() << "]" << endl;
+
+    DoubleSpreadsheetCell myDbl;
+    myDbl.set(8.4);
+
+    using namespace PolymorphicSpreadsheet;
+    // call copy constructor from DoubleSpreadsheetCell, then call operator+
+    StringSpreadsheetCell result = myDbl + myDbl;
+    cout << endl << result.getString() << endl;
+
+    // explicitly call PolymorphicSpreadsheet::operator+
+    auto result2 = PolymorphicSpreadsheet::operator+(myDbl, myDbl);
+    cout << result2.getString() << endl;
   }
 
 }

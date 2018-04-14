@@ -87,6 +87,15 @@
     <ClInclude Include="ProfCpp4thCh10\ProfCpp4thCh10.h">
       <Filter>ProfCpp4thCh10</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\DoubleSpreadsheetCell10.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\SpreadsheetCell10.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh10\StringSpreadsheetCell10.h">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -129,6 +138,12 @@
       <Filter>ProfCpp4thCh09</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh10\ProfCpp4thCh10.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\DoubleSpreadsheetCell10.cpp">
+      <Filter>ProfCpp4thCh10</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh10\StringSpreadsheetCell10.cpp">
       <Filter>ProfCpp4thCh10</Filter>
     </ClCompile>
   </ItemGroup>
