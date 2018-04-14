@@ -12,4 +12,5 @@ namespace chap10
   void chap10DemoInheritedConstructor();
   void chap10DemoOverrideStaticMethod();
   void chap10DemoBaseClassMethodOverload();
+  void chap10DemoBaseClassMethodHasDefaultArguments();
 }

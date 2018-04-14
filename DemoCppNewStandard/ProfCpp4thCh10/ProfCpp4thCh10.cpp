@@ -380,6 +380,36 @@ namespace chap10
     // myDerived.overload(2); // Error! No matching method for overload(int)
     myDerived.Base::overload(2); // ok
     MyOverload::Base& b = myDerived;
-    b.overload(3);
+    b.overload(3); // call Base class overload(int i), since derived class doesn't override it
+  }
+
+  namespace DefaultArgument {
+    class A {
+    public:
+      virtual ~A() = default;
+      virtual void go(int i = 1) { cout << "A::calc Base " << i << endl; }
+    };
+    class B : public A {
+    public:
+      virtual ~B() = default;
+      virtual void go(int i = 2) override { cout << "B::calc Deriv " << i << endl; }
+    };
+  }
+  void chap10DemoBaseClassMethodHasDefaultArguments()
+  {
+    FUNC_INFO;
+    DefaultArgument::A myBase;
+    DefaultArgument::B myDeriv;
+    DefaultArgument::A& myBaseReferenceToDerived = myDeriv;
+    myBase.go();
+    myDeriv.go();
+    /*
+    * uses the compile-time type of the expression to bind default arguments, 
+    * not the run-time type. Default arguments are not "inherited" in C++. 
+    * If the Derived class in this example failed to provide a default argument
+    * as its parent did, it would be overloading the go() method with a new 
+    * non-zero-argument version.
+    */
+    myBaseReferenceToDerived.go();
   }
 }
