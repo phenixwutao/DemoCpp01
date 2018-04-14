@@ -351,4 +351,35 @@ namespace chap10
     ref.beStatic(); // static method is compile-time type, not run-time
   }
 
+  namespace MyOverload
+  {
+    class Base
+    {
+    public:
+      virtual ~Base() = default;
+      virtual void overload() { cout << "Base's overload()" << endl; }
+      virtual void overload(int i)
+      {
+        cout << "Base's overload(int i)" << endl;
+      }
+    };
+
+    class Derived : public Base
+    {
+    public:
+      virtual void overload() override
+      {
+        cout << "Derived's overload()" << endl;
+      }
+    };
+  }
+  void chap10DemoBaseClassMethodOverload()
+  {
+    FUNC_INFO;
+    MyOverload::Derived myDerived;
+    // myDerived.overload(2); // Error! No matching method for overload(int)
+    myDerived.Base::overload(2); // ok
+    MyOverload::Base& b = myDerived;
+    b.overload(3);
+  }
 }
