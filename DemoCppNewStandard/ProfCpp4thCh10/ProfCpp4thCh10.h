@@ -10,4 +10,5 @@ namespace chap10
   void chap10DemoDiamondClass();
   void chap10DemoPickCherry();
   void chap10DemoInheritedConstructor();
+  void chap10DemoOverrideStaticMethod();
 }

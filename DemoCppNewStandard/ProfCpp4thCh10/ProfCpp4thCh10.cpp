@@ -313,4 +313,42 @@ namespace chap10
     InheritCtor::Derived derived1(1);       // OK, calls integer Derived ctor
     InheritCtor::Derived derived2("Hello"); // Error, Derived does not inherit string_view ctor
   }
+
+  namespace StaticMethod
+  {
+    class BaseStatic
+    {
+    public:
+      static void beStatic()
+      {
+        cout << "BaseStatic static." << endl;
+      }
+    };
+
+    class DerivedStatic : public BaseStatic
+    {
+    public:
+      static void beStatic()
+      {
+        cout << "DerivedStatic static." << endl;
+      }
+    };
+  }
+
+  /**********************************************************************************
+  * static methods are scoped by the name of the class in which they are defined,
+  * but they are not methods that apply to a specific object. When you call a static
+  * method, the version determined by normal name resolution is called. When the
+  * method is called syntactically by using an object, the object is not actually
+  * involved in the call, except to determine the type at compile time.
+  ***********************************************************************************/
+  void chap10DemoOverrideStaticMethod()
+  {
+    FUNC_INFO;
+    StaticMethod::DerivedStatic myDerivedStatic;
+    StaticMethod::BaseStatic& ref = myDerivedStatic;
+    myDerivedStatic.beStatic();
+    ref.beStatic(); // static method is compile-time type, not run-time
+  }
+
 }
