@@ -387,12 +387,12 @@ namespace chap10
     class A {
     public:
       virtual ~A() = default;
-      virtual void go(int i = 1) { cout << "A::calc Base " << i << endl; }
+      virtual void go(int i = 1) { cout << "A::go Base " << i << endl; }
     };
     class B : public A {
     public:
       virtual ~B() = default;
-      virtual void go(int i = 2) override { cout << "B::calc Deriv " << i << endl; }
+      virtual void go(int i = 2) override { cout << "B::go Deriv " << i << endl; }
     };
   }
   void chap10DemoBaseClassMethodHasDefaultArguments()
@@ -412,4 +412,41 @@ namespace chap10
     */
     myBaseReferenceToDerived.go();
   }
+
+  namespace AccessLevel {
+    class A {
+    public:
+      virtual ~A() = default;
+      virtual void calc() { cout << "A::calc base " << endl; }
+    protected:
+      virtual void dontTell() { cout << "I'll never tell." << endl; }
+    };
+    class B : public A {
+    public:
+      virtual ~B() = default;
+      using A::dontTell;
+
+    private:
+      virtual void calc() override { cout << "B::calc deriv" << endl; }
+    };
+  }
+  void chap10DemoClassMethodHasDifferentAccessLevel()
+  {
+    FUNC_INFO;
+    AccessLevel::A myBase;
+    AccessLevel::B myDeriv;
+    myBase.calc();
+    // myDeriv.go(); // error method is inaccessible
+
+    AccessLevel::A& myBaseRef = myDeriv;
+    myBaseRef.calc(); // OK
+
+    AccessLevel::B b2;
+    AccessLevel::A& ref = b2;
+    AccessLevel::A* ptr = &b2;
+    // ref.dontTell();  // function is inaccessbile
+    // ptr->dontTell(); // function is inaccessbile
+    b2.dontTell(); // OK
+  }
+
 }
