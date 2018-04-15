@@ -46,6 +46,9 @@
     <Filter Include="ProfCpp4thCh11">
       <UniqueIdentifier>{e5f623a4-3aba-4216-9d69-f644618d9fd2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh13">
+      <UniqueIdentifier>{09e08f6c-9ef1-42e0-afbe-615ac9afe491}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="ProfCpp4thCh11\ProfCpp4thCh11.h">
       <Filter>ProfCpp4thCh11</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh13\ProfCpp4thCh13.h">
+      <Filter>ProfCpp4thCh13</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -178,6 +184,9 @@
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh11\ProfCpp4thCh11.cpp">
       <Filter>ProfCpp4thCh11</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh13\ProfCpp4thCh13.cpp">
+      <Filter>ProfCpp4thCh13</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
