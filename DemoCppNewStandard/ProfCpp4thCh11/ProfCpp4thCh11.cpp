@@ -495,4 +495,19 @@ namespace chap11
     auto val4 = 3U; // unsigned int
     auto val5 = 4; // int
   }
+
+  void chap11DemoQueryIncludeHeader()
+  {
+    // C++17 macro
+//#if __has_include(<optional>)
+//  #include <optional>
+//  #define have_optional 1
+//#elif __has_include(<experimental/optional>)
+//  #include <experimental/optional>
+//  #define have_optional 1
+//  #define experimental_optional
+//#else
+//  #define have_optional 0
+//#endif
+  }
 }

@@ -13,4 +13,5 @@ namespace chap11
   void chap11DemoAttributes();
   void chap11DemoUserDefinedLiterals();
   void chap11DemoStandardUserDefinedLiterals();
+  void chap11DemoQueryIncludeHeader();
 }
