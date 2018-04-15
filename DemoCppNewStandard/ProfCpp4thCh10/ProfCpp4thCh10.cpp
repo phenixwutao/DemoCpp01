@@ -525,4 +525,37 @@ namespace chap10
     RTTI::speak(dog);
     RTTI::speak(bird);
   }
+
+  namespace Logging
+  {
+    class Loggable
+    {
+    public:
+      virtual ~Loggable() = default;
+      virtual std::string getLogMessage() const = 0;
+    };
+    class Foo : public Loggable
+    {
+    public:
+      std::string getLogMessage() const override;
+    };
+
+    std::string Foo::getLogMessage() const
+    {
+      return "Hello logger.";
+    }
+
+    void logObject(const Loggable& loggableObject)
+    {
+      cout << "Name is: " << typeid(loggableObject).name() << ": ";
+      cout << loggableObject.getLogMessage() << endl;
+    }
+
+  }
+  void chap10DemoTypeidLogging()
+  {
+    FUNC_INFO;
+    Logging::Foo foo;
+    Logging::logObject(foo);
+  }
 }

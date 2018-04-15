@@ -16,4 +16,5 @@ namespace chap10
   void chap10DemoClassMethodHasDifferentAccessLevel();
   void chap10DemoCopyConstructorsDerivedClass();
   void chap10DemoRunTimeTypeInformation();
+  void chap10DemoTypeidLogging();
 }
