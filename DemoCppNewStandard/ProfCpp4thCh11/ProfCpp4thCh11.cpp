@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh11.h"
 
+#include <array>
+#include <cstddef>
 #include <iostream>
 #include <string>
-#include <cstddef>
-#include <array>
 #include <vector>
 using namespace std;
 
@@ -209,6 +209,7 @@ namespace chap11
   }
   void chap11DemoUseConst()
   {
+    FUNC_INFO;
     int* ip;
     ip = new int[10];
     ip[4] = 5;
@@ -219,5 +220,42 @@ namespace chap11
     //  zRef = 4; // DOES NOT COMPILE
 
     UseConst::constPtrTwo();
+  }
+
+  namespace UseConstExpr
+  {
+    constexpr int getArraySize()
+    {
+      return 32;
+    }
+
+    class Rect
+    {
+    public:
+      constexpr Rect(size_t w, size_t h) : mWidth(w), mHeight(h)
+      {
+      }
+
+      constexpr size_t getArea() const
+      {
+        return mWidth * mHeight;
+      }
+
+    private:
+      size_t mWidth, mHeight;
+    };
+  }
+  void chap11DemoUseConstexpr()
+  {
+    FUNC_INFO;
+    int K = 5;
+    // int array[K]{}; // error, expression must have a const value
+
+    int myArray[UseConstExpr::getArraySize()];	// OK
+    myArray[0] = 1;
+
+    constexpr UseConstExpr::Rect r(8, 2);
+    int myArray2[r.getArea()];
+    cout << std::size(myArray2) << endl;
   }
 }
