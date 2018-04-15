@@ -5,6 +5,7 @@
 #include <string>
 #include <cstddef>
 #include <array>
+#include <vector>
 using namespace std;
 
 namespace chap11
@@ -106,5 +107,42 @@ namespace chap11
 
     delete[] oddNums; oddNums = nullptr;
     delete[] evenNums; evenNums = nullptr;
+  }
+
+  namespace UsePair
+  {
+    void printVec(const vector<int>& arr)
+    {
+      for (const auto& i : arr) {
+        cout << i << " ";
+      }
+      cout << endl;
+    }
+
+    pair<vector<int>, vector<int>> separateOddsAndEvens(const vector<int>& arr)
+    {
+      vector<int> odds, evens;
+      for (const auto i : arr)
+      {
+        if (i % 2 == 1)
+        {
+          odds.push_back(i);
+        }
+        else
+        {
+          evens.push_back(i);
+        }
+      }
+      return make_pair(odds, evens);
+    }
+
+  }
+  void chap11DemoUsePair()
+  {
+    FUNC_INFO;
+    vector<int> vecUnSplit = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    auto[odds, evens] = UsePair::separateOddsAndEvens(vecUnSplit);
+    UsePair::printVec(odds);
+    UsePair::printVec(evens);
   }
 }
