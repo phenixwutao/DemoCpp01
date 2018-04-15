@@ -167,6 +167,7 @@
     <ClInclude Include="ProfCpp4thCh10\ProfCpp4thCh10.h" />
     <ClInclude Include="ProfCpp4thCh10\SpreadsheetCell10.h" />
     <ClInclude Include="ProfCpp4thCh10\StringSpreadsheetCell10.h" />
+    <ClInclude Include="ProfCpp4thCh11\ProfCpp4thCh11.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -190,6 +191,7 @@
     <ClCompile Include="ProfCpp4thCh10\DoubleSpreadsheetCell10.cpp" />
     <ClCompile Include="ProfCpp4thCh10\ProfCpp4thCh10.cpp" />
     <ClCompile Include="ProfCpp4thCh10\StringSpreadsheetCell10.cpp" />
+    <ClCompile Include="ProfCpp4thCh11\ProfCpp4thCh11.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
