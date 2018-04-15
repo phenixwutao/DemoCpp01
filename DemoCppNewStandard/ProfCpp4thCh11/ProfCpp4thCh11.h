@@ -6,5 +6,6 @@ namespace chap11
   void chap11DemoUsePair();
   void chap11DemoUseConst();
   void chap11DemoUseConstexpr();
+  void chap11DemoUseStatic();
 
 }

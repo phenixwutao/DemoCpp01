@@ -229,13 +229,20 @@ namespace chap11
       return 32;
     }
 
+    // If the constexpr function is a member of a class, 
+    // the function cannot be virtual.
     class Rect
     {
     public:
+      /*
+      * The constructor body either shall be explicitly defaulted, or shall 
+      * satisfy the same requirements as the body of a constexpr function.
+      */
       constexpr Rect(size_t w, size_t h) : mWidth(w), mHeight(h)
       {
       }
 
+      // Constant expressions are evaluated at compile time!
       constexpr size_t getArea() const
       {
         return mWidth * mHeight;
@@ -257,5 +264,32 @@ namespace chap11
     constexpr UseConstExpr::Rect r(8, 2);
     int myArray2[r.getArea()];
     cout << std::size(myArray2) << endl;
+  }
+
+  namespace UseStatic
+  {
+    /*
+    * The final use of the static keyword in C++ is to create local variables that 
+    * retain their values between exits and entrances to their scope. 
+    * A static variable inside a function is like a global variable that is only 
+    * accessible from that function. Static variable inside a function is only
+    * initialised once.
+    */
+    void performTask()
+    {
+      static bool initialized = false;
+
+      if (!initialized)
+      {
+        cout << "initializing" << endl;
+        initialized = true;
+      }
+    }
+  }
+  void chap11DemoUseStatic()
+  {
+    FUNC_INFO;
+    UseStatic::performTask();
+    UseStatic::performTask();
   }
 }
