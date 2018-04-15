@@ -449,4 +449,47 @@ namespace chap10
     b2.dontTell(); // OK
   }
 
+  namespace DemoDerivCopy {
+    class Base
+    {
+    public:
+      virtual ~Base() = default;
+      Base() { printf("Base default ctor\n"); }
+      Base(const Base& src) { printf("Base copy ctor\n"); }
+      Base& operator=(const Base& src)
+      {
+        printf("Base copy assignment ctor\n");
+        return *this;
+      }
+    };
+    class Derived : public Base
+    {
+    public:
+      Derived() = default;
+
+      /********************************************************************************
+      * If your derived class does not specify its own copy constructor or operator=, 
+      * the base class functionality continues to work. However, if the derived class 
+      * does provide its own copy constructor or operator=, it needs to explicitly 
+      * call the base class versions
+      ********************************************************************************/
+      Derived(const Derived& src) : Base(src)
+      {
+        printf("Derived copy ctor\n");
+      }
+      Derived& operator=(const Derived& src)
+      {
+        Base::operator=(src); // call base operator=
+        printf("Derived copy assignment ctor\n");
+        return *this;
+      }
+    };
+  }
+  void chap10DemoCopyConstructorsDerivedClass()
+  {
+    FUNC_INFO;
+    DemoDerivCopy::Derived d1;
+    DemoDerivCopy::Derived d2 = d1;
+    d2 = d1;
+  }
 }

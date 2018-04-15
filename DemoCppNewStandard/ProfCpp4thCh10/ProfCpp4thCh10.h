@@ -14,4 +14,5 @@ namespace chap10
   void chap10DemoBaseClassMethodOverload();
   void chap10DemoBaseClassMethodHasDefaultArguments();
   void chap10DemoClassMethodHasDifferentAccessLevel();
+  void chap10DemoCopyConstructorsDerivedClass();
 }
