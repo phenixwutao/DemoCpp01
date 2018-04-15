@@ -2,4 +2,5 @@
 namespace chap11
 {
   void chap11DemoUseReference();
+  void chap11DemoUsePointer();
 }
