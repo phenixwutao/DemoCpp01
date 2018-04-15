@@ -145,4 +145,79 @@ namespace chap11
     UsePair::printVec(odds);
     UsePair::printVec(evens);
   }
+
+  namespace UseConst
+  {
+    const double PI = 3.141592653589793238462;
+
+    void func(const int /*param*/)
+    {
+      // Not allowed to change param...
+    }
+
+    void constIntOne()
+    {
+      const int* ip;
+      ip = new int[10];
+      //  ip[4] = 5; // DOES NOT COMPILE!
+      delete[] ip;
+    }
+
+    void constIntTwo()
+    {
+      int const* ip;
+      ip = new int[10];
+      //  ip[4] = 5; // DOES NOT COMPILE!
+      delete[] ip;
+    }
+
+    void constPtrOne()
+    {
+      int* const ip = nullptr;
+      //  ip = new int[10]; // DOES NOT COMPILE!
+      ip[4] = 5;	// Error: dereferencing a null pointer
+    }
+
+    void constPtrTwo()
+    {
+      // const pointer pointing to non-const int type:
+      int* const ip = new int[10];  // cannot change pointer
+      ip[4] = 5;                    // can change the value pointing to
+      delete[] ip;
+    }
+
+    void constIntPtrOne()
+    {
+      int const* const ip = nullptr;
+    }
+
+    void constIntPtrTwo()
+    {
+      const int* const ip = nullptr;
+    }
+
+    void manyLevelConst()
+    {
+      const int * const * const * const ip = nullptr;
+    }
+
+    class BigClass;
+    void doSomething(const BigClass& /*arg*/)
+    {
+      // implementation here
+    }
+  }
+  void chap11DemoUseConst()
+  {
+    int* ip;
+    ip = new int[10];
+    ip[4] = 5;
+    delete[] ip;
+
+    int z;
+    const int& zRef = z;
+    //  zRef = 4; // DOES NOT COMPILE
+
+    UseConst::constPtrTwo();
+  }
 }
