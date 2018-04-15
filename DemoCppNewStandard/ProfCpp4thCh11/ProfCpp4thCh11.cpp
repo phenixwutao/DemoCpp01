@@ -373,8 +373,58 @@ namespace chap11
 
   void chap11DemoConstCast()
   {
+    FUNC_INFO;
     std::string str = "C++";
     const std::string& constStr = std::as_const(str);
     auto a = std::as_const(str); //auto strips away reference and const qualifiers!
+  }
+
+  namespace Attribute
+  {
+    [[noreturn]]void func1()
+    {}
+
+    [[deprecated("Unsafe method, please use xyz")]] void func2()
+    {}
+
+    // compiler issue warning when returning value is ignored
+    [[nodiscard]] int func3()
+    {
+      return 42;
+    }
+
+    // The [[maybe_unused]] attribute can be used to suppress the compiler from
+    // issuing a warning when something is unused
+    int func4(int param1, [[maybe_unused]] int param2)
+    {
+      return 42;
+    }
+  }
+  void chap11DemoAttributes()
+  {
+    FUNC_INFO;
+    // Attribute::func2(); // deprecated function
+
+    // switch [[fallthrough]]
+    int i = 2;
+    switch (i)
+    {
+    case 0:
+      [[fallthrough]];
+    case 1:
+      [[fallthrough]];
+    case 2:
+      [[fallthrough]];
+      break;
+    case 3:
+      break;
+
+    default:
+      break;
+    }
+    
+    Attribute::func3();
+    
+    Attribute::func4(1,2);
   }
 }
