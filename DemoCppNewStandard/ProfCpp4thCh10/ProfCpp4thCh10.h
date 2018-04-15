@@ -17,4 +17,5 @@ namespace chap10
   void chap10DemoCopyConstructorsDerivedClass();
   void chap10DemoRunTimeTypeInformation();
   void chap10DemoTypeidLogging();
+  void chap10DemoVirtualBaseClass();
 }

@@ -558,4 +558,41 @@ namespace chap10
     Logging::Foo foo;
     Logging::logObject(foo);
   }
+
+  namespace VirtualBase
+  {
+    class Animal
+    {
+    public:
+      virtual void eat() = 0;
+      virtual void sleep() { cout << "zzzzz...." << endl; }
+    };
+
+    class Dog : public virtual Animal
+    {
+    public:
+      virtual void bark() { cout << "Woof!" << endl; }
+      virtual void eat() override { cout << "The dog ate." << endl; }
+    };
+
+    class Bird : public virtual Animal
+    {
+    public:
+      virtual void chirp() { cout << "Chirp!" << endl; }
+      virtual void eat() override { cout << "The bird ate." << endl; }
+    };
+
+    class DogBird : public Dog, public Bird
+    {
+    public:
+      virtual void eat() override { Dog::eat(); }
+    };
+
+  }
+  void chap10DemoVirtualBaseClass()
+  {
+    FUNC_INFO;
+    VirtualBase::DogBird myConfusedAnimal;
+    myConfusedAnimal.sleep();  // Not ambiguous because of virtual base class
+  }
 }
