@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <typeinfo>
 using namespace std;
 
 namespace chap10
@@ -491,5 +492,37 @@ namespace chap10
     DemoDerivCopy::Derived d1;
     DemoDerivCopy::Derived d2 = d1;
     d2 = d1;
+  }
+
+  namespace RTTI {
+    class Animal { public: virtual ~Animal() = default; };
+    class Dog : public Animal {};
+    class Bird : public Animal {};
+
+    void speak(const Animal& animal)
+    {
+      if (typeid(animal) == typeid(Dog))
+      {
+        cout << "Woof!" << endl;
+      }
+      else if (typeid(animal) == typeid(Bird))
+      {
+        cout << "Chirp!" << endl;
+      }
+      else if (typeid(animal) == typeid(Animal))
+      {
+        cout << "Animal!" << endl;
+      }
+    }
+  }
+  void chap10DemoRunTimeTypeInformation()
+  {
+    FUNC_INFO;
+    RTTI::Animal animal;
+    RTTI::Dog dog;
+    RTTI::Bird bird;
+    RTTI::speak(animal);
+    RTTI::speak(dog);
+    RTTI::speak(bird);
   }
 }
