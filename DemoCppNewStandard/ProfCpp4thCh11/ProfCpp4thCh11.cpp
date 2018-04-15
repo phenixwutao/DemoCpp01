@@ -2,9 +2,12 @@
 #include "ProfCpp4thCh11.h"
 
 #include <array>
+#include <chrono>
+#include <complex>
 #include <cstddef>
 #include <iostream>
 #include <string>
+#include <string_view>
 #include <vector>
 #include <utility>
 using namespace std;
@@ -426,5 +429,70 @@ namespace chap11
     Attribute::func3();
     
     Attribute::func4(1,2);
+  }
+
+  namespace UserDefinedLiteral
+  {
+    // (User defined) Cooked _i literal
+    std::complex<long double> operator"" _i(long double d)
+    {
+      return std::complex<long double>(0, d);
+    }
+
+    // Raw _i literal
+    //std::complex<long double> operator"" _i(const char* p)
+    //{
+    //    // Implementation omitted; it requires parsing the C-style
+    //    // string and converting it to a complex number.
+    //}
+
+
+    // Cooked _s literal
+    std::string operator"" _s(const char* str, size_t len)
+    {
+      return std::string(str, len);
+    }
+
+  }
+  void chap11DemoUserDefinedLiterals()
+  {
+    FUNC_INFO;
+    using namespace UserDefinedLiteral;
+    // Cooked _i literal
+    std::complex<long double> c1 = 9.634_i;
+    auto c2 = 1.23_i;         // c2 has as type std::complex<long double>
+
+                              // Cooked _s literal
+    std::string str1 = "Hello World"_s;
+    auto str2 = "Hello World"_s;   // str2 has as type std::string
+    auto str3 = "Hello World";     // str3 has as type const char*;
+  }
+
+  void chap11DemoStandardUserDefinedLiterals()
+  {
+    FUNC_INFO;
+    using namespace std::string_literals;
+    auto myString = "Hello World"s;
+
+    using namespace std::string_view_literals;
+    auto myStringView = "Hello World"sv; // C++17
+
+    using namespace std::chrono_literals;
+    // "h", "min", "s", "ms", "us", "ns", for creating std::chrono::duration time intervals
+    auto min1 = 42min;
+    auto h2 = 2h;
+    auto sec3 = 5s;
+    auto minisec4 = 3000ms;
+    auto usec5 = 30us;
+    auto nanosec6 = 4000ns;
+
+    using namespace std::complex_literals;
+    auto myComplexNumber = 1.3i;
+
+    auto val1 = 1.0F; // float
+    auto val2 = 2L; // long
+    auto val3 = 1.2E+02; // double
+    auto val4 = 3U; // unsigned int
+    auto val5 = 4; // int
   }
 }

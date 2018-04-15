@@ -11,4 +11,6 @@ namespace chap11
   void chap11DemoTypeAliasClassMethod();
   void chap11DemoConstCast();
   void chap11DemoAttributes();
+  void chap11DemoUserDefinedLiterals();
+  void chap11DemoStandardUserDefinedLiterals();
 }
