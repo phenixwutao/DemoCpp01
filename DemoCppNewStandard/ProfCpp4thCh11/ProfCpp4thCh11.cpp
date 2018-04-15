@@ -292,4 +292,81 @@ namespace chap11
     UseStatic::performTask();
     UseStatic::performTask();
   }
+
+  namespace TypeAlias
+  {
+    using StringVector = std::vector<std::string>;
+
+    void processVector(const StringVector& vec)
+    {
+      // Body omitted
+    }
+
+
+    using MatchFunction = bool(*)(int, int);
+    // typedef bool(*MatchFunction)(int, int);
+
+    void findMatches(int values1[], int values2[], size_t numValues, MatchFunction matcher)
+    {
+      for (size_t i = 0; i < numValues; i++)
+      {
+        if (matcher(values1[i], values2[i]))
+        {
+          cout << "Match found at position " << i << " (" << values1[i] << ", " << values2[i] << ")" << endl;
+        }
+      }
+    }
+
+    bool intEqual(int item1, int item2)
+    {
+      return item1 == item2;
+    }
+
+    bool bothOdd(int item1, int item2)
+    {
+      return item1 % 2 == 1 && item2 % 2 == 1;
+    }
+
+    class Employee {
+    public:
+      int getSalary() const
+      {
+        return 3000;
+      }
+    };
+  }
+  void chap11DemoTypeAlias()
+  {
+    FUNC_INFO;
+    using IntPtr = int*;
+    IntPtr ptr1 = nullptr;
+
+    TypeAlias::StringVector myVector;
+    TypeAlias::processVector(myVector);
+
+    int arr1[] = { 2, 5, 6, 9, 10, 1, 1 };
+    int arr2[] = { 4, 4, 2, 9, 0, 3, 4 };
+    size_t arrSize = std::size(arr1); // Pre-C++17: sizeof(arr1) / sizeof(arr1[0]);
+
+    cout << "Calling findMatches() using intEqual():" << endl;
+    TypeAlias::findMatches(arr1, arr2, arrSize, &TypeAlias::intEqual);
+    cout << endl;
+
+    cout << "Calling findMatches() using bothOdd():" << endl;
+    TypeAlias::findMatches(arr1, arr2, arrSize, &TypeAlias::bothOdd);
+
+    cout << "use MatchFunction bothOdd" << endl;
+    TypeAlias::MatchFunction func;
+    func = TypeAlias::intEqual;
+    TypeAlias::findMatches(arr1, arr2, arrSize, func);
+  }
+
+  void chap11DemoTypeAliasClassMethod()
+  {
+    FUNC_INFO;
+    TypeAlias::Employee employee;
+    using PtrToGet = int (TypeAlias::Employee::*) () const;
+    PtrToGet methodPtr = &TypeAlias::Employee::getSalary;
+    cout << (employee.*methodPtr)() << endl;
+  }
 }
