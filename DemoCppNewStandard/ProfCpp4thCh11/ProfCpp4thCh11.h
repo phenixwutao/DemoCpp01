@@ -9,4 +9,5 @@ namespace chap11
   void chap11DemoUseStatic();
   void chap11DemoTypeAlias();
   void chap11DemoTypeAliasClassMethod();
+  void chap11DemoConstCast();
 }

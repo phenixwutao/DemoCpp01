@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 using namespace std;
 
 namespace chap11
@@ -368,5 +369,12 @@ namespace chap11
     using PtrToGet = int (TypeAlias::Employee::*) () const;
     PtrToGet methodPtr = &TypeAlias::Employee::getSalary;
     cout << (employee.*methodPtr)() << endl;
+  }
+
+  void chap11DemoConstCast()
+  {
+    std::string str = "C++";
+    const std::string& constStr = std::as_const(str);
+    auto a = std::as_const(str); //auto strips away reference and const qualifiers!
   }
 }
