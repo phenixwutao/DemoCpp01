@@ -2,6 +2,7 @@
 #include "ProfCpp4thCh13.h"
 
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 namespace chap13
 {
@@ -48,4 +49,18 @@ namespace chap13
       cerr << "Unable to flush to standard out" << endl;
     }
   }
+
+  void chap13DemoCoutException()
+  {
+    FUNC_INFO;
+    cout.exceptions(ios::failbit | ios::badbit | ios::eofbit);
+    try {
+      cout << "Hello World." << endl;
+    }
+    catch (const ios_base::failure& ex) {
+      cerr << "Caught exception: " << ex.what()
+           << ", error code = " << ex.code() << endl;
+    }
+  }
+
 }
