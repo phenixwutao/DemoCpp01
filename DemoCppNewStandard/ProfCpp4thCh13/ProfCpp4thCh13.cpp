@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <fstream>
 
 using namespace std;
 namespace chap13
@@ -440,4 +441,15 @@ namespace chap13
     cout << "The end result is: " << outStream.str() << endl;
   }
 
+  void chap13DemoFileStream()
+  {
+    ofstream outFile("test.txt", ios_base::trunc);
+    if (!outFile.good()) {
+      cerr << "Error while opening output file!" << endl;
+      return;
+    }
+    string text("where are you");
+    outFile << "There were " << text << " arguments to this program." << endl;
+    outFile.close();
+  }
 }
