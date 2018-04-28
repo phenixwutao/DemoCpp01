@@ -411,4 +411,33 @@ namespace chap13
     InOutObject::Muffin m2 = InOutObject::createMuffin(instream);
     m2.output();
   }
+
+
+  /*
+  An advantage of string streams over standard C++ strings is that, in addition to data, they know
+  where the next read or write operation will take place, also called the current position. Another
+  advantage is that string streams support manipulators and locales to enable more powerful formatting
+  compared to strings.
+  */
+  void chap13DemoOstringStream()
+  {
+    cout << "Enter tokens. Control+D (Unix) or Control+Z (Windows) to end." << endl;
+
+    ostringstream outStream;
+
+    while (cin) {
+      string nextToken;
+
+      cout << "Next token: ";
+      cin >> nextToken;
+
+      if (!cin || nextToken == "done")
+        break;
+
+      outStream << nextToken << "\t";
+    }
+
+    cout << "The end result is: " << outStream.str() << endl;
+  }
+
 }
