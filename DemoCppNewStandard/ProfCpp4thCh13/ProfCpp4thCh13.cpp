@@ -533,4 +533,40 @@ namespace chap13
     outFile.close();
   }
 
+
+  void chap13DemoBidirectionalStream()   
+  {
+    string_view filename("data.txt");
+    int id = 263;
+    string_view newNumber("415-555-3333");
+
+    fstream ioData(filename.data()); // bidirectional file stream
+    if (!ioData) {
+      cerr << "Error while opening file " << filename << endl;
+      return;
+    }
+
+    // Loop until the end of file
+    while (ioData) {
+      int idRead;
+      string number;
+
+      // Read the next ID.
+      ioData >> idRead;
+      if (!ioData)
+        break;
+
+      // Check to see if the current record is the one being changed.
+      if (idRead == id) {
+        // Seek the write position to the current read position
+        ioData.seekp(ioData.tellg());
+        // Output a space, then the new number.
+        ioData << " " << newNumber;
+        break;
+      }
+
+      // Read the current number to advance the stream.
+      ioData >> number;
+    }
+  }
 }
