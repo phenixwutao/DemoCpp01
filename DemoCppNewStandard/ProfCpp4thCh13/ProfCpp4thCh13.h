@@ -8,4 +8,5 @@ namespace chap13
   void chap13DemoOstringStream();
   void chap13DemoFileStream();
   void chap13DemoFileStreamSeekTell();
+  void chap13DemoLinkStreams();
 }
