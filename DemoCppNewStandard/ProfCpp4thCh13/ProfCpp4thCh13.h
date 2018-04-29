@@ -7,4 +7,5 @@ namespace chap13
   void chap13DemoInputOutputWithObjects();
   void chap13DemoOstringStream();
   void chap13DemoFileStream();
+  void chap13DemoFileStreamSeekTell();
 }
