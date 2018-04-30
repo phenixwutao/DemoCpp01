@@ -11,4 +11,5 @@ namespace chap14
   void chap14DemoSetTerminateHandler();
   void chap14DemoNoexception();
   void chap14DemoThrowList();
+  void chap14DemoCustomiseExceptionClass();
 }
