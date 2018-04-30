@@ -15,4 +15,5 @@ namespace chap14
   void chap14DemoNestedException();
   void chap14DemoRethrowException();
   void chap14DemoThrowSlicing();
+  void chap14DemoCatchAndRethrow();
 }

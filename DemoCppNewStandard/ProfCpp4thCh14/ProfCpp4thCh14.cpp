@@ -433,5 +433,43 @@ namespace chap14
     }
   }
 
+  namespace DemoCatchRethrow
+  {
+    void funcOne();
+    void funcTwo();
+
+    void funcOne()
+    {
+      string str1;
+      string* str2 = new string();
+      try {
+        funcTwo();
+      }
+      catch (...) {
+        delete str2;
+        throw; // rethrow the exception
+      }
+      delete str2;
+    }
+
+    void funcTwo()
+    {
+      ifstream fileStream;
+      fileStream.open("filename.txt");
+      throw exception();
+      fileStream.close();
+    }
+  }
+  void chap14DemoCatchAndRethrow()
+  {
+    FUNC_INFO;
+    try {
+      DemoCatchRethrow::funcOne();
+    }
+    catch (const exception& e) {
+      cerr << "Exception caught! " << e.what() << endl;
+      return;
+    }
+  }
 }
 
