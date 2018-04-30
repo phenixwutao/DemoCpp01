@@ -53,6 +53,15 @@ namespace chap14
         throw "Unable to open file";
       }
     }
+
+    void ThrowMultipleExceptionFile(string_view fileName)
+    {
+      ifstream inputStream(fileName.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw runtime_error("Unable to open the file.");
+      }
+    }
   }
 
   void chap14DemoSafeDivide()
@@ -106,6 +115,36 @@ namespace chap14
     }
     catch (const char* e) {
       cerr << e << endl;
+    }
+  }
+
+  void chap14DemoCatchMultipleException()
+  {
+    FUNC_INFO;
+    const string fileName = "IntegerFile.txt";
+
+    try {
+      DemoException::ThrowMultipleExceptionFile(fileName);
+    }
+    catch (const exception& e) {
+      cerr << e.what() << endl;
+    }
+  }
+
+  void chap14DemoThrowMoreTypes()
+  {
+    FUNC_INFO;
+    try {
+      DemoException::SafeDivide(10,0);
+      DemoException::ThrowMultipleExceptionFile("MyInputTest.text");
+    }
+    catch (const invalid_argument& e)
+    {
+      cerr << e.what() << endl;
+    }
+    catch (const runtime_error& e)
+    {
+      cerr << e.what() << endl;
     }
   }
 }
