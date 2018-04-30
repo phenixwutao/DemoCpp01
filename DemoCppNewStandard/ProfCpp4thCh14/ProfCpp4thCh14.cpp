@@ -401,5 +401,37 @@ namespace chap14
       cout << "caught in main: " << e.what() << endl;
     }
   }
+
+
+  namespace DemoSlicing
+  {
+    void g() { throw invalid_argument("Some exception"); }
+
+    void f()
+    {
+      try {
+        g();
+      }
+      catch (const exception& e) {
+        cout << "caught in f: " << e.what() << endl;
+        throw;  // rethrow
+        //throw e; // throw slicing
+      }
+    }
+  }
+  void chap14DemoThrowSlicing()
+  {
+    FUNC_INFO;
+    try {
+      DemoSlicing::f();
+    }
+    catch (const invalid_argument& e) {
+      cout << "invalid_argument caught in main: " << e.what() << endl;
+    }
+    catch (const exception& e) {
+      cout << "exception caught in main: " << e.what() << endl;
+    }
+  }
+
 }
 

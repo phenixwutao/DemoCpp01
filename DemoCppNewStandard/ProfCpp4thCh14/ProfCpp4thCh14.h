@@ -14,4 +14,5 @@ namespace chap14
   void chap14DemoCustomiseExceptionClass();
   void chap14DemoNestedException();
   void chap14DemoRethrowException();
+  void chap14DemoThrowSlicing();
 }
