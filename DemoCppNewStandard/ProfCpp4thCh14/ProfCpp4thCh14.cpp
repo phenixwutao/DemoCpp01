@@ -165,8 +165,18 @@ namespace chap14
   {
     void myTerminate()
     {
-      cout << "myTerminate - Uncaught exception!" << endl;
-      exit(1);
+      cout << "myTerminate - Uncaught exception! exiting -1" << endl;
+      exit(-1);
+    }
+
+    void MyFuncNoException() noexcept
+    {
+      throw 5;
+    }
+    void MyFuncTerminator() noexcept
+    {
+      cout << "caught throw exception error of noexcept function, exiting -2" << endl;
+      exit(-2);
     }
   }
   void chap14DemoSetTerminateHandler()
@@ -174,5 +184,15 @@ namespace chap14
     FUNC_INFO;
     set_terminate(DemoException::myTerminate);
     DemoException::SafeDivide(2, 0);
+  }
+
+  void chap14DemoNoexception()
+  {
+    // A function marked with noexcept should not throw any exceptions
+    // When a function marked as noexcept throws an exception anyway, C++ calls terminate() to
+    // terminate the application
+    FUNC_INFO;
+    set_terminate(DemoException::MyFuncTerminator);
+    DemoException::MyFuncNoException();
   }
 }

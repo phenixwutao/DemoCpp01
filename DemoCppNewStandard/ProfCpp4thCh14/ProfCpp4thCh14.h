@@ -9,4 +9,5 @@ namespace chap14
   void chap14DemoThrowMoreTypes();
   void chap14DemoCatchAnyException();
   void chap14DemoSetTerminateHandler();
+  void chap14DemoNoexception();
 }
