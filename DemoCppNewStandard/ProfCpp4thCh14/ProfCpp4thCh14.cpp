@@ -231,6 +231,7 @@ namespace chap14
     }
   }
 
+
   namespace MyExcepClass
   {
 
@@ -373,5 +374,32 @@ namespace chap14
     }
   }
 
+  namespace DemoRethrow {
+    void g()
+    {
+      throw invalid_argument("Some exception from g");
+    }
+
+    void f()
+    {
+      try {
+        g();
+      }
+      catch (const invalid_argument& e) {
+        cout << "caught in f: " << e.what() << endl;
+        throw;  // rethrow
+      }
+    }
+  }
+  void chap14DemoRethrowException()
+  {
+    FUNC_INFO;
+    try {
+      DemoRethrow::f();
+    }
+    catch (const invalid_argument& e) {
+      cout << "caught in main: " << e.what() << endl;
+    }
+  }
 }
 
