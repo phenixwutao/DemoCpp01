@@ -36,6 +36,23 @@ namespace chap14
       return integers;
     }
 
+    void ThrowIntFile(string_view input)
+    {
+      ifstream inputStream(input.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw 5;
+      }
+    }
+
+    void ThrowCharFile(string_view fileName)
+    {
+      ifstream inputStream(fileName.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw "Unable to open file";
+      }
+    }
   }
 
   void chap14DemoSafeDivide()
@@ -66,4 +83,29 @@ namespace chap14
     }
   }
 
+  void chap14DemoThrowInt()
+  {
+    FUNC_INFO;
+    const string fileName = "IntegerFile.txt";
+    try {
+      DemoException::ThrowIntFile(fileName);
+    }
+    catch (int e) {
+      cerr << "Unable to open file " << fileName << " (" << e << ")" << endl;
+      return;
+    }
+  }
+
+  void chap14DemoThrowChars()
+  {
+    FUNC_INFO;
+    const string fileName = "IntegerFile.txt";
+
+    try {
+      DemoException::ThrowCharFile(fileName);
+    }
+    catch (const char* e) {
+      cerr << e << endl;
+    }
+  }
 }
