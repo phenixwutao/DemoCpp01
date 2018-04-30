@@ -65,6 +65,42 @@ namespace chap14
         throw runtime_error("Unable to open the file.");
       }
     }
+
+    void myTerminate()
+    {
+      cout << "myTerminate - Uncaught exception! exiting -1" << endl;
+      exit(-1);
+    }
+
+    void MyFuncNoException() noexcept
+    {
+      throw 5;
+    }
+    void MyFuncTerminator() noexcept
+    {
+      cout << "caught throw exception error of noexcept function, exiting -2" << endl;
+      exit(-2);
+    }
+
+    /*
+    Older versions of C++ allowed you to specify the exceptions a function or method intended to
+    throw. This specification was called the throw list or the exception specification.
+
+    C++11 has deprecated, and C++17 has removed support for, exception specifications,
+    except for noexcept and throw() which is equivalent to noexcept.
+
+    If a function threw an exception that was not in its exception specification (or throw list),
+    the C++ runtime called std::unexpected() which by default called std::terminate() to terminate
+    the application.
+    */
+    void readFileThrowExceps(string_view fileName) throw (invalid_argument, runtime_error)
+    {
+      ifstream inputStream(fileName.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw runtime_error("Unable to open the file.");
+      }
+    }
   }
 
   void chap14DemoSafeDivide()
@@ -138,7 +174,7 @@ namespace chap14
   {
     FUNC_INFO;
     try {
-      DemoException::SafeDivide(10,0);
+      DemoException::SafeDivide(10, 0);
       DemoException::ThrowMultipleExceptionFile("MyInputTest.text");
     }
     catch (const invalid_argument& e)
@@ -163,24 +199,6 @@ namespace chap14
     }
   }
 
-  namespace DemoException
-  {
-    void myTerminate()
-    {
-      cout << "myTerminate - Uncaught exception! exiting -1" << endl;
-      exit(-1);
-    }
-
-    void MyFuncNoException() noexcept
-    {
-      throw 5;
-    }
-    void MyFuncTerminator() noexcept
-    {
-      cout << "caught throw exception error of noexcept function, exiting -2" << endl;
-      exit(-2);
-    }
-  }
   void chap14DemoSetTerminateHandler()
   {
     FUNC_INFO;
@@ -198,28 +216,6 @@ namespace chap14
     DemoException::MyFuncNoException();
   }
 
-  /*
-  Older versions of C++ allowed you to specify the exceptions a function or method intended to
-  throw. This specification was called the throw list or the exception specification.
-
-  C++11 has deprecated, and C++17 has removed support for, exception specifications, 
-  except for noexcept and throw() which is equivalent to noexcept.
-
-  If a function threw an exception that was not in its exception specification (or throw list), 
-  the C++ runtime called std::unexpected() which by default called std::terminate() to terminate
-  the application.
-  */
-  namespace DemoException 
-  {
-    void readFileThrowExceps(string_view fileName) throw (invalid_argument, runtime_error)
-    {
-      ifstream inputStream(fileName.data());
-      if (inputStream.fail()) {
-        // We failed to open the file: throw an exception
-        throw runtime_error("Unable to open the file.");
-      }
-    }
-  }
 
   // demo exception specification
   void chap14DemoThrowList()
@@ -235,8 +231,9 @@ namespace chap14
     }
   }
 
-  namespace DemoException2
+  namespace MyExcepClass
   {
+
     class FileError : public exception
     {
     public:
@@ -315,7 +312,6 @@ namespace chap14
 
       return integers;
     }
-
   }
 
   void chap14DemoCustomiseExceptionClass()
@@ -324,13 +320,58 @@ namespace chap14
     const string fileName = "IntegerFile.txt";
 
     try {
-      auto myInts = DemoException2::readOwnFile(fileName);
+      auto myInts = MyExcepClass::readOwnFile(fileName);
     }
-    catch (const DemoException2::FileError& e)
+    catch (const MyExcepClass::FileError& e)
     {
       cerr << e.what() << endl;
       return;
     }
   }
 
+  namespace NestedException
+  {
+    class MyException : public exception
+    {
+    public:
+      MyException(string_view message) : mMessage(message) {}
+      virtual const char* what() const noexcept override { return mMessage.c_str(); }
+
+    private:
+      string mMessage;
+    };
+
+    void doSomething()
+    {
+      try {
+        throw runtime_error("Throwing a runtime_error exception");
+      }
+      catch (const runtime_error& /*e*/) {
+        cout << __func__ << " caught a runtime_error" << endl;
+        cout << __func__ << " throwing MyException" << endl;
+        throw_with_nested(MyException("MyException with nested runtime_error"));
+      }
+    }
+  }
+  void chap14DemoNestedException()
+  {
+    FUNC_INFO;
+    try {
+      NestedException::doSomething();
+    }
+    catch (const NestedException::MyException& e)
+    {
+      cout << __func__ << " caught MyException: " << e.what() << endl;
+      try {
+        rethrow_if_nested(e);
+      }
+      catch (const runtime_error& e)
+      {
+        // Handle nested exception
+        cout << "  Nested exception: " << e.what() << endl;
+      }
+    }
+  }
+
 }
+
