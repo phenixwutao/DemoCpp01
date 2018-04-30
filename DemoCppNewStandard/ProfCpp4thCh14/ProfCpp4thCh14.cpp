@@ -6,6 +6,7 @@
 #include <string_view>
 #include <vector>
 #include <fstream>
+#include <exception>
 
 using namespace std;
 namespace chap14
@@ -146,5 +147,32 @@ namespace chap14
     {
       cerr << e.what() << endl;
     }
+  }
+
+  void chap14DemoCatchAnyException()
+  {
+    FUNC_INFO;
+    try {
+      DemoException::SafeDivide(10, 0);
+    }
+    catch (...)
+    {
+      cerr << "Error in function" << endl;
+    }
+  }
+
+  namespace DemoException
+  {
+    void myTerminate()
+    {
+      cout << "myTerminate - Uncaught exception!" << endl;
+      exit(1);
+    }
+  }
+  void chap14DemoSetTerminateHandler()
+  {
+    FUNC_INFO;
+    set_terminate(DemoException::myTerminate);
+    DemoException::SafeDivide(2, 0);
   }
 }

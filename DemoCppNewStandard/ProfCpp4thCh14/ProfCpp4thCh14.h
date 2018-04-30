@@ -7,4 +7,6 @@ namespace chap14
   void chap14DemoThrowChars();
   void chap14DemoCatchMultipleException();
   void chap14DemoThrowMoreTypes();
+  void chap14DemoCatchAnyException();
+  void chap14DemoSetTerminateHandler();
 }
