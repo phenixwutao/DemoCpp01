@@ -1,0 +1,69 @@
+#include "stdafx.h"
+#include "ProfCpp4thCh14.h"
+
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+namespace chap14
+{
+  namespace DemoException
+  {
+    double SafeDivide(double num, double den)
+    {
+      if (den == 0)
+        throw invalid_argument("Divide by zero");
+      return num / den;
+    }
+
+    vector<int> readInputFile(string_view fileName)
+    {
+      ifstream inputStream(fileName.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw exception();
+      }
+
+      // Read the integers one-by-one and add them to a vector
+      vector<int> integers;
+      int temp;
+      while (inputStream >> temp) {
+        integers.push_back(temp);
+      }
+      return integers;
+    }
+
+  }
+
+  void chap14DemoSafeDivide()
+  {
+    FUNC_INFO;
+    try {
+      cout << DemoException::SafeDivide(5, 2) << endl;
+      cout << DemoException::SafeDivide(10, 0) << endl;
+      cout << DemoException::SafeDivide(3, 3) << endl;
+    }
+    catch (const invalid_argument& e) {
+      cout << "Caught exception: " << e.what() << endl;
+    }
+  }
+
+  void chap14DemoFileException()
+  {
+    FUNC_INFO;
+    const string fileName = "IntegerFile.txt";
+    vector<int> myInts;
+
+    try {
+      myInts = DemoException::readInputFile(fileName);
+    }
+    catch (const exception& /* e */) {
+      cerr << "Unable to open file " << fileName << endl;
+      return;
+    }
+  }
+
+}
