@@ -195,4 +195,40 @@ namespace chap14
     set_terminate(DemoException::MyFuncTerminator);
     DemoException::MyFuncNoException();
   }
+
+  /*
+  Older versions of C++ allowed you to specify the exceptions a function or method intended to
+  throw. This specification was called the throw list or the exception specification.
+
+  C++11 has deprecated, and C++17 has removed support for, exception specifications, 
+  except for noexcept and throw() which is equivalent to noexcept.
+
+  If a function threw an exception that was not in its exception specification (or throw list), 
+  the C++ runtime called std::unexpected() which by default called std::terminate() to terminate
+  the application.
+  */
+  namespace DemoException {
+    void readFileThrowExceps(string_view fileName) throw (invalid_argument, runtime_error)
+    {
+      ifstream inputStream(fileName.data());
+      if (inputStream.fail()) {
+        // We failed to open the file: throw an exception
+        throw runtime_error("Unable to open the file.");
+      }
+    }
+  }
+
+  // demo exception specification
+  void chap14DemoThrowList()
+  {
+    FUNC_INFO;
+    try
+    {
+      DemoException::readFileThrowExceps("unknownfile.txt");
+    }
+    catch (const runtime_error& e)
+    {
+      cerr << e.what() << endl;
+    }
+  }
 }
