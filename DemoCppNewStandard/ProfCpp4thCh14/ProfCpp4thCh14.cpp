@@ -502,5 +502,51 @@ namespace chap14
     }
   }
 
+  namespace ExpptionInCtor
+  {
+    class SubObject
+    {
+    public:
+      SubObject(int i)
+      {
+        throw runtime_error("Exception by SubObject ctor");
+      }
+    };
+
+    class MyClass
+    {
+    public:
+      MyClass();
+    private:
+      int* mData = nullptr;
+      SubObject mSubObject;
+    };
+
+    MyClass::MyClass()
+      try
+      : mData(new int[42]{ 1, 2, 3 }), mSubObject(42)
+    {
+      /* ... constructor body ... */
+    }
+    catch (const exception& e)
+    {
+      // Cleanup memory.
+      delete[] mData;
+      mData = nullptr;
+      cout << "function-try-block caught: '" << e.what() << "'" << endl;
+    }
+
+  }
+  void chap14DemoFunctionTryBlocksForConstructors()
+  {
+    FUNC_INFO;
+    try {
+      ExpptionInCtor::MyClass m;
+    }
+    catch (const exception& e) {
+      cout << "my caught: '" << e.what() << "'" << endl;
+    }
+
+  }
 }
 
