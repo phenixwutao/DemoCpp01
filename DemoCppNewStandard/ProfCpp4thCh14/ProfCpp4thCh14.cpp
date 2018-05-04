@@ -471,5 +471,36 @@ namespace chap14
       return;
     }
   }
+
+  namespace NewHandle
+  {
+    class please_terminate_me : public bad_alloc { };
+
+    void myNewHandler()
+    {
+      cerr << "Unable to allocate memory." << endl;
+      throw please_terminate_me();
+    }
+  }
+  void chap14DemoSetNewHandler()
+  {
+    try {
+      // Set the new new_handler and save the old one.
+      new_handler oldHandler = set_new_handler(NewHandle::myNewHandler);
+
+      // Generate allocation error
+      size_t numInts = numeric_limits<size_t>::max();
+      int* ptr = new int[numInts];
+
+      // Reset the old new_handler if pass memory allocation without any error
+      set_new_handler(oldHandler);
+    }
+    catch (const NewHandle::please_terminate_me&) {
+      cerr << __FILE__ << "(" << __LINE__
+        << "): Terminating program." << endl;
+      return;
+    }
+  }
+
 }
 
