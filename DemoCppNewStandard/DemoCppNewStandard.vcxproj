@@ -170,6 +170,7 @@
     <ClInclude Include="ProfCpp4thCh11\ProfCpp4thCh11.h" />
     <ClInclude Include="ProfCpp4thCh13\ProfCpp4thCh13.h" />
     <ClInclude Include="ProfCpp4thCh14\ProfCpp4thCh14.h" />
+    <ClInclude Include="ProfCpp4thCh15\MyArray.h" />
     <ClInclude Include="ProfCpp4thCh15\ProfCpp4thCh15.h" />
     <ClInclude Include="ProfCpp4thCh15\SpreadsheetCell1.h" />
     <ClInclude Include="stdafx.h" />

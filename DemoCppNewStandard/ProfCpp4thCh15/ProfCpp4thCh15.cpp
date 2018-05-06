@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh15.h"
 #include "SpreadsheetCell1.h"
+#include "MyArray.h"
 
 #include <iostream>
 using namespace std;
@@ -59,4 +60,32 @@ namespace chap15
     cout << "Input 3 spreadsheetcells:" << endl;
     operator>>(operator>>(operator>>(cin, myCell), anotherCell), aThirdCell);
   }
+
+  void printArray(const Array<int>& arr)
+  {
+    for (size_t i = 0; i < arr.getSize(); i++) {
+      cout << arr[i] << " "; // calls the const operator[] because arr is a const object.
+    }
+    cout << endl;
+  }
+
+  void chap15DemoSubscriptOperator()
+  {
+    FUNC_INFO;
+    Array<int> myArray;
+    for (size_t i = 0; i < 10; i++) {
+      myArray[i] = 100;	// Calls the non-const operator[] because myArray is a non-const object.
+    }
+    printArray(myArray);
+
+    //Array<int> myArray;
+    //for (size_t i = 0; i < 10; i++) {
+    //	myArray.setElementAt(i, 100);
+    //}
+    //for (size_t i = 0; i < 10; i++) {
+    //	cout << myArray.getElementAt(i) << " ";
+    //}
+
+  }
+
 }
