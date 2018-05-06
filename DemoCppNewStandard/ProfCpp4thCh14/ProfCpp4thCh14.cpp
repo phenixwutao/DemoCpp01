@@ -9,6 +9,7 @@
 #include <exception>
 #include <stdexcept>
 #include <sstream>
+#include <memory>
 
 using namespace std;
 namespace chap14
@@ -518,22 +519,21 @@ namespace chap14
     public:
       MyClass();
     private:
-      int* mData = nullptr;
+      std::unique_ptr<int> mData = nullptr;
       SubObject mSubObject;
     };
 
     MyClass::MyClass()
       try
-      : mData(new int[42]{ 1, 2, 3 }), mSubObject(42)
+      : mData(new int[42]{ 1,2,3 }), mSubObject(42)
     {
       /* ... constructor body ... */
+      //mData = std::make_unique<vector<int>>(42, 1);
     }
     catch (const exception& e)
     {
-      // Cleanup memory.
-      delete[] mData;
-      mData = nullptr;
       cout << "function-try-block caught: '" << e.what() << "'" << endl;
+      // the runtime automatically rethrows the current exception
     }
 
   }
