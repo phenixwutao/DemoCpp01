@@ -118,4 +118,15 @@ namespace chap15
     xSquared = square(x);				// Call the function call operator
     xSquaredAgain = square.doSquare(x);	// Call the normal method
   }
+
+  void chap15DemoConversionOperator()
+  {
+    FUNC_INFO;
+    Tut1::SpreadsheetCell cell(1.23);
+    double d1 = cell;
+    cout << "SpreadsheetCell in double presentation: " << d1 << endl;
+    string str = cell;
+    cout << "SpreadsheetCell in string presentation: " << str << endl;
+
+  }
 }

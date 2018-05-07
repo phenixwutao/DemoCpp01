@@ -167,4 +167,15 @@ namespace Tut1 {
     cell.set(value);
     return istr;
   }
+
+  SpreadsheetCell::operator double() const
+  {
+    return getValue();
+  }
+
+  SpreadsheetCell::operator std::string() const
+  {
+    return doubleToString(getValue());
+  }
+
 }

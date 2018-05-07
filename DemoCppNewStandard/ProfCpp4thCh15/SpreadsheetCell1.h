@@ -34,6 +34,10 @@ namespace Tut1 {
     SpreadsheetCell& operator--();   // prefix 
     SpreadsheetCell operator--(int); // postfix
 
+    // conversion operators: to double and string
+    operator double() const;
+    operator std::string() const;
+
 
   private:
     double mValue = 0;

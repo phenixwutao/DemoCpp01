@@ -6,4 +6,5 @@ namespace chap15
   void chap15DemoExtractionInsertionOperator();
   void chap15DemoSubscriptOperator();
   void chap15DemoFunctor();
+  void chap15DemoConversionOperator();
 }
