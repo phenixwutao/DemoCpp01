@@ -146,6 +146,7 @@ namespace chap15
 
   void chap15DemoOverloadNewDelete()
   {
+    FUNC_INFO;
     Tut2::MemoryDemo* mem = new Tut2::MemoryDemo();
     delete mem;
 
@@ -157,8 +158,13 @@ namespace chap15
 
     mem = new (nothrow) Tut2::MemoryDemo[10];
     delete[] mem;
+  }
 
+  void chap15DemoOverloadNewDeleteWithExtraParam()
+  {
+    FUNC_INFO;
     Tut2::MemoryDemo* memp = new(5) Tut2::MemoryDemo();
     delete memp;
   }
+
 }

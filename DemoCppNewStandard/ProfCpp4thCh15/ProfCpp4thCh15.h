@@ -9,4 +9,5 @@ namespace chap15
   void chap15DemoConversionOperator();
   void chap15DemoExplicitConversionOperator();
   void chap15DemoOverloadNewDelete();
+  void chap15DemoOverloadNewDeleteWithExtraParam();
 }

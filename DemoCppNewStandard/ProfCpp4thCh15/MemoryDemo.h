@@ -27,6 +27,7 @@ namespace Tut2
     void operator delete[](void* ptr, const std::nothrow_t&) noexcept;
 
 
+    // overload new/delete operator with extra parameter
     void* operator new(size_t size, int extra);
     void operator delete(void* ptr, int extra) noexcept;
   };
