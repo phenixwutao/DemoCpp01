@@ -177,5 +177,4 @@ namespace Tut1 {
   {
     return doubleToString(getValue());
   }
-
 }

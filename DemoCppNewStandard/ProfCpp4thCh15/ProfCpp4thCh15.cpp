@@ -123,10 +123,23 @@ namespace chap15
   {
     FUNC_INFO;
     Tut1::SpreadsheetCell cell(1.23);
-    double d1 = cell;
+    double d1 = static_cast<double>(cell); // need static_cast
     cout << "SpreadsheetCell in double presentation: " << d1 << endl;
     string str = cell;
     cout << "SpreadsheetCell in string presentation: " << str << endl;
 
+  }
+
+  void chap15DemoExplicitConversionOperator()
+  {
+    FUNC_INFO;
+    // Explicit operator double() demonstration
+    Tut1::SpreadsheetCell cell2 = 6.6;
+    string str = cell2;
+    double d3 = static_cast<double>(cell2);
+    double d4 = static_cast<double>(cell2 + 3.3);
+    cout << str << endl;
+    cout << d3 << endl;
+    cout << d4 << endl;
   }
 }
