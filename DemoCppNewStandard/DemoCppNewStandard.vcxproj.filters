@@ -138,6 +138,9 @@
     <ClInclude Include="ProfCpp4thCh15\MyArray.h">
       <Filter>ProfCpp4thCh15</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh15\MemoryDemo.h">
+      <Filter>ProfCpp4thCh15</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -213,6 +216,9 @@
       <Filter>ProfCpp4thCh15</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh15\SpreadsheetCell1.cpp">
+      <Filter>ProfCpp4thCh15</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh15\MemoryDemo.cpp">
       <Filter>ProfCpp4thCh15</Filter>
     </ClCompile>
   </ItemGroup>

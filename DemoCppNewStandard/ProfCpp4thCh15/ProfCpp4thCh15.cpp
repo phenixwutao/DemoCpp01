@@ -2,6 +2,7 @@
 #include "ProfCpp4thCh15.h"
 #include "SpreadsheetCell1.h"
 #include "MyArray.h"
+#include "MemoryDemo.h"
 
 #include <iostream>
 using namespace std;
@@ -141,5 +142,23 @@ namespace chap15
     cout << str << endl;
     cout << d3 << endl;
     cout << d4 << endl;
+  }
+
+  void chap15DemoOverloadNewDelete()
+  {
+    Tut2::MemoryDemo* mem = new Tut2::MemoryDemo();
+    delete mem;
+
+    mem = new Tut2::MemoryDemo[10];
+    delete[] mem;
+
+    mem = new (nothrow) Tut2::MemoryDemo();
+    delete mem;
+
+    mem = new (nothrow) Tut2::MemoryDemo[10];
+    delete[] mem;
+
+    Tut2::MemoryDemo* memp = new(5) Tut2::MemoryDemo();
+    delete memp;
   }
 }

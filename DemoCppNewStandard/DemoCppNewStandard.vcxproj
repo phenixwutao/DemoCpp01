@@ -170,6 +170,7 @@
     <ClInclude Include="ProfCpp4thCh11\ProfCpp4thCh11.h" />
     <ClInclude Include="ProfCpp4thCh13\ProfCpp4thCh13.h" />
     <ClInclude Include="ProfCpp4thCh14\ProfCpp4thCh14.h" />
+    <ClInclude Include="ProfCpp4thCh15\MemoryDemo.h" />
     <ClInclude Include="ProfCpp4thCh15\MyArray.h" />
     <ClInclude Include="ProfCpp4thCh15\ProfCpp4thCh15.h" />
     <ClInclude Include="ProfCpp4thCh15\SpreadsheetCell1.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="ProfCpp4thCh11\ProfCpp4thCh11.cpp" />
     <ClCompile Include="ProfCpp4thCh13\ProfCpp4thCh13.cpp" />
     <ClCompile Include="ProfCpp4thCh14\ProfCpp4thCh14.cpp" />
+    <ClCompile Include="ProfCpp4thCh15\MemoryDemo.cpp" />
     <ClCompile Include="ProfCpp4thCh15\ProfCpp4thCh15.cpp" />
     <ClCompile Include="ProfCpp4thCh15\SpreadsheetCell1.cpp" />
     <ClCompile Include="stdafx.cpp">
