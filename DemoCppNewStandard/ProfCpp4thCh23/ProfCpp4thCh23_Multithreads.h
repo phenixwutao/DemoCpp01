@@ -2,4 +2,5 @@
 namespace chap23
 {
   void chap23DemoBasicThread();
+  void chap23DemoThreadWithFunctionObject();
 }
