@@ -63,6 +63,7 @@ namespace chap23
     t2.join();
     t3.join();
   }
+
   void chap23DemoThreadWithLambda()
   {
     FUNC_INFO;
@@ -78,4 +79,28 @@ namespace chap23
 
     t1.join();
   }
+
+  class Request01
+  {
+  public:
+    Request01(int id) : mId(id) { }
+
+    void process()
+    {
+      cout << "Processing request " << mId << endl;
+    }
+
+  private:
+    int mId;
+  };
+
+  void chap23DemoThreadWithClassMethod()
+  {
+    FUNC_INFO;
+    Request01 req(100);
+    // class method and object
+    thread t { &Request01::process, &req };
+    t.join();
+  }
+
 }
