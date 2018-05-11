@@ -10,4 +10,5 @@ namespace chap23
   void chap23DemoNonAtomicCalculation();
   void chap23DemoAtomicCalculation();
   void chap23DemoAtomicCalculationOptimised();
+  void chap23DemoAtomicFetchAdd();
 }
