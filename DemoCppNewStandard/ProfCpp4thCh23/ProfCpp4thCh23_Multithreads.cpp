@@ -221,4 +221,31 @@ namespace chap23
 
     cout << "Result = " << counter << endl;
   }
+
+  void OptimalIncrement(atomic<int>& counter)
+  {
+    int result = 0;
+    for (int i = 0; i < 100; ++i) {
+      ++result;
+      this_thread::sleep_for(1ms);
+    }
+    counter += result;
+  }
+
+  void chap23DemoAtomicCalculationOptimised()
+  {
+    FUNC_INFO;
+    atomic<int> counter(0);
+    vector<thread> threads;
+
+    for (int i = 0; i < 10; ++i) {
+      threads.push_back(thread{ OptimalIncrement, ref(counter) });
+    }
+
+    for (auto& t : threads) {
+      t.join();
+    }
+
+    cout << "Result = " << counter << endl;
+  }
 }

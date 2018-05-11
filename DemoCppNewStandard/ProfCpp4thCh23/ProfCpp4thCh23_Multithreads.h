@@ -9,4 +9,5 @@ namespace chap23
   void chap23DemoIsLockFree();
   void chap23DemoNonAtomicCalculation();
   void chap23DemoAtomicCalculation();
+  void chap23DemoAtomicCalculationOptimised();
 }
