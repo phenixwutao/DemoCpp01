@@ -55,6 +55,9 @@
     <Filter Include="ProfCpp4thCh15">
       <UniqueIdentifier>{b0612bd0-9324-42ec-a295-98bebf00557a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh23">
+      <UniqueIdentifier>{98c1ac43-98d0-4799-9a67-2d9a4d37f1f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -141,6 +144,9 @@
     <ClInclude Include="ProfCpp4thCh15\MemoryDemo.h">
       <Filter>ProfCpp4thCh15</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.h">
+      <Filter>ProfCpp4thCh23</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -220,6 +226,9 @@
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh15\MemoryDemo.cpp">
       <Filter>ProfCpp4thCh15</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.cpp">
+      <Filter>ProfCpp4thCh23</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
