@@ -63,4 +63,19 @@ namespace chap23
     t2.join();
     t3.join();
   }
+  void chap23DemoThreadWithLambda()
+  {
+    FUNC_INFO;
+    int id = 1;
+    int numIterations = 5;
+    thread t1([id, numIterations] () 
+    {
+      for (int i = 0; i < numIterations; ++i)
+      {
+        cout << "Counter " << id << " has value " << i << endl;
+      }
+    });
+
+    t1.join();
+  }
 }
