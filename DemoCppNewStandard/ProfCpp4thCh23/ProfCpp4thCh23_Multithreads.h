@@ -5,4 +5,5 @@ namespace chap23
   void chap23DemoThreadWithFunctionObject();
   void chap23DemoThreadWithLambda();
   void chap23DemoThreadWithClassMethod();
+  void chap23DemoThreadWithExceptionHandling();
 }

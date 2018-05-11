@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <thread> // thread header file
+#include <exception>
+#include <stdexcept>
 using namespace std;
 
 namespace chap23
@@ -101,6 +103,55 @@ namespace chap23
     // class method and object
     thread t { &Request01::process, &req };
     t.join();
+  }
+
+  void doSomeWork01()
+  {
+    for (int i = 0; i < 5; ++i) {
+      cout << i << endl;
+    }
+    cout << "Thread throwing a runtime_error exception..." << endl;
+    throw runtime_error("Exception from thread func doSomeWork01");
+  }
+
+  void threadFunc01(exception_ptr& err)
+  {
+    try {
+      doSomeWork01();
+    }
+    catch (...) {
+      cout << "Thread caught exception, returning exception..." << endl;
+      err = current_exception();
+    }
+  }
+
+  void doWorkInThread01()
+  {
+    exception_ptr error;
+
+    thread t { threadFunc01, ref(error) }; // Launch thread
+    t.join(); // Wait for thread to finish
+
+    // See if thread has thrown any exception
+    if (error) {
+      cout << "Main thread received exception, rethrowing it..." << endl;
+      rethrow_exception(error);
+    }
+    else {
+      cout << "Main thread did not receive any exception." << endl;
+    }
+  }
+
+  void chap23DemoThreadWithExceptionHandling()
+  {
+    FUNC_INFO;
+    try {
+      doWorkInThread01();
+    }
+    catch (const exception& e)
+    {
+      cout << "Main function caught: '" << e.what() << "'" << endl;
+    }
   }
 
 }
