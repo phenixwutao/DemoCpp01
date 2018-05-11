@@ -5,6 +5,10 @@
 #include <thread> // thread header file
 #include <exception>
 #include <stdexcept>
+#include <atomic>
+#include <type_traits>
+#include <vector>
+
 using namespace std;
 
 namespace chap23
@@ -154,4 +158,67 @@ namespace chap23
     }
   }
 
+  class Foo1 { private: int mArray[123]; };
+  class Bar1 { private: int mInt; };
+  void chap23DemoIsLockFree()
+  {
+    FUNC_INFO;
+    atomic<Foo1> f;
+    cout << "Foo1 " << is_trivially_copyable_v<Foo1> << " " << f.is_lock_free() << endl;
+
+    atomic<Bar1> b;
+    cout << "Bar1 " << is_trivially_copyable_v<Bar1> << " " << b.is_lock_free() << endl;
+  }
+
+  void NonAtomicIncrement(int& counter)
+  {
+    for (int i = 0; i < 100; ++i)
+    {
+      ++counter;
+      this_thread::sleep_for(1ms);
+    }
+  }
+
+  void chap23DemoNonAtomicCalculation()
+  {
+    FUNC_INFO;
+    int counter = 0;
+    vector<thread> threads;
+
+    for (int i = 0; i < 10; ++i) {
+      threads.push_back( thread { NonAtomicIncrement, ref(counter) });
+    }
+
+    for (auto& t : threads) {
+      t.join();
+    }
+
+    cout << "Result = " << counter << endl;
+  }
+
+  void AtomicIncrement(atomic<int>& counter)
+  {
+    for (int i = 0; i < 100; ++i)
+    {
+      ++counter;
+      this_thread::sleep_for(1ms);
+    }
+  }
+
+  void chap23DemoAtomicCalculation()
+  {
+    FUNC_INFO;
+    atomic<int> counter(0);
+    vector<thread> threads;
+
+    for (int i = 0; i < 10; ++i) {
+      threads.push_back( thread { AtomicIncrement, ref(counter) });
+    }
+
+    for (auto& t : threads) {
+      t.join();
+    }
+
+    cout << "Result = " << counter << endl;
+  }
 }
