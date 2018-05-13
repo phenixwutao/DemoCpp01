@@ -529,4 +529,27 @@ namespace chap23
     result = myFuture3.get();
     cout << "Result 3: " << result << endl;
   }
+
+  int CalcWithError()
+  {
+    throw runtime_error("Exception thrown from calculate().");
+  }
+
+  void chap23DemoAsychErrorHandling()
+  {
+    FUNC_INFO;
+    // Use the launch::async policy to force asynchronous execution.
+    auto myFuture = async(launch::async, CalcWithError);
+
+    // Do some more work...
+
+    // Get the result.
+    try {
+      int result = myFuture.get();
+      cout << "Result: " << result << endl;
+    }
+    catch (const exception& ex) {
+      cout << "Caught exception: " << ex.what() << endl;
+    }
+  }
 }
