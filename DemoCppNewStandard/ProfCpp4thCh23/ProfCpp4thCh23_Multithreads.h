@@ -22,4 +22,5 @@ namespace chap23
   void chap23DemoAsychFuture();
   void chap23DemoAsychErrorHandling();
   void chap23DemoSharedFuture();
+  void chap23DemoThreadingLogger();
 }

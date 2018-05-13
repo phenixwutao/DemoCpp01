@@ -147,6 +147,9 @@
     <ClInclude Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.h">
       <Filter>ProfCpp4thCh23</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh23\MyLogger.h">
+      <Filter>ProfCpp4thCh23</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -228,6 +231,9 @@
       <Filter>ProfCpp4thCh15</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.cpp">
+      <Filter>ProfCpp4thCh23</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh23\MyLogger.cpp">
       <Filter>ProfCpp4thCh23</Filter>
     </ClCompile>
   </ItemGroup>
