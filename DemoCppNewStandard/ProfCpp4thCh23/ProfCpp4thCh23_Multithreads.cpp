@@ -8,6 +8,7 @@
 #include <atomic>
 #include <type_traits>
 #include <vector>
+#include <mutex>
 
 using namespace std;
 
@@ -258,4 +259,24 @@ namespace chap23
     cout << "Fetched = " << fetched << endl;
     cout << "Value = " << value << endl;
   }
+
+  void chap23DemoMutexLock()
+  {
+    mutex mut1;
+    mutex mut2;
+    unique_lock<mutex> lock1(mut1, defer_lock);
+    unique_lock<mutex> lock2(mut2, defer_lock);
+    lock(lock1, lock2);
+    // Locks acquired
+  } // Locks automatically released
+
+  void chap23DemoMutexScopedLock()
+  {
+    mutex mut1;
+    mutex mut2;
+    //scoped_lock locks(mut1, mut2);
+    scoped_lock<mutex, mutex> locks(mut1, mut2);
+
+    // Locks acquired
+  } // Locks automatically released
 }

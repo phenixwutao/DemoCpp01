@@ -11,4 +11,6 @@ namespace chap23
   void chap23DemoAtomicCalculation();
   void chap23DemoAtomicCalculationOptimised();
   void chap23DemoAtomicFetchAdd();
+  void chap23DemoMutexLock();
+  void chap23DemoMutexScopedLock();
 }
