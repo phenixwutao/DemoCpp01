@@ -262,6 +262,7 @@ namespace chap23
 
   void chap23DemoMutexLock()
   {
+    FUNC_INFO;
     mutex mut1;
     mutex mut2;
     unique_lock<mutex> lock1(mut1, defer_lock);
@@ -272,6 +273,7 @@ namespace chap23
 
   void chap23DemoMutexScopedLock()
   {
+    FUNC_INFO;
     mutex mut1;
     mutex mut2;
     //scoped_lock locks(mut1, mut2);
@@ -279,4 +281,38 @@ namespace chap23
 
     // Locks acquired
   } // Locks automatically released
+
+
+  once_flag gOnceFlag1;
+
+  void initializeSharedResources()
+  {
+    // ... Initialize shared resources to be used by multiple threads.
+    cout << "Shared resources initialized." << endl;
+  }
+
+  void processingFunction()
+  {
+    // Make sure the shared resources are initialized.
+    call_once(gOnceFlag1, initializeSharedResources);
+
+    // ... Do some work, including using the shared resources
+    cout << "Processing" << endl;
+  }
+  void chap23DemoCallOnceResource()
+  {
+    FUNC_INFO;
+    // Launch 3 threads
+    vector<thread> threads(3);
+    for (auto& t : threads)
+    {
+      t = thread { processingFunction };
+    }
+
+    // Join on all threads
+    for (auto& t : threads)
+    {
+      t.join();
+    }
+  }
 }
