@@ -475,4 +475,33 @@ namespace chap23
     // Make sure to join the thread.
     theThread.join();
   }
+
+
+  int CalculateSum(int a, int b)
+  {
+    return a + b;
+  }
+
+  void chap23DemoPackagedTask()
+  {
+    FUNC_INFO;
+    // Create a packaged task to run CalculateSum.
+    packaged_task<int(int, int)> task(CalculateSum);
+
+    // Get the future for the result of the packaged task.
+    auto theFuture = task.get_future();
+
+    // Create a thread, move the packaged task into it, and
+    // execute the packaged task with the given arguments.
+    thread theThread{ std::move(task), 9, 3 };
+
+    // Do some more work...
+
+    // Get the result.
+    int result = theFuture.get();
+    cout << "Result: " << result << endl;
+
+    // Make sure to join the thread.
+    theThread.join();
+  }
 }

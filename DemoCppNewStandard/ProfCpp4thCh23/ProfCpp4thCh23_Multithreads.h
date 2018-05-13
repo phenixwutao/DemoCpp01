@@ -18,4 +18,5 @@ namespace chap23
   void chap23DemoFunctionObjectWithTimedMutex();
   void chap23DemoDoublyCheckedLocking();
   void chap23DemoPromiseFuture();
+  void chap23DemoPackagedTask();
 }
