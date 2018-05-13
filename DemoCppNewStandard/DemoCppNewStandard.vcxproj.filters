@@ -58,6 +58,9 @@
     <Filter Include="ProfCpp4thCh23">
       <UniqueIdentifier>{98c1ac43-98d0-4799-9a67-2d9a4d37f1f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh25">
+      <UniqueIdentifier>{748c01db-ad1a-45a9-9d84-613aebd5005d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="ProfCpp4thCh23\MyLogger.h">
       <Filter>ProfCpp4thCh23</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.h">
+      <Filter>ProfCpp4thCh25</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -235,6 +241,9 @@
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh23\MyLogger.cpp">
       <Filter>ProfCpp4thCh23</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.cpp">
+      <Filter>ProfCpp4thCh25</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
