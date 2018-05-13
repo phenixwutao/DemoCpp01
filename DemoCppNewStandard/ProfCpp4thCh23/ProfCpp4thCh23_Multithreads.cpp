@@ -504,4 +504,29 @@ namespace chap23
     // Make sure to join the thread.
     theThread.join();
   }
+
+  int AsychCalcFunc()
+  {
+    return 123;
+  }
+
+  void chap23DemoAsychFuture()
+  {
+    FUNC_INFO;
+    auto myFuture1 = async(AsychCalcFunc);
+    auto myFuture2 = async(launch::async, AsychCalcFunc);
+    auto myFuture3 = async(launch::deferred, AsychCalcFunc);
+
+    // Do some more work...
+
+    // Get the result.
+    auto result = myFuture1.get();
+    cout << "Result 1: " << result << endl;
+
+    result = myFuture2.get();
+    cout << "Result 2: " << result << endl;
+
+    result = myFuture3.get();
+    cout << "Result 3: " << result << endl;
+  }
 }

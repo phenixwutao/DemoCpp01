@@ -19,4 +19,5 @@ namespace chap23
   void chap23DemoDoublyCheckedLocking();
   void chap23DemoPromiseFuture();
   void chap23DemoPackagedTask();
+  void chap23DemoAsychFuture();
 }
