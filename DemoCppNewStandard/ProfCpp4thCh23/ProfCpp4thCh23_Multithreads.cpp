@@ -315,4 +315,47 @@ namespace chap23
       t.join();
     }
   }
+
+  class CounterDemo
+  {
+  public:
+    CounterDemo(int id, int numIterations)
+      : mId(id), mNumIterations(numIterations)
+    {
+    }
+
+    void operator()() const
+    {
+      for (int i = 0; i < mNumIterations; ++i) {
+        //lock_guard lock(sMutex);  // C++17
+        lock_guard<mutex> lock(sMutexDemo); // the output will race without mutex lock
+        cout << "Counter " << mId << " has value " << i << endl;
+      }
+    }
+
+  private:
+    int mId;
+    int mNumIterations;
+    static mutex sMutexDemo;
+  };
+  mutex CounterDemo::sMutexDemo;
+
+  void chap23DemoFunctionObjectWithMutex()
+  {
+    // Using uniform initialization syntax
+    thread t1{ CounterDemo { 1, 20 } };
+
+    // Using named variable
+    CounterDemo c(2, 12);
+    thread t2(c);
+
+    // Using temporary
+    thread t3(CounterDemo(3, 10));
+
+    // Wait for threads to finish
+    t1.join();
+    t2.join();
+    t3.join();
+  }
+
 }
