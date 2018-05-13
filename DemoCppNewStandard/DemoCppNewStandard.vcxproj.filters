@@ -156,6 +156,9 @@
     <ClInclude Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.h">
       <Filter>ProfCpp4thCh25</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh25\ObjectPool.h">
+      <Filter>ProfCpp4thCh25</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
