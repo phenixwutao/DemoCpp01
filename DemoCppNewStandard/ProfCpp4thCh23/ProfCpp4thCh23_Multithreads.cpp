@@ -9,6 +9,7 @@
 #include <type_traits>
 #include <vector>
 #include <mutex>
+#include <future>
 
 using namespace std;
 
@@ -446,4 +447,32 @@ namespace chap23
     }
   }
 
+  void DoPromiseWork(promise<int> thePromise)
+  {
+    // ... Do some work ...
+    // And ultimately store the result in the promise.
+    thePromise.set_value(42);
+  }
+
+  void chap23DemoPromiseFuture()
+  {
+    FUNC_INFO;
+    // Create a promise to pass to the thread.
+    promise<int> myPromise;
+
+    // Get the future of the promise.
+    auto theFuture = myPromise.get_future();
+
+    // Create a thread and move the promise into it.
+    thread theThread { DoPromiseWork, std::move(myPromise) };
+
+    // Do some more work...
+
+    // Get the result.
+    int result = theFuture.get();
+    cout << "Result: " << result << endl;
+
+    // Make sure to join the thread.
+    theThread.join();
+  }
 }
