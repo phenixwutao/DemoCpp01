@@ -159,6 +159,9 @@
     <ClInclude Include="ProfCpp4thCh25\ObjectPool.h">
       <Filter>ProfCpp4thCh25</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh25\NameDB.h">
+      <Filter>ProfCpp4thCh25</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -246,6 +249,9 @@
       <Filter>ProfCpp4thCh23</Filter>
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.cpp">
+      <Filter>ProfCpp4thCh25</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh25\NameDB.cpp">
       <Filter>ProfCpp4thCh25</Filter>
     </ClCompile>
   </ItemGroup>

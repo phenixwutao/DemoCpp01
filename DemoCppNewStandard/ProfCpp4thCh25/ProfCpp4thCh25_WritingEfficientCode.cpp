@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ProfCpp4thCh25_WritingEfficientCode.h"
 #include "ObjectPool.h"
+#include "NameDB.h"
 
 #include <iostream>
 #include <string>
@@ -134,6 +135,22 @@ namespace chap25
       processExpensiveObject(req);
     }
     cout << "Loop finished." << endl;
+  }
+
+  void chap25DemoNameDB()
+  {
+    FUNC_INFO;
+    try {
+      NameDB boys("boys_long.txt");
+
+      cout << "Daniel rank: " << boys.getNameRank("Daniel") << endl;
+      cout << "Jacob rank: " << boys.getNameRank("Jacob") << endl;
+      cout << "William rank: " << boys.getNameRank("William") << endl;
+    }
+    catch (invalid_argument& e)
+    {
+      cout << "Error " << e.what() << endl;
+    }
   }
 
 }

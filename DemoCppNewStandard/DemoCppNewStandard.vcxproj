@@ -176,6 +176,7 @@
     <ClInclude Include="ProfCpp4thCh15\SpreadsheetCell1.h" />
     <ClInclude Include="ProfCpp4thCh23\MyLogger.h" />
     <ClInclude Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.h" />
+    <ClInclude Include="ProfCpp4thCh25\NameDB.h" />
     <ClInclude Include="ProfCpp4thCh25\ObjectPool.h" />
     <ClInclude Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.h" />
     <ClInclude Include="stdafx.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="ProfCpp4thCh15\SpreadsheetCell1.cpp" />
     <ClCompile Include="ProfCpp4thCh23\MyLogger.cpp" />
     <ClCompile Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.cpp" />
+    <ClCompile Include="ProfCpp4thCh25\NameDB.cpp" />
     <ClCompile Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
