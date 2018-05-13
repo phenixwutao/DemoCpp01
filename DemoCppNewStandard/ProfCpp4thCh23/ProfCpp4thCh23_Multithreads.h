@@ -21,4 +21,5 @@ namespace chap23
   void chap23DemoPackagedTask();
   void chap23DemoAsychFuture();
   void chap23DemoAsychErrorHandling();
+  void chap23DemoSharedFuture();
 }
