@@ -407,4 +407,43 @@ namespace chap23
     t2.join();
     t3.join();
   }
+
+  void initializeSharedResources2()
+  {
+    // ... Initialize shared resources to be used by multiple threads.
+    cout << "Shared resources initialized." << endl;
+  }
+
+  atomic<bool> gInitialized2(false);
+  mutex gMutex2;
+
+  void processingFunction2()
+  {
+    if (!gInitialized2) {
+      //unique_lock lock(gMutex);  // C++17
+      unique_lock<mutex> lock(gMutex2);
+      if (!gInitialized2) {
+        initializeSharedResources2();
+        gInitialized2 = true;
+      }
+    }
+    cout << "OK" << endl;
+  }
+
+  void chap23DemoDoublyCheckedLocking()
+  {
+    FUNC_INFO;
+    vector<thread> threads;
+
+    for (int i = 0; i < 5; ++i)
+    {
+      threads.push_back(thread { processingFunction2 });
+    }
+
+    for (auto& t : threads)
+    {
+      t.join();
+    }
+  }
+
 }
