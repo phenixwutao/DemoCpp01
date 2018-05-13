@@ -342,6 +342,7 @@ namespace chap23
 
   void chap23DemoFunctionObjectWithMutex()
   {
+    FUNC_INFO;
     // Using uniform initialization syntax
     thread t1{ CounterDemo { 1, 20 } };
 
@@ -358,4 +359,52 @@ namespace chap23
     t3.join();
   }
 
+  class TimedCounter
+  {
+  public:
+    TimedCounter(int id, int numIterations)
+      : mId(id), mNumIterations(numIterations)
+    {
+    }
+
+    void operator()() const
+    {
+      for (int i = 0; i < mNumIterations; ++i) {
+        //unique_lock lock(sTimedMutex, 200ms);  // C++17
+        unique_lock<timed_mutex> lock(sTimedMutex, 200ms);
+        if (lock) {
+          cout << "Counter " << mId << " has value " << i << endl;
+        }
+        else {
+          // Lock not acquired in 200ms, skip output.
+        }
+      }
+    }
+
+  private:
+    int mId;
+    int mNumIterations;
+    static timed_mutex sTimedMutex;
+  };
+
+  timed_mutex TimedCounter::sTimedMutex;
+
+  void chap23DemoFunctionObjectWithTimedMutex()
+  {
+    FUNC_INFO;
+    // Using uniform initialization syntax
+    thread t1{ TimedCounter{ 1, 20 } };
+
+    // Using named variable
+    TimedCounter c(2, 12);
+    thread t2(c);
+
+    // Using temporary
+    thread t3(TimedCounter(3, 10));
+
+    // Wait for threads to finish
+    t1.join();
+    t2.join();
+    t3.join();
+  }
 }

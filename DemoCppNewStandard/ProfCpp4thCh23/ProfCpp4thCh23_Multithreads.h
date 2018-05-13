@@ -15,4 +15,5 @@ namespace chap23
   void chap23DemoMutexScopedLock();
   void chap23DemoCallOnceResource();
   void chap23DemoFunctionObjectWithMutex();
+  void chap23DemoFunctionObjectWithTimedMutex();
 }
