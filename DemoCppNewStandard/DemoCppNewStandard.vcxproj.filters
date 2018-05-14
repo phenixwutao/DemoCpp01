@@ -61,6 +61,9 @@
     <Filter Include="ProfCpp4thCh25">
       <UniqueIdentifier>{748c01db-ad1a-45a9-9d84-613aebd5005d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ProfCpp4thCh26">
+      <UniqueIdentifier>{eb2bceed-1c7b-48d1-8f17-c17b6b743255}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -162,6 +165,15 @@
     <ClInclude Include="ProfCpp4thCh25\NameDB.h">
       <Filter>ProfCpp4thCh25</Filter>
     </ClInclude>
+    <ClInclude Include="ProfCpp4thCh26\ObjectPool.h">
+      <Filter>ProfCpp4thCh26</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh26\Serial.h">
+      <Filter>ProfCpp4thCh26</Filter>
+    </ClInclude>
+    <ClInclude Include="ProfCpp4thCh26\chap26_ObjectPoolTest.h">
+      <Filter>ProfCpp4thCh26</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -253,6 +265,12 @@
     </ClCompile>
     <ClCompile Include="ProfCpp4thCh25\NameDB.cpp">
       <Filter>ProfCpp4thCh25</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh26\Serial.cpp">
+      <Filter>ProfCpp4thCh26</Filter>
+    </ClCompile>
+    <ClCompile Include="ProfCpp4thCh26\chap26_ObjectPoolTest.cpp">
+      <Filter>ProfCpp4thCh26</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

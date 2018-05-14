@@ -179,6 +179,9 @@
     <ClInclude Include="ProfCpp4thCh25\NameDB.h" />
     <ClInclude Include="ProfCpp4thCh25\ObjectPool.h" />
     <ClInclude Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.h" />
+    <ClInclude Include="ProfCpp4thCh26\ObjectPool.h" />
+    <ClInclude Include="ProfCpp4thCh26\chap26_ObjectPoolTest.h" />
+    <ClInclude Include="ProfCpp4thCh26\Serial.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -212,6 +215,8 @@
     <ClCompile Include="ProfCpp4thCh23\ProfCpp4thCh23_Multithreads.cpp" />
     <ClCompile Include="ProfCpp4thCh25\NameDB.cpp" />
     <ClCompile Include="ProfCpp4thCh25\ProfCpp4thCh25_WritingEfficientCode.cpp" />
+    <ClCompile Include="ProfCpp4thCh26\chap26_ObjectPoolTest.cpp" />
+    <ClCompile Include="ProfCpp4thCh26\Serial.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
