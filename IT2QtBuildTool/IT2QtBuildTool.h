@@ -11,9 +11,15 @@ public:
     IT2QtBuildTool(QWidget *parent = Q_NULLPTR);
 
 private:
-  void SaveFile();
-  void LoadFile();
   bool CheckAllConfiguration();
+  void TickAllSolutions(bool fCheck);
+  void ClearAllConfig();
+  void SetAllConfig();
+  void GetAllConfig();
+  bool NeedBuildSolutions();
+  bool CheckConfigFileExist(bool fReady);
+  void ReadScriptFile();
+  void SaveScriptFile();
 
 private:
     Ui::IT2QtBuildToolClass ui;
@@ -22,6 +28,9 @@ private:
     QString m_WorkstationName{};
     QString m_RootFolderName{};
     QString m_PrebuildFolderName{};
+    const static QString s_buildOption;
+    const static QString s_configFilename;
+    const static QString s_scriptFilename;
 
 private slots:
     void on_DBServerEdit_editingFinished();
@@ -35,4 +44,10 @@ private slots:
     void on_ClearPB_clicked();
     void on_DefaultPB_clicked();
     void on_ClosePB_clicked();
+
+
+    void on_SelectAllPB_clicked();
+    void on_DeselectAllPB_clicked();
+    void on_BuildAllPB_clicked();
+    void on_RootDirSelectPB_clicked();
 };
