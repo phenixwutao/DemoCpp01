@@ -3,6 +3,21 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_IT2QtBuildTool.h"
 
+#define SOLUTION_IT2PARSERS     0x000000001
+#define SOLUTION_IT2BUSINESS    0x000000002
+#define SOLUTION_AXMSCHART      0x000000004
+#define SOLUTION_CRYSTALREPORTS 0x000000008
+#define SOLUTION_FONETCLIENT    0x000000010
+#define SOLUTION_PORTEBAM       0x000000020
+#define SOLUTION_IT2MAPI        0x000000040
+#define SOLUTION_IMPORTSERVICES 0x000000080
+#define SOLUTION_SCMSOURCE      0x000000100
+#define SOLUTION_IT2SOURCE      0x000000200
+#define SOLUTION_IT2COMPONENTS  0x000000400
+#define SOLUTION_AUTOMATIONS    0x000000800
+#define SOLUTION_SUPPORTTOOLS   0x000001000
+#define SOLUTION_SCMTEST        0x000002000
+
 class IT2QtBuildTool : public QMainWindow
 {
     Q_OBJECT
@@ -18,8 +33,10 @@ private:
   void GetAllConfig();
   bool NeedBuildSolutions();
   bool CheckConfigFileExist(bool fReady);
-  void ReadScriptFile();
-  void SaveScriptFile();
+  void ReadConfigFile();
+  void SaveConfigFile();
+  void GetMaskFromCheckBoxes();
+  void SetMaskToCheckBoxes();
 
 private:
     Ui::IT2QtBuildToolClass ui;
@@ -28,6 +45,7 @@ private:
     QString m_WorkstationName{};
     QString m_RootFolderName{};
     QString m_PrebuildFolderName{};
+    int     m_MaskBuild = 0;
     const static QString s_buildOption;
     const static QString s_configFilename;
     const static QString s_scriptFilename;

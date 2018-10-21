@@ -49,7 +49,8 @@ void IT2QtBuildTool::on_SavePB_clicked()
   if (this->CheckConfigFileExist(false) == false)
     return;
 
-  SaveScriptFile();
+  GetMaskFromCheckBoxes();
+  SaveConfigFile();
 }
 
 void IT2QtBuildTool::on_ResetPB_clicked()
@@ -57,8 +58,11 @@ void IT2QtBuildTool::on_ResetPB_clicked()
   if (this->CheckConfigFileExist(true) == false)
     return;
 
-  ReadScriptFile();
+  ReadConfigFile();
   SetAllConfig();
+
+  on_DeselectAllPB_clicked();
+  SetMaskToCheckBoxes();
 }
 
 void IT2QtBuildTool::on_ClearPB_clicked()
@@ -81,12 +85,19 @@ void IT2QtBuildTool::on_ClearPB_clicked()
   if (wAnswer == QMessageBox::Yes)
   {
     ClearAllConfig();
+    on_DeselectAllPB_clicked();
   }
 }
 
 
 void IT2QtBuildTool::on_DefaultPB_clicked()
 {
+  if (this->CheckConfigFileExist(true) == true)
+  {
+    ReadConfigFile();
+    SetAllConfig();
+  }
+  on_SelectAllPB_clicked();
 }
 
 void IT2QtBuildTool::on_ClosePB_clicked()
@@ -97,7 +108,8 @@ void IT2QtBuildTool::on_ClosePB_clicked()
   if (CheckConfigFileExist(false) == false)
     return;
 
-  SaveScriptFile();
+  GetMaskFromCheckBoxes();
+  SaveConfigFile();
 
   this->close();
 }
@@ -408,7 +420,7 @@ bool IT2QtBuildTool::CheckConfigFileExist(bool fReady)
   return fFileOK;
 }
 
-void IT2QtBuildTool::ReadScriptFile()
+void IT2QtBuildTool::ReadConfigFile()
 {
   QFile file(IT2QtBuildTool::s_configFilename, this);
   file.open(QIODevice::ReadOnly);
@@ -447,6 +459,11 @@ void IT2QtBuildTool::ReadScriptFile()
         m_PrebuildFolderName = xmlReader.readElementText();
         xmlReader.readNext();
       }
+      else if (xmlReader.name() == "SolutionMask")
+      {
+        m_MaskBuild = xmlReader.readElementText().toInt();
+        xmlReader.readNext();
+      }
       else {
         xmlReader.raiseError(QObject::tr("unknown option"));
       }
@@ -460,7 +477,7 @@ void IT2QtBuildTool::ReadScriptFile()
 }
 
 
-void IT2QtBuildTool::SaveScriptFile()
+void IT2QtBuildTool::SaveConfigFile()
 {
   QFile file(IT2QtBuildTool::s_configFilename, this);
   file.open(QIODevice::WriteOnly);
@@ -473,7 +490,156 @@ void IT2QtBuildTool::SaveScriptFile()
   xmlWriter.writeTextElement("Workstation", m_WorkstationName);
   xmlWriter.writeTextElement("RootFolder", m_RootFolderName);
   xmlWriter.writeTextElement("PrebuildFolder", m_PrebuildFolderName);
-  xmlWriter.writeEndElement();
+  xmlWriter.writeTextElement("SolutionMask", QString::number(m_MaskBuild));
+  xmlWriter.writeEndElement(); 
   xmlWriter.writeEndDocument();
   file.close();
+}
+
+void IT2QtBuildTool::GetMaskFromCheckBoxes()
+{
+  m_MaskBuild = 0;
+
+  if (ui.IT2ParserCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2PARSERS;
+  }
+
+  if (ui.IT2BusinessCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2BUSINESS;
+  }
+
+  if (ui.AXMSChartCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_AXMSCHART;
+  }
+
+  if (ui.CrystalReportCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_CRYSTALREPORTS;
+  }
+
+  if (ui.FONETCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_FONETCLIENT;
+  }
+
+  if (ui.EBAMCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_PORTEBAM;
+  }
+
+  if (ui.MAPICKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2MAPI;
+  }
+
+  if (ui.ImportServiceCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IMPORTSERVICES;
+  }
+
+  if (ui.SCMSourceCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_SCMSOURCE;
+  }
+
+  if (ui.IT2SourceCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2SOURCE;
+  }
+
+  if (ui.IT2ComponentsCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2COMPONENTS;
+  }
+
+  if (ui.AutomationCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_AUTOMATIONS;
+  }
+
+  if (ui.IT2SupportToolsCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_SUPPORTTOOLS;
+  }
+
+  if (ui.SCMTestCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_SCMTEST;
+  }
+}
+
+void IT2QtBuildTool::SetMaskToCheckBoxes()
+{
+  if ((m_MaskBuild & SOLUTION_IT2PARSERS) == SOLUTION_IT2PARSERS)
+  {
+    ui.IT2ParserCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2BUSINESS) == SOLUTION_IT2BUSINESS)
+  {
+    ui.IT2BusinessCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_AXMSCHART) == SOLUTION_AXMSCHART)
+  {
+    ui.AXMSChartCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_CRYSTALREPORTS) == SOLUTION_CRYSTALREPORTS)
+  {
+    ui.CrystalReportCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_FONETCLIENT) == SOLUTION_FONETCLIENT)
+  {
+    ui.FONETCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_PORTEBAM) == SOLUTION_PORTEBAM)
+  {
+    ui.EBAMCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2MAPI) == SOLUTION_IT2MAPI)
+  {
+    ui.MAPICKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IMPORTSERVICES) == SOLUTION_IMPORTSERVICES)
+  {
+    ui.ImportServiceCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_SCMSOURCE) == SOLUTION_SCMSOURCE)
+  {
+    ui.SCMSourceCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2SOURCE) == SOLUTION_IT2SOURCE)
+  {
+    ui.IT2SourceCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2COMPONENTS) == SOLUTION_IT2COMPONENTS)
+  {
+    ui.IT2ComponentsCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_AUTOMATIONS) == SOLUTION_AUTOMATIONS)
+  {
+    ui.AutomationCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_SUPPORTTOOLS) == SOLUTION_SUPPORTTOOLS)
+  {
+    ui.IT2SupportToolsCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_SCMTEST) == SOLUTION_SCMTEST)
+  {
+    ui.SCMTestCKB->setChecked(true);
+  }
 }
