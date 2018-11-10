@@ -408,7 +408,7 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     QString sCompiler;
     sCompiler.append(R"(::Automatically generated, do NOT modify!)").append(sLineReturn);
     sCompiler.append(R"(@ECHO OFF)").append(sLineReturn);
-    sCompiler.append(R"(echo Start automatic build)").append(sLineReturn);
+    sCompiler.append(R"(echo Start automatic build )").append(m_buildMode).append(sLineReturn);
     sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
     strScript.prepend(sCompiler);
 
