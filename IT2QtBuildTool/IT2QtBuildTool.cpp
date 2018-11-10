@@ -4,13 +4,12 @@
 IT2QtBuildTool::IT2QtBuildTool(QWidget *parent)
     : QMainWindow(parent)
 {
-    ui.setupUi(this);
-    //this->setBaseSize(1650, 1200);
-    this->setFixedSize(1630, 1100);
-    on_ResetPB_clicked();
+  ui.setupUi(this);
+  //this->setBaseSize(1650, 1200);
+  //this->setFixedSize(1630, 1100);
+  on_ResetPB_clicked();
 }
 
-const QString IT2QtBuildTool::s_buildOption = "x64";
 const QString IT2QtBuildTool::s_configFilename = "IT2QtBuildTool.config";
 const QString IT2QtBuildTool::s_scriptFilename = "IT2QtBuildTool.bat";
 
@@ -32,6 +31,8 @@ void IT2QtBuildTool::on_WorkStationEdit_editingFinished()
 void IT2QtBuildTool::on_RootFolderEdit_editingFinished()
 {
   m_RootFolderName = ui.RootFolderEdit->text();
+  m_PrebuildFolderName = m_RootFolderName.append(QDir::separator()).append(R"(SCM_Source)");
+  ui.PrebuildFolderEdit->setText(m_PrebuildFolderName);
 }
 
 void IT2QtBuildTool::on_PrebuildFolderEdit_editingFinished() 
@@ -51,6 +52,7 @@ void IT2QtBuildTool::on_SavePB_clicked()
 
   GetMaskFromCheckBoxes();
   SaveConfigFile();
+  NeedBuildSolutions();
 }
 
 void IT2QtBuildTool::on_ResetPB_clicked()
@@ -111,6 +113,8 @@ void IT2QtBuildTool::on_ClosePB_clicked()
   GetMaskFromCheckBoxes();
   SaveConfigFile();
 
+  NeedBuildSolutions();
+
   this->close();
 }
 
@@ -131,7 +135,11 @@ void IT2QtBuildTool::on_BuildAllPB_clicked()
     return;
 
   if (NeedBuildSolutions() == false)
+  {
+    QMessageBox msg(QMessageBox::Icon::Information, "Build Information", "Please select solution(s) to build", QMessageBox::Ok);
+    msg.exec();
     return;
+  }
 
   //QString script(R"(dir d:\wutao)");
   QString sCommand = R"(call )" + s_scriptFilename;
@@ -162,6 +170,10 @@ void IT2QtBuildTool::on_RootDirSelectPB_clicked()
   }
 }
 
+void IT2QtBuildTool::on_BuildOptionCBX_currentIndexChanged(const QString & text)
+{
+  m_buildMode = text;
+}
 
 bool IT2QtBuildTool::CheckAllConfiguration()
 {
@@ -219,12 +231,14 @@ void IT2QtBuildTool::ClearAllConfig()
   ui.WorkStationEdit->clear();
   ui.RootFolderEdit->clear();
   ui.PrebuildFolderEdit->clear();
+  ui.BuildOptionCBX->setCurrentText("Debug");
 
   m_DBServerName.clear();
   m_AppServerName.clear();
   m_WorkstationName.clear();
   m_RootFolderName.clear();
   m_PrebuildFolderName.clear();
+  m_buildMode = ui.BuildOptionCBX->currentText();
 }
 
 void IT2QtBuildTool::SetAllConfig()
@@ -234,6 +248,7 @@ void IT2QtBuildTool::SetAllConfig()
   ui.WorkStationEdit->setText(m_WorkstationName);
   ui.RootFolderEdit->setText(m_RootFolderName);
   ui.PrebuildFolderEdit->setText(m_PrebuildFolderName);
+  ui.BuildOptionCBX->setCurrentText(m_buildMode);
 }
 
 void IT2QtBuildTool::GetAllConfig()
@@ -243,129 +258,145 @@ void IT2QtBuildTool::GetAllConfig()
   m_WorkstationName = ui.WorkStationEdit->text();
   m_RootFolderName = ui.RootFolderEdit->text();
   m_PrebuildFolderName = ui.PrebuildFolderEdit->text();
+  m_buildMode = ui.BuildOptionCBX->currentText();
 }
 
 bool IT2QtBuildTool::NeedBuildSolutions()
 {
   QString strScript;
   QString sQuote = R"(")";
-  QString sLineReturn = "\r\n";
-  QString strOption = R"( /p )" + s_buildOption;
+  QString sLineReturn = "\n\n";
+  m_buildMode = ui.BuildOptionCBX->currentText();
+  QString strOption = R"( /p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration=")" + m_buildMode + R"(" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo)";
   QString strMSBuild = R"(MSBuild.exe ")";
   bool fNeedBuild = false;
   if (ui.IT2ParserCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2Parsers.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Parsers)").append(QDir::separator()).append(R"(IT2Parsers.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.IT2BusinessCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2Business.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Business.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.AXMSChartCKB->isChecked())
   {
+    strScript.append(R"(echo Build AxMSChart.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(AxMSChart)").append(QDir::separator())
       .append(R"(AxMSChart.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.CrystalReportCKB->isChecked())
   {
+    strScript.append(R"(echo Build CrystalReports.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(CrystalReports.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.FONETCKB->isChecked())
   {
+    strScript.append(R"(echo Build FONET Client.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(FONET Client)").append(QDir::separator())
       .append(R"(FONET Client.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.EBAMCKB->isChecked())
   {
+    strScript.append(R"(echo Build PortEBAMSigner.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Components)").append(QDir::separator())
       .append(R"(EBAM)").append(QDir::separator()).append(R"(PortEBAMSigner.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.MAPICKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2MAPI.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Components)").append(QDir::separator())
       .append(R"(IT2MAPI)").append(QDir::separator()).append(R"(IT2MAPI.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.ImportServiceCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2ImportServices.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2ImportServices.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.SCMSourceCKB->isChecked())
   {
+    strScript.append(R"(echo Build SCMSource.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(SCMSource.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.IT2SourceCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2Source.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Source.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.IT2ComponentsCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2Components.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Components.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.AutomationCKB->isChecked())
   {
+    strScript.append(R"(echo Build Automation.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Setup)").append(QDir::separator()).append(R"(Automation.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.IT2SupportToolsCKB->isChecked())
   {
+    strScript.append(R"(echo Build IT2SupportTools.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2SupportTools.sln)");
-    strScript.append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
   if (ui.SCMTestCKB->isChecked())
   {
+    strScript.append(R"(echo Build SCMTest.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(SCMTest.sln)");
-    strScript.append(strOption).append(sQuote).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
@@ -373,8 +404,13 @@ bool IT2QtBuildTool::NeedBuildSolutions()
   {
     strScript.append("pause").append(sLineReturn);
     //QString sCompiler = R"(call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\VC\Auxiliary\Build\vcvarsall.bat" x64)";
-    QString sCompiler = R"(call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat")";
-    strScript.prepend(sCompiler.append(sLineReturn));
+    //QString sCompiler = R"(call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat")";
+    QString sCompiler;
+    sCompiler.append(R"(::Automatically generated, do NOT modify!)").append(sLineReturn);
+    sCompiler.append(R"(@ECHO OFF)").append(sLineReturn);
+    sCompiler.append(R"(echo Start automatic build)").append(sLineReturn);
+    sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
+    strScript.prepend(sCompiler);
 
     QFile file(IT2QtBuildTool::s_scriptFilename, this);
     if (!file.open(QFile::WriteOnly | QFile::Text))
@@ -464,6 +500,11 @@ void IT2QtBuildTool::ReadConfigFile()
         m_MaskBuild = xmlReader.readElementText().toInt();
         xmlReader.readNext();
       }
+      else if (xmlReader.name() == "BuildMode")
+      {
+        m_buildMode = xmlReader.readElementText();
+        xmlReader.readNext();
+      }
       else {
         xmlReader.raiseError(QObject::tr("unknown option"));
       }
@@ -491,7 +532,8 @@ void IT2QtBuildTool::SaveConfigFile()
   xmlWriter.writeTextElement("RootFolder", m_RootFolderName);
   xmlWriter.writeTextElement("PrebuildFolder", m_PrebuildFolderName);
   xmlWriter.writeTextElement("SolutionMask", QString::number(m_MaskBuild));
-  xmlWriter.writeEndElement(); 
+  xmlWriter.writeTextElement("BuildMode", m_buildMode);
+  xmlWriter.writeEndElement();
   xmlWriter.writeEndDocument();
   file.close();
 }

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>526</height>
+    <width>615</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -272,91 +272,6 @@
        <bool>false</bool>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="6" column="0">
-        <widget class="QCheckBox" name="MAPICKB">
-         <property name="text">
-          <string>IT2MAPI</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QPushButton" name="SelectAllPB">
-         <property name="text">
-          <string>Select All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="6" column="1" colspan="2">
-        <widget class="QCheckBox" name="SCMTestCKB">
-         <property name="text">
-          <string>SCMTest</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="2">
-        <widget class="QPushButton" name="BuildAllPB">
-         <property name="toolTip">
-          <string>Build all selected solutions...</string>
-         </property>
-         <property name="text">
-          <string>Build All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QPushButton" name="MDCResetPB">
-         <property name="text">
-          <string>MDC Reset</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="2">
-        <widget class="QPushButton" name="DeselectAllPB">
-         <property name="text">
-          <string>Deselect All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="2">
-        <widget class="QPushButton" name="IDAllocatorPB">
-         <property name="text">
-          <string>ID Allocator</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="StartPrebuildPB">
-         <property name="text">
-          <string>Start Prebuild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>68</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="0" column="0">
         <widget class="QCheckBox" name="IT2ParserCKB">
          <property name="toolTip">
@@ -364,6 +279,13 @@
          </property>
          <property name="text">
           <string>IT2Parsers</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QCheckBox" name="ImportServiceCKB">
+         <property name="text">
+          <string>ImportServices</string>
          </property>
         </widget>
        </item>
@@ -388,6 +310,13 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QCheckBox" name="IT2SourceCKB">
+         <property name="text">
+          <string>IT2Source</string>
+         </property>
+        </widget>
+       </item>
        <item row="3" column="0">
         <widget class="QCheckBox" name="CrystalReportCKB">
          <property name="text">
@@ -402,13 +331,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QCheckBox" name="AutomationCKB">
-         <property name="text">
-          <string>Automations</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="0">
         <widget class="QCheckBox" name="FONETCKB">
          <property name="text">
@@ -416,10 +338,10 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1" colspan="2">
-        <widget class="QCheckBox" name="IT2SourceCKB">
+       <item row="4" column="1" colspan="2">
+        <widget class="QCheckBox" name="AutomationCKB">
          <property name="text">
-          <string>IT2Source</string>
+          <string>Automations</string>
          </property>
         </widget>
        </item>
@@ -437,10 +359,109 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QCheckBox" name="ImportServiceCKB">
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="MAPICKB">
          <property name="text">
-          <string>ImportServices</string>
+          <string>IT2MAPI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1" colspan="2">
+        <widget class="QCheckBox" name="SCMTestCKB">
+         <property name="text">
+          <string>SCMTest</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="BuildLabel">
+         <property name="text">
+          <string>Build Option:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1" colspan="2">
+        <widget class="QComboBox" name="BuildOptionCBX">
+         <item>
+          <property name="text">
+           <string>Debug</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Release</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="SelectAllPB">
+         <property name="text">
+          <string>Select All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="2">
+        <widget class="QPushButton" name="DeselectAllPB">
+         <property name="text">
+          <string>Deselect All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QPushButton" name="StartPrebuildPB">
+         <property name="text">
+          <string>Start Prebuild</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>68</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="9" column="2">
+        <widget class="QPushButton" name="BuildAllPB">
+         <property name="toolTip">
+          <string>Build all selected solutions...</string>
+         </property>
+         <property name="text">
+          <string>Build All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QPushButton" name="MDCResetPB">
+         <property name="text">
+          <string>MDC Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="10" column="2">
+        <widget class="QPushButton" name="IDAllocatorPB">
+         <property name="text">
+          <string>ID Allocator</string>
          </property>
         </widget>
        </item>
@@ -560,8 +581,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>705</width>
-     <height>22</height>
+     <width>615</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

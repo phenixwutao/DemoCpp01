@@ -45,8 +45,8 @@ private:
     QString m_WorkstationName{};
     QString m_RootFolderName{};
     QString m_PrebuildFolderName{};
+    QString m_buildMode{"Debug"};
     int     m_MaskBuild = 0;
-    const static QString s_buildOption;
     const static QString s_configFilename;
     const static QString s_scriptFilename;
 
@@ -68,4 +68,5 @@ private slots:
     void on_DeselectAllPB_clicked();
     void on_BuildAllPB_clicked();
     void on_RootDirSelectPB_clicked();
+    void on_BuildOptionCBX_currentIndexChanged(const QString & text);
 };
