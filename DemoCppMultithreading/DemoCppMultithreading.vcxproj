@@ -162,6 +162,7 @@
     <ClInclude Include="OptionsDerivativesProgramming\Chap05Observer.h" />
     <ClInclude Include="OptionsDerivativesProgramming\OptionsDerivatives.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.h" />
+    <ClInclude Include="ParallelPractice\chap04Miltithreads.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="WebThreadDoc\ThreadWebDoc.h" />
@@ -183,6 +184,7 @@
     <ClCompile Include="OptionsDerivativesProgramming\Chap05Observer.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\OptionsDerivatives.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Ch02RandomWalkGenerator.cpp" />
+    <ClCompile Include="ParallelPractice\chap04Miltithreads.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -34,6 +34,9 @@
     <Filter Include="OptionsDerivativesProgramming">
       <UniqueIdentifier>{bdcbf2a5-c948-4a8e-aa7f-57e3bc83b0f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ParallelPractice">
+      <UniqueIdentifier>{72afaccf-d0db-4410-a9c9-62ea719b4a03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,6 +102,9 @@
     <ClInclude Include="OptionsDerivativesProgramming\Chap10MathFunction.h">
       <Filter>OptionsDerivativesProgramming</Filter>
     </ClInclude>
+    <ClInclude Include="ParallelPractice\chap04Miltithreads.h">
+      <Filter>ParallelPractice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="OptionsDerivativesProgramming\Chap10MathFunction.cpp">
       <Filter>OptionsDerivativesProgramming</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallelPractice\chap04Miltithreads.cpp">
+      <Filter>ParallelPractice</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
