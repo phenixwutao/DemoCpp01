@@ -165,7 +165,12 @@ void IT2QtBuildTool::on_BuildAllPB_clicked()
 
 void IT2QtBuildTool::on_MDCResetPB_clicked()
 {
-  QString sCommand = m_RootFolderName; 
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString sCommand = m_RootFolderName;
   sCommand.append(QDir::separator()).append("IT2Source")
           .append(QDir::separator()).append("Bin")
           .append(QDir::separator()).append(m_buildMode)
@@ -201,6 +206,102 @@ void IT2QtBuildTool::on_RootDirSelectPB_clicked()
 void IT2QtBuildTool::on_BuildOptionCBX_currentIndexChanged(const QString & text)
 {
   m_buildMode = text;
+}
+
+void IT2QtBuildTool::StartCommand(const QString& sTitle, const QString& sCommand)
+{
+  auto wExit = system(sCommand.toStdString().c_str());
+  if (wExit != EXIT_SUCCESS)
+  {
+    QString strText = "Failed with error";
+    QMessageBox::Icon iconResult = QMessageBox::Icon::Critical;
+    QMessageBox msg(iconResult, sTitle, strText, QMessageBox::Ok);
+    msg.exec();
+  }
+}
+
+void IT2QtBuildTool::on_StartAppServerPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  // change to folder and start command
+  QString path("cd /d ");
+  path.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+
+  QString cmd = path.append(R"( && )").append(R"(start )");
+  cmd.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator()).append(R"(IT2SRVM.exe )");
+  cmd.append(m_AppServerName).append(" ")
+    .append(m_DBServerName).append(" ")
+    .append(m_DBName);
+  IT2QtBuildTool::StartCommand("AppServer", cmd);
+}
+
+void IT2QtBuildTool::on_StopAppServerPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString cmd = R"(@taskkill /IM it2srvm.exe /F )";
+  IT2QtBuildTool::StartCommand("AppServer", cmd);
+}
+
+void IT2QtBuildTool::on_StartWorkStationPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  // BCG Lib path
+  QString sBCGLib = R"(set path=%PATH%;)";
+  sBCGLib.append(m_RootFolderName).append(QDir::separator()).append(R"(ThirdParty\Libs\BCGCBPro)");
+
+  // change to folder and start command
+  QString path("cd /d ");
+  path.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+
+  QString cmd = sBCGLib.append("\n") + path.append(R"( && )").append(R"(start )");
+  cmd.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+  if(m_buildMode == "Debug")
+    cmd.append(R"(IT2StartmD.exe )");
+  else
+    cmd.append(R"(IT2Startm.exe )");
+  cmd.append(m_AppServerName).append(" ")
+    .append(m_DBServerName).append(" ")
+    .append(m_DBName);
+  IT2QtBuildTool::StartCommand("Workstation", cmd);
+}
+
+void IT2QtBuildTool::on_StopWorkStationPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString cmd;
+  if (m_buildMode == "Debug")
+    cmd = R"(@taskkill /IM IT2StartmD.exe /F )";
+  else
+    cmd = R"(@taskkill /IM IT2Startm.exe /F )";
+  IT2QtBuildTool::StartCommand("Workstation", cmd);
 }
 
 bool IT2QtBuildTool::CheckAllConfiguration()

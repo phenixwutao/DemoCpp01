@@ -37,6 +37,7 @@ private:
   void SaveConfigFile();
   void GetMaskFromCheckBoxes();
   void SetMaskToCheckBoxes();
+  static void StartCommand(const QString& sTitle, const QString& sCommand);
 
 private:
     Ui::IT2QtBuildToolClass ui;
@@ -72,4 +73,8 @@ private slots:
     void on_MDCResetPB_clicked();
     void on_RootDirSelectPB_clicked();
     void on_BuildOptionCBX_currentIndexChanged(const QString & text);
+    void on_StartAppServerPB_clicked();
+    void on_StopAppServerPB_clicked();
+    void on_StartWorkStationPB_clicked();
+    void on_StopWorkStationPB_clicked();
 };
