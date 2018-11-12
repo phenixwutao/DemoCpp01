@@ -18,6 +18,11 @@ void IT2QtBuildTool::on_DBServerEdit_editingFinished()
   m_DBServerName = ui.DBServerEdit->text();
 }
 
+void IT2QtBuildTool::on_DBNameEdit_editingFinished()
+{
+  m_DBName = ui.DBNameEdit->text();
+}
+
 void IT2QtBuildTool::on_AppServerEdit_editingFinished()
 {
   m_AppServerName = ui.AppServerEdit->text();
@@ -70,6 +75,7 @@ void IT2QtBuildTool::on_ResetPB_clicked()
 void IT2QtBuildTool::on_ClearPB_clicked()
 {
   if (m_DBServerName.isEmpty()      == true &&
+      m_DBName.isEmpty()            == true &&
       m_AppServerName.isEmpty()     == true &&
       m_WorkstationName.isEmpty()   == true &&
       m_RootFolderName.isEmpty()    == true &&
@@ -77,6 +83,7 @@ void IT2QtBuildTool::on_ClearPB_clicked()
     return;
 
   QString sTitle = "DB Server: "   + m_DBServerName + "; ";
+  sTitle += "DB Name: "            + m_DBName + "; ";
   sTitle += "Application Server: " + m_AppServerName + "; ";
   sTitle += "Workstation: "        + m_WorkstationName + "\n";
   sTitle += "Root folder: "        + m_RootFolderName + "; ";
@@ -156,6 +163,27 @@ void IT2QtBuildTool::on_BuildAllPB_clicked()
   msg.exec();
 }
 
+void IT2QtBuildTool::on_MDCResetPB_clicked()
+{
+  QString sCommand = m_RootFolderName; 
+  sCommand.append(QDir::separator()).append("IT2Source")
+          .append(QDir::separator()).append("Bin")
+          .append(QDir::separator()).append(m_buildMode)
+          .append(QDir::separator()).append("MDCNEWDB.exe ").append(m_DBServerName).append(" ")
+          .append(m_DBName).append(" ").append(" IT2_BOFA M byPassVersionCheck");
+  auto wExit = system(sCommand.toStdString().c_str());
+
+  QString strText("MDC Reset Success");
+  QMessageBox::Icon iconResult = QMessageBox::Icon::Information;
+  if (wExit != EXIT_SUCCESS)
+  {
+    strText = "MDC Reset Failed with error";
+    iconResult = QMessageBox::Icon::Critical;
+  }
+  QMessageBox msg(iconResult, "MDCReset", strText, QMessageBox::Ok);
+  msg.exec();
+}
+
 
 void IT2QtBuildTool::on_RootDirSelectPB_clicked()
 {
@@ -178,6 +206,7 @@ void IT2QtBuildTool::on_BuildOptionCBX_currentIndexChanged(const QString & text)
 bool IT2QtBuildTool::CheckAllConfiguration()
 {
   if (ui.DBServerEdit->text().isEmpty() ||
+    ui.DBNameEdit->text().isEmpty() ||
     ui.AppServerEdit->text().isEmpty() ||
     ui.WorkStationEdit->text().isEmpty() ||
     ui.RootFolderEdit->text().isEmpty() ||
@@ -190,6 +219,8 @@ bool IT2QtBuildTool::CheckAllConfiguration()
     {
       if (ui.DBServerEdit->text().isEmpty())
         ui.DBServerEdit->setFocus();
+      else if (ui.DBNameEdit->text().isEmpty())
+        ui.DBNameEdit->setFocus();
       else if (ui.AppServerEdit->text().isEmpty())
         ui.AppServerEdit->setFocus();
       else if (ui.WorkStationEdit->text().isEmpty())
@@ -227,6 +258,7 @@ void IT2QtBuildTool::TickAllSolutions(bool fCheck)
 void IT2QtBuildTool::ClearAllConfig()
 {
   ui.DBServerEdit->clear();
+  ui.DBNameEdit->clear();
   ui.AppServerEdit->clear();
   ui.WorkStationEdit->clear();
   ui.RootFolderEdit->clear();
@@ -234,6 +266,7 @@ void IT2QtBuildTool::ClearAllConfig()
   ui.BuildOptionCBX->setCurrentText("Debug");
 
   m_DBServerName.clear();
+  m_DBName.clear();
   m_AppServerName.clear();
   m_WorkstationName.clear();
   m_RootFolderName.clear();
@@ -244,6 +277,7 @@ void IT2QtBuildTool::ClearAllConfig()
 void IT2QtBuildTool::SetAllConfig()
 {
   ui.DBServerEdit->setText(m_DBServerName);
+  ui.DBNameEdit->setText(m_DBName);
   ui.AppServerEdit->setText(m_AppServerName);
   ui.WorkStationEdit->setText(m_WorkstationName);
   ui.RootFolderEdit->setText(m_RootFolderName);
@@ -254,6 +288,7 @@ void IT2QtBuildTool::SetAllConfig()
 void IT2QtBuildTool::GetAllConfig()
 {
   m_DBServerName = ui.DBServerEdit->text();
+  m_DBName = ui.DBNameEdit->text();
   m_AppServerName = ui.AppServerEdit->text();
   m_WorkstationName = ui.WorkStationEdit->text();
   m_RootFolderName = ui.RootFolderEdit->text();
@@ -475,6 +510,11 @@ void IT2QtBuildTool::ReadConfigFile()
         m_DBServerName = xmlReader.readElementText();
         xmlReader.readNext();
       }
+      else if (xmlReader.name() == "DatabaseName")
+      {
+        m_DBName = xmlReader.readElementText();
+        xmlReader.readNext();
+      }
       else if (xmlReader.name() == "ApplicationServer")
       {
         m_AppServerName = xmlReader.readElementText();
@@ -527,6 +567,7 @@ void IT2QtBuildTool::SaveConfigFile()
   xmlWriter.writeStartDocument();
   xmlWriter.writeStartElement("Parameters");
   xmlWriter.writeTextElement("DatabaseServer", m_DBServerName);
+  xmlWriter.writeTextElement("DatabaseName", m_DBName);
   xmlWriter.writeTextElement("ApplicationServer", m_AppServerName);
   xmlWriter.writeTextElement("Workstation", m_WorkstationName);
   xmlWriter.writeTextElement("RootFolder", m_RootFolderName);

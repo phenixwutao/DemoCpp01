@@ -35,29 +35,28 @@ public:
     QGridLayout *gridLayout_3;
     QGroupBox *ConfigGBX;
     QGridLayout *gridLayout;
-    QLabel *AppServerLabel;
-    QSpacerItem *verticalSpacer_13;
-    QLineEdit *DBServerEdit;
-    QSpacerItem *verticalSpacer_12;
-    QLineEdit *AppServerEdit;
     QLabel *DBServerLabel;
-    QLabel *PrebuildLabel;
-    QPushButton *SavePB;
-    QSpacerItem *verticalSpacer_16;
-    QLabel *RootFolderLabel;
-    QSpacerItem *horizontalSpacer_9;
+    QLabel *DBNameLabel;
+    QLabel *AppServerLabel;
     QLabel *WorkStationLabel;
-    QSpacerItem *verticalSpacer_14;
-    QLineEdit *RootFolderEdit;
-    QLineEdit *PrebuildFolderEdit;
-    QSpacerItem *verticalSpacer_15;
     QLineEdit *WorkStationEdit;
-    QPushButton *DefaultPB;
-    QSpacerItem *horizontalSpacer_7;
-    QPushButton *ClearPB;
-    QPushButton *ResetPB;
-    QSpacerItem *horizontalSpacer_8;
+    QLabel *RootFolderLabel;
+    QLineEdit *RootFolderEdit;
+    QSpacerItem *verticalSpacer_15;
     QPushButton *RootDirSelectPB;
+    QLabel *PrebuildLabel;
+    QLineEdit *PrebuildFolderEdit;
+    QSpacerItem *verticalSpacer_16;
+    QPushButton *SavePB;
+    QSpacerItem *horizontalSpacer_9;
+    QPushButton *ResetPB;
+    QSpacerItem *horizontalSpacer_7;
+    QPushButton *DefaultPB;
+    QSpacerItem *horizontalSpacer_8;
+    QPushButton *ClearPB;
+    QLineEdit *AppServerEdit;
+    QLineEdit *DBNameEdit;
+    QLineEdit *DBServerEdit;
     QGroupBox *SolutionsGBX;
     QGridLayout *gridLayout_2;
     QCheckBox *IT2ParserCKB;
@@ -104,7 +103,7 @@ public:
     {
         if (IT2QtBuildToolClass->objectName().isEmpty())
             IT2QtBuildToolClass->setObjectName(QStringLiteral("IT2QtBuildToolClass"));
-        IT2QtBuildToolClass->resize(615, 445);
+        IT2QtBuildToolClass->resize(687, 453);
         centralWidget = new QWidget(IT2QtBuildToolClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -121,114 +120,112 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        AppServerLabel = new QLabel(ConfigGBX);
-        AppServerLabel->setObjectName(QStringLiteral("AppServerLabel"));
-
-        gridLayout->addWidget(AppServerLabel, 2, 0, 1, 2);
-
-        verticalSpacer_13 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_13, 3, 2, 1, 2);
-
-        DBServerEdit = new QLineEdit(ConfigGBX);
-        DBServerEdit->setObjectName(QStringLiteral("DBServerEdit"));
-
-        gridLayout->addWidget(DBServerEdit, 0, 2, 1, 5);
-
-        verticalSpacer_12 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_12, 1, 2, 1, 2);
-
-        AppServerEdit = new QLineEdit(ConfigGBX);
-        AppServerEdit->setObjectName(QStringLiteral("AppServerEdit"));
-
-        gridLayout->addWidget(AppServerEdit, 2, 2, 1, 5);
-
         DBServerLabel = new QLabel(ConfigGBX);
         DBServerLabel->setObjectName(QStringLiteral("DBServerLabel"));
 
         gridLayout->addWidget(DBServerLabel, 0, 0, 1, 2);
 
-        PrebuildLabel = new QLabel(ConfigGBX);
-        PrebuildLabel->setObjectName(QStringLiteral("PrebuildLabel"));
+        DBNameLabel = new QLabel(ConfigGBX);
+        DBNameLabel->setObjectName(QStringLiteral("DBNameLabel"));
 
-        gridLayout->addWidget(PrebuildLabel, 8, 0, 1, 1);
+        gridLayout->addWidget(DBNameLabel, 1, 0, 1, 2);
 
-        SavePB = new QPushButton(ConfigGBX);
-        SavePB->setObjectName(QStringLiteral("SavePB"));
+        AppServerLabel = new QLabel(ConfigGBX);
+        AppServerLabel->setObjectName(QStringLiteral("AppServerLabel"));
 
-        gridLayout->addWidget(SavePB, 10, 0, 1, 1);
-
-        verticalSpacer_16 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_16, 9, 2, 1, 2);
-
-        RootFolderLabel = new QLabel(ConfigGBX);
-        RootFolderLabel->setObjectName(QStringLiteral("RootFolderLabel"));
-
-        gridLayout->addWidget(RootFolderLabel, 6, 0, 1, 1);
-
-        horizontalSpacer_9 = new QSpacerItem(17, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_9, 10, 1, 1, 1);
+        gridLayout->addWidget(AppServerLabel, 2, 0, 1, 2);
 
         WorkStationLabel = new QLabel(ConfigGBX);
         WorkStationLabel->setObjectName(QStringLiteral("WorkStationLabel"));
 
-        gridLayout->addWidget(WorkStationLabel, 4, 0, 1, 1);
+        gridLayout->addWidget(WorkStationLabel, 3, 0, 1, 1);
 
-        verticalSpacer_14 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        WorkStationEdit = new QLineEdit(ConfigGBX);
+        WorkStationEdit->setObjectName(QStringLiteral("WorkStationEdit"));
 
-        gridLayout->addItem(verticalSpacer_14, 5, 2, 1, 2);
+        gridLayout->addWidget(WorkStationEdit, 3, 2, 1, 6);
+
+        RootFolderLabel = new QLabel(ConfigGBX);
+        RootFolderLabel->setObjectName(QStringLiteral("RootFolderLabel"));
+
+        gridLayout->addWidget(RootFolderLabel, 4, 0, 1, 1);
 
         RootFolderEdit = new QLineEdit(ConfigGBX);
         RootFolderEdit->setObjectName(QStringLiteral("RootFolderEdit"));
 
-        gridLayout->addWidget(RootFolderEdit, 6, 2, 1, 5);
+        gridLayout->addWidget(RootFolderEdit, 4, 2, 1, 6);
+
+        verticalSpacer_15 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_15, 5, 5, 1, 1);
+
+        RootDirSelectPB = new QPushButton(ConfigGBX);
+        RootDirSelectPB->setObjectName(QStringLiteral("RootDirSelectPB"));
+
+        gridLayout->addWidget(RootDirSelectPB, 5, 7, 1, 1);
+
+        PrebuildLabel = new QLabel(ConfigGBX);
+        PrebuildLabel->setObjectName(QStringLiteral("PrebuildLabel"));
+
+        gridLayout->addWidget(PrebuildLabel, 6, 0, 1, 1);
 
         PrebuildFolderEdit = new QLineEdit(ConfigGBX);
         PrebuildFolderEdit->setObjectName(QStringLiteral("PrebuildFolderEdit"));
         PrebuildFolderEdit->setEnabled(true);
         PrebuildFolderEdit->setReadOnly(true);
 
-        gridLayout->addWidget(PrebuildFolderEdit, 8, 2, 1, 5);
+        gridLayout->addWidget(PrebuildFolderEdit, 6, 3, 1, 5);
 
-        verticalSpacer_15 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_16 = new QSpacerItem(20, 13, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer_15, 7, 2, 1, 2);
+        gridLayout->addItem(verticalSpacer_16, 7, 3, 1, 1);
 
-        WorkStationEdit = new QLineEdit(ConfigGBX);
-        WorkStationEdit->setObjectName(QStringLiteral("WorkStationEdit"));
+        SavePB = new QPushButton(ConfigGBX);
+        SavePB->setObjectName(QStringLiteral("SavePB"));
 
-        gridLayout->addWidget(WorkStationEdit, 4, 2, 1, 5);
+        gridLayout->addWidget(SavePB, 8, 0, 1, 1);
 
-        DefaultPB = new QPushButton(ConfigGBX);
-        DefaultPB->setObjectName(QStringLiteral("DefaultPB"));
+        horizontalSpacer_9 = new QSpacerItem(17, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addWidget(DefaultPB, 10, 4, 1, 1);
-
-        horizontalSpacer_7 = new QSpacerItem(17, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_7, 10, 3, 1, 1);
-
-        ClearPB = new QPushButton(ConfigGBX);
-        ClearPB->setObjectName(QStringLiteral("ClearPB"));
-
-        gridLayout->addWidget(ClearPB, 10, 6, 1, 1);
+        gridLayout->addItem(horizontalSpacer_9, 8, 1, 1, 2);
 
         ResetPB = new QPushButton(ConfigGBX);
         ResetPB->setObjectName(QStringLiteral("ResetPB"));
 
-        gridLayout->addWidget(ResetPB, 10, 2, 1, 1);
+        gridLayout->addWidget(ResetPB, 8, 3, 1, 1);
+
+        horizontalSpacer_7 = new QSpacerItem(17, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_7, 8, 4, 1, 1);
+
+        DefaultPB = new QPushButton(ConfigGBX);
+        DefaultPB->setObjectName(QStringLiteral("DefaultPB"));
+
+        gridLayout->addWidget(DefaultPB, 8, 5, 1, 1);
 
         horizontalSpacer_8 = new QSpacerItem(17, 17, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout->addItem(horizontalSpacer_8, 10, 5, 1, 1);
+        gridLayout->addItem(horizontalSpacer_8, 8, 6, 1, 1);
 
-        RootDirSelectPB = new QPushButton(ConfigGBX);
-        RootDirSelectPB->setObjectName(QStringLiteral("RootDirSelectPB"));
+        ClearPB = new QPushButton(ConfigGBX);
+        ClearPB->setObjectName(QStringLiteral("ClearPB"));
 
-        gridLayout->addWidget(RootDirSelectPB, 7, 6, 1, 1);
+        gridLayout->addWidget(ClearPB, 8, 7, 1, 1);
+
+        AppServerEdit = new QLineEdit(ConfigGBX);
+        AppServerEdit->setObjectName(QStringLiteral("AppServerEdit"));
+
+        gridLayout->addWidget(AppServerEdit, 2, 2, 1, 6);
+
+        DBNameEdit = new QLineEdit(ConfigGBX);
+        DBNameEdit->setObjectName(QStringLiteral("DBNameEdit"));
+
+        gridLayout->addWidget(DBNameEdit, 1, 2, 1, 6);
+
+        DBServerEdit = new QLineEdit(ConfigGBX);
+        DBServerEdit->setObjectName(QStringLiteral("DBServerEdit"));
+
+        gridLayout->addWidget(DBServerEdit, 0, 2, 1, 6);
 
 
         gridLayout_3->addWidget(ConfigGBX, 0, 0, 1, 1);
@@ -432,7 +429,7 @@ public:
         IT2QtBuildToolClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(IT2QtBuildToolClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 615, 21));
+        menuBar->setGeometry(QRect(0, 0, 687, 21));
         IT2QtBuildToolClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(IT2QtBuildToolClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -450,30 +447,30 @@ public:
     {
         IT2QtBuildToolClass->setWindowTitle(QApplication::translate("IT2QtBuildToolClass", "IT2QtBuildTool", nullptr));
         ConfigGBX->setTitle(QApplication::translate("IT2QtBuildToolClass", "Configuration", nullptr));
-        AppServerLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Application Server:", nullptr));
-#ifndef QT_NO_TOOLTIP
-        DBServerEdit->setToolTip(QString());
-#endif // QT_NO_TOOLTIP
-#ifndef QT_NO_TOOLTIP
-        AppServerEdit->setToolTip(QString());
-#endif // QT_NO_TOOLTIP
         DBServerLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Database Server:", nullptr));
-        PrebuildLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Prebuild folder:", nullptr));
-#ifndef QT_NO_TOOLTIP
-        SavePB->setToolTip(QString());
-#endif // QT_NO_TOOLTIP
-        SavePB->setText(QApplication::translate("IT2QtBuildToolClass", "Save", nullptr));
-        RootFolderLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Root folder:", nullptr));
+        DBNameLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Database Name:", nullptr));
+        AppServerLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Application Server:", nullptr));
         WorkStationLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Workstation:", nullptr));
+#ifndef QT_NO_TOOLTIP
+        WorkStationEdit->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
+        RootFolderLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Root folder:", nullptr));
 #ifndef QT_NO_TOOLTIP
         RootFolderEdit->setToolTip(QApplication::translate("IT2QtBuildToolClass", "Root folder of source code", nullptr));
 #endif // QT_NO_TOOLTIP
+        RootDirSelectPB->setText(QApplication::translate("IT2QtBuildToolClass", "Select...", nullptr));
+        PrebuildLabel->setText(QApplication::translate("IT2QtBuildToolClass", "Prebuild folder:", nullptr));
 #ifndef QT_NO_TOOLTIP
         PrebuildFolderEdit->setToolTip(QApplication::translate("IT2QtBuildToolClass", "Setup Prebuild folder", nullptr));
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_TOOLTIP
-        WorkStationEdit->setToolTip(QString());
+        SavePB->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
+        SavePB->setText(QApplication::translate("IT2QtBuildToolClass", "Save", nullptr));
+#ifndef QT_NO_TOOLTIP
+        ResetPB->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
+        ResetPB->setText(QApplication::translate("IT2QtBuildToolClass", "Reset", nullptr));
 #ifndef QT_NO_TOOLTIP
         DefaultPB->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
@@ -483,10 +480,11 @@ public:
 #endif // QT_NO_TOOLTIP
         ClearPB->setText(QApplication::translate("IT2QtBuildToolClass", "Clear", nullptr));
 #ifndef QT_NO_TOOLTIP
-        ResetPB->setToolTip(QString());
+        AppServerEdit->setToolTip(QString());
 #endif // QT_NO_TOOLTIP
-        ResetPB->setText(QApplication::translate("IT2QtBuildToolClass", "Reset", nullptr));
-        RootDirSelectPB->setText(QApplication::translate("IT2QtBuildToolClass", "Select...", nullptr));
+#ifndef QT_NO_TOOLTIP
+        DBServerEdit->setToolTip(QString());
+#endif // QT_NO_TOOLTIP
         SolutionsGBX->setTitle(QApplication::translate("IT2QtBuildToolClass", "IT2 Solutions", nullptr));
 #ifndef QT_NO_TOOLTIP
         IT2ParserCKB->setToolTip(QApplication::translate("IT2QtBuildToolClass", "Parser solution", nullptr));

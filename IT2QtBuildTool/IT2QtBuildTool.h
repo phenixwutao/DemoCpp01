@@ -41,6 +41,7 @@ private:
 private:
     Ui::IT2QtBuildToolClass ui;
     QString m_DBServerName{};
+    QString m_DBName{};
     QString m_AppServerName{};
     QString m_WorkstationName{};
     QString m_RootFolderName{};
@@ -52,6 +53,7 @@ private:
 
 private slots:
     void on_DBServerEdit_editingFinished();
+    void on_DBNameEdit_editingFinished();
     void on_AppServerEdit_editingFinished();
     void on_WorkStationEdit_editingFinished();
     void on_RootFolderEdit_editingFinished();
@@ -67,6 +69,7 @@ private slots:
     void on_SelectAllPB_clicked();
     void on_DeselectAllPB_clicked();
     void on_BuildAllPB_clicked();
+    void on_MDCResetPB_clicked();
     void on_RootDirSelectPB_clicked();
     void on_BuildOptionCBX_currentIndexChanged(const QString & text);
 };
