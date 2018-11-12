@@ -124,4 +124,5 @@ void OptionsDerivTestPolynomialFunction()
   {
     cout << f(begin + step * i) << ", ";
   }
+  cout << endl;
 }

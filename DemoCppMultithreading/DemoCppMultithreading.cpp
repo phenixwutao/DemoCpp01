@@ -13,6 +13,7 @@
 #include "WebThreadDoc\ThreadWebDoc.h"
 
 #include "OptionsDerivativesProgramming\OptionsDerivatives.h"
+#include "ParallelPractice\chap04Miltithreads.h"
 
 int main()
 {
@@ -85,6 +86,8 @@ int main()
   OptionsDerivTestTradeObserver();
   OptionsDerivTestFunctionalExamples();
   OptionsDerivTestPolynomialFunction();
+
+  ParallelPractice::chap04HelloExample();
 
   return EXIT_SUCCESS;
 }
