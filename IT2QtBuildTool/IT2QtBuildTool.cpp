@@ -496,7 +496,7 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     strScript.append(R"(echo Build IT2Source.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Source.sln)");
-    strScript.append(sQuote).append(strOption).append(strOption).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
