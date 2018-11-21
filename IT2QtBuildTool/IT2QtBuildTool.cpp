@@ -403,7 +403,8 @@ bool IT2QtBuildTool::NeedBuildSolutions()
   QString sQuote = R"(")";
   QString sLineReturn = "\n\n";
   m_buildMode = ui.BuildOptionCBX->currentText();
-  QString strOption = R"( /p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration=")" + m_buildMode + R"(" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo)";
+  strScript.append(R"(set MYOPTION=/p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration=")" + m_buildMode + R"(" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo)").append(sLineReturn);
+  QString strOption = R"( %MYOPTION% )";
   QString strMSBuild = R"(MSBuild.exe ")";
   bool fNeedBuild = false;
   if (ui.IT2ParserCKB->isChecked())
