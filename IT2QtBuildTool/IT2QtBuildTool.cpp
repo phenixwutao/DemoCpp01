@@ -353,6 +353,7 @@ void IT2QtBuildTool::TickAllSolutions(bool fCheck)
   ui.AutomationCKB->setChecked(fCheck);
   ui.IT2SupportToolsCKB->setChecked(fCheck);
   ui.SCMTestCKB->setChecked(fCheck);
+  ui.IT2NETCKB->setChecked(fCheck);
 }
 
 
@@ -537,6 +538,15 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     fNeedBuild = true;
   }
 
+  if (ui.IT2NETCKB->isChecked())
+  {
+    strScript.append(R"(echo Build IT2NET.sln)").append(sLineReturn);
+    strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
+      .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2NET.sln)");
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
+    fNeedBuild = true;
+  }
+
   if (fNeedBuild == true)
   {
     strScript.append("pause").append(sLineReturn);
@@ -546,7 +556,8 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     sCompiler.append(R"(::Automatically generated, do NOT modify!)").append(sLineReturn);
     sCompiler.append(R"(@ECHO OFF)").append(sLineReturn);
     sCompiler.append(R"(echo Start automatic build )").append(m_buildMode).append(sLineReturn);
-    sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
+    //sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
+    sCompiler.append(R"(call "E:\SoftwareTools\VS2017Enterprise\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
     strScript.prepend(sCompiler);
 
     QFile file(IT2QtBuildTool::s_scriptFilename, this);
@@ -754,6 +765,11 @@ void IT2QtBuildTool::GetMaskFromCheckBoxes()
   {
     m_MaskBuild |= SOLUTION_SCMTEST;
   }
+
+  if (ui.IT2NETCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2NET;
+  }
 }
 
 void IT2QtBuildTool::SetMaskToCheckBoxes()
@@ -826,5 +842,10 @@ void IT2QtBuildTool::SetMaskToCheckBoxes()
   if ((m_MaskBuild & SOLUTION_SCMTEST) == SOLUTION_SCMTEST)
   {
     ui.SCMTestCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2NET) == SOLUTION_IT2NET)
+  {
+    ui.IT2NETCKB->setChecked(true);
   }
 }

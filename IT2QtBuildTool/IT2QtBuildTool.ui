@@ -253,77 +253,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QCheckBox" name="ImportServiceCKB">
-         <property name="text">
-          <string>ImportServices</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="IT2BusinessCKB">
-         <property name="text">
-          <string>IT2Business</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" colspan="2">
-        <widget class="QCheckBox" name="SCMSourceCKB">
-         <property name="text">
-          <string>SCMSource</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="AXMSChartCKB">
-         <property name="text">
-          <string>AxMSChart</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" colspan="2">
-        <widget class="QCheckBox" name="IT2SourceCKB">
-         <property name="text">
-          <string>IT2Source</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="CrystalReportCKB">
-         <property name="text">
-          <string>CrystalReports</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" colspan="2">
-        <widget class="QCheckBox" name="IT2ComponentsCKB">
-         <property name="text">
-          <string>IT2Components</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QCheckBox" name="FONETCKB">
-         <property name="text">
-          <string>FONET Client</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QCheckBox" name="AutomationCKB">
-         <property name="text">
-          <string>Automations</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QCheckBox" name="EBAMCKB">
-         <property name="text">
-          <string>PortEBAMSigner</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1" colspan="2">
+       <item row="5" column="2" colspan="2">
         <widget class="QCheckBox" name="IT2SupportToolsCKB">
          <property name="text">
           <string>SupportTools</string>
@@ -337,21 +267,162 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="1" colspan="2">
-        <widget class="QCheckBox" name="SCMTestCKB">
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="CrystalReportCKB">
          <property name="text">
-          <string>SCMTest</string>
+          <string>CrystalReports</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="FONETCKB">
+         <property name="text">
+          <string>FONET Client</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QCheckBox" name="EBAMCKB">
+         <property name="text">
+          <string>PortEBAMSigner</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="2">
+        <widget class="QCheckBox" name="AutomationCKB">
+         <property name="text">
+          <string>Automations</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QCheckBox" name="SCMSourceCKB">
+         <property name="text">
+          <string>SCMSource</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2ComponentsCKB">
+         <property name="text">
+          <string>IT2Components</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
         <widget class="QLabel" name="BuildLabel">
          <property name="text">
           <string>Build Option:</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1" colspan="2">
+       <item row="2" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2SourceCKB">
+         <property name="text">
+          <string>IT2Source</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2" colspan="2">
+        <widget class="QCheckBox" name="SCMTestCKB">
+         <property name="text">
+          <string>SCMTest</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" colspan="2">
+        <widget class="QCheckBox" name="ImportServiceCKB">
+         <property name="text">
+          <string>ImportServices</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="AXMSChartCKB">
+         <property name="text">
+          <string>AxMSChart</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QPushButton" name="SelectAllPB">
+         <property name="text">
+          <string>Select All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="IT2BusinessCKB">
+         <property name="text">
+          <string>IT2Business</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="3">
+        <widget class="QPushButton" name="DeselectAllPB">
+         <property name="text">
+          <string>Deselect All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QPushButton" name="MDCResetPB">
+         <property name="text">
+          <string>MDC Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="3">
+        <widget class="QPushButton" name="BuildAllPB">
+         <property name="toolTip">
+          <string>Build all selected solutions...</string>
+         </property>
+         <property name="text">
+          <string>Build All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QPushButton" name="StartPrebuildPB">
+         <property name="text">
+          <string>Start Prebuild</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1" colspan="2">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>68</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="11" column="3">
+        <widget class="QPushButton" name="IDAllocatorPB">
+         <property name="text">
+          <string>ID Allocator</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1" colspan="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="2" colspan="2">
         <widget class="QComboBox" name="BuildOptionCBX">
          <item>
           <property name="text">
@@ -365,74 +436,10 @@
          </item>
         </widget>
        </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="SelectAllPB">
+       <item row="7" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2NETCKB">
          <property name="text">
-          <string>Select All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="2">
-        <widget class="QPushButton" name="DeselectAllPB">
-         <property name="text">
-          <string>Deselect All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QPushButton" name="StartPrebuildPB">
-         <property name="text">
-          <string>Start Prebuild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>68</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="9" column="2">
-        <widget class="QPushButton" name="BuildAllPB">
-         <property name="toolTip">
-          <string>Build all selected solutions...</string>
-         </property>
-         <property name="text">
-          <string>Build All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QPushButton" name="MDCResetPB">
-         <property name="text">
-          <string>MDC Reset</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="10" column="2">
-        <widget class="QPushButton" name="IDAllocatorPB">
-         <property name="text">
-          <string>ID Allocator</string>
+          <string>IT2 NET</string>
          </property>
         </widget>
        </item>
@@ -568,6 +575,46 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>DBServerEdit</tabstop>
+  <tabstop>DBNameEdit</tabstop>
+  <tabstop>AppServerEdit</tabstop>
+  <tabstop>WorkStationEdit</tabstop>
+  <tabstop>RootFolderEdit</tabstop>
+  <tabstop>RootDirSelectPB</tabstop>
+  <tabstop>PrebuildFolderEdit</tabstop>
+  <tabstop>SavePB</tabstop>
+  <tabstop>ResetPB</tabstop>
+  <tabstop>DefaultPB</tabstop>
+  <tabstop>ClearPB</tabstop>
+  <tabstop>StartAppServerPB</tabstop>
+  <tabstop>StopAppServerPB</tabstop>
+  <tabstop>StartWorkStationPB</tabstop>
+  <tabstop>StopWorkStationPB</tabstop>
+  <tabstop>IT2ParserCKB</tabstop>
+  <tabstop>IT2BusinessCKB</tabstop>
+  <tabstop>AXMSChartCKB</tabstop>
+  <tabstop>CrystalReportCKB</tabstop>
+  <tabstop>FONETCKB</tabstop>
+  <tabstop>EBAMCKB</tabstop>
+  <tabstop>MAPICKB</tabstop>
+  <tabstop>ImportServiceCKB</tabstop>
+  <tabstop>SCMSourceCKB</tabstop>
+  <tabstop>IT2SourceCKB</tabstop>
+  <tabstop>IT2ComponentsCKB</tabstop>
+  <tabstop>AutomationCKB</tabstop>
+  <tabstop>IT2SupportToolsCKB</tabstop>
+  <tabstop>SCMTestCKB</tabstop>
+  <tabstop>IT2NETCKB</tabstop>
+  <tabstop>BuildOptionCBX</tabstop>
+  <tabstop>SelectAllPB</tabstop>
+  <tabstop>DeselectAllPB</tabstop>
+  <tabstop>StartPrebuildPB</tabstop>
+  <tabstop>BuildAllPB</tabstop>
+  <tabstop>MDCResetPB</tabstop>
+  <tabstop>IDAllocatorPB</tabstop>
+  <tabstop>ClosePB</tabstop>
+ </tabstops>
  <resources>
   <include location="IT2QtBuildTool.qrc"/>
  </resources>

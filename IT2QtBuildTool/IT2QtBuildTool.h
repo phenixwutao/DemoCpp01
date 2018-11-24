@@ -17,6 +17,7 @@
 #define SOLUTION_AUTOMATIONS    0x000000800
 #define SOLUTION_SUPPORTTOOLS   0x000001000
 #define SOLUTION_SCMTEST        0x000002000
+#define SOLUTION_IT2NET         0x000004000
 
 class IT2QtBuildTool : public QMainWindow
 {
