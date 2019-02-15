@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>615</width>
-    <height>445</height>
+    <width>687</width>
+    <height>453</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,53 +27,6 @@
        <string>Configuration</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="2" column="0" colspan="2">
-        <widget class="QLabel" name="AppServerLabel">
-         <property name="text">
-          <string>Application Server:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2" colspan="2">
-        <spacer name="verticalSpacer_13">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="2" colspan="5">
-        <widget class="QLineEdit" name="DBServerEdit">
-         <property name="toolTip">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2" colspan="2">
-        <spacer name="verticalSpacer_12">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="2" colspan="5">
-        <widget class="QLineEdit" name="AppServerEdit">
-         <property name="toolTip">
-          <string/>
-         </property>
-        </widget>
-       </item>
        <item row="0" column="0" colspan="2">
         <widget class="QLabel" name="DBServerLabel">
          <property name="text">
@@ -81,97 +34,49 @@
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
-        <widget class="QLabel" name="PrebuildLabel">
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="DBNameLabel">
          <property name="text">
-          <string>Prebuild folder:</string>
+          <string>Database Name:</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="0">
-        <widget class="QPushButton" name="SavePB">
-         <property name="toolTip">
-          <string/>
-         </property>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="AppServerLabel">
          <property name="text">
-          <string>Save</string>
+          <string>Application Server:</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="2" colspan="2">
-        <spacer name="verticalSpacer_16">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="RootFolderLabel">
-         <property name="text">
-          <string>Root folder:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <spacer name="horizontalSpacer_9">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>17</width>
-           <height>17</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="4" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="WorkStationLabel">
          <property name="text">
           <string>Workstation:</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="2" colspan="2">
-        <spacer name="verticalSpacer_14">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+       <item row="3" column="2" colspan="6">
+        <widget class="QLineEdit" name="WorkStationEdit">
+         <property name="toolTip">
+          <string/>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
-       <item row="6" column="2" colspan="5">
+       <item row="4" column="0">
+        <widget class="QLabel" name="RootFolderLabel">
+         <property name="text">
+          <string>Root folder:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="6">
         <widget class="QLineEdit" name="RootFolderEdit">
          <property name="toolTip">
           <string>Root folder of source code</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="2" colspan="5">
-        <widget class="QLineEdit" name="PrebuildFolderEdit">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="toolTip">
-          <string>Setup Prebuild folder</string>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="2" colspan="2">
+       <item row="5" column="5">
         <spacer name="verticalSpacer_15">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -184,24 +89,80 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="2" colspan="5">
-        <widget class="QLineEdit" name="WorkStationEdit">
-         <property name="toolTip">
-          <string/>
+       <item row="5" column="7">
+        <widget class="QPushButton" name="RootDirSelectPB">
+         <property name="text">
+          <string>Select...</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="4">
-        <widget class="QPushButton" name="DefaultPB">
+       <item row="6" column="0">
+        <widget class="QLabel" name="PrebuildLabel">
+         <property name="text">
+          <string>Prebuild folder:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="3" colspan="5">
+        <widget class="QLineEdit" name="PrebuildFolderEdit">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="toolTip">
+          <string>Setup Prebuild folder</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="3">
+        <spacer name="verticalSpacer_16">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>13</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="0">
+        <widget class="QPushButton" name="SavePB">
          <property name="toolTip">
           <string/>
          </property>
          <property name="text">
-          <string>Default</string>
+          <string>Save</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="3">
+       <item row="8" column="1" colspan="2">
+        <spacer name="horizontalSpacer_9">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>17</width>
+           <height>17</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="3">
+        <widget class="QPushButton" name="ResetPB">
+         <property name="toolTip">
+          <string/>
+         </property>
+         <property name="text">
+          <string>Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="4">
         <spacer name="horizontalSpacer_7">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -214,27 +175,17 @@
          </property>
         </spacer>
        </item>
-       <item row="10" column="6">
-        <widget class="QPushButton" name="ClearPB">
+       <item row="8" column="5">
+        <widget class="QPushButton" name="DefaultPB">
          <property name="toolTip">
           <string/>
          </property>
          <property name="text">
-          <string>Clear</string>
+          <string>Default</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="2">
-        <widget class="QPushButton" name="ResetPB">
-         <property name="toolTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Reset</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="5">
+       <item row="8" column="6">
         <spacer name="horizontalSpacer_8">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -247,10 +198,30 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="6">
-        <widget class="QPushButton" name="RootDirSelectPB">
+       <item row="8" column="7">
+        <widget class="QPushButton" name="ClearPB">
+         <property name="toolTip">
+          <string/>
+         </property>
          <property name="text">
-          <string>Select...</string>
+          <string>Clear</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" colspan="6">
+        <widget class="QLineEdit" name="AppServerEdit">
+         <property name="toolTip">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="6">
+        <widget class="QLineEdit" name="DBNameEdit"/>
+       </item>
+       <item row="0" column="2" colspan="6">
+        <widget class="QLineEdit" name="DBServerEdit">
+         <property name="toolTip">
+          <string/>
          </property>
         </widget>
        </item>
@@ -282,77 +253,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QCheckBox" name="ImportServiceCKB">
-         <property name="text">
-          <string>ImportServices</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="IT2BusinessCKB">
-         <property name="text">
-          <string>IT2Business</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" colspan="2">
-        <widget class="QCheckBox" name="SCMSourceCKB">
-         <property name="text">
-          <string>SCMSource</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="AXMSChartCKB">
-         <property name="text">
-          <string>AxMSChart</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" colspan="2">
-        <widget class="QCheckBox" name="IT2SourceCKB">
-         <property name="text">
-          <string>IT2Source</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="CrystalReportCKB">
-         <property name="text">
-          <string>CrystalReports</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" colspan="2">
-        <widget class="QCheckBox" name="IT2ComponentsCKB">
-         <property name="text">
-          <string>IT2Components</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QCheckBox" name="FONETCKB">
-         <property name="text">
-          <string>FONET Client</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QCheckBox" name="AutomationCKB">
-         <property name="text">
-          <string>Automations</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QCheckBox" name="EBAMCKB">
-         <property name="text">
-          <string>PortEBAMSigner</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1" colspan="2">
+       <item row="5" column="2" colspan="2">
         <widget class="QCheckBox" name="IT2SupportToolsCKB">
          <property name="text">
           <string>SupportTools</string>
@@ -366,21 +267,162 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="1" colspan="2">
-        <widget class="QCheckBox" name="SCMTestCKB">
+       <item row="3" column="0" colspan="2">
+        <widget class="QCheckBox" name="CrystalReportCKB">
          <property name="text">
-          <string>SCMTest</string>
+          <string>CrystalReports</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="FONETCKB">
+         <property name="text">
+          <string>FONET Client</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QCheckBox" name="EBAMCKB">
+         <property name="text">
+          <string>PortEBAMSigner</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="2">
+        <widget class="QCheckBox" name="AutomationCKB">
+         <property name="text">
+          <string>Automations</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="2">
+        <widget class="QCheckBox" name="SCMSourceCKB">
+         <property name="text">
+          <string>SCMSource</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2ComponentsCKB">
+         <property name="text">
+          <string>IT2Components</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
         <widget class="QLabel" name="BuildLabel">
          <property name="text">
           <string>Build Option:</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="1" colspan="2">
+       <item row="2" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2SourceCKB">
+         <property name="text">
+          <string>IT2Source</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2" colspan="2">
+        <widget class="QCheckBox" name="SCMTestCKB">
+         <property name="text">
+          <string>SCMTest</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" colspan="2">
+        <widget class="QCheckBox" name="ImportServiceCKB">
+         <property name="text">
+          <string>ImportServices</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="AXMSChartCKB">
+         <property name="text">
+          <string>AxMSChart</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
+        <widget class="QPushButton" name="SelectAllPB">
+         <property name="text">
+          <string>Select All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="IT2BusinessCKB">
+         <property name="text">
+          <string>IT2Business</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="3">
+        <widget class="QPushButton" name="DeselectAllPB">
+         <property name="text">
+          <string>Deselect All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="0">
+        <widget class="QPushButton" name="MDCResetPB">
+         <property name="text">
+          <string>MDC Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="3">
+        <widget class="QPushButton" name="BuildAllPB">
+         <property name="toolTip">
+          <string>Build all selected solutions...</string>
+         </property>
+         <property name="text">
+          <string>Build All</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="0">
+        <widget class="QPushButton" name="StartPrebuildPB">
+         <property name="text">
+          <string>Start Prebuild</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1" colspan="2">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>68</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="11" column="3">
+        <widget class="QPushButton" name="IDAllocatorPB">
+         <property name="text">
+          <string>ID Allocator</string>
+         </property>
+        </widget>
+       </item>
+       <item row="11" column="1" colspan="2">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="8" column="2" colspan="2">
         <widget class="QComboBox" name="BuildOptionCBX">
          <item>
           <property name="text">
@@ -394,74 +436,10 @@
          </item>
         </widget>
        </item>
-       <item row="8" column="0">
-        <widget class="QPushButton" name="SelectAllPB">
+       <item row="7" column="2" colspan="2">
+        <widget class="QCheckBox" name="IT2NETCKB">
          <property name="text">
-          <string>Select All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="2">
-        <widget class="QPushButton" name="DeselectAllPB">
-         <property name="text">
-          <string>Deselect All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="0">
-        <widget class="QPushButton" name="StartPrebuildPB">
-         <property name="text">
-          <string>Start Prebuild</string>
-         </property>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <spacer name="horizontalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>68</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="9" column="2">
-        <widget class="QPushButton" name="BuildAllPB">
-         <property name="toolTip">
-          <string>Build all selected solutions...</string>
-         </property>
-         <property name="text">
-          <string>Build All</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="0">
-        <widget class="QPushButton" name="MDCResetPB">
-         <property name="text">
-          <string>MDC Reset</string>
-         </property>
-        </widget>
-       </item>
-       <item row="10" column="1">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="10" column="2">
-        <widget class="QPushButton" name="IDAllocatorPB">
-         <property name="text">
-          <string>ID Allocator</string>
+          <string>IT2 NET</string>
          </property>
         </widget>
        </item>
@@ -581,7 +559,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>615</width>
+     <width>687</width>
      <height>21</height>
     </rect>
    </property>
@@ -597,6 +575,46 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>DBServerEdit</tabstop>
+  <tabstop>DBNameEdit</tabstop>
+  <tabstop>AppServerEdit</tabstop>
+  <tabstop>WorkStationEdit</tabstop>
+  <tabstop>RootFolderEdit</tabstop>
+  <tabstop>RootDirSelectPB</tabstop>
+  <tabstop>PrebuildFolderEdit</tabstop>
+  <tabstop>SavePB</tabstop>
+  <tabstop>ResetPB</tabstop>
+  <tabstop>DefaultPB</tabstop>
+  <tabstop>ClearPB</tabstop>
+  <tabstop>StartAppServerPB</tabstop>
+  <tabstop>StopAppServerPB</tabstop>
+  <tabstop>StartWorkStationPB</tabstop>
+  <tabstop>StopWorkStationPB</tabstop>
+  <tabstop>IT2ParserCKB</tabstop>
+  <tabstop>IT2BusinessCKB</tabstop>
+  <tabstop>AXMSChartCKB</tabstop>
+  <tabstop>CrystalReportCKB</tabstop>
+  <tabstop>FONETCKB</tabstop>
+  <tabstop>EBAMCKB</tabstop>
+  <tabstop>MAPICKB</tabstop>
+  <tabstop>ImportServiceCKB</tabstop>
+  <tabstop>SCMSourceCKB</tabstop>
+  <tabstop>IT2SourceCKB</tabstop>
+  <tabstop>IT2ComponentsCKB</tabstop>
+  <tabstop>AutomationCKB</tabstop>
+  <tabstop>IT2SupportToolsCKB</tabstop>
+  <tabstop>SCMTestCKB</tabstop>
+  <tabstop>IT2NETCKB</tabstop>
+  <tabstop>BuildOptionCBX</tabstop>
+  <tabstop>SelectAllPB</tabstop>
+  <tabstop>DeselectAllPB</tabstop>
+  <tabstop>StartPrebuildPB</tabstop>
+  <tabstop>BuildAllPB</tabstop>
+  <tabstop>MDCResetPB</tabstop>
+  <tabstop>IDAllocatorPB</tabstop>
+  <tabstop>ClosePB</tabstop>
+ </tabstops>
  <resources>
   <include location="IT2QtBuildTool.qrc"/>
  </resources>

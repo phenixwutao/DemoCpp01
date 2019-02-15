@@ -18,6 +18,11 @@ void IT2QtBuildTool::on_DBServerEdit_editingFinished()
   m_DBServerName = ui.DBServerEdit->text();
 }
 
+void IT2QtBuildTool::on_DBNameEdit_editingFinished()
+{
+  m_DBName = ui.DBNameEdit->text();
+}
+
 void IT2QtBuildTool::on_AppServerEdit_editingFinished()
 {
   m_AppServerName = ui.AppServerEdit->text();
@@ -70,6 +75,7 @@ void IT2QtBuildTool::on_ResetPB_clicked()
 void IT2QtBuildTool::on_ClearPB_clicked()
 {
   if (m_DBServerName.isEmpty()      == true &&
+      m_DBName.isEmpty()            == true &&
       m_AppServerName.isEmpty()     == true &&
       m_WorkstationName.isEmpty()   == true &&
       m_RootFolderName.isEmpty()    == true &&
@@ -77,6 +83,7 @@ void IT2QtBuildTool::on_ClearPB_clicked()
     return;
 
   QString sTitle = "DB Server: "   + m_DBServerName + "; ";
+  sTitle += "DB Name: "            + m_DBName + "; ";
   sTitle += "Application Server: " + m_AppServerName + "; ";
   sTitle += "Workstation: "        + m_WorkstationName + "\n";
   sTitle += "Root folder: "        + m_RootFolderName + "; ";
@@ -156,6 +163,32 @@ void IT2QtBuildTool::on_BuildAllPB_clicked()
   msg.exec();
 }
 
+void IT2QtBuildTool::on_MDCResetPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString sCommand = m_RootFolderName;
+  sCommand.append(QDir::separator()).append("IT2Source")
+          .append(QDir::separator()).append("Bin")
+          .append(QDir::separator()).append(m_buildMode)
+          .append(QDir::separator()).append("MDCNEWDB.exe ").append(m_DBServerName).append(" ")
+          .append(m_DBName).append(" ").append(" IT2_BOFA M byPassVersionCheck");
+  auto wExit = system(sCommand.toStdString().c_str());
+
+  QString strText("MDC Reset Success");
+  QMessageBox::Icon iconResult = QMessageBox::Icon::Information;
+  if (wExit != EXIT_SUCCESS)
+  {
+    strText = "MDC Reset Failed with error";
+    iconResult = QMessageBox::Icon::Critical;
+  }
+  QMessageBox msg(iconResult, "MDCReset", strText, QMessageBox::Ok);
+  msg.exec();
+}
+
 
 void IT2QtBuildTool::on_RootDirSelectPB_clicked()
 {
@@ -175,9 +208,106 @@ void IT2QtBuildTool::on_BuildOptionCBX_currentIndexChanged(const QString & text)
   m_buildMode = text;
 }
 
+void IT2QtBuildTool::StartCommand(const QString& sTitle, const QString& sCommand)
+{
+  auto wExit = system(sCommand.toStdString().c_str());
+  if (wExit != EXIT_SUCCESS)
+  {
+    QString strText = "Failed with error";
+    QMessageBox::Icon iconResult = QMessageBox::Icon::Critical;
+    QMessageBox msg(iconResult, sTitle, strText, QMessageBox::Ok);
+    msg.exec();
+  }
+}
+
+void IT2QtBuildTool::on_StartAppServerPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  // change to folder and start command
+  QString path("cd /d ");
+  path.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+
+  QString cmd = path.append(R"( && )").append(R"(start )");
+  cmd.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator()).append(R"(IT2SRVM.exe )");
+  cmd.append(m_AppServerName).append(" ")
+    .append(m_DBServerName).append(" ")
+    .append(m_DBName);
+  IT2QtBuildTool::StartCommand("AppServer", cmd);
+}
+
+void IT2QtBuildTool::on_StopAppServerPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString cmd = R"(@taskkill /IM it2srvm.exe /F )";
+  IT2QtBuildTool::StartCommand("AppServer", cmd);
+}
+
+void IT2QtBuildTool::on_StartWorkStationPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  // BCG Lib path
+  QString sBCGLib = R"(set path=%PATH%;)";
+  sBCGLib.append(m_RootFolderName).append(QDir::separator()).append(R"(ThirdParty\Libs\BCGCBPro)");
+
+  // change to folder and start command
+  QString path("cd /d ");
+  path.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+
+  QString cmd = sBCGLib.append("\n") + path.append(R"( && )").append(R"(start )");
+  cmd.append(m_RootFolderName).append(QDir::separator())
+    .append(R"(IT2Source)").append(QDir::separator())
+    .append(R"(Bin)").append(QDir::separator())
+    .append(m_buildMode).append(QDir::separator());
+  if(m_buildMode == "Debug")
+    cmd.append(R"(IT2StartmD.exe )");
+  else
+    cmd.append(R"(IT2Startm.exe )");
+  cmd.append(m_AppServerName).append(" ")
+    .append(m_DBServerName).append(" ")
+    .append(m_DBName);
+  IT2QtBuildTool::StartCommand("Workstation", cmd);
+}
+
+void IT2QtBuildTool::on_StopWorkStationPB_clicked()
+{
+  GetAllConfig();
+
+  if (CheckAllConfiguration() == false)
+    return;
+
+  QString cmd;
+  if (m_buildMode == "Debug")
+    cmd = R"(@taskkill /IM IT2StartmD.exe /F )";
+  else
+    cmd = R"(@taskkill /IM IT2Startm.exe /F )";
+  IT2QtBuildTool::StartCommand("Workstation", cmd);
+}
+
 bool IT2QtBuildTool::CheckAllConfiguration()
 {
   if (ui.DBServerEdit->text().isEmpty() ||
+    ui.DBNameEdit->text().isEmpty() ||
     ui.AppServerEdit->text().isEmpty() ||
     ui.WorkStationEdit->text().isEmpty() ||
     ui.RootFolderEdit->text().isEmpty() ||
@@ -190,6 +320,8 @@ bool IT2QtBuildTool::CheckAllConfiguration()
     {
       if (ui.DBServerEdit->text().isEmpty())
         ui.DBServerEdit->setFocus();
+      else if (ui.DBNameEdit->text().isEmpty())
+        ui.DBNameEdit->setFocus();
       else if (ui.AppServerEdit->text().isEmpty())
         ui.AppServerEdit->setFocus();
       else if (ui.WorkStationEdit->text().isEmpty())
@@ -221,12 +353,14 @@ void IT2QtBuildTool::TickAllSolutions(bool fCheck)
   ui.AutomationCKB->setChecked(fCheck);
   ui.IT2SupportToolsCKB->setChecked(fCheck);
   ui.SCMTestCKB->setChecked(fCheck);
+  ui.IT2NETCKB->setChecked(fCheck);
 }
 
 
 void IT2QtBuildTool::ClearAllConfig()
 {
   ui.DBServerEdit->clear();
+  ui.DBNameEdit->clear();
   ui.AppServerEdit->clear();
   ui.WorkStationEdit->clear();
   ui.RootFolderEdit->clear();
@@ -234,6 +368,7 @@ void IT2QtBuildTool::ClearAllConfig()
   ui.BuildOptionCBX->setCurrentText("Debug");
 
   m_DBServerName.clear();
+  m_DBName.clear();
   m_AppServerName.clear();
   m_WorkstationName.clear();
   m_RootFolderName.clear();
@@ -244,6 +379,7 @@ void IT2QtBuildTool::ClearAllConfig()
 void IT2QtBuildTool::SetAllConfig()
 {
   ui.DBServerEdit->setText(m_DBServerName);
+  ui.DBNameEdit->setText(m_DBName);
   ui.AppServerEdit->setText(m_AppServerName);
   ui.WorkStationEdit->setText(m_WorkstationName);
   ui.RootFolderEdit->setText(m_RootFolderName);
@@ -254,6 +390,7 @@ void IT2QtBuildTool::SetAllConfig()
 void IT2QtBuildTool::GetAllConfig()
 {
   m_DBServerName = ui.DBServerEdit->text();
+  m_DBName = ui.DBNameEdit->text();
   m_AppServerName = ui.AppServerEdit->text();
   m_WorkstationName = ui.WorkStationEdit->text();
   m_RootFolderName = ui.RootFolderEdit->text();
@@ -267,7 +404,8 @@ bool IT2QtBuildTool::NeedBuildSolutions()
   QString sQuote = R"(")";
   QString sLineReturn = "\n\n";
   m_buildMode = ui.BuildOptionCBX->currentText();
-  QString strOption = R"( /p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration=")" + m_buildMode + R"(" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo)";
+  strScript.append(R"(set MYOPTION=/p:SkipInvalidConfigurations=true /p:Platform=x64 /p:Configuration=")" + m_buildMode + R"(" /t:build /m:8 /consoleloggerparameters:ErrorsOnly /nologo)").append(sLineReturn);
+  QString strOption = R"( %MYOPTION% )";
   QString strMSBuild = R"(MSBuild.exe ")";
   bool fNeedBuild = false;
   if (ui.IT2ParserCKB->isChecked())
@@ -360,7 +498,7 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     strScript.append(R"(echo Build IT2Source.sln)").append(sLineReturn);
     strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
       .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2Source.sln)");
-    strScript.append(sQuote).append(strOption).append(strOption).append(sLineReturn);
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
     fNeedBuild = true;
   }
 
@@ -400,6 +538,15 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     fNeedBuild = true;
   }
 
+  if (ui.IT2NETCKB->isChecked())
+  {
+    strScript.append(R"(echo Build IT2NET.sln)").append(sLineReturn);
+    strScript.append(strMSBuild).append(m_RootFolderName).append(QDir::separator())
+      .append(R"(IT2Source)").append(QDir::separator()).append(R"(IT2NET.sln)");
+    strScript.append(sQuote).append(strOption).append(sLineReturn);
+    fNeedBuild = true;
+  }
+
   if (fNeedBuild == true)
   {
     strScript.append("pause").append(sLineReturn);
@@ -409,7 +556,8 @@ bool IT2QtBuildTool::NeedBuildSolutions()
     sCompiler.append(R"(::Automatically generated, do NOT modify!)").append(sLineReturn);
     sCompiler.append(R"(@ECHO OFF)").append(sLineReturn);
     sCompiler.append(R"(echo Start automatic build )").append(m_buildMode).append(sLineReturn);
-    sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
+    //sCompiler.append(R"(call "E:\SoftwareTools\VS2017Pro\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
+    sCompiler.append(R"(call "E:\SoftwareTools\VS2017Enterprise\VC\Auxiliary\Build\vcvars64.bat")").append(sLineReturn);
     strScript.prepend(sCompiler);
 
     QFile file(IT2QtBuildTool::s_scriptFilename, this);
@@ -475,6 +623,11 @@ void IT2QtBuildTool::ReadConfigFile()
         m_DBServerName = xmlReader.readElementText();
         xmlReader.readNext();
       }
+      else if (xmlReader.name() == "DatabaseName")
+      {
+        m_DBName = xmlReader.readElementText();
+        xmlReader.readNext();
+      }
       else if (xmlReader.name() == "ApplicationServer")
       {
         m_AppServerName = xmlReader.readElementText();
@@ -527,6 +680,7 @@ void IT2QtBuildTool::SaveConfigFile()
   xmlWriter.writeStartDocument();
   xmlWriter.writeStartElement("Parameters");
   xmlWriter.writeTextElement("DatabaseServer", m_DBServerName);
+  xmlWriter.writeTextElement("DatabaseName", m_DBName);
   xmlWriter.writeTextElement("ApplicationServer", m_AppServerName);
   xmlWriter.writeTextElement("Workstation", m_WorkstationName);
   xmlWriter.writeTextElement("RootFolder", m_RootFolderName);
@@ -611,6 +765,11 @@ void IT2QtBuildTool::GetMaskFromCheckBoxes()
   {
     m_MaskBuild |= SOLUTION_SCMTEST;
   }
+
+  if (ui.IT2NETCKB->isChecked())
+  {
+    m_MaskBuild |= SOLUTION_IT2NET;
+  }
 }
 
 void IT2QtBuildTool::SetMaskToCheckBoxes()
@@ -683,5 +842,10 @@ void IT2QtBuildTool::SetMaskToCheckBoxes()
   if ((m_MaskBuild & SOLUTION_SCMTEST) == SOLUTION_SCMTEST)
   {
     ui.SCMTestCKB->setChecked(true);
+  }
+
+  if ((m_MaskBuild & SOLUTION_IT2NET) == SOLUTION_IT2NET)
+  {
+    ui.IT2NETCKB->setChecked(true);
   }
 }
