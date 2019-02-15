@@ -152,6 +152,8 @@
     <ClInclude Include="chap03\chap03ThreadSharingData.h" />
     <ClInclude Include="chap04\Chap04SynchronizingConcurrentOperations.h" />
     <ClInclude Include="chap05\chap05MemoryModelAtomicOperation.h" />
+    <ClInclude Include="ConcurrencyAction2nd\Chap01List.h" />
+    <ClInclude Include="ConcurrencyAction2nd\Chap02List.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Ch01GenericOption.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Chap05DataSource.h" />
     <ClInclude Include="OptionsDerivativesProgramming\Chap05DesignPatterns.h" />
@@ -173,6 +175,8 @@
     <ClCompile Include="chap03\chap03ThreadSharingData.cpp" />
     <ClCompile Include="chap04\Chap04SynchronizingConcurrentOperations.cpp" />
     <ClCompile Include="chap05\chap05MemoryModelAtomicOperation.cpp" />
+    <ClCompile Include="ConcurrencyAction2nd\Chap01List.cpp" />
+    <ClCompile Include="ConcurrencyAction2nd\Chap02List.cpp" />
     <ClCompile Include="DemoCppMultithreading.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Ch01GenericOption.cpp" />
     <ClCompile Include="OptionsDerivativesProgramming\Chap05DataSource.cpp" />

@@ -15,6 +15,9 @@
 #include "OptionsDerivativesProgramming\OptionsDerivatives.h"
 #include "ParallelPractice\chap04Miltithreads.h"
 
+#include "ConcurrencyAction2nd\Chap01List.h"
+#include "ConcurrencyAction2nd\Chap02List.h"
+
 int main()
 {
   //chap01DemoHello();
@@ -78,16 +81,19 @@ int main()
   //C11ThreadLocalStorage();
 
   // Options Derivatives Programming
-  OptionsDerivTestValueOptions();
-  OptionsDerivTestRandomWalks();
-  OptionsDerivTestDate();
-  OptionsDerivTestDataSource();
-  OptionsDerivTestClearingHouse();
-  OptionsDerivTestTradeObserver();
-  OptionsDerivTestFunctionalExamples();
-  OptionsDerivTestPolynomialFunction();
+  //OptionsDerivTestValueOptions();
+  //OptionsDerivTestRandomWalks();
+  //OptionsDerivTestDate();
+  //OptionsDerivTestDataSource();
+  //OptionsDerivTestClearingHouse();
+  //OptionsDerivTestTradeObserver();
+  //OptionsDerivTestFunctionalExamples();
+  //OptionsDerivTestPolynomialFunction();
 
-  ParallelPractice::chap04HelloExample();
+  //ParallelPractice::chap04HelloExample();
+
+  ConAction2nd::Chap01LT01_Hello();
+  ConAction2nd::Chap02LT01_ClassFunctor();
 
   return EXIT_SUCCESS;
 }

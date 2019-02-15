@@ -37,6 +37,9 @@
     <Filter Include="ParallelPractice">
       <UniqueIdentifier>{72afaccf-d0db-4410-a9c9-62ea719b4a03}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ConcurrencyAction2nd">
+      <UniqueIdentifier>{fe881241-9312-46f2-baef-fe5b5220e8d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -105,6 +108,12 @@
     <ClInclude Include="ParallelPractice\chap04Miltithreads.h">
       <Filter>ParallelPractice</Filter>
     </ClInclude>
+    <ClInclude Include="ConcurrencyAction2nd\Chap01List.h">
+      <Filter>ConcurrencyAction2nd</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrencyAction2nd\Chap02List.h">
+      <Filter>ConcurrencyAction2nd</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -163,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="ParallelPractice\chap04Miltithreads.cpp">
       <Filter>ParallelPractice</Filter>
+    </ClCompile>
+    <ClCompile Include="ConcurrencyAction2nd\Chap01List.cpp">
+      <Filter>ConcurrencyAction2nd</Filter>
+    </ClCompile>
+    <ClCompile Include="ConcurrencyAction2nd\Chap02List.cpp">
+      <Filter>ConcurrencyAction2nd</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
