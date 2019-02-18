@@ -98,6 +98,8 @@ int main()
   ConAction2nd::Chap02LT02_PassReferenceToDataObject();
   ConAction2nd::Chap02LT02_MoveDataObject();
   ConAction2nd::Chap02LT02_MoveThread();
+  ConAction2nd::Chap02LT02_ThreadOwnershipTransfer();
+  ConAction2nd::Chap02LT02_SpawnThread();
 
   return EXIT_SUCCESS;
 }

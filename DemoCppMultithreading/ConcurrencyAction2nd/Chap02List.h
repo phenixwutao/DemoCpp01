@@ -6,4 +6,6 @@ namespace ConAction2nd
   void Chap02LT02_PassReferenceToDataObject();
   void Chap02LT02_MoveDataObject();
   void Chap02LT02_MoveThread();
+  void Chap02LT02_ThreadOwnershipTransfer();
+  void Chap02LT02_SpawnThread();
 }

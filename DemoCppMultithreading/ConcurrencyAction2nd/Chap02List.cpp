@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <thread>
+#include <vector>
 #include <memory>
 
 using std::thread;
@@ -127,5 +128,49 @@ namespace ConAction2nd
       t2.join();
     if (t3.joinable())
       t3.join();
+  }
+
+  std::thread func06()
+  {
+    return std::thread(some_function);
+  }
+  std::thread func07()
+  {
+    return std::thread(some_other_function);
+  }
+  void useThread07(std::thread t)
+  {
+    if (t.joinable())
+      t.join();
+  }
+
+  void Chap02LT02_ThreadOwnershipTransfer()
+  {
+    // accept an instance of std::thread by value as one of the parameters
+    useThread07(std::thread(some_function));
+
+    // move std::thread
+    std::thread t(some_function);
+    useThread07(std::move(t));
+  }
+
+  void do_work08(int i)
+  {
+    std::thread::id this_id = std::this_thread::get_id();
+    printf("thread id %8u is working on %d\n", this_id ,i);
+  }
+  void Chap02LT02_SpawnThread()
+  {
+    std::vector<std::thread> vecThreads;
+    for (int i = 0; i < 5; ++i)
+    {
+      vecThreads.emplace_back(do_work08, i);
+    }
+
+    for (auto& entry : vecThreads)
+    {
+      if (entry.joinable())
+        entry.join();
+    }
   }
 }
