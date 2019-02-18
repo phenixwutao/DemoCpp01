@@ -94,6 +94,10 @@ int main()
 
   ConAction2nd::Chap01LT01_Hello();
   ConAction2nd::Chap02LT01_ClassFunctor();
+  ConAction2nd::Chap02LT02_PassArgumentsToFunction();
+  ConAction2nd::Chap02LT02_PassReferenceToDataObject();
+  ConAction2nd::Chap02LT02_MoveDataObject();
+  ConAction2nd::Chap02LT02_MoveThread();
 
   return EXIT_SUCCESS;
 }
