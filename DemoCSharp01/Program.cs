@@ -25,6 +25,9 @@ namespace DemoCSharp01
       Console.WriteLine("Date: " + date.ToString());
       Console.WriteLine("Sign: " + strSignnature);
       Console.WriteLine("Duo Date: " + strDate);
+      string versionNumber = "21.100";// "8.730";
+      var versionNumberFormatted = string.Format("{0:0.000}", Convert.ToDouble(versionNumber));
+      Console.WriteLine("versionNumber: " + versionNumberFormatted);
     }
   }
 }
